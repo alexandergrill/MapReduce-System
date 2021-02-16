@@ -1,7 +1,7 @@
 # MapReduce-System
 <div align="center">
     <br />
-    <img src="./documentation/Logo.jpg" alt="MapReduce_System_Logo" width="350"/>
+    <img src="./doc/Logo.jpg" alt="MapReduce_System_Logo" width="350"/>
 </div>
 
 
