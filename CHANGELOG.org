@@ -1,1 +1,12 @@
+* Changelog
 
+** [0.0.1] - 2020-02-02
+*** Added
+- Repository angelegt
+- Herr Professor eingeladen
+- Meilensteine definiert
+- Labels definiert
+- Columns To, In progress, Done erstellt
+- Latexvorlage erstellt, inkl Überschriften
+- Ordnerstruktur angelegt / Logo erstellt
+- readme befüllt
