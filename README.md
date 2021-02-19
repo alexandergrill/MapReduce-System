@@ -6,8 +6,8 @@
 
 
 ## Grill Alexander NVS Projekt 2021
-Die Lage in Österreich bezgl. COVID-19 wurde auch im zweitem Schulsemster nicht besser. Ein Lockdown nach dem anderem, Festlegungen von Maßnahmen und Ausgangsbeschränkungen,
-die Anzahl der aktiven Fälle steigt, aus diesem Grund bleibt der Bundesregierung nicht anderes über und muss so agieren um die Bevölerunge zu schützen.
+Die Lage in Österreich bezgl. COVID-19 ist auch Jahr 2021, im zweiten Schulsemster ernst. Ein Lockdown nach dem anderem, Festlegungen von Maßnahmen und Ausgangsbeschränkungen,
+die Anzahl der aktiven Fälle steigt, aus diesem Grund bleibt der Bundesregierung nichts anderes über und muss so agieren um die Bevölerunge zu schützen.
 Deshalb wurden Schulerunterrichtstunden online gehalten bis Ende Jännder, ab diesem Zeitpunkt wurde eine Art Schichbetrieb in den Schulen gehalten.
 Foglendessen hat Herr Professor Kolousek beschlossen, dass die Schüler auch im 2 Semester ein NVS Projekt erarbeiten müssen, weil es zu aufwändig wäre eine Praktische Arbeit und Theorietest zu machen. Diese Repo umfasst die Umsetzung des Projekt, als auch die dazugehörige Dokumentation und nötigen Grundlagen.
 
