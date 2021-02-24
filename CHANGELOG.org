@@ -1,12 +1,16 @@
 * Changelog
 
-** [0.0.1] - 2020-02-02
+** [0.0.1] - 2020-02-15
 *** Added
-- Repository angelegt
-- Herr Professor eingeladen
-- Meilensteine definiert
-- Labels definiert
-- Columns Todo, In progress, Done erstellt
-- Latexvorlage erstellt, inkl Überschriften
-- Ordnerstruktur angelegt / Logo erstellt
-- readme befüllt
+- Repository angelegt[PR]
+- Herr Professor eingeladen[PR]
+- Meilensteine definiert[PR]
+- Labels definiert[PR]
+- Columns Todo, In progress, Done erstellt[PR]
+- Latexvorlage erstellt, inkl Überschriften[TH]
+- Ordnerstruktur angelegt / Logo erstellt[PR,TH]
+- readme befüllt[PR]
+
+** [0.0.2] - 2020-02-22
+*** Added
+- Grundlagen MapReduceSystem[TH]
