@@ -1,5 +1,10 @@
 * Changelog
 
+** [0.0.2] - 2020-02-22
+*** Added
+- Grundlagen MapReduceSystem[TH]
+- Ablauf MapReduceSystem[TH]
+
 ** [0.0.1] - 2020-02-15
 *** Added
 - Repository angelegt[PR]
@@ -11,6 +16,4 @@
 - Ordnerstruktur angelegt / Logo erstellt[PR,TH]
 - readme befüllt[PR]
 
-** [0.0.2] - 2020-02-22
-*** Added
-- Grundlagen MapReduceSystem[TH]
+
