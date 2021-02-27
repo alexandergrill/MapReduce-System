@@ -5,9 +5,11 @@
  * date:    27.02.2021
 */
 
+#include "client.h"
+#include <iostream>
 
-
+using namespace std;
 
 int main(){
-    return 0;
+    Map("file1.txt");
 }
