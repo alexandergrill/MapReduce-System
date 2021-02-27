@@ -10,6 +10,7 @@
 #define CLIENT_H
 
 #include <map>
+#include <algorithm>
 #include <fstream>
 #include <iostream>
 
@@ -35,6 +36,7 @@ void Print(){
 void Map(std::string filename){
     std::string fileline;
     std::fstream file;
+    int counter{0};
     try{
         file.open(filename, std::ios::in);
         if(!file){
@@ -44,9 +46,15 @@ void Map(std::string filename){
             std::cout << "File found" << std::endl;
             while(!file.eof()){
                 file >> fileline;
+                fileline.erase(std::remove(fileline.begin(), fileline.end(), '.'), fileline.end());
+                fileline.erase(std::remove(fileline.begin(), fileline.end(), ','), fileline.end());
+                fileline.erase(std::remove(fileline.begin(), fileline.end(), '"'), fileline.end());
+                fileline.erase(std::remove(fileline.begin(), fileline.end(), '!'), fileline.end());
+                fileline.erase(std::remove(fileline.begin(), fileline.end(), '?'), fileline.end());
                 bool isin = Search(fileline);
                 if(isin == false){
                     worddic.insert(std::pair<std::string, int>(fileline, 1));
+                    counter += 1;
                 }
                 else{
                     auto it = worddic.find(fileline);
@@ -55,6 +63,7 @@ void Map(std::string filename){
             }
             file.close();
             Print();
+            std::cout << "Counter: " << counter << std::endl;
         }
 
     }
