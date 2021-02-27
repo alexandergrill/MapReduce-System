@@ -4,6 +4,7 @@
 *** Added
 - Grundlagen MapReduceSystem[TH]
 - Ablauf MapReduceSystem[TH]
+- Files/Ordner für die Implementation anlegen 
 
 ** [0.0.1] - 2020-02-15
 *** Added
