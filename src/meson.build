@@ -40,7 +40,7 @@ add_global_arguments('-I' + get_option('json_include_dir'), language : 'cpp')
 # subdir('SUBDIR1')
 
 inc_dir = include_directories('include', get_option('spdlog_include_dir'), get_option('cli11_include_dir'), get_option('rang_include_dir'), get_option('asio_include_dir'))
-srcclient = ['src/client/main.cpp']
+srcclient = ['src/client/main.cpp', 'src/client/client.cpp', 'src/utils.cpp']
 srcserver = ['src/server/main.cpp']
 #protobuf: src = ['src/main.cpp', generated]
 

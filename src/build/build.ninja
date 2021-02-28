@@ -40,7 +40,15 @@ build client@exe/src_client_main.cpp.o: cpp_COMPILER ../src/client/main.cpp
  DEPFILE = client@exe/src_client_main.cpp.o.d
  ARGS = -Iclient@exe -I. -I.. -I../include -I/home/alex/spdlog-1.8.2/include -I/home/alex/CLI11/ -I/home/alex/rang/ -I../ -I -I/home/alex/json/ -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -Werror -std=c++17 -g -DASIO_STANDALONE -DASIO_NO_DEPRECATED -pthread
 
-build client: cpp_LINKER client@exe/src_client_main.cpp.o
+build client@exe/src_client_client.cpp.o: cpp_COMPILER ../src/client/client.cpp
+ DEPFILE = client@exe/src_client_client.cpp.o.d
+ ARGS = -Iclient@exe -I. -I.. -I../include -I/home/alex/spdlog-1.8.2/include -I/home/alex/CLI11/ -I/home/alex/rang/ -I../ -I -I/home/alex/json/ -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -Werror -std=c++17 -g -DASIO_STANDALONE -DASIO_NO_DEPRECATED -pthread
+
+build client@exe/src_utils.cpp.o: cpp_COMPILER ../src/utils.cpp
+ DEPFILE = client@exe/src_utils.cpp.o.d
+ ARGS = -Iclient@exe -I. -I.. -I../include -I/home/alex/spdlog-1.8.2/include -I/home/alex/CLI11/ -I/home/alex/rang/ -I../ -I -I/home/alex/json/ -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -Werror -std=c++17 -g -DASIO_STANDALONE -DASIO_NO_DEPRECATED -pthread
+
+build client: cpp_LINKER client@exe/src_client_main.cpp.o client@exe/src_client_client.cpp.o client@exe/src_utils.cpp.o
  LINK_ARGS = -Wl,--as-needed -Wl,--no-undefined -pthread
 
 build server@exe/src_server_main.cpp.o: cpp_COMPILER ../src/server/main.cpp
