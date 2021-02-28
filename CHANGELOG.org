@@ -1,19 +1,20 @@
 * Changelog
 
 
-** [0.0.2] - 2021-03-01
+** [0.0.3] - 2021-03-01
 *** Added
-- Client von Datei lesen
-- Client Random Num
-- Client Random String
-- Client Random String in File schreiben
-- Client Map Funktion
+- Client von Datei lesen[PR]
+- Client Random Num[PR]
+- Client Random String[PR]
+- Client Random String in File schreiben[PR]
+- Client Map Funktion[PR]
+- Vorwort, Einleitung, Motivation geschriebn[TH}
 
 ** [0.0.2] - 2021-02-22
 *** Added
 - Grundlagen MapReduceSystem[TH]
 - Ablauf MapReduceSystem[TH]
-- Files/Ordner für die Implementation anlegen 
+- Files/Ordner für die Implementation anlegen[PR]
 
 ** [0.0.1] - 2021-02-15
 *** Added
