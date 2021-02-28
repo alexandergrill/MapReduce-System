@@ -9,11 +9,13 @@
 #ifndef CLIENT_H
 #define CLIENT_H
 
+#include "utils.h"
+
 #include <map>
 #include <algorithm>
 #include <fstream>
 #include <iostream>
-
+#include <time.h>
 
 //std::map<std::string, int>
 
@@ -28,23 +30,42 @@ const char alphabet[52] = {
     'o', 'p', 'q', 'r', 's', 't', 'u',
     'v', 'w', 'x', 'y', 'z'};
 
+
 std::string GetRandomString()
 {
-    int wordlength = rand() % 30;
+    int wordlength = Get_RandomNum(1, 5);
+    int wordletter = Get_RandomNum(0, 51);
     std::string word = "";
-    for (int i = 0; i < wordlength; i++)
-        word = word + alphabet[rand() % 52];
+    for (int i = 0; i < wordlength; i++){
+        word = word + alphabet[wordletter];
+        wordletter = Get_RandomNum(0, 51);
+    }    
     word += " ";
     return word;
 }
 
 void WriteIntoFile(int wordnum, std::string filename){
-    for(int i = 0; i < wordnum; i++){
-        std::string word = GetRandomString();
-        std::cout << word;
-        if(i % 10 == 0){
-            std::cout << std::endl;
+    std::cout << "Write Random Strings into File" << std::endl;
+    std::ofstream file;
+    try{
+        file.open(filename, std::ios::out);
+        if(!file){
+            std::cout << "File not created" << std::endl;
         }
+        else{
+            for(int i = 0; i < wordnum; i++){
+                std::string word = GetRandomString();
+                file << word;
+                if(i % 30 == 0){
+                    file << std::endl;
+                }
+            }
+        
+        }
+        file.close();
+    }
+    catch(...){
+
     }
 }
 
@@ -63,6 +84,7 @@ void Print(){
 
 
 void Map(std::string filename){
+    std::cout << "MAP" << std::endl;
     std::string fileline;
     std::fstream file;
     int counter{0};
