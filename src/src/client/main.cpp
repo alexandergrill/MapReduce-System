@@ -11,5 +11,6 @@
 using namespace std;
 
 int main(){
+    WriteIntoFile(1000000);
     Map("file1.txt");
 }
