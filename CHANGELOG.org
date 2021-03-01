@@ -1,6 +1,10 @@
 * Changelog
 
 
+** [0.0.4] - 2021-03-08
+*** Added
+- Vorteile, Nachteile MapReduce-System[TH]
+
 ** [0.0.3] - 2021-03-01
 *** Added
 - Client von Datei lesen[PR]
@@ -8,7 +12,7 @@
 - Client Random String[PR]
 - Client Random String in File schreiben[PR]
 - Client Map Funktion[PR]
-- Vorwort, Einleitung, Motivation geschriebn[TH}
+- Vorwort, Einleitung, Motivation geschriebn[TH]
 
 ** [0.0.2] - 2021-02-22
 *** Added
