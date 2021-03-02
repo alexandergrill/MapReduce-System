@@ -1,4 +1,4 @@
-Build started at 2021-02-28T17:57:06.563314
+Build started at 2021-03-02T17:15:01.111778
 Main binary: /usr/bin/python3
 Build Options: 
 Python system: Linux
@@ -7,7 +7,7 @@ Version: 0.53.2
 Source dir: /home/alex/Desktop/grill_project_2/src
 Build dir: /home/alex/Desktop/grill_project_2/src/build
 Build type: native build
-Project name: daytime
+Project name: mapreduce-system
 Project version: 0.1
 No CXXFLAGS in the environment, not changing global flags.
 No LDFLAGS in the environment, not changing global flags.
@@ -46,23 +46,50 @@ Host machine cpu: x86_64
 Target machine cpu family: x86_64
 Target machine cpu: x86_64
 Run-time dependency threads found: YES
-Build targets in project: 2
-
-Found ninja-1.10.0 at /usr/bin/ninja
+Program protoc found: YES (/usr/local/bin/protoc)
+Pkg-config binary for MachineChoice.HOST is not cached.
+Pkg-config binary missing from cross or native file, or env var undefined.
+Trying a default pkg-config fallback at pkg-config
+Trying pkg-config binary pkg-config for machine MachineChoice.HOST at ['/usr/bin/pkg-config']
+Found pkg-config: /usr/bin/pkg-config (0.29.1)
+Determining dependency 'protobuf' with pkg-config executable '/usr/bin/pkg-config'
+PKG_CONFIG_PATH: 
+Called `/usr/bin/pkg-config --modversion protobuf` -> 0
+3.15.3
+PKG_CONFIG_PATH: 
+Called `/usr/bin/pkg-config --cflags protobuf` -> 0
+-pthread -I/usr/local/include
+PKG_CONFIG_PATH: 
+Called `/usr/bin/pkg-config protobuf --libs` -> 0
+-L/usr/local/lib -lprotobuf -lpthread
+PKG_CONFIG_PATH: 
+Called `/usr/bin/pkg-config protobuf --libs` -> 0
+-L/usr/local/lib -lprotobuf -lpthread
 Running compile:
-Working directory:  /tmp/tmpotwjxiei
-Command line:  c++ /tmp/tmpotwjxiei/testfile.cpp -o /tmp/tmpotwjxiei/output.obj -pipe -D_FILE_OFFSET_BITS=64 -c -std=c++17 
+Working directory:  /home/alex/Desktop/grill_project_2/src/build/meson-private/tmpyjn86hdu
+Command line:  c++ /home/alex/Desktop/grill_project_2/src/build/meson-private/tmpyjn86hdu/testfile.cpp -o /home/alex/Desktop/grill_project_2/src/build/meson-private/tmpyjn86hdu/output.exe -pipe -D_FILE_OFFSET_BITS=64 -O0 -fpermissive 
 
 Code:
- int i = static_cast<int>(0);
+ #include<stdio.h>
+        
+        int main(void) {
+            printf("%ld\n", (long)(sizeof(void *)));
+            return 0;
+        };
 Compiler stdout:
  
 Compiler stderr:
  
-Compiler accepts -std=c++17: YES
+Program stdout:
+
+8
+
+Program stderr:
+
+
 Running compile:
-Working directory:  /home/alex/Desktop/grill_project_2/src/build/meson-private/tmp58khdm21
-Command line:  c++ /home/alex/Desktop/grill_project_2/src/build/meson-private/tmp58khdm21/testfile.cpp -o /home/alex/Desktop/grill_project_2/src/build/meson-private/tmp58khdm21/output.obj -pipe -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive --print-search-dirs 
+Working directory:  /home/alex/Desktop/grill_project_2/src/build/meson-private/tmp0n6lp6d4
+Command line:  c++ /home/alex/Desktop/grill_project_2/src/build/meson-private/tmp0n6lp6d4/testfile.cpp -o /home/alex/Desktop/grill_project_2/src/build/meson-private/tmp0n6lp6d4/output.obj -pipe -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive --print-search-dirs 
 
 Code:
  
@@ -73,3 +100,28 @@ libraries: =/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/9/../
 
 Compiler stderr:
  
+Running compile:
+Working directory:  /home/alex/Desktop/grill_project_2/src/build/meson-private/tmp2cs742wi
+Command line:  c++ /home/alex/Desktop/grill_project_2/src/build/meson-private/tmp2cs742wi/testfile.cpp -o /home/alex/Desktop/grill_project_2/src/build/meson-private/tmp2cs742wi/output.exe -pipe -D_FILE_OFFSET_BITS=64 -O0 -fpermissive -Wl,--start-group -lpthread -Wl,--end-group -Wl,--allow-shlib-undefined 
+
+Code:
+ int main(void) { return 0; }
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Run-time dependency protobuf found: YES 3.15.3
+Build targets in project: 2
+
+Found ninja-1.10.0 at /usr/bin/ninja
+Running compile:
+Working directory:  /tmp/tmp7vy54b6_
+Command line:  c++ /tmp/tmp7vy54b6_/testfile.cpp -o /tmp/tmp7vy54b6_/output.obj -pipe -D_FILE_OFFSET_BITS=64 -c -std=c++17 
+
+Code:
+ int i = static_cast<int>(0);
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler accepts -std=c++17: YES

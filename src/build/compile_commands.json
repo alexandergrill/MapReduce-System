@@ -1,25 +1,25 @@
 [
   {
     "directory": "/home/alex/Desktop/grill_project_2/src/build",
-    "command": "c++ -Iclient@exe -I. -I.. -I../include -I/home/alex/spdlog-1.8.2/include -I/home/alex/CLI11/ -I/home/alex/rang/ -I../ -I -I/home/alex/json/ -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -Werror -std=c++17 -g -DASIO_STANDALONE -DASIO_NO_DEPRECATED -pthread -MD -MQ 'client@exe/src_client_main.cpp.o' -MF 'client@exe/src_client_main.cpp.o.d' -o 'client@exe/src_client_main.cpp.o' -c ../src/client/main.cpp",
+    "command": "c++ -Iclient@exe -I. -I.. -I../include -I/home/alex/spdlog-1.8.2/include -I/home/alex/CLI11/ -I/home/alex/rang/ -I/usr/local/include -I/home/alex/json/ -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -Werror -std=c++17 -g -pthread -MD -MQ 'client@exe/src_client_main.cpp.o' -MF 'client@exe/src_client_main.cpp.o.d' -o 'client@exe/src_client_main.cpp.o' -c ../src/client/main.cpp",
     "file": "../src/client/main.cpp",
     "output": "client@exe/src_client_main.cpp.o"
   },
   {
     "directory": "/home/alex/Desktop/grill_project_2/src/build",
-    "command": "c++ -Iclient@exe -I. -I.. -I../include -I/home/alex/spdlog-1.8.2/include -I/home/alex/CLI11/ -I/home/alex/rang/ -I../ -I -I/home/alex/json/ -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -Werror -std=c++17 -g -DASIO_STANDALONE -DASIO_NO_DEPRECATED -pthread -MD -MQ 'client@exe/src_client_client.cpp.o' -MF 'client@exe/src_client_client.cpp.o.d' -o 'client@exe/src_client_client.cpp.o' -c ../src/client/client.cpp",
+    "command": "c++ -Iclient@exe -I. -I.. -I../include -I/home/alex/spdlog-1.8.2/include -I/home/alex/CLI11/ -I/home/alex/rang/ -I/usr/local/include -I/home/alex/json/ -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -Werror -std=c++17 -g -pthread -MD -MQ 'client@exe/src_client_client.cpp.o' -MF 'client@exe/src_client_client.cpp.o.d' -o 'client@exe/src_client_client.cpp.o' -c ../src/client/client.cpp",
     "file": "../src/client/client.cpp",
     "output": "client@exe/src_client_client.cpp.o"
   },
   {
     "directory": "/home/alex/Desktop/grill_project_2/src/build",
-    "command": "c++ -Iclient@exe -I. -I.. -I../include -I/home/alex/spdlog-1.8.2/include -I/home/alex/CLI11/ -I/home/alex/rang/ -I../ -I -I/home/alex/json/ -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -Werror -std=c++17 -g -DASIO_STANDALONE -DASIO_NO_DEPRECATED -pthread -MD -MQ 'client@exe/src_utils.cpp.o' -MF 'client@exe/src_utils.cpp.o.d' -o 'client@exe/src_utils.cpp.o' -c ../src/utils.cpp",
+    "command": "c++ -Iclient@exe -I. -I.. -I../include -I/home/alex/spdlog-1.8.2/include -I/home/alex/CLI11/ -I/home/alex/rang/ -I/usr/local/include -I/home/alex/json/ -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -Werror -std=c++17 -g -pthread -MD -MQ 'client@exe/src_utils.cpp.o' -MF 'client@exe/src_utils.cpp.o.d' -o 'client@exe/src_utils.cpp.o' -c ../src/utils.cpp",
     "file": "../src/utils.cpp",
     "output": "client@exe/src_utils.cpp.o"
   },
   {
     "directory": "/home/alex/Desktop/grill_project_2/src/build",
-    "command": "c++ -Iserver@exe -I. -I.. -I../include -I/home/alex/spdlog-1.8.2/include -I/home/alex/CLI11/ -I/home/alex/rang/ -I../ -I -I/home/alex/json/ -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -Werror -std=c++17 -g -DASIO_STANDALONE -DASIO_NO_DEPRECATED -pthread -MD -MQ 'server@exe/src_server_main.cpp.o' -MF 'server@exe/src_server_main.cpp.o.d' -o 'server@exe/src_server_main.cpp.o' -c ../src/server/main.cpp",
+    "command": "c++ -Iserver@exe -I. -I.. -I../include -I/home/alex/spdlog-1.8.2/include -I/home/alex/CLI11/ -I/home/alex/rang/ -I/usr/local/include -I/home/alex/json/ -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -Werror -std=c++17 -g -pthread -MD -MQ 'server@exe/src_server_main.cpp.o' -MF 'server@exe/src_server_main.cpp.o.d' -o 'server@exe/src_server_main.cpp.o' -c ../src/server/main.cpp",
     "file": "../src/server/main.cpp",
     "output": "server@exe/src_server_main.cpp.o"
   }
