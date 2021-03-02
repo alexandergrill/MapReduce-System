@@ -79,6 +79,7 @@ alle Daten vereint auf dem Master Server liegen. Die bearbeitetn Daten werden sc
 Diese Kapitel umfasst die genaue Erläuterung der Aufgabenstelllung, als auch die Themenbereiche die dieser Projektarbeit. Darüber hinaus wird auch über die Idee der Umsetzung geschrieben.
 
 \subsection{Erläuterung der Aufgabenstellung}
+Ziel ist es das eine Menge von unstrukturierten Daten, so verarbeitet werden, dass diese danach wieder in ordnungsgemäßer Struktur vorliegen. Zuerste müssen die Daten 
 
 \subsection{Idee}
 
@@ -157,6 +158,78 @@ Während die Berechnungen schnell gehen, dauert der Datenzugriff länger als bei
 Die Daten müssen erst über das Netzwerk gestreamt werden. Dabei ist die Netzanbindung der Flaschenhals, vor allem im Hinblick auf die sehr unterschiedlichen Rechner innerhalb des Clusters und deren unterschiedliche schnelle Netzanbindung.\\ \\
 Um die Geschwindigkeit zu erhöhen, kann ein Cluster ausschließlich aus High-End-Servern bestehen. In diesem Fall sind die Kosten für das MapReduce-Verfahren immens hoch.
 
+\subsection{Parallel Programming}
+
+\subsection{Kommunikation}
+Das Prinzip der Kommunikation im Internet ist, dass man strikt sein sollen beim Senden der Daten und tolerant beim Empfängen. Der Zweck einer Kommunikation sind die Interoperabilität, das bedeutet
+das mehrere Systeme die aus Rechner bestehen in der Lage sind Daten untereinander auszutauschen, und die Fehlertolaranz, das bedeutet das die Daten durch festegelegte Regeln übertragen werden aber beim Empfangen in einer
+gewünschen Form umgewandelt werden können.
+
+\begin{description}
+    \item[Beziehungen zwischen den einzelnen Knoten] ~\par
+    \begin{itemize}
+        \item one-to-one
+        \begin{itemize}
+            \item{Ein Knote kommuniziert mit einen anderen Knoten}
+        \end{itemize}
+        \item one-to-many
+        \begin{itemize}
+            \item{Ein Knoten spricht mit mehreren Knoten und alle lauschen und hören zu. Diese Art von Kommunikation zwischen den Rechner nennt man multicast}
+        \end{itemize}
+        \item one-to-any
+        \begin{itemize}
+            \item{Ein Knoten spricht mit mehreren Knoten, jedoch betrifft das nur einen Knoten von mehreren.}
+        \end{itemize}
+        \item many-to-one
+        \begin{itemize}
+            \item{Mehrere Knoten sprechen zu einen konkreten Knoten}
+        \end{itemize}
+        \item many-to-many
+        \begin{itemize}
+            \item{Mehrer Knoten kommuniziert mit mehreren anderen Knoten.\\}
+        \end{itemize}
+    \end{itemize} 
+\end{description}
+Weiters ist beim Datenautausch wichtig festzuhalten, in welche Richtung die Daten übertragen werden. Mittel simplex werden die Daten nur in eine Richtung übertragen. 
+Bei half-duplex werden die Daten ebenso in eine Richtung übertragen, jedoch kann die Richtung in der Übertragen wird änderen. Bei der Variante duplex werden die Daten in beide Richtungen übertragen wie im TCP Protokoll realisiert, werden zwei Streams
+zur Verfügung gestellt um Daten zu senden und zu empfangen.\\\\\\\\
+Im Grunde genommen unterscheidet man zwischen verbindungsorientierter und verbindungsloser Kommunikation. Bei der verbindungsorientierter Kommunikation wird eine Verbindung zwischen zwei Knoten aufgebaut, danach werden Daten ausgetauscht und zum Schluss kommt es zur
+Verbindungsabbau. Wohingegen bei der verbindungsloser Kommunikation nur die Datenübertragen werden und keine Verbindung aufgebaut und abgebaut wird. Es ist in der Regel effizienter, aber es wird nicht sichergestellt ob die Daten wirklich beim Empfänger angekommen sind.\\ \\
+Bei der Kommunikation werden auch Nachrichten ausgetauscht, die zum Aufbau, der Überwachung und dem Abbau einer Verbindug notwendig sind. Man spricht von in-bank signalling, es wird ein gleicher logischer Kanal wie Nutzdaten und Steuerungsdaten verwendet, oder out-of-band signalling, hier wird ein getrennter logischer Kanal verwendet. Es gibt einen
+physischen Kanal der in mehrere logische Kanäle unterteilt sind. \\ \\
+Für die Kommunikation benötigt man auch festgelegte Regeln, die für eine Kommunikation notwendig sind, darunter versteht man den Begriff Protokoll. Das betrifft das Format der Nachrichten, Reihenfolge der Nachrichten und die Spezifikation der Fehlersituation. Es gibt zustandsbehaftete und zustandlose Protokolle. zustandsbehaftete Protokolle sind, jene bei denen die Nachrichten
+vom Zustand der zuvor gesendete Nachrichten abhängt. Bei dem zustandlos Protokol heißt, die Nachrichten sind unabhängig von zuvor gesendeten Nachrichten.\\\\
+Im Informationaustausch spielt auch der Begriff Session eine wichtige Rolle. Dieser beschreibt eine feste Beziehung zwischen kommunizierenden Prozessen mit vereinbarten Eigenschaften wie Namen, Ressourcen, Charakteristika. Dadurch bildet sich ein gemeinsamer Zustand zwischen dein einzelnen Prozessen. Um sicherzustellen welcher Knoten welcher ist und welche Rechte dieser hat 
+bei der Kommunikation mit anderen hat, werden Mechanismen zu Authentifikation und Autorisierung. Bei HTTP sieht die Kommunikation folgendermaßen aus, ein Client der mittels Browser eine Seite aufruft sendet einen Request an den Server, dieser überprüft die Daten der Anfragen und welche Daten der Client benötigt und sendet den Client danach mittels Respone die angefragten Daten zurück.\\
+Wird die Seite neu geladen so verschwinden auch die Daten die in einem Cache zwischengespeichert sind und für weitere Aktionen relevant sind. Dies kann oft zu Problem führen, deshalb wird ein sogenanter Session-Cookie verwendet, in dem Daten abgelegt werden, die in einer Session entstehen und für weitere Tätigkeiten relevant sind und in diesem abgespeichert werden.\\ \\
+Protokolle sind hierachisch angeordnet, dass hat den Vorteil, dass mit Problemen zwischen den unterschiedlichen Protokollen besser umgehen kann und jede Schicht nur wissen muss was mit der darunterliegenden Schicht zu tun ist und wie Daten an die darüberliegenden Schicht geben kann. Die Schichten können auch ausgetauscht werden.
+\\\\
+Die Kommunikation kann durch unterschiedlichen Stillen durchgeführt werden wie zum Beipsiel wird ein gemeinsamer genutzer Knoten verwendet und auf diesem zugegriffen auf dem alle Daten abgespeichert werden, wie es bei Datenbanken der fall ist, beim Versenden von Nachrichten spricht man von nachrichten-orientierte Kommunikation, beim Aufruf einer Funktion oder Methoden die auf einem Client abgespeichert sind
+spricht man von Entfernte Funktionsaufrufe bzw. Entfernte Methodenaufrufe, wenn Daten verarbeite werden wenn sie eintreffen spricht man von stream-orientierter Kommunikation.\\\\
+Ein Nachrichtenautausch kann entweder synchron oder asynchron passierten. Bei einer synchronen Austausch wird die Operation begonnen, wenn der Sender die Nachricht initiert hat und der Empfänger bereit ist die Nachricht zu empfangen. Wobei bei einer asynchronen Nachrichtenaustauch, der Sender die Nachrichten unabhängig, ob der bereit ist oder nicht. 
+\begin{description}
+    \item[Semantik der Nachrichtenübermittlung] ~\par
+    \begin{itemize}
+        \item no-wait-send
+        \begin{itemize}
+            \item{Der Sendeprozess wartet lediglich bis die Nachricht im Transportsystem zum Absenden bereitgestellt ist.}
+        \end{itemize}
+        \item synchronization send
+        \begin{itemize}
+            \item{Der Sendeprozess wartet bis die Nachricht vom Empfangsprozess entgegengenommen worden ist.}
+        \end{itemize}
+        \item remote-invocation send
+        \begin{itemize}
+            \item{Der Sendeprozess wartet bis die Nachricht vom Empfangsprozess verarbeitet und beantwortet worden ist.\\\\\\\\\\}
+        \end{itemize}
+    \end{itemize} 
+\end{description}
+Die Datenübertragen in einem Netzwerk kann transient sein(Message Passing), das heißt beide Kommunikationspartner müssen online sein, weil das Kommunikationssystem speichert Nachrichten nur solange, wie die
+sendende und die empfangene Operation ausgeführt wird, oder Persistent(Message Queueing), darunter versteht man das Kommunikationssystem speichert Nachrichten bis diese vollständig an den Empfänger ausgeliefert wurden.\\\\
+Musterlösungen einer Datenübertragung kann sein request/response(A sendet an B, B sendet an A), oneway(A sendet an B, A sendet an B), batching(Zusammenfassung von oneway Nachrichten) und publish/subscribe. Daten können durch zweit verscheiden Möglichkeiten interoperable übertragen werden, nämlich Daten werden ganz einfach in ein maschinenunabhängiges Format transformiert oder Empfänger muss sich um eine notwendige Konvertierung kümmern. Im ersten Fall müssen beide Kommunikationspartner
+die Daten so umwandelen, sodass diese für sie verständlich sind und im zweiten Fall spezifiziert der Sender den Datentyp aus einer Liste von vorgegebenen Datentypen.
+
+\subsection{TCP/IP}
 
 
 
@@ -165,9 +238,12 @@ Um die Geschwindigkeit zu erhöhen, kann ein Cluster ausschließlich aus High-En
 
 \subsection{Aufbau}
 
-\subsection{Klassendesign}
-
 \subsection{Source Code Dokumentation}
+
+\subsection{Kommandozeilenparameter}
+
+\subsection{Konsolenausgabe}
+
 
 \subsection{Verwendete Bibliotheken}
 
