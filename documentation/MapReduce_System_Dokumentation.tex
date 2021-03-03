@@ -6,6 +6,8 @@
 \usepackage{graphicx}
 \usepackage[cache=false]{minted}
 \usepackage{dirtree}
+\usepackage[backend=biber,style=alphabetic,citestyle=numeric]{biblatex}
+\addbibresource{literatur}
 
 \begin{document}
 \begin{titlepage}
@@ -228,9 +230,8 @@ Die Datenübertragen in einem Netzwerk kann transient sein(Message Passing), das
 sendende und die empfangene Operation ausgeführt wird, oder Persistent(Message Queueing), darunter versteht man das Kommunikationssystem speichert Nachrichten bis diese vollständig an den Empfänger ausgeliefert wurden.\\\\
 Musterlösungen einer Datenübertragung kann sein request/response(A sendet an B, B sendet an A), oneway(A sendet an B, A sendet an B), batching(Zusammenfassung von oneway Nachrichten) und publish/subscribe. Daten können durch zweit verscheiden Möglichkeiten interoperable übertragen werden, nämlich Daten werden ganz einfach in ein maschinenunabhängiges Format transformiert oder Empfänger muss sich um eine notwendige Konvertierung kümmern. Im ersten Fall müssen beide Kommunikationspartner
 die Daten so umwandelen, sodass diese für sie verständlich sind und im zweiten Fall spezifiziert der Sender den Datentyp aus einer Liste von vorgegebenen Datentypen.
-
 \subsection{TCP/IP}
-
+\cite{socialMediaUse2020}
 
 
 
@@ -251,4 +252,7 @@ die Daten so umwandelen, sodass diese für sie verständlich sind und im zweiten
 
 \section{Schlusswort}
 
+\section{Literatur}
+
+\printbibliography
 \end{document}
