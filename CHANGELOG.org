@@ -4,6 +4,7 @@
 ** [0.0.4] - 2021-03-08
 *** Added
 - Vorteile, Nachteile MapReduce-System[TH]
+- Grundlagen Kommunikation_1[TH]
 
 ** [0.0.3] - 2021-03-01
 *** Added
