@@ -5,6 +5,7 @@
 *** Added
 - Vorteile, Nachteile MapReduce-System[TH]
 - Grundlagen Kommunikation_1[TH]
+- Literatur.bib eingebunden[TH]
 
 ** [0.0.3] - 2021-03-01
 *** Added
