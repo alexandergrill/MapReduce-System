@@ -6,6 +6,7 @@
 - Vorteile, Nachteile MapReduce-System[TH]
 - Grundlagen Kommunikation_1[TH]
 - Literatur.bib eingebunden[TH]
+- Google Protobuf eingebunden[PR]
 
 ** [0.0.3] - 2021-03-01
 *** Added
