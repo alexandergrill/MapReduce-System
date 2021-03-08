@@ -6,6 +6,11 @@
 \usepackage{graphicx}
 \usepackage[cache=false]{minted}
 \usepackage{dirtree}
+\usepackage{biblatex}
+\usepackage[strings]{underscore}
+\addbibresource{literatur.bib}
+
+
 
 \begin{document}
 \begin{titlepage}
@@ -79,11 +84,28 @@ alle Daten vereint auf dem Master Server liegen. Die bearbeitetn Daten werden sc
 Diese Kapitel umfasst die genaue Erläuterung der Aufgabenstelllung, als auch die Themenbereiche die dieser Projektarbeit. Darüber hinaus wird auch über die Idee der Umsetzung geschrieben.
 
 \subsection{Erläuterung der Aufgabenstellung}
-Ziel ist es das eine Menge von unstrukturierten Daten, so verarbeitet werden, dass diese danach wieder in ordnungsgemäßer Struktur vorliegen. Zuerste müssen die Daten 
+Ziel ist es das eine Menge von unstrukturierten Daten, so verarbeitet werden, dass diese danach wieder in ordnungsgemäßer Struktur vorliegen. Zuerste müssen die Daten aufgeteilt werden. Sie werden in einer Key-Value Form abgepeichert, somit kann
+der Value, also der abgespeicherte Datensatz, mittels Key eindeutig identifiziert werden. Nachdem die Daten zusammengefasst vorliegen, werden sie in nächste Schritt auf einzelne Knoten aufgeteilt. Diese erlangen von den einzelenen Clients die Daten in Key-Value Form und fassen diese wieder zusammen, bis die Daten zu einem Master Knoten ankommen und dort schlussendlich in geordneter Form darliegen.
+Die Aktionen, der Datenverarbeitung verläuft ständig unter paralleler Abfolge, die Aufgaben werden aufgeteilt und gleichlaufen auf verscheidenen Knoten aufgeteilt.
 
 \subsection{Idee}
-
+Das Projekt ist so aufgebaut, das es acht oder mehr Clients gibt, zwei Slave Server und einen Master Server. Ein Benutzer(Client) kann einen beliebige Anzahl von Zeichenketten, die er dem Programm beim Aufruf mitübergibt, erzeugen und diese werden dann in einer Datei abgespeichert. Zuästzlich wird dem Benutzer auch angeboten dem Speichertort der Datei selbst auszuwählen. Nachdem die ungeordneten Daten in einer Datei 
+abspeichert sind, beginnt die nächste Phase des Map-Reduce System. Die Datei wird zeilenweise durchgegangen. Die Zeichenketten werden in einem Art Dictionary als Key-Value Form abspeichert, daduch kann jeder eingefügte Datensatz identifiziert werden. Wenn der Datensatz in diesem Dictionary schon existiert, dann wird der Value, der als Counter festlegt wie oft die Zeichenfolge im Text vorkommt, um eins erhöht. Nachdem kompletten Durchlauf der Datei sind alle Daten
+in diesem Dictionary abspeichert. Dadurch, dass mehrere Clients das System zum gleichen Zeitpunkt unabhängig voneinander nutzen können, wird das durchforsten der Datei von anderen Prozessen nicht beeinflusst. Nachdem ein Prozess mit der Datenabspeicherung fertig ist, sendet er die Daten an den jeweiligen Slave Server der zu diesem Zeitpunkt nicht beschäftigt ist. Wenn der Server von einer gewissen Anzahl von Clients die Daten bekommt, beginnt er danach mit der Map Phase. An dieser Stelle werden
+die gesendetet Daten wieder per Key zusammengefasst und strukturiert. Die Abarbeitung erfolgt auch in diesem Fall parallel zu einem weiter Slave Knoten, der die selbe Art und Weise der Datenverarbeitung nutzt. Schlussendlich wird das Result an den Master Server geschickt. Letzendlich bringt dieser all seine empfangen Daten in eine Struktur, die im Nachhinein für Datenanalysen eingesetzt werden können.
 \subsection{Themenbereiche}
+\begin{description}
+    \item[Diese Arbeit umfasst folgende Thematiken] ~\par
+    \begin{itemize}
+        \item Grundlagen und Basiskonzepte, Nachrichtenübertragung, Netzarchitektur
+        \item Internetprotokoll
+        \item Transportprotokolle
+        \item Prozesse und Threads
+        \item Synchronisation und parallele Programmierung
+        \item Kommunikation, Serverprogrammierung, verteilte Systeme
+        \item TCP/IP Programmierung      
+    \end{itemize} 
+\end{description}
 \newpage
 \section{Grundlagen}
 
@@ -99,6 +121,7 @@ als auch Facebook verwendet das System, um Spam Messages zu minimierung und die 
 Die beiden Grundfunktionen des Verfahrens sind Map und Reduce. Sie sorgen für die Aufteilung der Aufgaben in kleinere parallelisierten Arbeitspakete und führen am Ende die Ergebnisse zusammen. Bei großen relationalen Datenbanken und komplexen Queries lassen sich typische Problem, bezglüch Verarbeitung von großen Datenmengen beseitigen.
 Die Map Funktion, verteilt die Aufgaben an unterschiedlichen Knoten eines Clusters. Die Reduce Funktion sortier die verfassten Ergebnisse und fügt sie am Ende wieder zusammen.
 Die Funktionen Map und Reduce werden vom User bereitgestellt, weil diese schließlich zu den bereitgestellten Daten passen müssen.
+\cite{mrsystem}
 \newpage
 
 \subsection{Ablauf}
@@ -107,7 +130,6 @@ Die Funktionen Map und Reduce werden vom User bereitgestellt, weil diese schlie�
     \centering
     \includegraphics[width=6.1cm]{mapreduce.png}
 \end{figure}
-
 \begin{description}
     \item[Das Verfahren verläuft durch folgende Schritte:] ~\par
     \begin{itemize}
@@ -157,7 +179,7 @@ benötigen.\\ \\
 Während die Berechnungen schnell gehen, dauert der Datenzugriff länger als bei anderen Methoden. 
 Die Daten müssen erst über das Netzwerk gestreamt werden. Dabei ist die Netzanbindung der Flaschenhals, vor allem im Hinblick auf die sehr unterschiedlichen Rechner innerhalb des Clusters und deren unterschiedliche schnelle Netzanbindung.\\ \\
 Um die Geschwindigkeit zu erhöhen, kann ein Cluster ausschließlich aus High-End-Servern bestehen. In diesem Fall sind die Kosten für das MapReduce-Verfahren immens hoch.
-
+\cite{vorteil/nachteilemrsystem}
 \subsection{Parallel Programming}
 
 \subsection{Kommunikation}
@@ -190,23 +212,33 @@ gewünschen Form umgewandelt werden können.
         \end{itemize}
     \end{itemize} 
 \end{description}
-Weiters ist beim Datenautausch wichtig festzuhalten, in welche Richtung die Daten übertragen werden. Mittel simplex werden die Daten nur in eine Richtung übertragen. 
+\textbf{Kommunikationsrichtung\\}
+Beim Datenautausch ist wichtig festzuhalten, in welche Richtung die Daten übertragen werden. Mittel simplex werden die Daten nur in eine Richtung übertragen. 
 Bei half-duplex werden die Daten ebenso in eine Richtung übertragen, jedoch kann die Richtung in der Übertragen wird änderen. Bei der Variante duplex werden die Daten in beide Richtungen übertragen wie im TCP Protokoll realisiert, werden zwei Streams
 zur Verfügung gestellt um Daten zu senden und zu empfangen.\\\\\\\\
+\textbf{Verbindungen\\}
 Im Grunde genommen unterscheidet man zwischen verbindungsorientierter und verbindungsloser Kommunikation. Bei der verbindungsorientierter Kommunikation wird eine Verbindung zwischen zwei Knoten aufgebaut, danach werden Daten ausgetauscht und zum Schluss kommt es zur
 Verbindungsabbau. Wohingegen bei der verbindungsloser Kommunikation nur die Datenübertragen werden und keine Verbindung aufgebaut und abgebaut wird. Es ist in der Regel effizienter, aber es wird nicht sichergestellt ob die Daten wirklich beim Empfänger angekommen sind.\\ \\
+\textbf{Signalisierung\\}
 Bei der Kommunikation werden auch Nachrichten ausgetauscht, die zum Aufbau, der Überwachung und dem Abbau einer Verbindug notwendig sind. Man spricht von in-bank signalling, es wird ein gleicher logischer Kanal wie Nutzdaten und Steuerungsdaten verwendet, oder out-of-band signalling, hier wird ein getrennter logischer Kanal verwendet. Es gibt einen
 physischen Kanal der in mehrere logische Kanäle unterteilt sind. \\ \\
+\textbf{Protokoll\\}
 Für die Kommunikation benötigt man auch festgelegte Regeln, die für eine Kommunikation notwendig sind, darunter versteht man den Begriff Protokoll. Das betrifft das Format der Nachrichten, Reihenfolge der Nachrichten und die Spezifikation der Fehlersituation. Es gibt zustandsbehaftete und zustandlose Protokolle. zustandsbehaftete Protokolle sind, jene bei denen die Nachrichten
 vom Zustand der zuvor gesendete Nachrichten abhängt. Bei dem zustandlos Protokol heißt, die Nachrichten sind unabhängig von zuvor gesendeten Nachrichten.\\\\
+\textbf{Session\\}
 Im Informationaustausch spielt auch der Begriff Session eine wichtige Rolle. Dieser beschreibt eine feste Beziehung zwischen kommunizierenden Prozessen mit vereinbarten Eigenschaften wie Namen, Ressourcen, Charakteristika. Dadurch bildet sich ein gemeinsamer Zustand zwischen dein einzelnen Prozessen. Um sicherzustellen welcher Knoten welcher ist und welche Rechte dieser hat 
 bei der Kommunikation mit anderen hat, werden Mechanismen zu Authentifikation und Autorisierung. Bei HTTP sieht die Kommunikation folgendermaßen aus, ein Client der mittels Browser eine Seite aufruft sendet einen Request an den Server, dieser überprüft die Daten der Anfragen und welche Daten der Client benötigt und sendet den Client danach mittels Respone die angefragten Daten zurück.\\
 Wird die Seite neu geladen so verschwinden auch die Daten die in einem Cache zwischengespeichert sind und für weitere Aktionen relevant sind. Dies kann oft zu Problem führen, deshalb wird ein sogenanter Session-Cookie verwendet, in dem Daten abgelegt werden, die in einer Session entstehen und für weitere Tätigkeiten relevant sind und in diesem abgespeichert werden.\\ \\
+\textbf{Hierachie von Protokollen\\}
 Protokolle sind hierachisch angeordnet, dass hat den Vorteil, dass mit Problemen zwischen den unterschiedlichen Protokollen besser umgehen kann und jede Schicht nur wissen muss was mit der darunterliegenden Schicht zu tun ist und wie Daten an die darüberliegenden Schicht geben kann. Die Schichten können auch ausgetauscht werden.
 \\\\
-Die Kommunikation kann durch unterschiedlichen Stillen durchgeführt werden wie zum Beipsiel wird ein gemeinsamer genutzer Knoten verwendet und auf diesem zugegriffen auf dem alle Daten abgespeichert werden, wie es bei Datenbanken der fall ist, beim Versenden von Nachrichten spricht man von nachrichten-orientierte Kommunikation, beim Aufruf einer Funktion oder Methoden die auf einem Client abgespeichert sind
-spricht man von Entfernte Funktionsaufrufe bzw. Entfernte Methodenaufrufe, wenn Daten verarbeite werden wenn sie eintreffen spricht man von stream-orientierter Kommunikation.\\\\
+\textbf{Kommunikationsstile\\}
+Die Kommunikation kann durch unterschiedlichen Stillen durchgeführt werden wie zum Beipsiel wird ein gemeinsamer genutzer Knoten verwendet und auf diesem zugegriffen auf dem alle Daten abgespeichert werden, wie es bei Datenbanken der fall ist, beim Versenden von Nachrichten spricht man von nachrichten-orientierte Kommunikation. \\\\
+Im Vergleich beim Aufruf einer Funktion oder Methoden die auf einem Client abgespeichert sind
+spricht man von Entfernte Funktionsaufrufe (Entfernte Methodenaufrufe), wenn Daten verarbeite werden wenn sie eintreffen spricht man von stream-orientierter Kommunikation.\\\\
+\textbf{synchron vs. asynchron\\}
 Ein Nachrichtenautausch kann entweder synchron oder asynchron passierten. Bei einer synchronen Austausch wird die Operation begonnen, wenn der Sender die Nachricht initiert hat und der Empfänger bereit ist die Nachricht zu empfangen. Wobei bei einer asynchronen Nachrichtenaustauch, der Sender die Nachrichten unabhängig, ob der bereit ist oder nicht. 
+\newpage
 \begin{description}
     \item[Semantik der Nachrichtenübermittlung] ~\par
     \begin{itemize}
@@ -220,15 +252,16 @@ Ein Nachrichtenautausch kann entweder synchron oder asynchron passierten. Bei ei
         \end{itemize}
         \item remote-invocation send
         \begin{itemize}
-            \item{Der Sendeprozess wartet bis die Nachricht vom Empfangsprozess verarbeitet und beantwortet worden ist.\\\\\\\\\\}
+            \item{Der Sendeprozess wartet bis die Nachricht vom Empfangsprozess verarbeitet und beantwortet worden ist.\\\\\\}
         \end{itemize}
     \end{itemize} 
 \end{description}
+\textbf{transient vs. persistent\\}
 Die Datenübertragen in einem Netzwerk kann transient sein(Message Passing), das heißt beide Kommunikationspartner müssen online sein, weil das Kommunikationssystem speichert Nachrichten nur solange, wie die
 sendende und die empfangene Operation ausgeführt wird, oder Persistent(Message Queueing), darunter versteht man das Kommunikationssystem speichert Nachrichten bis diese vollständig an den Empfänger ausgeliefert wurden.\\\\
-Musterlösungen einer Datenübertragung kann sein request/response(A sendet an B, B sendet an A), oneway(A sendet an B, A sendet an B), batching(Zusammenfassung von oneway Nachrichten) und publish/subscribe. Daten können durch zweit verscheiden Möglichkeiten interoperable übertragen werden, nämlich Daten werden ganz einfach in ein maschinenunabhängiges Format transformiert oder Empfänger muss sich um eine notwendige Konvertierung kümmern. Im ersten Fall müssen beide Kommunikationspartner
+Musterlösungen einer Datenübertragung kann sein request/response(A sendet an B, B sendet an A), oneway(A sendet an B, A sendet an B), batching(Zusammenfassung von oneway Nachrichten) und publish/subscribe. Daten können durch zweit verscheiden Möglichkeiten interoperable übertragen werden, nämlich Daten werden ganz einfach in ein maschinenunabhängiges Format transformiert oder Empfänger muss sich um eine notwendige Konvertierung kümmern.\\ Im ersten Fall müssen beide Kommunikationspartner
 die Daten so umwandelen, sodass diese für sie verständlich sind und im zweiten Fall spezifiziert der Sender den Datentyp aus einer Liste von vorgegebenen Datentypen.
-
+\cite{communication1}
 \subsection{TCP/IP}
 
 
@@ -251,4 +284,7 @@ die Daten so umwandelen, sodass diese für sie verständlich sind und im zweiten
 
 \section{Schlusswort}
 
+\section{Literatur}
+
+\printbibliography
 \end{document}
