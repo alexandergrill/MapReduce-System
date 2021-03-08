@@ -12,6 +12,8 @@
 using namespace std;
 
 int main(){
-    WriteIntoFile(500000, "../src/client/clientfile.txt");
-    Map("../src/client/clientfile.txt");
-}
+    Client *c = new Client("127.0.0.1", "1113");
+    c->WriteIntoFile(500000, "../src/client/clientfile.txt");
+    c->Map("../src/client/clientfile.txt");
+    delete(c);
+} 

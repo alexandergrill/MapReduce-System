@@ -8,27 +8,19 @@
 #include "client.h"
 #include "utils.h"
 
-#include <map>
+#include <string.h>
+#include <time.h>
+
 #include <algorithm>
 #include <fstream>
 #include <iostream>
-#include <time.h>
+
 
 using namespace std;
 
-map<std::string, int> worddic;
 
-const char alphabet[52] = {
-    'A', 'B', 'C', 'D', 'E', 'F', 'G',
-    'H', 'I', 'J', 'K', 'L', 'M', 'N',
-    'O', 'P', 'Q', 'R', 'S', 'T', 'U',
-    'V', 'W', 'X', 'Y', 'Z',
-    'a', 'b', 'c', 'd', 'e', 'f', 'g',
-    'h', 'i', 'j', 'k', 'l', 'm', 'n',
-    'o', 'p', 'q', 'r', 's', 't', 'u',
-    'v', 'w', 'x', 'y', 'z'};
 
-string GetRandomString(){
+string Client::GetRandomString(){
     int wordlength = GetRandomNum(1, 5);
     int wordletter = GetRandomNum(0, 51);
     string word = "";
@@ -40,7 +32,7 @@ string GetRandomString(){
     return word;
 }
 
-void WriteIntoFile(int wordnum, string filename){
+void Client::WriteIntoFile(int wordnum, string filename){
     cout << "Write Random Strings into File" << endl;
     ofstream file;
     try{
@@ -64,20 +56,47 @@ void WriteIntoFile(int wordnum, string filename){
     }
 }
 
-bool Search(string value){
+bool Client::Search(string value){
     if (worddic.find(value) == worddic.end()){
         return false;
     }
     return true;
 }
 
-void Print(){
+bool Client::IP_IsValid(string ip)
+{
+    int c{0};
+    char *ip_input = strtok(&ip[0], ".");
+    while (ip_input != NULL)
+    {
+        string ipstring = ip_input;
+        size_t pos;
+        int num = stoi(ipstring, &pos);
+        if (pos != ipstring.size())
+        {
+            return false;
+        }
+        if (num < 0 || num > 255)
+        {
+            return false;
+        }
+        c += 1;
+        ip_input = strtok(NULL, ".");
+    }
+    if (c < 4)
+    {
+        return false;
+    }
+    return true;
+}
+
+void Client::Print(){
     for (auto &t : worddic){
         cout << t.first << " " << t.second << endl;
     }
 }
 
-void Map(string filename){
+void Client::Map(string filename){
     cout << "MAP" << endl;
     string fileline;
     fstream file;
