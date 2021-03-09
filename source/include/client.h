@@ -26,27 +26,21 @@ private:
     std::map<std::string, int> worddic;
     std::string ipadress = "127.0.0.1";
     std::string port = "1113";
-    bool Search(std::string value);
-    bool IP_IsValid(std::string i);
+
+    static bool IPIsValid(std::string i);
+    static bool PORTIsValid(std::string p);
+
 public : 
     Client(){ 
     }
-    Client(std::string ip, std::string pr){
-        bool ipvalid;
-        bool povalid;
-        ipvalid = IP_IsValid(ip);
-        povalid = PORT_IsValid(port);
-        if(){
-            return null;
-        }
-        else{
-
-        }
+    Client(std::string ip, std::string pr):ipadress{ip}, port{pr}{
+        
     }
-    std::string GetRandomString();
-    void WriteIntoFile(int wordnum, std::string filename);  
 
-    bool PORT_IsValid(std::string p);
+    static Client* GetClient(std::string ip, std::string pr);
+    std::string GetRandomString();
+    void WriteIntoFile(int wordnum, std::string filename);
+    bool Search(std::string value);
     void Print();
     void Map(std::string filename);
 };

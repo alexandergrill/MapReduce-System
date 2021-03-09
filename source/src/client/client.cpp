@@ -18,7 +18,63 @@
 
 using namespace std;
 
+static bool IPIsValid(string ip)
+{
+    int c{0};
+    char *ip_input = strtok(&ip[0], ".");
+    while (ip_input != NULL)
+    {
+        string ipstring = ip_input;
+        size_t pos;
+        int num = stoi(ipstring, &pos);
+        if (pos != ipstring.size())
+        {
+            return false;
+        }
+        if (num < 0 || num > 255)
+        {
+            return false;
+        }
+        c += 1;
+        ip_input = strtok(NULL, ".");
+    }
+    if (c < 4)
+    {
+        return false;
+    }
+    return true;
+}
 
+static bool PORTIsValid(string port)
+{
+    size_t pos;
+    int num = stoi(port, &pos);
+    if (pos != port.size())
+    {
+        return false;
+    }
+    if (num < 0 || num > 65535)
+    {
+        return false;
+    }
+    return true;
+}
+
+static Client* GetClient(std::string ip, std::string pr){
+    bool ipvalid;
+    bool povalid;
+    Client *cl;
+    ipvalid = IPIsValid(ip);
+    povalid = PORTIsValid(pr);
+    if (ipvalid == true && povalid){
+        std::cerr << "IP Adress or Port is invalid!" << std::endl;
+        cl = nullptr;
+    }
+    else{
+        cl = new Client(ip, pr);
+    }
+    return cl;
+}
 
 string Client::GetRandomString(){
     int wordlength = GetRandomNum(1, 5);
@@ -63,32 +119,6 @@ bool Client::Search(string value){
     return true;
 }
 
-bool Client::IP_IsValid(string ip)
-{
-    int c{0};
-    char *ip_input = strtok(&ip[0], ".");
-    while (ip_input != NULL)
-    {
-        string ipstring = ip_input;
-        size_t pos;
-        int num = stoi(ipstring, &pos);
-        if (pos != ipstring.size())
-        {
-            return false;
-        }
-        if (num < 0 || num > 255)
-        {
-            return false;
-        }
-        c += 1;
-        ip_input = strtok(NULL, ".");
-    }
-    if (c < 4)
-    {
-        return false;
-    }
-    return true;
-}
 
 void Client::Print(){
     for (auto &t : worddic){

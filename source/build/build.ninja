@@ -26,7 +26,7 @@ rule CUSTOM_COMMAND
  restat = 1
 
 rule REGENERATE_BUILD
- command = /usr/bin/meson --internal regenerate /home/alex/Desktop/grill_project_2/src /home/alex/Desktop/grill_project_2/src/build --backend ninja
+ command = /usr/bin/meson --internal regenerate /home/alex/Desktop/grill_project_2/source /home/alex/Desktop/grill_project_2/source/build --backend ninja
  description = Regenerating build files.
  generator = 1
 
