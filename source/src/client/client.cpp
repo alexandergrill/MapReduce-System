@@ -60,7 +60,7 @@ static bool PORTIsValid(string port)
     return true;
 }
 
-static Client* GetClient(std::string ip, std::string pr){
+static Client* Client::GetClient(std::string ip, std::string pr){
     bool ipvalid;
     bool povalid;
     Client *cl;

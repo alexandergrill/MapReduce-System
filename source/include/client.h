@@ -24,8 +24,8 @@ private:
         'o', 'p', 'q', 'r', 's', 't', 'u',
         'v', 'w', 'x', 'y', 'z'};
     std::map<std::string, int> worddic;
-    std::string ipadress = "127.0.0.1";
-    std::string port = "1113";
+    std::string ipadress;
+    std::string port;
 
     static bool IPIsValid(std::string i);
     static bool PORTIsValid(std::string p);
