@@ -262,6 +262,34 @@ sendende und die empfangene Operation ausgeführt wird, oder Persistent(Message 
 Musterlösungen einer Datenübertragung kann sein request/response(A sendet an B, B sendet an A), oneway(A sendet an B, A sendet an B), batching(Zusammenfassung von oneway Nachrichten) und publish/subscribe. Daten können durch zweit verscheiden Möglichkeiten interoperable übertragen werden, nämlich Daten werden ganz einfach in ein maschinenunabhängiges Format transformiert oder Empfänger muss sich um eine notwendige Konvertierung kümmern.\\ Im ersten Fall müssen beide Kommunikationspartner
 die Daten so umwandelen, sodass diese für sie verständlich sind und im zweiten Fall spezifiziert der Sender den Datentyp aus einer Liste von vorgegebenen Datentypen.
 \cite{communication1}
+\newpage
+\noindent
+\textbf{Message Oriented Middleware\\}
+Message Oriented Middleware ist eine Softwareinfrastruktur, die durch asynchrone Verbindung (nicht im klassischen Sinne, sondern im Sinne von Kommunikationsbeziehungen) charakterisiert ist und die mittels mehrere Systeme durch Nachrichten miteinander verbindet. Protokolle für MOM währen zum Beispiel: 
+AMQP, STOMP, OpenWire, Java Message Service, XMPP, REDIS und MQTT.\\\\Im Unterricht wurde besonders auf das Protokoll MQTT Rücksicht genommen, weil es aktuell ist. MQTT ist ein Protokoll das ursprünglich von IBM zur Überwachung von Ölpipelines. Das Protokoll ist sehr leichtgewichtig gehalten, weil eine große Datenmenge
+mittels einfachen Protokoll übertragen werden soll. \\\\
+Das Protokoll basiert auf einem publish/subscribe Ansatz und die Idee diese Protokolls ist, dass es kompaitble mit anderen Programmiersprachen wie C++, Java, .Net, Python, PHP usw. ist. Der Aufbau des Protokolls ist hiearchisch wie unter Linux der Verzeichnissbaum. \\\\Der Vorteil ist der, dass durch den hiearchischen Topic Aufbau, mann nur die 
+Daten erhält die man auch zwingend anfordert. z.b etage1/wohnzimmer/ bekommt man nur alle Daten vom Wohnzimmer aus der ersten Etgae und wenn man alle Daten von der ersten Etage möchte fordert man mittels /etage1/ diese an. Wichtige Charakteristika sind auch Themen wie Quaility of Service, Last Will and Testament, Retained Message und Authentifizierung.\\
+\\
+\textbf{Entfernte Funktionsaufrufe}\\
+Unter Remote Procedure Call (RPC) versteht man, dass nach dem Funktionsaufruf, der Prozess der durch den Aufruf gestarten wird auf einem anderem Host im lokalen Netzwerk gestartet wird. Die Zugriffstransparenz kann bei Nachrichten-orientierter Kommunikation nicht erfüllt werden, wenn lediglicht eine Operation am Server ausgeführt werden soll. Dieses Konzept findet Anwendung auf Basis von Proxy-Pattern.\\\\
+\newpage
+\noindent
+\textbf{Proxy-Pattern}\\
+Elemente des Proxy-Patterns sind: Client-Objekt, Client Stub(Proxy), Server Stub(Sekeleton), Server-Objekt\\
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=8cm]{ProxyPattern.png}
+\end{figure}
+\\
+Die Vorgehnsweise sieht folgendermaßen aus, nämlich ein User möchte auf einem Objekt eine Methode aufrufen, er ruft die Methode nicht direkt auf dem Objekt auf sondern der Client verwendet ein Interface. Die Implementierung des Interface kann entweder eine abstrakte Klasse sein oder
+ein Interface, dass vorgibt welche Methoden definiert werden sollen bzw. zur Verfügung stehen.
+Zusätzlich gibt es noch eine Klasse Proxy und RealSubject, auf dem die Operation die von oben vererbet wird ausgeführt wird. Im Remote Proxy Pattern ruft ein Client mit dem Interface auf dem Proxy Objekt einer Operation auf. Diese Proxy Objekt dient als Stellverdrehtung des realen Objekts. Das Proxy Objekt baut nach der Ausführung der Operation
+eine Verbindung zu dem wirklichen Objekt auf und über diese Verbindung wird ein Protokoll abgewickelt werden. Bei der Übertragung werden sämtliche Informationen bezüglich des Funktionsaufrufs wie zum Beispiel Eingangsparameter, Ausgabeparameter, Funktionsname mit übertrangen. \\\\
+Nach der Ausführung wird das Resultat des Objekts anhand des Protokolls zurück zum Proxy Objekt und dann zum Client zurückgesendet. Der Aufruf wirkt wie ein lokaler Aufruf, jedoch funktioniert dies über das verwendete Netzwerk.
+Das Sekeleton ist zuständig, die Kommunikation zwischen dem Proxy und dem RealSubject abzuwickeln.\\\\
+Problem, die bei der Umsetzung eines Proxy-Patterns aufdrehten können sind vorallem Interoperabilitätsprobleme(Probleme die beim Zusammenspiel zwischen verschiedener Systemen, Techniken oder Organisationen aufdrehten), call-by-refernce, Behandlung von Excpetions, die Transparenz kann nicht gewährleistet werden und die Behandlung von Threads und Prozessen erfolgt nur serverseitig, Client findet den Server nicht, Client stürtzt ab, nachdem senden der Nachricht, Nachricht geht verloren, Server stürzt ab, Antwort geht verloren, Client stürzt ab, bevor diese die Antwort bekommt.
+\cite{communication2}
 \subsection{TCP/IP}
 
 
@@ -283,8 +311,6 @@ die Daten so umwandelen, sodass diese für sie verständlich sind und im zweiten
 \section{Anwendungsfälle}
 
 \section{Schlusswort}
-
-\section{Literatur}
-
+\newpage
 \printbibliography
 \end{document}
