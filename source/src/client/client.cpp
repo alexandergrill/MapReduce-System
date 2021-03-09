@@ -18,8 +18,7 @@
 
 using namespace std;
 
-static bool IPIsValid(string ip)
-{
+bool Client::IPIsValid(string ip){
     int c{0};
     char *ip_input = strtok(&ip[0], ".");
     while (ip_input != NULL)
@@ -45,11 +44,10 @@ static bool IPIsValid(string ip)
     return true;
 }
 
-static bool PORTIsValid(string port)
-{
+bool Client::PORTIsValid(string port){
     size_t pos;
     int num = stoi(port, &pos);
-    if (pos != port.size())
+    if (pos != port.size() || port.length() != 4)
     {
         return false;
     }
@@ -60,13 +58,15 @@ static bool PORTIsValid(string port)
     return true;
 }
 
-static Client* Client::GetClient(std::string ip, std::string pr){
+Client* Client::GetClient(std::string ip, std::string pr){
     bool ipvalid;
     bool povalid;
     Client *cl;
     ipvalid = IPIsValid(ip);
     povalid = PORTIsValid(pr);
-    if (ipvalid == true && povalid){
+    cout << ipvalid << endl;
+    cout << povalid << endl;
+    if (ipvalid == false || povalid == false){
         std::cerr << "IP Adress or Port is invalid!" << std::endl;
         cl = nullptr;
     }
