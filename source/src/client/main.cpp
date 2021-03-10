@@ -57,10 +57,11 @@ int main(int argc, char* argv[]){
             tcpconnection.close();  
         }
         else{
-            throw;
+            throw -1;
         }
     }
-    catch(){
-        cerr << "client object has not been created, check input parameter;"
+    catch(int e){
+        cerr << "client object has not been created, check input parameter" << endl;
+        return -1;
     }
 }

@@ -64,8 +64,8 @@ Client* Client::GetClient(std::string ip, std::string pr){
     Client *cl;
     ipvalid = IPIsValid(ip);
     povalid = PORTIsValid(pr);
-    cout << ipvalid << endl;
-    cout << povalid << endl;
+    cout << "IP Adresse is valid " << ipvalid << endl;
+    cout << "Port is valid " << povalid << endl;
     if (ipvalid == false || povalid == false){
         std::cerr << "IP Adress or Port is invalid!" << std::endl;
         cl = nullptr;
@@ -128,7 +128,7 @@ void Client::Print(){
 
 void Client::Map(string filename){
     cout << "MAP" << endl;
-    string fileline;
+    string line;
     fstream file;
     int counter{0};
     try{
@@ -139,19 +139,14 @@ void Client::Map(string filename){
         else{
             cout << "File found" << endl;
             while (!file.eof()){
-                file >> fileline;
-                fileline.erase(remove(fileline.begin(), fileline.end(), '.'), fileline.end());
-                fileline.erase(remove(fileline.begin(), fileline.end(), ','), fileline.end());
-                fileline.erase(remove(fileline.begin(), fileline.end(), '"'), fileline.end());
-                fileline.erase(remove(fileline.begin(), fileline.end(), '!'), fileline.end());
-                fileline.erase(remove(fileline.begin(), fileline.end(), '?'), fileline.end());
-                bool isin = Search(fileline);
+                file >> line;
+                bool isin = Search(line);
                 if (isin == false){
-                    worddic.insert(pair<string, int>(fileline, 1));
+                    worddic.insert(pair<string, int>(line, 1));
                     counter += 1;
                 }
                 else{
-                    auto it = worddic.find(fileline);
+                    auto it = worddic.find(line);
                     it->second = it->second + 1;
                 }
             }
