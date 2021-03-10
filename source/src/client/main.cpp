@@ -14,7 +14,7 @@
 #include <rang/rang.hpp>
 #include <CLI11/CLI11.hpp>
 
-/*int argc, char* argv[]*/
+
 //c->WriteIntoFile(500000, "../src/client/clientfile.txt");
 //c->Map("../src/client/clientfile.txt");
 
@@ -23,12 +23,13 @@
 using namespace std;
 using namespace asio::ip;
 
-int main(){
+int main(int argc, char* argv[]){
     string ipadress = "127.0.0.1";
     string port = "1113";
     string test = "HULLOWorld";
-
     Client* c = Client::GetClient(ipadress, port);
+
+    CLI::App app("MapReduce-System");
     if(c != nullptr){
         char* my_ip = &ipadress[0];
         char* my_port = &port[0];

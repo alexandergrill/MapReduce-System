@@ -285,19 +285,45 @@ Elemente des Proxy-Patterns sind: Client-Objekt, Client Stub(Proxy), Server Stub
 Die Vorgehnsweise sieht folgendermaßen aus, nämlich ein User möchte auf einem Objekt eine Methode aufrufen, er ruft die Methode nicht direkt auf dem Objekt auf sondern der Client verwendet ein Interface. Die Implementierung des Interface kann entweder eine abstrakte Klasse sein oder
 ein Interface, dass vorgibt welche Methoden definiert werden sollen bzw. zur Verfügung stehen.
 Zusätzlich gibt es noch eine Klasse Proxy und RealSubject, auf dem die Operation die von oben vererbet wird ausgeführt wird. Im Remote Proxy Pattern ruft ein Client mit dem Interface auf dem Proxy Objekt einer Operation auf. Diese Proxy Objekt dient als Stellverdrehtung des realen Objekts. Das Proxy Objekt baut nach der Ausführung der Operation
-eine Verbindung zu dem wirklichen Objekt auf und über diese Verbindung wird ein Protokoll abgewickelt werden. Bei der Übertragung werden sämtliche Informationen bezüglich des Funktionsaufrufs wie zum Beispiel Eingangsparameter, Ausgabeparameter, Funktionsname mit übertrangen. \\\\
+eine Verbindung zu dem wirklichen Objekt auf und über diese Verbindung wird ein Protokoll abgewickelt werden. Bei der Übertragung werden sämtliche Informationen bezüglich des Funktionsaufrufs wie zum Beispiel Eingangsparameter, Ausgabeparameter, Funktionsname mit übertragen. \\\\
 Nach der Ausführung wird das Resultat des Objekts anhand des Protokolls zurück zum Proxy Objekt und dann zum Client zurückgesendet. Der Aufruf wirkt wie ein lokaler Aufruf, jedoch funktioniert dies über das verwendete Netzwerk.
 Das Sekeleton ist zuständig, die Kommunikation zwischen dem Proxy und dem RealSubject abzuwickeln.\\\\
 Problem, die bei der Umsetzung eines Proxy-Patterns aufdrehten können sind vorallem Interoperabilitätsprobleme(Probleme die beim Zusammenspiel zwischen verschiedener Systemen, Techniken oder Organisationen aufdrehten), call-by-refernce, Behandlung von Excpetions, die Transparenz kann nicht gewährleistet werden und die Behandlung von Threads und Prozessen erfolgt nur serverseitig, Client findet den Server nicht, Client stürtzt ab, nachdem senden der Nachricht, Nachricht geht verloren, Server stürzt ab, Antwort geht verloren, Client stürzt ab, bevor diese die Antwort bekommt.
+\newpage
+\noindent
+\begin{description}
+    \item[Aufrufvarianten] ~\par
+    \begin{itemize}
+        \item synchrone Funktionsaufrufe(remote‑invocation send)
+        \begin{itemize}
+            \item{bla bla bla bla}
+        \end{itemize}
+        \item synchrone Prozeduraufrufe(synchronization send)
+        \begin{itemize}
+            \item{bla bla bla bla bla}
+        \end{itemize}
+        \item asynchrone Prozeduraufrufe(no‑wait send)
+        \begin{itemize}
+            \item{bla bla bla bla}
+        \end{itemize}
+        \item asynchrone Funktionsaufrufe(no‑wait send)
+        \begin{itemize}
+            \item{bla bla bla\\}
+        \end{itemize}
+    \end{itemize} 
+\end{description}
+\textbf{Stream-orientierte Kommunikation}\\
 \cite{communication2}
 \subsection{TCP/IP}
 
 
 
 
-\section{Umsetzung}
+\section{Umsetzung}s
 
-\subsection{Aufbau}
+\subsection{Projektstruktur}
+
+\subsection{Klassendiagramme}
 
 \subsection{Source Code Dokumentation}
 
