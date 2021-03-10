@@ -24,27 +24,43 @@ using namespace std;
 using namespace asio::ip;
 
 int main(int argc, char* argv[]){
+    int wordcount = 500000;
+    string filepath = "../src/client/clientfile.txt";
     string ipadress = "127.0.0.1";
     string port = "1113";
-    string test = "HULLOWorld";
+    string transportstring = "";
+    
+    CLI::App app("MapReduceSystem_Client");
+    app.add_option("-i,--i", ipadress, "ipadress for the client");
+    app.add_option("-p,--p", port, "port to connect to");
+    app.add_option("-w,--w", wordcount, "wortcount how many random strings are used for the system");
+    app.add_option("-f,--f", filepath, "filepath where are the data stored");
+    CLI11_PARSE(app, argc, argv);
+
     Client* c = Client::GetClient(ipadress, port);
 
-    CLI::App app("MapReduce-System");
-    if(c != nullptr){
-        char* my_ip = &ipadress[0];
-        char* my_port = &port[0];
+    try{
+        if(c != nullptr && wordcount > 0){
+            char* my_ip = &ipadress[0];
+            char* my_port = &port[0];
 
-        tcp::iostream tcpconnection{my_ip, my_port};
+            tcp::iostream tcpconnection{my_ip, my_port};
 
-        if(tcpconnection){
-            try{
-                tcpconnection << test << endl;
-                //getline(tcpconnection, test);
-            }
-            catch(...){
-                cerr << "Error" << endl;
-            }
-        } 
-        tcpconnection.close();  
+         if(tcpconnection){
+                try{
+                    tcpconnection << transportstring << endl;
+                }
+                catch(...){
+                    cerr << "Error" << endl;
+                }
+            } 
+            tcpconnection.close();  
+        }
+        else{
+            throw;
+        }
+    }
+    catch(){
+        cerr << "client object has not been created, check input parameter;"
     }
 }
