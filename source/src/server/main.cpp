@@ -35,7 +35,8 @@ int main(){
             tcp::iostream strm{ap.accept()};
             string data = "";
             strm >> data;
-            cout << "DataTest " << data << endl;
+            cout << "Data: " << endl;
+            cout << data << endl;
         }
         catch(...){
             cerr << "Error" << endl;

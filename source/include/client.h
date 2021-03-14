@@ -30,17 +30,19 @@ private:
     static bool IPIsValid(std::string i);
     static bool PORTIsValid(std::string p);
 
+    bool Search(std::string value);
+    std::string GetRandomString();
+
 public : 
     Client(){ 
     }
     Client(std::string ip, std::string pr):ipadress{ip}, port{pr}{
-        
     }
 
     static Client* GetClient(std::string ip, std::string pr);
-    std::string GetRandomString();
+
+    std::string ConvertMap();
     void WriteIntoFile(int wordnum, std::string filename);
-    bool Search(std::string value);
     void Print();
     void Map(std::string filename);
 };

@@ -45,9 +45,12 @@ int main(int argc, char* argv[]){
             char* my_port = &port[0];
 
             tcp::iostream tcpconnection{my_ip, my_port};
-
+            c->WriteIntoFile(wordcount, filepath);
+            c->Map(filepath);
+            c->Print();
          if(tcpconnection){
                 try{
+                    transportstring = c->ConvertMap();
                     tcpconnection << transportstring << endl;
                 }
                 catch(...){

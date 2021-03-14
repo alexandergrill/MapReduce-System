@@ -14,6 +14,7 @@
 #include <algorithm>
 #include <fstream>
 #include <iostream>
+#include <string>
 
 
 using namespace std;
@@ -21,24 +22,20 @@ using namespace std;
 bool Client::IPIsValid(string ip){
     int c{0};
     char *ip_input = strtok(&ip[0], ".");
-    while (ip_input != NULL)
-    {
+    while (ip_input != NULL){
         string ipstring = ip_input;
         size_t pos;
         int num = stoi(ipstring, &pos);
-        if (pos != ipstring.size())
-        {
+        if (pos != ipstring.size()){
             return false;
         }
-        if (num < 0 || num > 255)
-        {
+        if (num < 0 || num > 255){
             return false;
         }
         c += 1;
         ip_input = strtok(NULL, ".");
     }
-    if (c < 4)
-    {
+    if (c < 4){
         return false;
     }
     return true;
@@ -47,12 +44,10 @@ bool Client::IPIsValid(string ip){
 bool Client::PORTIsValid(string port){
     size_t pos;
     int num = stoi(port, &pos);
-    if (pos != port.size() || port.length() != 4)
-    {
+    if (pos != port.size() || port.length() != 4){
         return false;
     }
-    if (num < 0 || num > 65535)
-    {
+    if (num < 0 || num > 65535){
         return false;
     }
     return true;
@@ -117,6 +112,17 @@ bool Client::Search(string value){
         return false;
     }
     return true;
+}
+
+string Client::ConvertMap(){
+    string  dicstring = "";
+    for (auto &t : worddic){
+        dicstring += t.first;
+        dicstring += ",";
+        dicstring += to_string(t.second);
+        dicstring += ":";
+    }
+    return dicstring;
 }
 
 
