@@ -8,6 +8,12 @@
 #include "client.h"
 #include "utils.h"
 
+#include "spdlog/spdlog.h"
+#include "spdlog/sinks/stdout_color_sinks.h"
+#include "spdlog/sinks/basic_file_sink.h"
+
+#include <rang/rang.hpp>
+
 #include <string.h>
 #include <time.h>
 
@@ -18,6 +24,7 @@
 
 
 using namespace std;
+using namespace rang;
 
 bool Client::IPIsValid(string ip){
     int c{0};
@@ -57,10 +64,16 @@ Client* Client::GetClient(std::string ip, std::string pr){
     bool ipvalid;
     bool povalid;
     Client *cl;
+
     ipvalid = IPIsValid(ip);
     povalid = PORTIsValid(pr);
-    cout << "IP Adresse is valid " << ipvalid << endl;
-    cout << "Port is valid " << povalid << endl;
+    cout << fg::green << flush;
+    spdlog::get("client_logger")->info("IP Adresse is valid " + to_string(ipvalid));
+    spdlog::get("file_logger")->info("IP Adresse is valid " + to_string(ipvalid));
+    cout << fg::green << flush;
+    spdlog::get("client_logger")->info("PORT is valid " + to_string(povalid));
+    spdlog::get("file_logger")->info("PORT is valid " + to_string(povalid));
+
     if (ipvalid == false || povalid == false){
         std::cerr << "IP Adress or Port is invalid!" << std::endl;
         cl = nullptr;
@@ -84,7 +97,6 @@ string Client::GetRandomString(){
 }
 
 void Client::WriteIntoFile(int wordnum, string filename){
-    cout << "Write Random Strings into File" << endl;
     ofstream file;
     try{
         file.open(filename, ios::out);
@@ -108,7 +120,7 @@ void Client::WriteIntoFile(int wordnum, string filename){
 }
 
 bool Client::Search(string value){
-    if (worddic.find(value) == worddic.end()){
+    if (mapdic.find(value) == mapdic.end()){
         return false;
     }
     return true;
@@ -116,7 +128,7 @@ bool Client::Search(string value){
 
 string Client::ConvertMap(){
     string  dicstring = "";
-    for (auto &t : worddic){
+    for (auto &t : mapdic){
         dicstring += t.first;
         dicstring += ",";
         dicstring += to_string(t.second);
@@ -127,32 +139,32 @@ string Client::ConvertMap(){
 
 
 void Client::Print(){
-    for (auto &t : worddic){
-        cout << t.first << " " << t.second << endl;
+    cout << fg::yellow << "Map Data Dictionary" << endl;
+    for (auto &t : mapdic){
+        cout << fg::yellow << t.first << " " << t.second << endl;
     }
 }
 
 void Client::Map(string filename){
-    cout << "MAP" << endl;
     string line;
     fstream file;
     int counter{0};
     try{
         file.open(filename, ios::in);
         if (!file){
-            cout << "File not created" << endl;
+            //cout << "File not created" << endl;
         }
         else{
-            cout << "File found" << endl;
+            //cout << "File found" << endl;
             while (!file.eof()){
                 file >> line;
                 bool isin = Search(line);
                 if (isin == false){
-                    worddic.insert(pair<string, int>(line, 1));
+                    mapdic.insert(pair<string, int>(line, 1));
                     counter += 1;
                 }
                 else{
-                    auto it = worddic.find(line);
+                    auto it = mapdic.find(line);
                     it->second = it->second + 1;
                 }
             }
