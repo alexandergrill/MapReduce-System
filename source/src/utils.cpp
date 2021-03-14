@@ -66,7 +66,7 @@ bool Search(string value, std::map<std::string, int>* dic){
     return true;
 }
 
-string ConvertMap(std::map<std::string, int>* dic){
+string ConvertMaptoString(std::map<std::string, int>* dic){
     string dicstring = "";
 
     for (map<string, int>::iterator i = dic->begin(); i != dic->end(); ++i){

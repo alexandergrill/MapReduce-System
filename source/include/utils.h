@@ -15,6 +15,7 @@ int GetRandomNum(int start, int end);
 bool IPIsValid(std::string i);
 bool PORTIsValid(std::string p);
 bool Search(std::string value, std::map<std::string, int>* dic);
-std::string ConvertMap(std::map<std::string, int>* dic);
+std::string ConvertMaptoString(std::map<std::string, int>* dic);
+//std::map<std::string, int>* Convert
 
 #endif

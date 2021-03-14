@@ -51,6 +51,10 @@ Client* Client::GetClient(std::string ip, std::string pr){
     return cl;
 }
 
+map<string, int>* Client::GetMap(){
+    return mapdic;
+}
+
 string Client::GetRandomString(){
     int wordlength = GetRandomNum(1, 5);
     int wordletter = GetRandomNum(0, 51);
@@ -86,18 +90,6 @@ void Client::WriteIntoFile(int wordnum, string filename){
     }
 }
 
-
-
-string Client::ConvertMap(){
-    string  dicstring = "";
-    for (auto &t : mapdic){
-        dicstring += t.first;
-        dicstring += ",";
-        dicstring += to_string(t.second);
-        dicstring += ":";
-    }
-    return dicstring;
-}
 
 
 void Client::Print(){

@@ -6,6 +6,7 @@
 */
 
 #include "client.h"
+#include "utils.h"
 
 #include "spdlog/spdlog.h"
 #include "spdlog/sinks/stdout_color_sinks.h"
@@ -24,7 +25,7 @@ using namespace asio::ip;
 int main(int argc, char* argv[]){
     int wordcount = 500000;
     string filepath = "../src/client/clientfile.txt";
-    string ipadress;
+    string ipadress = "127.0.0.1";
     string port;
     string transportstring = "";
     
@@ -73,7 +74,7 @@ int main(int argc, char* argv[]){
 
                     //c->Print();
                     
-                    transportstring = c->ConvertMap();
+                    transportstring = ConvertMaptoString(c->GetMap());
                     cout << fg::green << flush;
                     spdlog::get("client_logger")->info("convert dictionary to transportdata");
                     spdlog::get("file_logger")->info("convert dictionary to transportdata");

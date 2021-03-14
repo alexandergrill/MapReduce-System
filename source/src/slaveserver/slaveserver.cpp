@@ -12,7 +12,7 @@
 
 using namespace std;
 
-Slaveserver *Slaveserver::GetSlaveServer(std::string pr){
+Slaveserver* Slaveserver::GetSlaveServer(std::string pr){
     bool povalid;
     Slaveserver *ssl;
 
@@ -24,13 +24,11 @@ Slaveserver *Slaveserver::GetSlaveServer(std::string pr){
     spdlog::get("client_logger")->info("PORT is valid " + to_string(povalid));
     spdlog::get("file_logger")->info("PORT is valid " + to_string(povalid));*/
 
-    if (povalid == false)
-    {
+    if (povalid == false){
         std::cerr << "IP Adress or Port is invalid!" << std::endl;
         ssl = nullptr;
     }
-    else
-    {
+    else{
         ssl = new Slaveserver(pr);
     }
     return ssl;

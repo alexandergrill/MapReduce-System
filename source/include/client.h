@@ -25,10 +25,11 @@ private:
     std::map<std::string, int> mapdic;
     std::string ipadress;
     std::string port;
+    std::string GetRandomString();
     Client(){}
     Client(std::string ip, std::string pr):ipadress{ip}, port{pr}{}
-    std::string GetRandomString();
-public : 
+public :
+    std::map<std::string, int>* GetMap();
     static Client* GetClient(std::string ip, std::string pr);
     std::string ConvertMap();
     void WriteIntoFile(int wordnum, std::string filename);
