@@ -180,7 +180,33 @@ Während die Berechnungen schnell gehen, dauert der Datenzugriff länger als bei
 Die Daten müssen erst über das Netzwerk gestreamt werden. Dabei ist die Netzanbindung der Flaschenhals, vor allem im Hinblick auf die sehr unterschiedlichen Rechner innerhalb des Clusters und deren unterschiedliche schnelle Netzanbindung.\\ \\
 Um die Geschwindigkeit zu erhöhen, kann ein Cluster ausschließlich aus High-End-Servern bestehen. In diesem Fall sind die Kosten für das MapReduce-Verfahren immens hoch.
 \cite{vorteil/nachteilemrsystem}
+\newpage
+\noindent
 \subsection{Parallel Programming}
+Unter Parallel Programming versteht man die Aufteilung einer Problemstellung in weitere kleinere Teilprobleme die nebenläufig abgearbeitet werden, dabei wird jedes Teilproblem einzelnt gelöst und dadurch auch das Gesamtproblem effizient und schnell gelöst werden. 
+\\Dabei kann die Problemstellung schneller gelöst werden, weil die Abarbeitung aufgeteilt wird und die Teilprobleme unabhängig voneinander gleichzeitig bearbeitet werden können. Parallel Programming wird heutezutage in Branchen wie Chemie, Biologie, Medizin, Maschinenbau, Baustatik, Simulationen, Suchen in großen Datenbestände etc. angewendet.\\\\
+\textbf{Mooresches Gesetz\\}
+"Die Anzahl der Transistoren pro Chip verdoppelt sich etwa alle zwei Jahre". Das heißt je mehr Transistoren sich auf einem Chip befinden, desto mehr Funktionalität kann parallel abgearbeitet werden.Laut der Webseite "nature.com" wird die Halbleiterindustrie im März 2016 anerkennen, dass Moore's Law nicht mehr eingehalten werden kann. Demnach werden Chips nicht mehr zwangsläufig schneller, aber Fortschritt und Effizienzmaximierung wird es weiterhin geben.\\\\
+\textbf{Wirth´sches Gesetz\\}
+"Die Software wird schneller langsamer, als die Hardware schneller", darunter versteht man, dass die Anforderungen an die Software immer aufwendiger, größer und komplexer wird und die Hardware diese Softwaren sehr langsam bis gar nicht verarbeiten können.\\\\
+\textbf{Taktfrequenzen\\}
+Die Taktfrequenze verdoppelte sich in den 1990-er Jahre alle 18 bis 20 Monaten, aber seit 2000 bis 2005 ist das nicht mehr der Fall. Heute finden maximial 4GHz im Desktop und Serverbereich Anwendung.\\Man spricht von einer sogenannten "Frequency Wall", wenn die Taktfrequenz nicht mehr erhöt werden kann, weil höhere Frequenz bedeutet höhere Spannung, höhere Spannung heißt, höhere Verlustleistung. Das hat zur Folge, dass die entstehnde Wärme, die durch den Anhib der Taktfrequenz und durch die Datenverarbeitung entsteht, nicht mehr abgeführt werden kann.
+Existierende nicht parallelisierte Software profitiert nicht mehr automatisch von der Leistungsseigerung der Hardware. Ein weiterer Nachteil ist, dass das Laufzeitverhalten paralleler Algorithmen schwieriger nachvollziehbar sein kann als das eines äquivalenten sequentiellen Algorithmus.\\\\
+\textbf{Lösungsansätze\\}
+Der einfachste Lösungsantz ist der, indem man dein Problemraum einschränkt, damit ist gemeint der Algorithmus wird für den jeweiligen Aufwand eingeschränkt und angepasst. Eine weiter Idee wäre, dass man den Algorithmus selbst optimiert, jedoch ist das nicht immer möglich. Weiters ist die Verbesserung der Implementierung von Vorteil.(z.B Facebook -> eigener String)
+Auch durch den Bereich Hardware kann eine Software verbessert werden, dennoch ist diese Strategie mit hohen Kosten verbunden. Am effizientesten ist es hingegen, die Software in Teilprobleme aufzuteilen und diese parallel abzuarbeiten. Da ein Prozessor mehrere Kerne besitzt können mehrere unterschiedliche unabhängigvoneinandere Prozesse abgearbeitet werden. 
+\begin{description}
+    \item[Möglichkeiten der Parallelisierung] ~\par
+    \begin{itemize}
+        \item Zerlegung der Gesamtaufgabe in kleinere, mehreren Teilaufgaben, sodass die maximale Auslastung aller Prozesser(HW) stattfindetn, weil jede Teilaufgabe auf einem einzelnen Prozessor stattfindet.
+        \item Zerlegung der Gesamtaufgabe in kleinere, mehreren Teilaufgaben, die hintereinander ausgeführt werden, allerding wird die Gesamtzeit der Lösung einer Gesamtaufgabe nich kürzer und der Durchsatz bei der Lösung von vielen Aufgaben höher.
+        \item Zerlegung der Gesamtaufgabe in kleinere, mehreren Teilaufgaben, die hintereinander ausgeführt werden, aber mit spezieller Hardware gelöst werden.
+    \end{itemize} 
+\end{description}
+\textbf{Pipelinig\\}
+Pipelinig beschreibt den Vorgang wie ein Prozessor vorgeht, wenn er mehrere Befehle verarbeiten werden müssen. Als Erstets wird der Befehl aus dem Arbeispeicher geladen(fetch), weiters wird dieser Befehlt in Maschiensprache umgewandelt und dekodiert(decode), werden zusätzliche Daten benötigt läd der Prozessor diese aus Registern oder aus dem Arbeitspeicher. Folgedessen wird der Befehlt schlussendlich ausgeführt(execute) und das Resultat des Befehls wird in einem Register oder im Arbeitspeicher geschrieben(write back).
+Die einzelnen Schritte werden in einer eigenen Hardwarekomponente ausgeführt, deshalb ist es möglich, wenn ein Befehl gefechte wird und danach dekodiert werden kann, kann in der Zeit, in der er dekodiert wird, ein andere Befehl gefetched werden. Das ist möglich bei jedem einzelnen Schritt.
+\cite{parallelprogramming}
 
 \subsection{Kommunikation}
 Das Prinzip der Kommunikation im Internet ist, dass man strikt sein sollen beim Senden der Daten und tolerant beim Empfängen. Der Zweck einer Kommunikation sind die Interoperabilität, das bedeutet
@@ -294,26 +320,21 @@ Problem, die bei der Umsetzung eines Proxy-Patterns aufdrehten können sind vora
 \begin{description}
     \item[Aufrufvarianten] ~\par
     \begin{itemize}
-        \item synchrone Funktionsaufrufe(remote‑invocation send)
-        \begin{itemize}
-            \item{bla bla bla bla}
-        \end{itemize}
-        \item synchrone Prozeduraufrufe(synchronization send)
-        \begin{itemize}
-            \item{bla bla bla bla bla}
-        \end{itemize}
-        \item asynchrone Prozeduraufrufe(no‑wait send)
-        \begin{itemize}
-            \item{bla bla bla bla}
-        \end{itemize}
-        \item asynchrone Funktionsaufrufe(no‑wait send)
-        \begin{itemize}
-            \item{bla bla bla\\}
-        \end{itemize}
+        \item synchrone Funktionsaufrufe: remote‑invocation send
+        \item synchrone Prozeduraufrufe: synchronization send
+        \item asynchrone Funktionsaufrufe: no‑wait send
+        \item asynchrone Prozeduraufrufe: no‑wait send\\\\
     \end{itemize} 
 \end{description}
 \textbf{Stream-orientierte Kommunikation}\\
+Stream-orientiert Kommunikation, bezeichnet die gleichzeitige Übertragung und Wiedergabe von Video- und Audiodaten über ein Netzwerk.
+Dabei werden Streams von Daten versendet, keine Nachrichten, sondern nicht abgeschlossene Informationeneinheiten.
+Den Vorgang der Datenübertragung selbst nennt man Streaming und übertragene Programme werden als Livestream oder kurz Stream bezeichnet. Streaming-Media, das über das WWW bzw. HTML angestoßen wurde, wird auch Webradio oder Web-TV genannt. Im Gegensatz zum Herunterladen ist das Ziel beim Streaming nicht, eine Kopie der Medien beim Nutzer anzulegen, sondern die Medien direkt auszugeben, anschließend werden die Daten verworfen.
+\\\\
+Die Wiedergabe von Programmen über einen Livestream unterscheidet sich meist vom klassischen Rundfunk. Während beim Rundfunk an eine unbestimmte Anzahl Empfänger zugleich gesendet wird, handelt es sich beim Streaming meist jeweils um eine Direktverbindung zwischen dem Server des Senders und dem Client jedes einzelnen Benutzers. Die Verbreitung erfolgt oftmals über Streaming-Portale und internetbasierte Mediatheken.
 \cite{communication2}
+\newpage
+\noindent
 \subsection{TCP/IP}
 
 
