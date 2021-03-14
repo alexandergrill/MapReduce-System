@@ -318,22 +318,100 @@ Problem, die bei der Umsetzung eines Proxy-Patterns aufdrehten können sind vora
 
 
 
-
-\section{Umsetzung}s
+\newpage
+\noindent
+\section{Implementierung}
 
 \subsection{Projektstruktur}
-
+-----ÜBERARBEITEN-------------\\\\
+Das Projekt wurde in 2 wesentlich Verzeichnisse eingeteilt, nämlich in source und documentation. In dem Verzeichniss documentation sind alle Unterlagen der theoretisch Arbeit 
+abgelegt worden. Im Verzeichniss source befinden sich alle relevanten Datein der technischen Umsetzung der Aufgabenstellung.
+Die drei erwähnten Objekte wurden zu je 3 Module aufgeteilt.
+Das heißt die Klassendefinition, Konstruktoren und Methodenprototypen von Santa Claus, Elfen und Rentiere stehen in der jeweiligen h-Datei. Die Methodendefinitionen, der dazugehörigen Klasse,
+wurden in der dazugehörigen cpp-Datei kodiert. Zusätzlichen Funktionen die für die Umsetzung des Projekts dringend notwendig waren, wurden in dem Modul utils declariert und definiert.
+Da einige Source Code Abschnitte nicht verständlich und nachfollziebar sind, wurden alle Variablen, Funktionen, Klassen, Methoden und sonstiges gut dokumentiert.\\
+\newpage
+Im unterem Verzeichnissbaum wird die Struktur des Projekts abgebildet
+\\
+\dirtree{%
+.1 documentation\DTcomment{enthält alle Datein der theoretisch Ausarbeitung}.
+.2 {Logo.png}.
+.2 {SantaClausProblem\_Dokumentation.pdf}.
+.2 {SantaClausProblem\_Dokumentation.tex}.
+.1 source\DTcomment{enthält alle Datein der praktischen Ausarbeitung}.
+.2 build\DTcomment{darin befinden sich alle automatisch generiert Datein}.
+.3 {build.ninja}.
+.3 {compile\_commands.json}.
+.3 {meson\-info}.
+.3 {meson\-logs}.
+.3 {meson-private}.
+.3 {santa\_claus\_problem}.
+.3 {santa\_claus\_problem@exe}.
+.3 {santa\_problem.json}.
+.2 include\DTcomment{darin befinden sich alle h-Dateien}.
+.3 {Elves.h}.
+.3 {Reindeer.h}.
+.3 {SantaClaus.h}.
+.3 {utils.h}.
+.2 src\DTcomment{darin befinden sich alle cpp-Dateien}.
+.3 {Elves.cpp}.
+.3 {Reindeer.cpp}.
+.3 {SantaClaus.cpp}.
+.3 {utils.cpp}.
+.3 {main.cpp}.
+.2 {meson.build}.
+.2 {meson\_options.txt}.
+}
 \subsection{Klassendiagramme}
 
 \subsection{Source Code Dokumentation}
 
 \subsection{Kommandozeilenparameter}
 
+
 \subsection{Konsolenausgabe}
 
-
+\newpage
+\noindent
 \subsection{Verwendete Bibliotheken}
+\subsubsection{CLI11}
+CLI11 bietet alle Funktionen, die man von einem leistungsstarken Befehlszeilenparser erwartet, mit einer schönen, minimalen Syntax und ohne 
+Abhängigkeiten über C++11 hinaus. Es ist eine header-only, um die Einbindung im Projekte zu 
+vereinfachen. CLI11 ist einfach für kleine Projekte zu verwenden, aber leistungsstark genug für komplexe Befehlszeilenprojekte und kann für Frameworks angepasst werden. \\\\
+Die Bibliothek wird mit Travis-, AppVeyor-, Azure- und GitHub-Aktionen getestet und vom GooFit-GPU-Anpassungsframework verwendet. 
+Es wurde von plumbum.cli für Python inspiriert. CLI11 bietet eine benutzerfreundliche Einführung in diese README-Datei, ein ausführlicheres Tutorial-GitBook sowie eine von Travis generierte API-Dokumentation. 
+Weitere Informationen zu aktuellen und früheren Versionen findet man im Changelog oder in den GitHub-Versionen.
+\subsubsection{tabulat}
+tabulate ist eine reine headeronly-Bibliothek. 
+Man legt eine Objekt Table an und kann mittel Table.add\_rows neue Zeilen in der Tabelle hinzufügen.
+Die Tabelle kann mittels Table.format() formatieren werden, das ein Format-Objekt zurückgibt. 
+Es können damit die Eigenschaften der Tabelle formatieren werden, z. B. Rahmen, Schriftstile, Farben usw.
+Auf Zeilen in der Tabelle greift man mitTabelle [row\_index] zu. Dies gibt ein Zeilenobjekt zurück, für das man Row.format() auf ähnliche Weise aufrufen kann, um die Eigenschaften aller Zellen in dieser Zeile zu formatierne.\\
+Die Bibliothek wurde verwendet, sodass am Ende des Programmes eine übersichtliche Tabelle ausgegeben werden kann, wie viele Daten in Struktur gebracht wurden.
+beinhaltet.
+\subsubsection{rang}
+rang only hängt von der C++ Standardbibliothek, dem Systemheader unistd.h unter Unix und den Systemheadern windows.h und io.h auf Windows\-basierten Systemen ab. Mit anderen Worten, man benötigen keine Abhängigkeiten von Drittanbietern. Diese Standardbibliothek ermöglich es den
+Output der Console zu formatieren. Dabei kann die Schriftart, Farbe und sonstige Eigenschaften bezüglich der Consolenausgabe konfigurieren.
+\newpage
+\noindent
+\subsubsection{json}
+In Sprachen wie Python fühlt sich JSON wie ein erstklassiger Datentyp an. 
+Die Entwickler haben die ganze Operator-Magie des modernen C++ verwendet, um das gleiche Gefühl in einem c++ Projekt zu erzielen. 
+Der gesamter Code besteht aus einer einzelnen Header-Datei json.hpp. Keine Bibliothek, kein Teilprojekt, keine Abhängigkeiten, kein komplexes Build-System. 
+Die Klasse ist in Vanilla C++ 11geschrieben. \\\\
+Alles in allem ist keine Anpassung der Compiler-Flags oder Projekteinstellungen erforderlich.
+Jedes JSON-Objekt hat einen Overhead und einem Aufzählungselement. Die Standardverallgemeinerung verwendet die folgenden C++-Datentypen: std::string für Zeichenfolgen, int64\_t, uint64\_t oder double für Zahlen, std::map für Objekte, std::vector für Arrays und bool für Boolesche Werte. 
+json.hpp ist die einzige erforderliche Datei in single\_include/nlohmann, jedoch muss sie im Projekt mit eingebunden werden. \\
+Die Libary wurde in diesem Projekt verwendet, um die zusammengefassten Daten des Master-Server abzuspeichern.
+\subsubsection{spdlog}
+spdlog ist eine sehr effiziente headeronly C++ Protokollierungsbibliothek. Sie bietet auch ebenfalls eine Python-ähnliche Formatierungs-API unter Verwendung der mitgelieferten fmt lib.
+spdlog verfolgt den Ansatz "include what you need". Der Source Code sollte die Funktionen enthalten, die tatsächlich benötigt werden.\\\\
+Den Programmierer wird eine funktionsreiche Formatierung mit der hervorragenden fmt-Bibliothek geboten.
+Im Projekt wird die Libary verwendet, um die Logging Informationen in der Kommandozeile ausgegeben werden kann. Zusätzlich ist es auch möglich
+die Logging Daten nicht nur auszugeben, sonder auch direkt in einem Log-File zu schreiben.
 
+\newpage
+\noindent
 \section{Anwendungsfälle}
 
 \section{Schlusswort}
