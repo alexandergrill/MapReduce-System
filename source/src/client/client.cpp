@@ -14,9 +14,10 @@
 
 #include <rang/rang.hpp>
 
-#include <string.h>
+
 #include <time.h>
 
+#include <map>
 #include <algorithm>
 #include <fstream>
 #include <iostream>
@@ -25,40 +26,6 @@
 
 using namespace std;
 using namespace rang;
-
-bool Client::IPIsValid(string ip){
-    int c{0};
-    char *ip_input = strtok(&ip[0], ".");
-    while (ip_input != NULL){
-        string ipstring = ip_input;
-        size_t pos;
-        int num = stoi(ipstring, &pos);
-        if (pos != ipstring.size()){
-            return false;
-        }
-        if (num < 0 || num > 255){
-            return false;
-        }
-        c += 1;
-        ip_input = strtok(NULL, ".");
-    }
-    if (c < 4){
-        return false;
-    }
-    return true;
-}
-
-bool Client::PORTIsValid(string port){
-    size_t pos;
-    int num = stoi(port, &pos);
-    if (pos != port.size() || port.length() != 4){
-        return false;
-    }
-    if (num < 0 || num > 65535){
-        return false;
-    }
-    return true;
-}
 
 Client* Client::GetClient(std::string ip, std::string pr){
     bool ipvalid;
@@ -119,12 +86,7 @@ void Client::WriteIntoFile(int wordnum, string filename){
     }
 }
 
-bool Client::Search(string value){
-    if (mapdic.find(value) == mapdic.end()){
-        return false;
-    }
-    return true;
-}
+
 
 string Client::ConvertMap(){
     string  dicstring = "";
@@ -158,7 +120,7 @@ void Client::Map(string filename){
             //cout << "File found" << endl;
             while (!file.eof()){
                 file >> line;
-                bool isin = Search(line);
+                bool isin = Search(line, &mapdic);
                 if (isin == false){
                     mapdic.insert(pair<string, int>(line, 1));
                     counter += 1;

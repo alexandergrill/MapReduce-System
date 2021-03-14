@@ -24,13 +24,13 @@ using namespace asio::ip;
 int main(int argc, char* argv[]){
     int wordcount = 500000;
     string filepath = "../src/client/clientfile.txt";
-    string ipadress = "127.0.0.1";
-    string port = "1113";
+    string ipadress;
+    string port;
     string transportstring = "";
     
     CLI::App app("MapReduceSystem_Client");
     app.add_option("-i,--i", ipadress, "ipadress for the client");
-    app.add_option("-p,--p", port, "port to connect to");
+    app.add_option("-p,--p", port, "port to connect to")->required();
     app.add_option("-w,--w", wordcount, "wortcount how many random strings are used for the system");
     app.add_option("-f,--f", filepath, "filepath where are the data stored");
     CLI11_PARSE(app, argc, argv);

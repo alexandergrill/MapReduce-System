@@ -1,4 +1,3 @@
-
 /*
  * author:  Alexander Grill
  * file:    client.h
@@ -26,21 +25,11 @@ private:
     std::map<std::string, int> mapdic;
     std::string ipadress;
     std::string port;
-
-    static bool IPIsValid(std::string i);
-    static bool PORTIsValid(std::string p);
-
-    bool Search(std::string value);
+    Client(){}
+    Client(std::string ip, std::string pr):ipadress{ip}, port{pr}{}
     std::string GetRandomString();
-
 public : 
-    Client(){ 
-    }
-    Client(std::string ip, std::string pr):ipadress{ip}, port{pr}{
-    }
-
     static Client* GetClient(std::string ip, std::string pr);
-
     std::string ConvertMap();
     void WriteIntoFile(int wordnum, std::string filename);
     void Print();
