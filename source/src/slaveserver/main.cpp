@@ -35,10 +35,7 @@ int main(){
             string data = "";
             strm >> data;
             map<string, int>* mapclient = ConvertStringtoMap(data);
-           
-            for (auto &t : *mapclient){
-                cout << t.first << " " << t.second << endl;
-            }
+            
         }
         catch(...){
             cerr << "Error" << endl;
