@@ -1,5 +1,14 @@
 * Changelog
 
+** [0.0.5] - 2021-03-15
+*** Added
+- Client CLI11[PR]
+- Grundlagen Kommunikation_2[TH]
+- Client asio/Connection to Server[PR]
+- Client Cast Map to String for Transmission[PR]
+- Client add SPDLOG[PR]
+- Verwendete Bibliotheken[TH]
+- Grundlagen Parallel Programming[TH]
 
 ** [0.0.4] - 2021-03-08
 *** Added
