@@ -52,7 +52,7 @@ Client* Client::GetClient(std::string ip, std::string pr){
 }
 
 map<string, int>* Client::GetMap(){
-    return mapdic;
+    return &mapdic;
 }
 
 string Client::GetRandomString(){
