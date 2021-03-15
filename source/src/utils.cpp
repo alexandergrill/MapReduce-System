@@ -11,11 +11,12 @@
 #include <map>
 #include <random>
 #include <iostream>
+#include <vector>
+#include <sstream>
 
 using namespace std;
 
-int GetRandomNum(int start, int end)
-{
+int GetRandomNum(int start, int end){
     random_device rd;
     mt19937 gen{rd()};
     uniform_int_distribution<> dis{start, end};
@@ -30,12 +31,10 @@ bool IPIsValid(string ip){
         string ipstring = ip_input;
         size_t pos;
         int num = stoi(ipstring, &pos);
-        if (pos != ipstring.size())
-        {
+        if (pos != ipstring.size()){
             return false;
         }
-        if (num < 0 || num > 255)
-        {
+        if (num < 0 || num > 255){
             return false;
         }
         c += 1;
@@ -77,3 +76,18 @@ string ConvertMaptoString(std::map<std::string, int>* dic){
     }
     return dicstring;
 }
+
+map<string, int>* ConvertStringtoMap(std::string transportstr){
+    map<string, int>* mapd = new map<string, int>();
+    vector<string> stringdata;
+    stringstream ss(transportstr);
+    string data;
+    while(getline(ss, data, ':')){
+        stringdata.push_back(data);
+    }
+
+    for(auto i = stringdata.begin(); i != stringdata.end(); i++){
+        cout << "Data " << *i << endl;
+    }
+    return mapd;
+ }

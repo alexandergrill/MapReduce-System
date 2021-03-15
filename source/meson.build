@@ -40,8 +40,8 @@ generated = gen.process('src/dummy.proto')
 
 inc_dir = include_directories('include', get_option('spdlog_include_dir'), get_option('cli11_include_dir'), get_option('rang_include_dir'))
 srcclient = ['src/client/main.cpp', 'src/client/client.cpp', 'src/utils.cpp']
-srcslaveserver = ['src/slaveserver/main.cpp']
-srcmasterserver = ['src/masterserver/main.cpp']
+srcslaveserver = ['src/slaveserver/main.cpp', 'src/slaveserver/slaveserver.cpp', 'src/utils.cpp']
+srcmasterserver = ['src/masterserver/main.cpp', 'src/utils.cpp']
 
 #protobuf: src1 = ['src/client/main.cpp', generated]
 #protobuf: src2 = ['src/server/main.cpp', generated]

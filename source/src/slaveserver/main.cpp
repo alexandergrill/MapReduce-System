@@ -5,6 +5,7 @@
  * date:    27.02.2021
 */
 
+#include "utils.h"
 
 #include "spdlog/spdlog.h"
 #include "spdlog/sinks/stdout_color_sinks.h"
@@ -18,8 +19,6 @@
 
 using namespace std;
 using namespace asio::ip;
-
-
 
 int main(){
     unsigned short port = 1113;
@@ -35,8 +34,11 @@ int main(){
             tcp::iostream strm{ap.accept()};
             string data = "";
             strm >> data;
-            cout << "Data: " << endl;
-            cout << data << endl;
+            map<string, int>* mapclient = ConvertStringtoMap(data);
+           
+            for (auto &t : *mapclient){
+                cout << t.first << " " << t.second << endl;
+            }
         }
         catch(...){
             cerr << "Error" << endl;
