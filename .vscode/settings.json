@@ -52,6 +52,20 @@
         "thread": "cpp",
         "typeinfo": "cpp",
         "xstring": "cpp",
-        "xiosbase": "cpp"
+        "xiosbase": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp",
+        "cstring": "cpp",
+        "ios": "cpp",
+        "xfacet": "cpp",
+        "xlocale": "cpp",
+        "xlocinfo": "cpp",
+        "xlocnum": "cpp",
+        "xmemory": "cpp",
+        "xstddef": "cpp",
+        "xtr1common": "cpp",
+        "xtree": "cpp",
+        "xutility": "cpp",
+        "list": "cpp"
     }
 }
