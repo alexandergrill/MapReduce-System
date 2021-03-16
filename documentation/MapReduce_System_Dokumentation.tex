@@ -205,9 +205,59 @@ Auch durch den Bereich Hardware kann eine Software verbessert werden, dennoch is
 \end{description}
 \textbf{Pipelinig\\}
 Pipelinig beschreibt den Vorgang wie ein Prozessor vorgeht, wenn er mehrere Befehle verarbeiten werden müssen. Als Erstets wird der Befehl aus dem Arbeispeicher geladen(fetch), weiters wird dieser Befehlt in Maschiensprache umgewandelt und dekodiert(decode), werden zusätzliche Daten benötigt läd der Prozessor diese aus Registern oder aus dem Arbeitspeicher. Folgedessen wird der Befehlt schlussendlich ausgeführt(execute) und das Resultat des Befehls wird in einem Register oder im Arbeitspeicher geschrieben(write back).
-Die einzelnen Schritte werden in einer eigenen Hardwarekomponente ausgeführt, deshalb ist es möglich, wenn ein Befehl gefechte wird und danach dekodiert werden kann, kann in der Zeit, in der er dekodiert wird, ein andere Befehl gefetched werden. Das ist möglich bei jedem einzelnen Schritt.
+Die einzelnen Schritte werden in einer eigenen Hardwarekomponente ausgeführt, deshalb ist es möglich, wenn ein Befehl gefechte wird und danach dekodiert werden kann, kann in der Zeit, in der er dekodiert wird, ein andere Befehl gefetched werden, weil die Hardwarekomponente nicht verwendet wird. Das ist möglich bei jedem einzelnen Schritt beim Pipelinig. Die Abarbeitungzeit der einzelnen Prozessr wird nicht minimiert, hingegen können mehrere Prozesse in einer Zeitspanne abgewickelt werden d.h. der Durschastz ist höher.\\
+\textbf{Probleme\\}
+Befehle zwischen denen Abhängigkeiten herrschen, können zu Problemen führen. Dabei kann es zu einer längeren Abarbeitung der Prozesse kommen, weil einzelne Prozesse auf das Ergbniss, des davor durchgeführten Prozesses, warten.\\ Zusätzlich kann zwischen den Prozessen nicht nur eine Datenabhänigkeit herschen, sonder auch eine Abhängigkeiten im Kontrollfluss. In diesem Fall existiert eine Abhängigkeit zwischen den Prozessschritten selbst. Wie in der Datenabhänigkeit müssen auch hier Wartezyklen eingeführt werden.\\
+Weiters kann auch passieren, dass die Abarbeitungsschritte vom Prozessor selbst umgeordnet werden, obwohl es zwischen den Anweisungen Abhängigkeiten herrschen. Diese werden vom Prozessor nicht berücksichtigt.\\
+Daten die für einen Prozess benötigt werden, können schon weit vor der Benutzung aus dem Hauptspeicher gelesen werden und schlussendlich auch für die Abarbeitung verwendet werden. Ihr kann es zu Problemen kommen, wenn nich aktuelle Daten oder falsche Daten gelesen werden, weil das Result nicht den gewünschten Wert hat.\\\\
+\textbf{Superskalarität\\}
+Superskalare Prozesse enthalten mehrere gleichartige Funktionseinheiten zum Beispiel Rechenwerke für Ganzzahl- und Gleitkommaarithmetik oder Lade- und Speichereinheiten. Damit können mehrere Befehle parallel ausgeführt werden, wenn keine Abhängigkeiten existieren.\\\\
+\textbf{Hardware seitiges Multithreading\\}
+Wenn mehrere Threads auf ein Szenario warten, können daher in der Zwischenzeit Befehle eines anderen Threads durchgeführt werden, dazu werden aber mehrere Registersätzte benötigt.
+Die Hardwarethreads erscheinen dem Benutzer wie echte Kerne des Prozessors, obwohl sie keine sind. Der Performancegewinn liegt bei ca 10 bis 20\%.\\\\
+\textbf{Vectoreinheiten\\}
+Um die Abarbeitung zu beschleunigen können sogennante Vectoreinheiten eingesetzt werden, dabei kann ein Befehtl mehrere Daten zur selben Zeit verarbeiten.\\
+Parallele Architekturen lassen sich auf unterschiedliche Arten klassifizieren. Eine sehr grundlegende Einteilung von Computersystemen allgemein stellt „Flynn’s Taxonomy“ dar. Diese behandelt nicht allein parallele Systeme, beinhaltet diese aber, was verdeutlicht, dass Parallelisierung bereits vor über 40 Jahren ein Thema war.
+\newpage
+\noindent
+Eine mögliche Kategorisierung von ausschließlich parallelen Systemen kann nach der Art der Speicherverwaltung getroffen werden.
+Unabhängig davon, welche Klassifizierung herangezogen wird, ist jedoch zu erwähnen, dass die Übergänge zwischen den Kategorien oft fließend sind. Viele Lösungen sind also durchaus in unterschiedlichen Bereichen einzuordnen.
+\begin{description}
+    \item[Flynnsche Klassifikation] ~\par
+    \begin{itemize}
+        \item SISD single instruction, single data
+        \begin{itemize}
+            \item{klassische Von‑Neumann Architektur}
+        \end{itemize}
+        \item SIMD single instruction, multiple data
+        \begin{itemize}
+            \item{Vektorprozessoren}
+        \end{itemize}
+        \item MISD multiple instructions, single data
+        \begin{itemize}
+            \item{theoretischer Natur}
+        \end{itemize}
+        \item MIMD multiple instructions, multiple data
+        \begin{itemize}
+            \item{Multicore‑ und Multiprozessorsysteme\\\\}
+        \end{itemize}
+    \end{itemize} 
+\end{description}
+\textbf{Rechnerarchitekt\\}
+Man unterscheidet zwischen einem homogenen unter heterogenen Aufbau. Beim homognene Aufbau haben alle Rechner die gleichen Hardwarekomponenten und beim heterogenen Aufbau haben die Rechner verschiedenartige Prozessoren, Kerne usw.\\
+Bei der Speicherarchitektur gibt es ebenfalls zwei unterschiedlich Arten, nämlich UMA (uniform memory access) und NUMA(none uniform memory access). Bei der UMA Variante haben alle Prozessoren und Kerne Zugriff auf den gleichen Hauptspeicher, wobei der NUMA Variante, jeder Prozess besitzt einen eigenen Speicher und der Zugriff auf einen Fremndenspeicher erfolgt über ein Verbindungsnetzwerk.\\
+In der Rechnerarchitektur gibt es Multicore und Multiprozessor. Multi-Core bedeutet, dass in einem Prozessor mehrere Prozessor-Kerne eingebaut sind. Man bezeichnet diese Prozessoren als Multi-Core- oder Mehrkern-Prozessoren. Rein äußerlich unterscheiden sich Multi-Core-CPUs nicht von Single-Core-CPUs. Der Rechenkern ist bei Multi-Core-CPUs einfach mehrfach vorhanden. Innerhalb des Betriebssystems wird der Multi-Core-Prozessor wie mehrere Recheneinheiten behandelt.\\
+\newpage
+\noindent
+\textbf{Parallelität in der Software\\}
+Im Zeitalter exponentiell ansteigenden Datenverkehrs wird der Bedarf an harten und weichen Rechenkapazitäten immer größer. Auch die Rechenprozesse selbst werden deutlich komplexer und erfordern mehr Ressourcen. Eine Antwort darauf ist die Cloud, die der Nachfrage nach Serverleistung mit virtuellen Hostingdiensten nachkommt und so erheblichen Druck von Rechenzentren und Serverlandschaften nimmt.
+Eine andere Antwort darauf sind Computer, die statt mit nur einem gleich mit mehreren Prozessorkernen ausgestattet werden. Damit schaffen sie ideale Bedingungen für die parallele Programmierung, weil sie eine nebenläufige, sprich parallele Abwicklung mehrerer Rechenprozesse ermöglichen – so genannte Threads. Dabei spielt es keine Rolle, ob die Teilprozesse auf die Sekunde genau parallel verlaufen – vielmehr geht es darum, dass die Software dadurch verschiedene Dinge gleichzeitig erledigen kann, also die Fähigkeit zum Multitasking besitzt.\\\\
+\textbf{Das Amdahl‘sche Gesetz\\}
+Das Amdahl’sche Gesetz bezeichnet in der Informatik ein Modell zur Beschleunigung von Programmen durch Parallelisierung, deren Voraussetzung bekanntlich die Verwendung mehrerer Prozessoren ist. Verwendet man zum Beispiel doppelt so viele Prozessoren, benötigt man nach Amdahl im besten Fall die halbe Zeit zur Durchführung des Programms aka zur Lösung des Problems. Dabei wird die Temposteigerung allerdings dadurch ausgebremst, dass Programme niemals vollständig parallel operieren können und dass es immer einen gewissen Anteil an sequentiellen Programmteilen geben muss – etwa bei der Initialisierung oder in der Speicherverwaltung, weil diese Dinge entweder auf nur einem Prozessor ablaufen oder in Abhängigkeit zu anderen Ereignissen stehen. Deshalb sieht Amdahl vor, den Programmcode in sortenreine Abschnitte aufzuteilen – solche, die rein sequentiell und solche, die rein parallel operieren. Die komplette Dauer eines Programmes ergibt sich dann aus der Formel Z =zs +zp.
+Amdahl beobachtet, dass bei steigender Anzahl der Prozessoren dieser Beschleunigungsfaktor (Speed-up) immer stärker von den sequenziellen Anteilen des Prozesses gehemmt wird, da mit der Inbetriebnahme weiterer Prozessoren auch weitere Aufwände anfallen, für die Initialisierung etwa oder für die Synchronisierung, sprich z0.
 \cite{parallelprogramming}
-
+\newpage
+\noindent
 \subsection{Kommunikation}
 Das Prinzip der Kommunikation im Internet ist, dass man strikt sein sollen beim Senden der Daten und tolerant beim Empfängen. Der Zweck einer Kommunikation sind die Interoperabilität, das bedeutet
 das mehrere Systeme die aus Rechner bestehen in der Lage sind Daten untereinander auszutauschen, und die Fehlertolaranz, das bedeutet das die Daten durch festegelegte Regeln übertragen werden aber beim Empfangen in einer
@@ -241,7 +291,9 @@ gewünschen Form umgewandelt werden können.
 \textbf{Kommunikationsrichtung\\}
 Beim Datenautausch ist wichtig festzuhalten, in welche Richtung die Daten übertragen werden. Mittel simplex werden die Daten nur in eine Richtung übertragen. 
 Bei half-duplex werden die Daten ebenso in eine Richtung übertragen, jedoch kann die Richtung in der Übertragen wird änderen. Bei der Variante duplex werden die Daten in beide Richtungen übertragen wie im TCP Protokoll realisiert, werden zwei Streams
-zur Verfügung gestellt um Daten zu senden und zu empfangen.\\\\\\\\
+zur Verfügung gestellt um Daten zu senden und zu empfangen.
+\newpage
+\noindent
 \textbf{Verbindungen\\}
 Im Grunde genommen unterscheidet man zwischen verbindungsorientierter und verbindungsloser Kommunikation. Bei der verbindungsorientierter Kommunikation wird eine Verbindung zwischen zwei Knoten aufgebaut, danach werden Daten ausgetauscht und zum Schluss kommt es zur
 Verbindungsabbau. Wohingegen bei der verbindungsloser Kommunikation nur die Datenübertragen werden und keine Verbindung aufgebaut und abgebaut wird. Es ist in der Regel effizienter, aber es wird nicht sichergestellt ob die Daten wirklich beim Empfänger angekommen sind.\\ \\
