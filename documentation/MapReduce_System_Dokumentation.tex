@@ -388,9 +388,57 @@ Die Wiedergabe von Programmen über einen Livestream unterscheidet sich meist vo
 \newpage
 \noindent
 \subsection{TCP/IP}
-
-
-
+Das Transmissioncontrollprotokoll und Internet Protokoll ist eine Menge von Kommunikationsprotokollen, die für den Verbindungsaufbau zu einem Netzwerk verwendet werden. TCP/IP kann auch als Kommunikation in einem Intranet(Firmen internes Internet) oder Extranet(betriebsinternes Computersystem, das für bestimmte externe Benutzergruppen geöffnet ist) eingesetzt werden.TCP/IP ist eine Reihe von Regeln und Verfahren wie der Datenaustausch abgehalten werden soll, dabei sind TCP/IP die Hauptprotokolle. TCP/IP definiert, wie Daten über das Internet übertragen werden, indem eine Ende zu Ende Kommunikation bereit gestellt wird. Weiters ist das Protokoll zuständig für die Aufteilung der Daten in Packete, Adressierung, Übertragung, Weiterleitung und auch, dass die Daten beim richtigen Empfänger ankommen.\\\\
+\textbf{TCP}\\
+TCP bestimmt, wie Daten über ein Netzwerk geschafft werden können und zusätzlich auch wie Daten in Packete aufgeteilt werden, sodass diese daraufhin über das Internet übertragen werden können und an der Zieladresse wieder in richtigen Reihenfolge wieder zusammenfgefügt werden können.
+In der Internetprotokollfamilie bildet TCP gemeinsam mit UDP und SCTP die Gruppe der Transportprotokolle, die nach dem OSI-Modell in der Netzwerk-Architektur auf der Transportschicht eingestuft werden. Da das TCP-Protokoll in fast allen Fällen auf dem Internet Protocol (IP) aufsetzt und diese Verbindung die Basis für den Großteil aller öffentlichen und lokalen Netzwerke und Netzwerkdienste bildet, ist häufig auch vom TCP/IP-Protokollstapel die Rede, wenn im eigentlichen Sinne die Internetprotokollfamilie gemeint ist.
+\\\\
+\textbf{IP}\\
+Wohingegen IP fixiert, wie jedes einzelne Datenpacket adressiert und geroutet wird, dass diese zum richtigen Empfänger geleitet werden.Deshalb bedarf es einer Möglichkeit das Netzwerk physikalisch (Topologie) und auch logisch (Adressierung) zu strukturieren. Innerhalb von TCP/IP übernimmt das Internet Protocol (IP) die logische Adressierung von Netzwerken und deren Teilnehmern. Dabei gelangen Datenpakete nur in das Netz, in dem sich das Ziel befindet. Die Verfahren der Adressierung sind zum Beispiel fest definierte Netzklassen, Subnetting und CIDR. Jeder Gatway im Netzwerk überprüft die IP-Adresse, um festzustellen, wohin die Nachricht weiter geleitet werden. Ein Gateway ist ein Netzwerk-Knoten, der als Eingang zu einem anderen Netzwerk dient. Internet-Knoten können entweder Gateway-Knoten oder Host-Knoten sein.\\\\
+\textbf{HTTP/HTTPS}\\
+Dieses Protokoll ist zuständig für die Kommunikation zwischen Client(Browser) und Webserter. Wenn ein Benutzer im Browser eine Internetadresse aufruft, wird ein Request an den WebServer versendet. Dieser Server sucht die Daten, auf denen angefragt wurde und sendet die Daten der Webseit per Repsone dem Benutzer(Browser) zurück. Der WebBrowser sammelt die Daten zusammen und setzt diese zu der entgültigen Webseite zusammen. Bei HTTPS bassiert diese Kommunikation geschtüzt und verschlüsselt.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=10cm]{http.png}
+\end{figure}
+\\
+\textbf{FTP/SFTP}\\
+Das Protokoll ist dafür entwickelt worden, um mit Befehlen Downloads und Uploads imm Zusammenhang mit dem entsprechenden Server durchzuführen. So kann man Dateien von dem eigenen Gerät (PC, Smartphone usw.) auf einen Server übertragen auch und umgekehrt. Per FTP können Dateien auch vom Server auf das Gerät heruntergeladen werden.
+Das File Transfer Protocol findet Anwendung beim Erstellen von Websites, weil mit dem FTP-Zugang können HTML-Dateien auf den Server übertragen werden. Außerdem können Betreiber von Websites Mediendateien für Besucher der Homepage bereitstellen.
+SSH File Transfer Protocol (SFTP) hingegen verwendet die Secure Shell für die sichere Übertragung von Dateien. Auch hierbei ist die Verbindung verschlüsselt.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=10cm]{ftp.png}
+\end{figure}
+\newpage
+\noindent
+\begin{description}
+    \item[TCP/IP-Modell] ~\par
+    \begin{itemize}
+        \item Netzzugangsschicht
+        \begin{itemize}
+            \item{Die Netzzugangsschicht ist zuständig, für die Verknüpfung von verschiedenen Subnetzen und verbindet so zum Beispiel das heimische WLAN per Router mit dem Internet.}
+        \end{itemize}
+        \item Internetschicht
+        \begin{itemize}
+            \item{Das Internetprotokoll ist an diese Schicht gerichtet, weil dadurch die Daten an das richtige Ziel gesendet werden soll.  Über die IP-Adresse werden die Datenpakete durch das Netzwerk geroutet.}
+        \end{itemize}
+        \item Transportschicht
+        \begin{itemize}
+            \item{In diese Schicht kommt das Protkoll TCP zum Vorschein.  Das Protokoll ermöglicht die Ende-zu-Ende-Kommunikation, ist also verantwortlich für die Verbindung zwischen zwei Geräten. Neben TCP gehört auch UDP in diese Ebene.}
+        \end{itemize}
+        \item Anwendungsschicht
+        \begin{itemize}
+            \item{Die Kommunikation der Programme über das Netzwerk wird in der obersten Schicht geregelt. Maßgeblich sind hier z.B. HTTP und FTP. Aber auch die E-Mail-Kommunikation mittels POP, SMTP funktioniert auf dieser Ebene.}
+        \end{itemize}
+    \end{itemize} 
+\end{description}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=10cm]{ositcpip.png}
+\end{figure}
+\textbf{Vorteile/Nachteile}\\
+\cite{tcpip}
 \newpage
 \noindent
 \section{Implementierung}
