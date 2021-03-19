@@ -13,29 +13,27 @@
 
 using namespace std;
 
-Slaveserver* Slaveserver::GetSlaveServer(std::string pr){
+Slaveserver *Slaveserver::GetSlaveServer(std::string ip, std::string port, std::string lport){
     bool povalid;
     Slaveserver *ssl;
 
-    povalid = PORTIsValid(pr);
-    /*cout << fg::green << flush;
-    spdlog::get("client_logger")->info("IP Adresse is valid " + to_string(ipvalid));
-    spdlog::get("file_logger")->info("IP Adresse is valid " + to_string(ipvalid));
-    cout << fg::green << flush;
-    spdlog::get("client_logger")->info("PORT is valid " + to_string(povalid));
-    spdlog::get("file_logger")->info("PORT is valid " + to_string(povalid));*/
+    povalid = PORTIsValid(lport);
 
     if (povalid == false){
         std::cerr << "IP Adress or Port is invalid!" << std::endl;
         ssl = nullptr;
     }
     else{
-        ssl = new Slaveserver(stoul(pr, nullptr, 0));
+        ssl = new Slaveserver(ip, port, stoul(lport, nullptr, 0));
     }
     return ssl;
 }
 
-void Slaveserver::AddList(std::map<std::string, int>& mapdic){
+unsigned short Slaveserver::GetListenPort(){
+    return listenport;
+}
+
+void Slaveserver::AddList(std::map<std::string, int> mapdic){
     mapdiclist.push_back(mapdic);
 }
 

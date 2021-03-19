@@ -104,4 +104,5 @@ int main(int argc, char* argv[]){
         spdlog::get("file_logger")->error("check input parameter");
         return -1;
     }
+    delete c;
 }

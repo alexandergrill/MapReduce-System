@@ -21,28 +21,43 @@ using namespace std;
 using namespace asio::ip;
 
 int main(){
-    unsigned short listenport{1113};
-    tcp::endpoint ep{tcp::v4(), listenport};
-    asio::io_context cox;
-    tcp::acceptor ap{cox, ep};
-    Slaveserver* sl = Slaveserver::GetSlaveServer("1116");
-    if(sl != nullptr){
-        while(true){
-            ap.listen();
-            cout << "Server is listening" << endl;
-            try{
-                tcp::iostream strm{ap.accept()};
-                string data = "";
-                strm >> data;
-                map<string, int>* mapclient = ConvertStringtoMap(data);
-                sl->AddList(&mapclient);
-                if(sl->GetLengthList() == 2){
-
+    string ipadress = "127.0.0.1";
+    string port = "1113";
+    string listenport = "1116";
+    string transportstring = "";
+    
+    try{
+        Slaveserver* sl = Slaveserver::GetSlaveServer(ipadress, port, listenport);
+        tcp::endpoint ep{tcp::v4(),sl->GetListenPort()};
+        asio::io_context cox;
+        tcp::acceptor ap{cox, ep};
+        if(sl != nullptr){
+            while(true){
+                ap.listen();
+                cout << "Server is listening" << endl;
+                try{
+                    tcp::iostream strm{ap.accept()};
+                    string data = "";
+                    strm >> data;
+                    map<string, int>* mapclient = ConvertStringtoMap(data);
+                    sl->AddList(&mapclient);
+                    if(sl->GetLengthList() == 2){
+                        cout << "HELLO" << endl;
+                    }
+                }
+            catch(...){
+                    cerr << "Error" << endl;
                 }
             }
-        catch(...){
-                cerr << "Error" << endl;
-            }
         }
+        else{
+            cout << "Slaveserver is null" << endl;
+        }
+        delete sl;
     }
+    catch(...){
+        cout << "Slaveserver is null" << endl;
+    }
+    
 }
+

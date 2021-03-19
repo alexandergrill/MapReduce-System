@@ -14,15 +14,18 @@
 
 class Slaveserver{
 private:
-    unsigned short port;
+    std::string ipadresse;
+    std::string port;
+    unsigned short listenport;
     std::map<std::string, int> resultmapdic;
     std::list<std::map<std::string, int>> mapdiclist;
     Slaveserver(){}
-    Slaveserver(unsigned short pr):port{pr}{}
+    Slaveserver(std::string ip, std::string pr, unsigned short lpr):ipadresse{ip}, port{pr}, listenport{lpr}{}
 public:
-    static Slaveserver* GetSlaveServer(std::string pr);
+    static Slaveserver* GetSlaveServer(std::string ip, std::string port, std::string lport);
+    unsigned short GetListenPort();
     int GetLengthList();
-    void AddList(std::map<std::string, int>& mapdic);
+    void AddList(std::map<std::string, int> mapdic);
     void Shuffle();
 };
 
