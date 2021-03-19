@@ -13,8 +13,8 @@
 #include "spdlog/sinks/basic_file_sink.h"
 
 #include <asio.hpp>
-#include <rang/rang.hpp>
-#include <CLI11/CLI11.hpp>
+#include <rang.hpp>
+#include <CLI11.hpp>
 
 #include <iostream>
 

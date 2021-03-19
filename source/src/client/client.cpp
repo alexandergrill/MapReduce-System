@@ -12,7 +12,7 @@
 #include "spdlog/sinks/stdout_color_sinks.h"
 #include "spdlog/sinks/basic_file_sink.h"
 
-#include <rang/rang.hpp>
+#include <rang.hpp>
 
 
 #include <time.h>

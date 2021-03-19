@@ -12,8 +12,8 @@
 #include "spdlog/sinks/basic_file_sink.h"
 
 #include <asio.hpp>
-#include <rang/rang.hpp>
-#include <CLI11/CLI11.hpp>
+#include <rang.hpp>
+#include <CLI11.hpp>
 
 #include <iostream>
 
@@ -21,11 +21,11 @@ using namespace std;
 using namespace asio::ip;
 
 int main(){
-    unsigned short port{1113};
-    tcp::endpoint ep{tcp::v4(), port};
+    unsigned short listenport{1113};
+    tcp::endpoint ep{tcp::v4(), listenport};
     asio::io_context cox;
     tcp::acceptor ap{cox, ep};
-    Slaveserver* sl = Slaveserver::GetSlaveServer(port);
+    Slaveserver* sl = Slaveserver::GetSlaveServer("1116");
     if(sl != nullptr){
         while(true){
             ap.listen();

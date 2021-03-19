@@ -14,15 +14,15 @@
 
 class Slaveserver{
 private:
-    std::string port;
+    unsigned short port;
     std::map<std::string, int> resultmapdic;
     std::list<std::map<std::string, int>> mapdiclist;
     Slaveserver(){}
-    Slaveserver(std::string pr):port{pr}{}
+    Slaveserver(unsigned short pr):port{pr}{}
 public:
     static Slaveserver* GetSlaveServer(std::string pr);
     int GetLengthList();
-    void AddList(std::map<std::string, int> mapdic);
+    void AddList(std::map<std::string, int>& mapdic);
     void Shuffle();
 };
 

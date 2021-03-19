@@ -30,12 +30,12 @@ Slaveserver* Slaveserver::GetSlaveServer(std::string pr){
         ssl = nullptr;
     }
     else{
-        ssl = new Slaveserver(pr);
+        ssl = new Slaveserver(stoul(pr, nullptr, 0));
     }
     return ssl;
 }
 
-void Slaveserver::AddList(std::map<std::string, int> mapdic){
+void Slaveserver::AddList(std::map<std::string, int>& mapdic){
     mapdiclist.push_back(mapdic);
 }
 
@@ -62,7 +62,7 @@ void Slaveserver::Shuffle(){
                 resultmapdic.insert(pair<string,int>(worddic1, countdic1 + countdic2));
             }
         }
-        if(isfound =  false){
+        if(isfound == false){
             resultmapdic.insert(pair<string,int>(worddic1, countdic1));
         }
     }
