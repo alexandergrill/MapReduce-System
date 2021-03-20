@@ -77,6 +77,13 @@ string ConvertMaptoString(std::map<std::string, int>* dic){
     return dicstring;
 }
 
+void Print(std::map<std::string, int> *dic){
+    cout << "Map Data Dictionary" << endl;
+    for (map<string, int>::iterator t = dic->begin(); t != dic->end(); ++t){
+        cout << t->first << " " << t->second << endl;
+    }
+}
+
 map<string, int>* ConvertStringtoMap(std::string transportstr){
     map<string, int>* mapd = new map<string, int>();
     vector<string> stringdata;

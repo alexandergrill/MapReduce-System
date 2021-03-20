@@ -33,7 +33,6 @@ public :
     static Client* GetClient(std::string ip, std::string pr);
     std::string ConvertMap();
     void WriteIntoFile(int wordnum, std::string filename);
-    void Print();
     void Map(std::string filename);
 };
 

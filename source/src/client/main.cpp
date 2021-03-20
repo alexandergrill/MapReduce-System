@@ -72,7 +72,7 @@ int main(int argc, char* argv[]){
                     spdlog::get("client_logger")->info("call Map funktion, sort data in dictionary");
                     spdlog::get("file_logger")->info("call Map funktion, sort data in dictionary");
 
-                    //c->Print();
+                    Print(c->GetMap());
                     
                     transportstring = ConvertMaptoString(c->GetMap());
                     cout << fg::green << flush;

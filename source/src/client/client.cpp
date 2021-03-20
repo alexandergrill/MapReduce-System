@@ -42,7 +42,9 @@ Client* Client::GetClient(std::string ip, std::string pr){
     spdlog::get("file_logger")->info("PORT is valid " + to_string(povalid));
 
     if (ipvalid == false || povalid == false){
-        std::cerr << "IP Adress or Port is invalid!" << std::endl;
+        cout << fg::red << flush;
+        spdlog::get("client_logger")->error("IP Adress or Port is invalid!");
+        spdlog::get("file_logger")->error("IP Adress or Port is invalid!");
         cl = nullptr;
     }
     else{
@@ -72,7 +74,9 @@ void Client::WriteIntoFile(int wordnum, string filename){
     try{
         file.open(filename, ios::out);
         if (!file){
-            cout << "File not created" << endl;
+            cout << fg::red << flush;
+            spdlog::get("client_logger")->error("File is not found");
+            spdlog::get("file_logger")->error("File is not found");
         }
         else{
             for (int i = 0; i < wordnum; i++){
@@ -86,16 +90,9 @@ void Client::WriteIntoFile(int wordnum, string filename){
         file.close();
     }
     catch (...){
-        cout << "Error" << endl;
-    }
-}
-
-
-
-void Client::Print(){
-    cout << fg::yellow << "Map Data Dictionary" << endl;
-    for (auto &t : mapdic){
-        cout << fg::yellow << t.first << " " << t.second << endl;
+        cout << fg::red << flush;
+        spdlog::get("client_logger")->error("It is not possible to write into file");
+        spdlog::get("file_logger")->error("It is not possible to write into file");
     }
 }
 
@@ -106,10 +103,15 @@ void Client::Map(string filename){
     try{
         file.open(filename, ios::in);
         if (!file){
-            //cout << "File not created" << endl;
+            cout << fg::red << flush;
+            spdlog::get("client_logger")->error("File is not found");
+            spdlog::get("file_logger")->error("File is not found");
         }
         else{
-            //cout << "File found" << endl;
+            cout << fg::green << flush;
+            spdlog::get("client_logger")->info("File is found");
+            spdlog::get("file_logger")->info("File is found");
+
             while (!file.eof()){
                 file >> line;
                 bool isin = Search(line, &mapdic);
@@ -123,11 +125,12 @@ void Client::Map(string filename){
                 }
             }
             file.close();
-            Print();
-            cout << "Counter: " << counter << endl;
+            cout << "Elements: " << counter << endl;
         }
     }
     catch (...){
-        cout << "Can not find the file" << endl;
+        cout << fg::red << flush;
+        spdlog::get("client_logger")->error("It is not possible to open file");
+        spdlog::get("file_logger")->error("It is not possible to open file");
     }
 }
