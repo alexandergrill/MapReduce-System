@@ -13,31 +13,39 @@
 
 using namespace std;
 
-Slaveserver *Slaveserver::GetSlaveServer(std::string ip, std::string port, std::string lport){
+Slaveserver *Slaveserver::GetSlaveServer(std::string ip, std::string port, std::string sport){
+    bool ipvalid;
+    bool portvalid;
     bool povalid;
     Slaveserver *ssl;
 
-    povalid = PORTIsValid(lport);
+    ipvalid = IPIsValid(ip);
+    portvalid = PORTIsValid(port);
+    povalid = PORTIsValid(sport);
 
-    if (povalid == false){
+    if (ipvalid == false || portvalid == false || povalid == false){
         std::cerr << "IP Adress or Port is invalid!" << std::endl;
         ssl = nullptr;
     }
     else{
-        ssl = new Slaveserver(ip, port, stoul(lport, nullptr, 0));
+        ssl = new Slaveserver(ip, port, stoul(sport, nullptr, 0));
     }
     return ssl;
 }
 
-unsigned short Slaveserver::GetListenPort(){
-    return listenport;
+unsigned short Slaveserver::GetServerPort(){
+    return serverport;
+}
+
+void Slaveserver::SetClientCounter(){
+    clientcounter += 1;
 }
 
 void Slaveserver::AddList(std::map<std::string, int> mapdic){
     mapdiclist.push_back(mapdic);
 }
 
-int Slaveserver::GetLengthList(){
+int Slaveserver::GetListLength(){
     return mapdiclist.size();
 }
 
