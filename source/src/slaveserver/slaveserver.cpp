@@ -42,10 +42,7 @@ void Slaveserver::SetClientCounter(){
 }
 
 void Slaveserver::AddList(std::map<std::string, int>* mapdic){
-    //so geht es nicht mapdiclist->push_back(&(*mapdic));
-    //so geht es nicht mapdiclist->push_back(mapdic);
-    //so geht es nicht mapdiclist->push_back(&mapdic);
-    //sorry Herr Professor ich glaub ich bin einfach zu dumm ahahah ;)
+    mapdiclist->push_back(*mapdic);
 }
 
 int Slaveserver::GetListLength(){
