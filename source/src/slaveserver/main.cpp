@@ -33,8 +33,9 @@ int main(int argc, char *argv[]){
     app.add_option("-s,--s", port, "serverport")->required();
     CLI11_PARSE(app, argc, argv);
 
+    Slaveserver *sl = Slaveserver::GetSlaveServer(ipadress, port, serverport);
+
     try{
-        Slaveserver* sl = Slaveserver::GetSlaveServer(ipadress, port, serverport);
         tcp::endpoint ep{tcp::v4(),sl->GetServerPort()};
         asio::io_context cox;
         tcp::acceptor ap{cox, ep};
@@ -47,7 +48,7 @@ int main(int argc, char *argv[]){
                     string data = "";
                     strm >> data;
                     map<string, int>* mapclient = ConvertStringtoMap(data);
-                    sl->AddList(&mapclient);
+                    sl->AddList(mapclient);
                     if(sl->GetListLength() == 2){
                         cout << "HELLO" << endl;
                     }
@@ -60,9 +61,10 @@ int main(int argc, char *argv[]){
         else{
             cout << "Slaveserver is null" << endl;
         }
-        delete sl;
+        
     }
     catch(...){
         cout << "Slaveserver is null" << endl;
     }
+    delete sl;
 }

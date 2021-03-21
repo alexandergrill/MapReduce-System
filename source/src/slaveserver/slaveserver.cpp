@@ -41,19 +41,22 @@ void Slaveserver::SetClientCounter(){
     clientcounter += 1;
 }
 
-void Slaveserver::AddList(std::map<std::string, int> mapdic){
-    mapdiclist.push_back(mapdic);
+void Slaveserver::AddList(std::map<std::string, int>* mapdic){
+    //so geht es nicht mapdiclist->push_back(&(*mapdic));
+    //so geht es nicht mapdiclist->push_back(mapdic);
+    //so geht es nicht mapdiclist->push_back(&mapdic);
+    //sorry Herr Professor ich glaub ich bin einfach zu dumm ahahah ;)
 }
 
 int Slaveserver::GetListLength(){
-    return mapdiclist.size();
+    return mapdiclist->size();
 }
 
 void Slaveserver::Shuffle(){
-    list<map<string, int>>::iterator it = mapdiclist.begin();
-    advance(it, mapdiclist.size()-1);
+    list<map<string, int>>::iterator it = mapdiclist->begin();
+    advance(it, mapdiclist->size()-1);
     map<string, int> mapdic1 = *it;
-    advance(it, mapdiclist.size()-2);
+    advance(it, mapdiclist->size()-2);
     map<string, int> mapdic2 = *it;
     bool isfound;
     for (auto &t1 : mapdic1){

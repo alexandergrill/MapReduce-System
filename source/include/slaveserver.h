@@ -19,15 +19,18 @@ private:
     std::string port;
     unsigned short serverport;
     std::map<std::string, int> resultmapdic;
-    std::list<std::map<std::string, int>> mapdiclist;
+    std::list<std::map<std::string, int>> *mapdiclist = new std::list<std::map<std::string, int>>();
     Slaveserver(){}
     Slaveserver(std::string ip, std::string pr, unsigned short spr):ipadresse{ip}, port{pr}, serverport{spr}{}
 public:
+    ~Slaveserver(){
+        delete mapdiclist;
+    }
     static Slaveserver* GetSlaveServer(std::string ip, std::string port, std::string lport);
     void SetClientCounter();
     unsigned short GetServerPort();
     int GetListLength();
-    void AddList(std::map<std::string, int> mapdic);
+    void AddList(std::map<std::string, int>* mapdic);
     void Shuffle();
 };
 
