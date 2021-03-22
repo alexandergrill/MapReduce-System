@@ -1,5 +1,16 @@
 * Changelog
 
+** [0.0.6] - 2021-03-22
+*** Added
+- Grundlagen Parallel Programming[TH]
+- add/change Funktionen[PR]
+- utils/Convert Transportstring to Map[PR]
+- Slave Server Klasse/Attribute/Methoden[PR]
+- Slave Server add CLI11[PR]
+- Implementierung/Header[TH]
+- Implementierung/Projektstruktur[TH]
+- Verwendete Bibl./asio[TH]
+
 ** [0.0.5] - 2021-03-15
 *** Added
 - Client CLI11[PR]
