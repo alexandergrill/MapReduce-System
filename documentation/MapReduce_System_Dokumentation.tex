@@ -492,6 +492,10 @@ Im unterem Verzeichnissbaum wird die Struktur des Projekts abgebildet
 \noindent
 \subsection{Client}
 \textbf{Modulbeschreibung}\\
+Die Komponente Client ist eine ausführbare Datei und bildet den Input für die Datenverarbeitung des MapReduce-Systems. Wenn das Programm vom Benutzer gestartet wird, wird eine Verbindung zum jeweiligen Server aufgebaut. Wenn diese erfolgt, wird eine bestimmte Anzahl von Strings, 
+die der Benutzer beim Aufruf mitübergibt, generiert und in eine Datei geschrieben. In der nächsten Phase durchforstet das Programm, die Datei zeilenweise durch und speichert die Datensätze in einer Art Dictionary ab(Key:Value). Der zufällig generierte String entspricht im Dictionary dem Key und der Value die Anzahl des Strings wie oft dieser in der Datei vorkommt.
+Diesen Part wird im MapReduce-System als Map Funktion bezeichnet. Zum Schluss wenn alle Daten im Dictionary abgespeichert sind, wird dieses in einem
+String konvertiert, um diesen daraufhin an dem Server zu übertragen. Bei der Umwandlung des Dictionarys, werden den Key-Werten und Value-Werten Trennsymbole angehängt, sodass der Slaveserver die Zeichenkette aufteilen und weiters in ein Dictionary zurück umkonvertieren kann.\\\\
 \textbf{Klasse}\\
 \textbf{Kommandozeilenparameter}\\
 \subsection{SlaveServer}
@@ -501,14 +505,50 @@ Im unterem Verzeichnissbaum wird die Struktur des Projekts abgebildet
 \subsection{MasterServer}
 \textbf{Modulbeschreibung}\\
 \textbf{Klasse}\\
-\textbf{Kommandozeilenparameter}\\
+\textbf{Kommandozeilenparameter}\\ 
 \subsection{utils}
 \textbf{Funktionen}\\
 \subsection{Konsolenausgabe}
-
 \newpage
 \noindent
 \subsection{Verwendete Bibliotheken}
+\subsubsection{asio}
+Asio ist eine plattformübergreifende C++-Bibliothek für Netzwerk- und Low-Level-I/O-Programmierung, die Entwicklern ein konsistentes asynchrones Modell mit einem modernen C++-Ansatz bietet.
+Asio bietet die grundlegenden Bausteine für C++-Netzwerke, Gleichzeitigkeit und andere Arten von Eingabe/Ausgabe
+Asio wird in allen Arten von Anwendungen eingesetzt, von Telefon-Apps bis hin zu den schnellsten Aktienmärkten der Welt.\\\\
+Die meisten Programme interagieren auf irgendeine Weise mit der Außenwelt, sei es über eine Datei, ein Netzwerk, ein serielles Kabel oder die Konsole. Manchmal, wie z. B. bei Netzwerken, können einzelne E/A-Operationen sehr lange dauern, bis sie abgeschlossen sind. Dies stellt besondere Herausforderungen an die Anwendungsentwicklung.
+Asio stellt die Werkzeuge zur Verfügung, um diese langwierigen Operationen zu verwalten, ohne dass die Programme Gleichzeitigkeitsmodelle auf Basis von Threads und explizitem Sperren verwenden müssen.
+Die Asio-Bibliothek ist für Programmierer gedacht, die C++ für die Systemprogrammierung verwenden, bei der häufig der Zugriff auf Betriebssystemfunktionen wie z. B. Netzwerke erforderlich ist. Obwohl sich Asio anfangs hauptsächlich auf Netzwerke konzentrierte, wurden seine Konzepte der asynchronen I/O auf andere Betriebssystemressourcen wie serielle Schnittstellen, Dateideskriptoren usw. erweitert.
+\begin{description}
+    \item[Im Besonderen verfolgt Asio folgenden Ziele:] ~\par
+    \begin{itemize}
+        \item Portability
+        \begin{itemize}
+            \item{Die Bibliothek sollte eine Reihe gängiger Betriebssysteme unterstützen und ein konsistentes Verhalten über diese Betriebssysteme hinweg bieten.}
+        \end{itemize}
+        \item Scalability
+        \begin{itemize}
+            \item{Die Bibliothek sollte die Entwicklung von Netzwerkanwendungen erleichtern, die auf Tausende von gleichzeitigen Verbindungen skalieren. Die Implementierung der Bibliothek für jedes Betriebssystem sollte den Mechanismus verwenden, der diese Skalierbarkeit am besten ermöglicht.}
+        \end{itemize}
+        \item Efficiency
+        \begin{itemize}
+            \item{Die Bibliothek sollte Techniken wie Scatter-Gather-I/O unterstützen und es Programmen ermöglichen, das Kopieren von Daten zu minimieren.}
+        \end{itemize}
+        \item Model concepts from established APIs, such as BSD sockets
+        \begin{itemize}
+            \item{Die BSD-Socket-API ist weithin implementiert und verstanden und wird in viel Literatur behandelt. Andere Programmiersprachen verwenden oft eine ähnliche Schnittstelle für Netzwerk-APIs. Soweit dies sinnvoll ist, sollte Asio die bestehende Praxis nutzen.}
+        \end{itemize}
+        \item Ease of use
+        \begin{itemize}
+            \item{Die Bibliothek sollte eine niedrigere Einstiegshürde für neue Benutzer bieten, indem sie eher einen Toolkit- als einen Framework-Ansatz verfolgt. Das heißt, sie sollte versuchen, den zeitlichen Aufwand im Vorfeld auf das Erlernen einiger grundlegender Regeln und Richtlinien zu minimieren. Danach sollte ein Bibliotheksbenutzer nur noch die spezifischen Funktionen verstehen müssen, die verwendet werden.}
+        \end{itemize}
+        \item Basis for further abstraction
+        \begin{itemize}
+            \item{Die Bibliothek sollte die Entwicklung anderer Bibliotheken ermöglichen, die eine höhere Abstraktionsebene bieten. Zum Beispiel Implementierungen von häufig verwendeten Protokollen wie HTTP.}
+        \end{itemize}
+
+    \end{itemize} 
+\end{description}
 \subsubsection{CLI11}
 CLI11 bietet alle Funktionen, die man von einem leistungsstarken Befehlszeilenparser erwartet, mit einer schönen, minimalen Syntax und ohne 
 Abhängigkeiten über C++11 hinaus. Es ist eine header-only, um die Einbindung im Projekte zu 
@@ -516,19 +556,12 @@ vereinfachen. CLI11 ist einfach für kleine Projekte zu verwenden, aber leistung
 Die Bibliothek wird mit Travis-, AppVeyor-, Azure- und GitHub-Aktionen getestet und vom GooFit-GPU-Anpassungsframework verwendet. 
 Es wurde von plumbum.cli für Python inspiriert. CLI11 bietet eine benutzerfreundliche Einführung in diese README-Datei, ein ausführlicheres Tutorial-GitBook sowie eine von Travis generierte API-Dokumentation. 
 Weitere Informationen zu aktuellen und früheren Versionen findet man im Changelog oder in den GitHub-Versionen.
-\subsubsection{tabulat}
-tabulate ist eine reine headeronly-Bibliothek. 
-Man legt eine Objekt Table an und kann mittel Table.add\_rows neue Zeilen in der Tabelle hinzufügen.
-Die Tabelle kann mittels Table.format() formatieren werden, das ein Format-Objekt zurückgibt. 
-Es können damit die Eigenschaften der Tabelle formatieren werden, z. B. Rahmen, Schriftstile, Farben usw.
-Auf Zeilen in der Tabelle greift man mitTabelle [row\_index] zu. Dies gibt ein Zeilenobjekt zurück, für das man Row.format() auf ähnliche Weise aufrufen kann, um die Eigenschaften aller Zellen in dieser Zeile zu formatierne.\\
-Die Bibliothek wurde verwendet, sodass am Ende des Programmes eine übersichtliche Tabelle ausgegeben werden kann, wie viele Daten in Struktur gebracht wurden.
-beinhaltet.
-\subsubsection{rang}
-rang only hängt von der C++ Standardbibliothek, dem Systemheader unistd.h unter Unix und den Systemheadern windows.h und io.h auf Windows\-basierten Systemen ab. Mit anderen Worten, man benötigen keine Abhängigkeiten von Drittanbietern. Diese Standardbibliothek ermöglich es den
-Output der Console zu formatieren. Dabei kann die Schriftart, Farbe und sonstige Eigenschaften bezüglich der Consolenausgabe konfigurieren.
-\newpage
-\noindent
+\subsubsection{spdlog}
+spdlog ist eine sehr effiziente headeronly C++ Protokollierungsbibliothek. Sie bietet auch ebenfalls eine Python-ähnliche Formatierungs-API unter Verwendung der mitgelieferten fmt lib.
+spdlog verfolgt den Ansatz "include what you need". Der Source Code sollte die Funktionen enthalten, die tatsächlich benötigt werden.\\\\
+Den Programmierer wird eine funktionsreiche Formatierung mit der hervorragenden fmt-Bibliothek geboten.
+Im Projekt wird die Libary verwendet, um die Logging Informationen in der Kommandozeile ausgegeben werden kann. Zusätzlich ist es auch möglich
+die Logging Daten nicht nur auszugeben, sonder auch direkt in einem Log-File zu schreiben.
 \subsubsection{json}
 In Sprachen wie Python fühlt sich JSON wie ein erstklassiger Datentyp an. 
 Die Entwickler haben die ganze Operator-Magie des modernen C++ verwendet, um das gleiche Gefühl in einem c++ Projekt zu erzielen. 
@@ -538,15 +571,20 @@ Alles in allem ist keine Anpassung der Compiler-Flags oder Projekteinstellungen 
 Jedes JSON-Objekt hat einen Overhead und einem Aufzählungselement. Die Standardverallgemeinerung verwendet die folgenden C++-Datentypen: std::string für Zeichenfolgen, int64\_t, uint64\_t oder double für Zahlen, std::map für Objekte, std::vector für Arrays und bool für Boolesche Werte. 
 json.hpp ist die einzige erforderliche Datei in single\_include/nlohmann, jedoch muss sie im Projekt mit eingebunden werden. \\
 Die Libary wurde in diesem Projekt verwendet, um die zusammengefassten Daten des Master-Server abzuspeichern.
-\subsubsection{spdlog}
-spdlog ist eine sehr effiziente headeronly C++ Protokollierungsbibliothek. Sie bietet auch ebenfalls eine Python-ähnliche Formatierungs-API unter Verwendung der mitgelieferten fmt lib.
-spdlog verfolgt den Ansatz "include what you need". Der Source Code sollte die Funktionen enthalten, die tatsächlich benötigt werden.\\\\
-Den Programmierer wird eine funktionsreiche Formatierung mit der hervorragenden fmt-Bibliothek geboten.
-Im Projekt wird die Libary verwendet, um die Logging Informationen in der Kommandozeile ausgegeben werden kann. Zusätzlich ist es auch möglich
-die Logging Daten nicht nur auszugeben, sonder auch direkt in einem Log-File zu schreiben.
-
+\subsubsection{rang}
+rang only hängt von der C++ Standardbibliothek, dem Systemheader unistd.h unter Unix und den Systemheadern windows.h und io.h auf Windows\-basierten Systemen ab. Mit anderen Worten, man benötigen keine Abhängigkeiten von Drittanbietern. Diese Standardbibliothek ermöglich es den
+Output der Console zu formatieren. Dabei kann die Schriftart, Farbe und sonstige Eigenschaften bezüglich der Consolenausgabe konfigurieren.
 \newpage
 \noindent
+\subsubsection{tabulat}
+tabulate ist eine reine headeronly-Bibliothek. 
+Man legt eine Objekt Table an und kann mittel Table.add\_rows neue Zeilen in der Tabelle hinzufügen.
+Die Tabelle kann mittels Table.format() formatieren werden, das ein Format-Objekt zurückgibt. 
+Es können damit die Eigenschaften der Tabelle formatieren werden, z. B. Rahmen, Schriftstile, Farben usw.
+Auf Zeilen in der Tabelle greift man mitTabelle [row\_index] zu. Dies gibt ein Zeilenobjekt zurück, für das man Row.format() auf ähnliche Weise aufrufen kann, um die Eigenschaften aller Zellen in dieser Zeile zu formatierne.\\
+Die Bibliothek wurde verwendet, sodass am Ende des Programmes eine übersichtliche Tabelle ausgegeben werden kann, wie viele Daten in Struktur gebracht wurden.
+beinhaltet.
+
 \section{Anwendungsfälle}
 
 \section{Schlusswort}
