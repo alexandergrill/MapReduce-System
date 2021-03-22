@@ -12,25 +12,28 @@
 #include <iostream>
 #include <list>
 
-class Slaveserver{
+class SlaveServer{
 private:
-    int clientcounter{0};
     std::string ipadresse;
     std::string port;
+    int clientcounter{0};
     unsigned short serverport;
-    std::map<std::string, int> resultmapdic;
-    std::list<std::map<std::string, int>> *mapdiclist = new std::list<std::map<std::string, int>>();
-    Slaveserver(){}
-    Slaveserver(std::string ip, std::string pr, unsigned short spr):ipadresse{ip}, port{pr}, serverport{spr}{}
-public:
-    ~Slaveserver(){
-        delete mapdiclist;
+    std::map<std::string, int> resultmap;
+    std::list<std::map<std::string, int>>* maplist;
+    SlaveServer(std::string ip, std::string pr, unsigned short spr):ipadresse{ip}, port{pr}, serverport{spr}{
+        maplist = new std::list<std::map<std::string, int>>();
     }
-    static Slaveserver* GetSlaveServer(std::string ip, std::string port, std::string lport);
-    void SetClientCounter();
+public:
+    ~SlaveServer(){
+        delete maplist;
+    }
+    static SlaveServer* GetSlaveServer(std::string ip, std::string port, std::string lport);
     unsigned short GetServerPort();
     int GetListLength();
+    int GetClientCounter();
+    void SetClientCounter();
     void AddList(std::map<std::string, int>* mapdic);
+    void PrintList();
     void Shuffle();
 };
 

@@ -26,14 +26,15 @@ int main(int argc, char *argv[]){
     string port = "1116";
     string serverport = "1113";
     string transportstring = "";
+    int maxclient{4};
 
     CLI::App app("MapReduceSystem_SlaverServer");
     app.add_option("-i,--i", ipadress, "ipadress for the server");
-    app.add_option("-p,--p", port, "port to connect to")->required();
-    app.add_option("-s,--s", port, "serverport")->required();
+    //app.add_option("-p,--p", port, "port to connect to")->required();
+    //app.add_option("-s,--s", port, "serverport")->required();
     CLI11_PARSE(app, argc, argv);
 
-    Slaveserver *sl = Slaveserver::GetSlaveServer(ipadress, port, serverport);
+    SlaveServer *sl = SlaveServer::GetSlaveServer(ipadress, port, serverport);
 
     try{
         tcp::endpoint ep{tcp::v4(),sl->GetServerPort()};
@@ -45,15 +46,23 @@ int main(int argc, char *argv[]){
                 cout << "Server is listening" << endl;
                 try{
                     tcp::iostream strm{ap.accept()};
-                    string data = "";
-                    strm >> data;
-                    map<string, int>* mapclient = ConvertStringtoMap(data);
-                    sl->AddList(mapclient);
-                    if(sl->GetListLength() == 2){
-                        cout << "HELLO" << endl;
+                    sl->SetClientCounter();
+                    cout << "Client " << sl->GetClientCounter() << " has connected to server" << endl;
+                    if(sl->GetClientCounter() <= maxclient){
+                        string data = "";
+                        strm >> data;
+                        map<string, int>* clientmap = ConvertStringtoMap(data);
+                        sl->AddList(clientmap);
+                        if(sl->GetListLength() == 2){
+                            sl->PrintList();
+                        }
+                    }
+                    else{
+                        cout << "The maximum of clients was reached" << endl;
+                        break;
                     }
                 }
-            catch(...){
+                catch(...){
                     cerr << "Error" << endl;
                 }
             }

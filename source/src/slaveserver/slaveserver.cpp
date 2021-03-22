@@ -13,11 +13,11 @@
 
 using namespace std;
 
-Slaveserver *Slaveserver::GetSlaveServer(std::string ip, std::string port, std::string sport){
+SlaveServer* SlaveServer::GetSlaveServer(std::string ip, std::string port, std::string sport){
     bool ipvalid;
     bool portvalid;
     bool povalid;
-    Slaveserver *ssl;
+    SlaveServer *ssl;
 
     ipvalid = IPIsValid(ip);
     portvalid = PORTIsValid(port);
@@ -28,32 +28,36 @@ Slaveserver *Slaveserver::GetSlaveServer(std::string ip, std::string port, std::
         ssl = nullptr;
     }
     else{
-        ssl = new Slaveserver(ip, port, stoul(sport, nullptr, 0));
+        ssl = new SlaveServer(ip, port, stoul(sport, nullptr, 0));
     }
     return ssl;
 }
 
-unsigned short Slaveserver::GetServerPort(){
+unsigned short SlaveServer::GetServerPort(){
     return serverport;
 }
 
-void Slaveserver::SetClientCounter(){
+int SlaveServer::GetClientCounter(){
+    return clientcounter;
+}
+
+void SlaveServer::SetClientCounter(){
     clientcounter += 1;
 }
 
-void Slaveserver::AddList(std::map<std::string, int>* mapdic){
-    mapdiclist->push_back(*mapdic);
+void SlaveServer::AddList(std::map<std::string, int>* mapdic){
+    maplist->push_back(*mapdic);
 }
 
-int Slaveserver::GetListLength(){
-    return mapdiclist->size();
+int SlaveServer::GetListLength(){
+    return maplist->size();
 }
 
-void Slaveserver::Shuffle(){
-    list<map<string, int>>::iterator it = mapdiclist->begin();
-    advance(it, mapdiclist->size()-1);
+void SlaveServer::Shuffle(){
+    list<map<string, int>>::iterator it = maplist->begin();
+    advance(it, maplist->size()-1);
     map<string, int> mapdic1 = *it;
-    advance(it, mapdiclist->size()-2);
+    advance(it, maplist->size()-2);
     map<string, int> mapdic2 = *it;
     bool isfound;
     for (auto &t1 : mapdic1){
@@ -65,19 +69,28 @@ void Slaveserver::Shuffle(){
             int countdic2 = t2.second;
             if(worddic1.compare(worddic2)){
                 isfound = true;
-                resultmapdic.insert(pair<string,int>(worddic1, countdic1 + countdic2));
+                resultmap.insert(pair<string,int>(worddic1, countdic1 + countdic2));
             }
         }
         if(isfound == false){
-            resultmapdic.insert(pair<string,int>(worddic1, countdic1));
+            resultmap.insert(pair<string,int>(worddic1, countdic1));
         }
     }
 
     for(auto &t3 : mapdic2){
         string worddic3 = t3.first;
         int countdic3 = t3.second;
-        if (!resultmapdic.count(worddic3)){
-             resultmapdic.insert(pair<string,int>(worddic3, countdic3));
+        if (!resultmap.count(worddic3)){
+             resultmap.insert(pair<string,int>(worddic3, countdic3));
         }
+    }
+}
+
+void SlaveServer::PrintList(){
+    int cnt{1};
+    list<map<string, int>>::iterator itlist = maplist->begin();
+    for (; itlist != maplist->end(); ++itlist){
+        cout << cnt << " Map List" << endl;
+        Print(&(*itlist));
     }
 }

@@ -77,10 +77,10 @@ string ConvertMaptoString(std::map<std::string, int>* dic){
     return dicstring;
 }
 
-void Print(std::map<std::string, int> *dic){
-    cout << "Map Data Dictionary" << endl;
+void Print(std::map<std::string, int>* dic){
+    cout << "Data Map Dictionary" << endl;
     for (map<string, int>::iterator t = dic->begin(); t != dic->end(); ++t){
-        cout << t->first << " " << t->second << endl;
+        cout << "Data " << t->first << " " << t->second << endl;
     }
 }
 
@@ -91,10 +91,6 @@ map<string, int>* ConvertStringtoMap(std::string transportstr){
     string data;
     while(getline(ss, data, ':')){
         stringdata.push_back(data);
-    }
-
-    for(auto i = stringdata.begin(); i != stringdata.end(); i++){
-        cout << "Data " << *i << endl;
     }
     return mapd;
  }

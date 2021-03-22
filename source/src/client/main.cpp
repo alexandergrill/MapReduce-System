@@ -23,7 +23,8 @@ using namespace rang;
 using namespace asio::ip;
 
 int main(int argc, char* argv[]){
-    int wordcount = 500000;
+    //int wordcount = 500000;
+    int wordcount = 50;
     string filepath = "../src/client/clientfile.txt";
     string ipadress = "127.0.0.1";
     string port;
@@ -48,8 +49,6 @@ int main(int argc, char* argv[]){
     try{
         if(c != nullptr && wordcount > 0){
             cout << fg::green << flush;
-            spdlog::get("client_logger")->info("create client object");
-            spdlog::get("file_logger")->info("create client object");
 
             char* my_ip = &ipadress[0];
             char* my_port = &port[0];

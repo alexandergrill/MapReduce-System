@@ -13,6 +13,9 @@
 
 class Client{
 private:
+    std::string ipadress;
+    std::string port;
+    std::map<std::string, int> datamap;
     const char alphabet[52] = {
         'A', 'B', 'C', 'D', 'E', 'F', 'G',
         'H', 'I', 'J', 'K', 'L', 'M', 'N',
@@ -22,15 +25,11 @@ private:
         'h', 'i', 'j', 'k', 'l', 'm', 'n',
         'o', 'p', 'q', 'r', 's', 't', 'u',
         'v', 'w', 'x', 'y', 'z'};
-    std::map<std::string, int> mapdic;
-    std::string ipadress;
-    std::string port;
     std::string GetRandomString();
-    Client(){}
     Client(std::string ip, std::string pr):ipadress{ip}, port{pr}{}
 public :
+    static Client *GetClient(std::string ip, std::string pr);
     std::map<std::string, int>* GetMap();
-    static Client* GetClient(std::string ip, std::string pr);
     std::string ConvertMap();
     void WriteIntoFile(int wordnum, std::string filename);
     void Map(std::string filename);

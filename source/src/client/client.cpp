@@ -54,7 +54,7 @@ Client* Client::GetClient(std::string ip, std::string pr){
 }
 
 map<string, int>* Client::GetMap(){
-    return &mapdic;
+    return &datamap;
 }
 
 string Client::GetRandomString(){
@@ -114,13 +114,13 @@ void Client::Map(string filename){
 
             while (!file.eof()){
                 file >> line;
-                bool isin = Search(line, &mapdic);
+                bool isin = Search(line, &datamap);
                 if (isin == false){
-                    mapdic.insert(pair<string, int>(line, 1));
+                    datamap.insert(pair<string, int>(line, 1));
                     counter += 1;
                 }
                 else{
-                    auto it = mapdic.find(line);
+                    auto it = datamap.find(line);
                     it->second = it->second + 1;
                 }
             }
