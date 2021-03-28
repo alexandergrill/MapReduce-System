@@ -38,7 +38,8 @@ generated = gen.process('src/dummy.proto')
 
 # subdir('SUBDIR1')
 
-inc_dir = include_directories('include', get_option('spdlog_include_dir'), get_option('cli11_include_dir'), get_option('rang_include_dir'))
+
+inc_dir = include_directories('include', get_option('spdlog_include_dir'), get_option('cli11_include_dir'), get_option('rang_include_dir'), get_option('asio_include_dir'))
 srcclient = ['src/client/main.cpp', 'src/client/client.cpp', 'src/utils.cpp']
 srcslaveserver = ['src/slaveserver/main.cpp', 'src/slaveserver/slaveserver.cpp', 'src/utils.cpp']
 srcmasterserver = ['src/masterserver/main.cpp', 'src/utils.cpp']

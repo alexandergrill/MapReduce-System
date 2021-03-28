@@ -48,17 +48,18 @@
 
 \section{Einführung}
 In diesem Kapitel werden die Gründe der Umsetzung und das Thema, worum es in dieser Arbeit geht, genau erläuter. Es wird auch
-darauf eingegangen, welche Thematiken das Projekt umfassen soll und wie sich die Benotung auseinander setzt.
+darauf eingegangen, welche Thematiken das Projekt umfassen soll und wie sich die Benotung auseinandersetzt.
 
 \subsection{Vorwort}
-Der Virus "COVID-19" war im Jahr 2020 für die gesamte Bevölkerung auf der Erde eine rießengroße Herausforderung. Die Situation änderte sich am Begin im daruffolgendem Jahr 2021 nicht, 
-deshalb beschloss die Bundesregierung weiter Maßnahmen, Ausgangsbeschränkunge, Grenzkontrollen, FFP2-Maskenpflicht und weitere Regeln die, die Bevölkerung einzuhalten hat. Alle Schüler in Österreich müssen die Schule 
-blockweiße besuchen. Nur mit einem davor verpflichtetenden Schnelltest und FFP2-Maske dürfen sie die Schule betrehten. Da die Projektarbeiten im ersten Semster dementsprechend gut ausgefallen sind, beschloss Herr Professor 
-Kolousek, dass Schüler in den fünften Klassen im Fach NVS statt der Praktischen Arbeit und dem Theorie Test eine Projektarbeit über den Semsterstoff machen müssen. Folgendessen muss die Dokumentation, über das gewählte Thema, dementsprechend einen
-weiteren Umfang umfassen als beim ersten Projekt im ersten Semster. Im praktischen Teil geht es in diesem Projekt, darum ein Map-Reduce System in Kombination mit Server-Client Kommunikation zu implementier. Im theoretischen Teil, werden die Grundlagen die für die 
-Umsetzung relevant sind erklärt. Zusätzlich beinhaltet dies auch sämtliche Abschnitte wie, die Source Code Dokumentation, Abläufe, Erklärung bezgl. MapReduce-System, Aufbau und Anwendungsfälle.
+Der Virus "COVID-19" war im Jahr 2020 für die gesamte Bevölkerung auf der Erde eine riesengroße Herausforderung. Die Situation änderte sich am Begin des darauffolgenden Jahres 2021 nicht.
+Deshalb beschloss die Bundesregierung weitere Maßnahmen, Ausgangsbeschränkungen, Grenzkontrollen, FFP2-Maskenpflicht und weitere Regeln einzuführen die die Bevölkerung einzuhalten hat. Alle Schüler in Österreich müssen die Schule 
+blockweise besuchen. 
+Nur mit einem davor verpflichtetenden Schnelltest und FFP2-Masken dürfen sie die Schule betreten. Da die Projektarbeiten im ersten Semster entsprechend gut ausgefallen sind, beschloss Herr Professor 
+Kolousek, dass Schüler in den fünften Klassen im Fach NVS statt der Praktischen Arbeit und dem Theorietest eine Projektarbeit über den Semsterstoff machen müssen. Folgenddessen muss die Dokumentation über das gewählte Thema dementsprechend einen
+weiteren Umfang umfassen, als beim ersten Projekt im ersten Semster. Im praktischen Teil geht es in diesem Projekt darum, ein Map-Reduce System in Kombination mit Server-Client Kommunikation zu implementieren. Im theoretischen Teil werden die Grundlagen, die für die 
+Umsetzung relevant sind, erklärt. Zusätzlich beinhaltet dies auch sämtliche Abschnitte, wie die Source Code Dokumentation, Abläufe, Erklärung bezüglich MapReduce-System, Aufbau und Anwendungsfälle.
 \begin{description}
-    \item[Die zu erreichende Note hängt prinzipiell von der] ~\par
+    \item[Die zu erreichende Note hängt prinzipiell ab von der] ~\par
     \begin{itemize}
         \item Beispielkategorie
         \item Art der Kommunikation
@@ -73,26 +74,47 @@ Umsetzung relevant sind erklärt. Zusätzlich beinhaltet dies auch sämtliche Ab
 \end{description}
 \subsection{Motivation}
 In diesem NVS Projekt geht es darum, ein MapReduce-System mit der Programmiersprache C++ unter Linux mittels g++ Compilier umzusetzten.
-Im kurzem zusammengefasst soll eine große Menge an komplexen, unstrukturierten und eine Art von aufwendigen Daten verarbeitet werden. 
-Das heißt es sollen Daten, die planlos abgespeichert sind, zusammengefasst werden, sodass diese wieder ihren Nutzen oder Sinn erbringen. Diese können
-dann für weiter Verarbeitungsschritte oder Datenanalysen verwendet werden. Die Daten werden am Beginn in kleiner Packete aufgeteilt und diese werden identifiziert mit einem eindeutigen
-Schlüssel. In der nächste Phase werden die einzelnen Packete parallel von unterschiedlichen, getrennten und unabhängigen Prozesse zusammengefasst. Danach werden die gruppierten Daten wieder 
-einen Schlüssel zugeordnet, sodass diese wieder zusammengefasst und minimiert werden. Die Kommunikation zwischen den einzelnen Knoten, soll in dieser Arbeit mittel Server-Client Kommunikation passiern.
-Der Server hört auch einem Port ab, ob sich ein Client damit verbinen möchte, wenn eine Verbindung aufgebaut werden kann, soll die Splittung der Daten passier, daraufhin soll das Resultat weiter an dem Server gegeben werden, bis 
-alle Daten vereint auf dem Master Server liegen. Die bearbeitetn Daten werden schlussendlich in einem JSON-File abgespeichert.
-\section{Aufgabenstelllung}
-Diese Kapitel umfasst die genaue Erläuterung der Aufgabenstelllung, als auch die Themenbereiche die dieser Projektarbeit. Darüber hinaus wird auch über die Idee der Umsetzung geschrieben.
+Kurz zusammengefasst soll eine große Menge an komplexen, unstrukturierten und eine Art von aufwendigen Daten verarbeitet werden. 
+Das heißt, es sollen Daten, die planlos abgespeichert sind, zusammengefasst werden, sodass diese wieder ihren Nutzen oder Sinn erbringen. 
+Diese können dann für weiter Verarbeitungsschritte oder Datenanalysen verwendet werden. Die Daten werden am Beginn in kleine 
+Pakete aufgeteilt und diese werden mit einem eindeutigen
+Schlüsse identifiziert. 
+In der nächste Phase werden die einzelnen Pakete parallel von unterschiedlichen, getrennten und unabhängigen Prozessen 
+zusammengefasst. Danach werden die gruppierten Daten wieder 
+einem Schlüssel zugeordnet, sodass diese wieder zusammengefasst und minimiert werden. Die Kommunikation zwischen den einzelnen 
+Knoten soll in dieser Arbeit mittel Server-Client Kommunikation passieren.
+Der Server hört auch einen Port ab, ob sich ein Client damit verbinden möchte. Wenn eine Verbindung aufgebaut werden kann, soll die 
+Splittung der Daten passier, daraufhin soll das Resultat weiter an den Server gegeben werden, bis 
+alle Daten vereint auf dem Master Server liegen. Die bearbeiteten Daten werden schlussendlich in einem JSON-File abgespeichert.
 
+\section{Aufgabenstellung}
+Dieses Kapitel umfasst die genaue Erläuterung der Aufgabenstellung, sowie die Themenbereiche dieser Projektarbeit. Darüber hinaus wird auch über die Idee der Umsetzung geschrieben.
 \subsection{Erläuterung der Aufgabenstellung}
-Ziel ist es das eine Menge von unstrukturierten Daten, so verarbeitet werden, dass diese danach wieder in ordnungsgemäßer Struktur vorliegen. Zuerste müssen die Daten aufgeteilt werden. Sie werden in einer Key-Value Form abgepeichert, somit kann
-der Value, also der abgespeicherte Datensatz, mittels Key eindeutig identifiziert werden. Nachdem die Daten zusammengefasst vorliegen, werden sie in nächste Schritt auf einzelne Knoten aufgeteilt. Diese erlangen von den einzelenen Clients die Daten in Key-Value Form und fassen diese wieder zusammen, bis die Daten zu einem Master Knoten ankommen und dort schlussendlich in geordneter Form darliegen.
-Die Aktionen, der Datenverarbeitung verläuft ständig unter paralleler Abfolge, die Aufgaben werden aufgeteilt und gleichlaufen auf verscheidenen Knoten aufgeteilt.
+Ziel ist es, dass eine Menge von unstrukturierten Daten so verarbeitet werden, dass diese danach wieder in ordnungsgemäßer 
+Struktur vorliegen. Zuerst müssen die Daten aufgeteilt werden. Sie werden in einer Key-Value Form abgepeichert, somit kann
+der Value, also der abgespeicherte Datensatz, mittels Key eindeutig identifiziert werden. Nachdem die Daten zusammengefasst vorliegen, 
+werden sie im nächsten Schritt auf einzelne Knoten aufgeteilt. Diese erlangen von den einzelenen Clients die Daten in Key-Value Form und 
+fassen diese wieder zusammen, bis die Daten zu einem Master Knoten ankommen und dort schlussendlich in geordneter Form darliegen.
+Die Aktionen der Datenverarbeitung verlaufen ständig unter paralleler Abfolge. Die Aufgaben werden aufgeteilt und laufen auf 
+verscheidenen Knoten.
 
 \subsection{Idee}
-Das Projekt ist so aufgebaut, das es acht oder mehr Clients gibt, zwei Slave Server und einen Master Server. Ein Benutzer(Client) kann einen beliebige Anzahl von Zeichenketten, die er dem Programm beim Aufruf mitübergibt, erzeugen und diese werden dann in einer Datei abgespeichert. Zuästzlich wird dem Benutzer auch angeboten dem Speichertort der Datei selbst auszuwählen. Nachdem die ungeordneten Daten in einer Datei 
-abspeichert sind, beginnt die nächste Phase des Map-Reduce System. Die Datei wird zeilenweise durchgegangen. Die Zeichenketten werden in einem Art Dictionary als Key-Value Form abspeichert, daduch kann jeder eingefügte Datensatz identifiziert werden. Wenn der Datensatz in diesem Dictionary schon existiert, dann wird der Value, der als Counter festlegt wie oft die Zeichenfolge im Text vorkommt, um eins erhöht. Nachdem kompletten Durchlauf der Datei sind alle Daten
-in diesem Dictionary abspeichert. Dadurch, dass mehrere Clients das System zum gleichen Zeitpunkt unabhängig voneinander nutzen können, wird das durchforsten der Datei von anderen Prozessen nicht beeinflusst. Nachdem ein Prozess mit der Datenabspeicherung fertig ist, sendet er die Daten an den jeweiligen Slave Server der zu diesem Zeitpunkt nicht beschäftigt ist. Wenn der Server von einer gewissen Anzahl von Clients die Daten bekommt, beginnt er danach mit der Map Phase. An dieser Stelle werden
-die gesendetet Daten wieder per Key zusammengefasst und strukturiert. Die Abarbeitung erfolgt auch in diesem Fall parallel zu einem weiter Slave Knoten, der die selbe Art und Weise der Datenverarbeitung nutzt. Schlussendlich wird das Result an den Master Server geschickt. Letzendlich bringt dieser all seine empfangen Daten in eine Struktur, die im Nachhinein für Datenanalysen eingesetzt werden können.
+Das Projekt ist so aufgebaut, dass es acht oder mehr Clients gibt, zwei Slave Server und einen Master Server. 
+Ein Benutzer (Client) kann eine beliebige Anzahl von Zeichenketten, die er dem Programm beim Aufruf mitübergibt, 
+erzeugen und diese werden dann in einer Datei abgespeichert. 
+Zusätzlich wird dem Benutzer auch angeboten, den Speicherort der Datei selbst auszuwählen. 
+Nachdem die ungeordneten Daten in einer Datei 
+abspeichert sind, beginnt die nächste Phase des Map-Reduce Systems.
+Die Datei wird zeilenweise durchgegangen. 
+Die Zeichenketten werden in einem Art Dictionary als Key-Value Form abgespeichert, dadurch kann jeder eingefügte Datensatz identifiziert werden. 
+Wenn der Datensatz in diesem Dictionary schon existiert, dann wird der Value, der als Counter festlegt, wie oft die Zeichenfolge im Text vorkommt, um eins erhöht. 
+Nachdem kompletten Durchlauf der Datei sind alle Daten in diesem Dictionary abgespeichert. 
+Dadurch, dass mehrere Clients das System zum gleichen Zeitpunkt unabhängig voneinander nutzen können, wird das Durchforsten der Datei von anderen Prozessen nicht beeinflusst. 
+Nachdem ein Prozess mit der Datenabspeicherung fertig ist, sendet er die Daten an den jeweiligen Slave Server, der zu diesem Zeitpunkt nicht beschäftigt ist. 
+Wenn der Server von einer gewissen Anzahl von Clients die Daten bekommt, beginnt er danach mit der Map Phase. 
+An dieser Stelle werden die gesendetetn Daten wieder per Key zusammengefasst und strukturiert. 
+Die Abarbeitung erfolgt auch in diesem Fall parallel zu einem weiteren Slave Knoten, der die selbe Art und Weise der Datenverarbeitung nutzt. 
+Schlussendlich wird das Result an den Master Server geschickt. Jetzt bringt dieser all seine empfangenen Daten in eine Struktur, die im Nachhinein für Datenanalysen eingesetzt werden können.
 \subsection{Themenbereiche}
 \begin{description}
     \item[Diese Arbeit umfasst folgende Thematiken] ~\par
@@ -110,16 +132,28 @@ die gesendetet Daten wieder per Key zusammengefasst und strukturiert. Die Abarbe
 \section{Grundlagen}
 
 \subsection{Was ist ein MapReduce System?}
-Das Verfahren wurde 2004 von Google entwickelt für die Indexierung von Webseiten. Das Framework wird bei Datenbanken eingesetzt und dient zur Verarbeitung von großen, komplexen, unstrukturierte Datenmengen.
-Dieses Verfahren findet Anwendung für BigData und Datawarehouse, weil in solchen Fällen große Datenmengen in kürzester Zeit mittels Software verarbeitet, analysiert, aggregiert als auch kompremiert werden. 
-Map Reduce parallelisiert die Bearbeitung, durch die Verteilung auf mehrere gleichzeitig auszuführende Tasks. Der Grund, warum dieses Framework solche Datenmengen verarbeiten kann ist, weil die Aufgaben auf mehreren Rechnern aufgeteilt werden. Jeder einzelne Rechner startet Prozesse, die Parallel die Daten verarbeitet und auswertet.
-Ein einzelner Rechner stoßt schnell an seine Grenzen, deshalb ist die Verarbeitung von Daten, mittels mehreren Knoten sehr effizient und bietet eine bessere Performance.
-Das Verfahren wurde in vielen verschiedenen Verfahren eingesetzt wie zum Beispiel für die Indizierung von Webseiten, nach einer Suchanfrage mit beliebigen Zeichenketten, ebenso im Umfeld von Google News wird MapReduce verwendet. Andere große Internetfirmen wie Yahoo, die ebenfalls das Verfahren für die Indexierung von Webseiten verwenden, 
-als auch Facebook verwendet das System, um Spam Messages zu minimierung und die Ads zu optimieren. Wohingegen Amazon das Verfahren für das Clustering der Produket verwendet
+Das Verfahren wurde 2004 von Google für die Indizierung von Webseiten entwickelt. 
+Das Framework wird bei Datenbanken eingesetzt und dient zur Verarbeitung von großen, komplexen, unstrukturierten Datenmengen.
+Dieses Verfahren findet Anwendung für BigData und Datawarehouse, weil in solchen Fällen 
+große Datenmengen in kürzester Zeit mittels Software verarbeitet, analysiert, aggregiert als auch kompremiert werden. 
+Map Reduce parallelisiert die Bearbeitung durch die Verteilung auf mehrere gleichzeitig auszuführende Tasks. 
+Der Grund, warum dieses Framework solche Datenmengen verarbeiten kann ist, weil die Aufgaben auf mehrere Rechnern aufgeteilt werden. 
+Jeder einzelne Rechner startet Prozesse, die parallel die Daten verarbeitet und auswertet.
+Ein einzelner Rechner stößt schnell an seine Grenzen, deshalb ist die Verarbeitung von Daten mittels mehreren Knoten sehr effizient und bietet eine bessere Performance.
+Das Verfahren wurde in vielen verschiedenen Verfahren eingesetzt, wie zum Beispiel für die Indizierung von Webseiten, 
+nach einer Suchanfrage mit beliebigen Zeichenketten. Auch im Umfeld von Google News wird MapReduce verwendet. 
+Andere große Internetfirmen wie Yahoo, die ebenfalls das Verfahren für die Indexierung von Webseiten verwenden, 
+als auch Facebook verwendet das System, um Spam Messages zu minimieren und die Ads zu optimieren. 
+Amazon hingegen verwendet das Verfahren für das Clustering der Produket. 
+Ein Cluster ist eine Gruppe von Objekten mit ähnlichen Eigenschaften.
+Im technischen Bereich werden Cluster dazu genutzt um Produkte, Einzelteile oder Baugruppen nach bestimmten Gesichtspunkten zu gruppieren.
 
 \subsection{Map und Reduce}
-Die beiden Grundfunktionen des Verfahrens sind Map und Reduce. Sie sorgen für die Aufteilung der Aufgaben in kleinere parallelisierten Arbeitspakete und führen am Ende die Ergebnisse zusammen. Bei großen relationalen Datenbanken und komplexen Queries lassen sich typische Problem, bezglüch Verarbeitung von großen Datenmengen beseitigen.
-Die Map Funktion, verteilt die Aufgaben an unterschiedlichen Knoten eines Clusters. Die Reduce Funktion sortier die verfassten Ergebnisse und fügt sie am Ende wieder zusammen.
+Die beiden Grundfunktionen des Verfahrens sind Map und Reduce. 
+Sie sorgen für die Aufteilung der Aufgaben in kleinere parallelisierte Arbeitspakete und führen am Ende die Ergebnisse zusammen. 
+Bei großen relationalen Datenbanken und komplexen Queries lassen sich typische Probleme, bezüglich Verarbeitung von großen Datenmengen beseitigen.
+Die Map Funktion verteilt die Aufgaben an unterschiedlichen Knoten eines Clusters. 
+Die Reduce Funktion sortiert die verfassten Ergebnisse und fügt sie am Ende wieder zusammen.
 Die Funktionen Map und Reduce werden vom User bereitgestellt, weil diese schließlich zu den bereitgestellten Daten passen müssen.
 \cite{mrsystem}
 \newpage
@@ -135,8 +169,8 @@ Die Funktionen Map und Reduce werden vom User bereitgestellt, weil diese schlie�
     \begin{itemize}
         \item Split
         \begin{itemize}
-            \item{Die bereitgestellten Daten werden aufgeteilt. Jeder Datensatz darin ist identifiziert durch
-            einen Schlüssel-Wert. Diese Datenmenge wird nun in kleinere Datenmengen aufgeteilt
+            \item{Die bereitgestellten Daten werden aufgeteilt. Jeder Datensatz darin ist durch
+            einen Schlüssel-Wert identifiziert. Diese Datenmenge wird nun in kleinere Datenmengen aufgeteilt
             und vom Master an die verfügbaren Knoten verteilt.}
         \end{itemize}
         \item Map 
@@ -145,14 +179,14 @@ Die Funktionen Map und Reduce werden vom User bereitgestellt, weil diese schlie�
         \end{itemize}
         \item Shuffel
         \begin{itemize}
-            \item{Bei diesem Schritt geht es darum den reduce-Knoten, die entsprechenden Daten zuzuteilen.
+            \item{Bei diesem Schritt geht es darumm denn reduce-Knoten die entsprechenden Daten zuzuteilen.
             Diese Zuteilung entspricht einer Fragmentierung.
-            Hierbei wird den Knoten, die reduce ausführen, ein Key zugeteilt. Diese Knoten holen sich
+            Hierbei wird dem Knoten, die reduce ausführen, ein Key zugeteilt. Diese Knoten holen sich
             dann die bereits durch Map entstandenen Datensätze mit diesem Key und wenden reduce an.}
         \end{itemize}
         \item Reduce
         \begin{itemize}
-            \item{Grundsätzlich ist die Aufgabe dieser Funktion, die Key/Value Paare anhand des Schlüssels
+            \item{Grundsätzlich ist die Aufgabe dieser Funktion die Key/Value Paare anhand des Schlüssels
             zusammenzufassen und dabei die Summe der einzelnen Values zu bilden. Demnach ist die
             Ausgabe der Reduce-Funktion wieder ein Key/Value Paar mit dem gleichen Aufbau wie vor
             der Verarbeitung.
@@ -162,17 +196,17 @@ Die Funktionen Map und Reduce werden vom User bereitgestellt, weil diese schlie�
     \end{itemize} 
 \end{description}
 
-\subsection{Vorteile Nachteile eines Map-Reduce Systems}
-Map Reduce bietet eine Menge an Vorteilen, gegenüber den klassischen Verfahren der Datenverarbeitung, wie
+\subsection{Vorteile und Nachteile eines Map-Reduce Systems}
+Map Reduce bietet eine Menge an Vorteilen gegenüber dem klassischen Verfahren der Datenverarbeitung, wie
 sie in den relationalen Datenbanksystemen verwendet werden. \\ \\
 Ein wesentlicher Vorteil ist, dass für die
-Verwendung eines solchen System ein einfacher normaler Rechner benötigt wird und keine Highend-Server. Ein Cluster-Verbund für die parallelisiert
-Datenverarbeitung kann bei Notwendigkeit ohne großen Aufwand realisiert werden. Ein Cluster-Verbund ist ein Netzwerk, das aus mehreren Rechner besteht die gleichzeit miteinander verbunden sind 
-und sich Daten austauschen. Aus diesem Grund ist ein MapReduces-System sehr kostensparsam und kann mit wenig Know-How und Erfahrungen umgesetzt und
+Verwendung eines solchen System ein einfacher normaler Rechner benötigt wird und keine Highend-Server. Ein Cluster-Verbund für die parallelisierte
+Datenverarbeitung kann bei Notwendigkeit ohne großen Aufwand realisiert werden. Ein Cluster-Verbund ist ein Netzwerk, das aus mehreren Rechner besteht, die gleichzeitig miteinander verbunden sind 
+und Daten austauschen. Aus diesem Grund ist ein MapReduces-System sehr kostensparend und kann mit wenig Know-How und Erfahrungen umgesetzt und
 schlussendlich in Verwendung gebracht werden. \\ \\
 Ein weiterer Vorteil ist auch die Skalierbarkeit. Da die Daten auf den jeweiligen Knoten
-aufgeteilt werden, bietet das System eine zuverlässige Ausfallstoleranz und Verfügbarkeit, denn wenn ein Knoten ausfallen sollte, werden die Daten einfach an einem
-anderen Knoten und dort verarbeitet, somit läuft das System zu jederzeit in einem stabilen Zustand. \\ \\
+aufgeteilt werden, bietet das System eine zuverlässige Ausfallstoleranz und Verfügbarkeit, denn wenn ein Knoten ausfallen sollte, werden die Daten einfach an einen
+anderen Knoten weitergeleitet und dort verarbeitet, somit läuft das System jederzeit in einem stabilen Zustand. \\ \\
 Durch die parallelisierte Verarbeitung von Daten ist dieses Verfahren deutlich effizienter und perfomanter als die Datenverarbeitung
 in relationalen Datenbanken. Im Terabyte-Bereich dauert das Verfahren oft nur Minuten, im Petabyte-Bereich Stunden, wobei andere Systeme deutlich mehr Zeit und Ressourcen für die Verarbeitung
 benötigen.\\ \\
@@ -390,7 +424,7 @@ Die Wiedergabe von Programmen über einen Livestream unterscheidet sich meist vo
 \subsection{TCP/IP}
 Das Transmissioncontrollprotokoll und Internet Protokoll ist eine Menge von Kommunikationsprotokollen, die für den Verbindungsaufbau zu einem Netzwerk verwendet werden. TCP/IP kann auch als Kommunikation in einem Intranet(Firmen internes Internet) oder Extranet(betriebsinternes Computersystem, das für bestimmte externe Benutzergruppen geöffnet ist) eingesetzt werden.TCP/IP ist eine Reihe von Regeln und Verfahren wie der Datenaustausch abgehalten werden soll, dabei sind TCP/IP die Hauptprotokolle. TCP/IP definiert, wie Daten über das Internet übertragen werden, indem eine Ende zu Ende Kommunikation bereit gestellt wird. Weiters ist das Protokoll zuständig für die Aufteilung der Daten in Packete, Adressierung, Übertragung, Weiterleitung und auch, dass die Daten beim richtigen Empfänger ankommen.\\\\
 \textbf{TCP}\\
-TCP bestimmt, wie Daten über ein Netzwerk geschafft werden können und zusätzlich auch wie Daten in Packete aufgeteilt werden, sodass diese daraufhin über das Internet übertragen werden können und an der Zieladresse wieder in richtigen Reihenfolge wieder zusammenfgefügt werden können.
+TCP bestimmt, wie Daten über ein Netzwerk geschafft werden können und zusätzlich auch wie Daten in Pakete aufgeteilt werden, sodass diese daraufhin über das Internet übertragen werden können und an der Zieladresse wieder in richtigen Reihenfolge wieder zusammenfgefügt werden können.
 In der Internetprotokollfamilie bildet TCP gemeinsam mit UDP und SCTP die Gruppe der Transportprotokolle, die nach dem OSI-Modell in der Netzwerk-Architektur auf der Transportschicht eingestuft werden. Da das TCP-Protokoll in fast allen Fällen auf dem Internet Protocol (IP) aufsetzt und diese Verbindung die Basis für den Großteil aller öffentlichen und lokalen Netzwerke und Netzwerkdienste bildet, ist häufig auch vom TCP/IP-Protokollstapel die Rede, wenn im eigentlichen Sinne die Internetprotokollfamilie gemeint ist.
 \\\\
 \textbf{IP}\\
