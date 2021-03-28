@@ -217,45 +217,45 @@ Um die Geschwindigkeit zu erhöhen, kann ein Cluster ausschließlich aus High-En
 \newpage
 \noindent
 \subsection{Parallel Programming}
-Unter Parallel Programming versteht man die Aufteilung einer Problemstellung in weitere kleinere Teilprobleme die nebenläufig abgearbeitet werden, dabei wird jedes Teilproblem einzelnt gelöst und dadurch auch das Gesamtproblem effizient und schnell gelöst werden. 
-\\Dabei kann die Problemstellung schneller gelöst werden, weil die Abarbeitung aufgeteilt wird und die Teilprobleme unabhängig voneinander gleichzeitig bearbeitet werden können. Parallel Programming wird heutezutage in Branchen wie Chemie, Biologie, Medizin, Maschinenbau, Baustatik, Simulationen, Suchen in großen Datenbestände etc. angewendet.\\\\
+Unter Parallel Programming versteht man die Aufteilung einer Problemstellung in weitere kleinere Teilprobleme, die nebenläufig abgearbeitet werden. Dabei wird jedes Teilproblem einzeln gelöst und dadurch kann auch das Gesamtproblem effizient und schnell gelöst werden. 
+\\Gleichzeitig kann die Problemstellung schneller gelöst werden, weil die Abarbeitung aufgeteilt wird und die Teilprobleme unabhängig voneinander gleichzeitig bearbeitet werden können. Parallel Programming wird heutezutage in Branchen wie Chemie, Biologie, Medizin, Maschinenbau, Baustatik, Simulationen, Suchen in großen Datenbestände etc. angewendet.\\\\
 \textbf{Mooresches Gesetz\\}
-"Die Anzahl der Transistoren pro Chip verdoppelt sich etwa alle zwei Jahre". Das heißt je mehr Transistoren sich auf einem Chip befinden, desto mehr Funktionalität kann parallel abgearbeitet werden.Laut der Webseite "nature.com" wird die Halbleiterindustrie im März 2016 anerkennen, dass Moore's Law nicht mehr eingehalten werden kann. Demnach werden Chips nicht mehr zwangsläufig schneller, aber Fortschritt und Effizienzmaximierung wird es weiterhin geben.\\\\
+"Die Anzahl der Transistoren pro Chip verdoppelt sich etwa alle zwei Jahre". Das heißt, je mehr Transistoren sich auf einem Chip befinden, desto mehr Funktionalität kann parallel abgearbeitet werden. Laut der Webseite "nature.com" wird die Halbleiterindustrie im März 2016 anerkennen, dass Moore's Law nicht mehr eingehalten werden kann. Demnach werden Chips nicht mehr zwangsläufig schneller, aber Fortschritt und Effizienzmaximierung wird es weiterhin geben.\\\\
 \textbf{Wirth´sches Gesetz\\}
 "Die Software wird schneller langsamer, als die Hardware schneller", darunter versteht man, dass die Anforderungen an die Software immer aufwendiger, größer und komplexer wird und die Hardware diese Softwaren sehr langsam bis gar nicht verarbeiten können.\\\\
 \textbf{Taktfrequenzen\\}
-Die Taktfrequenze verdoppelte sich in den 1990-er Jahre alle 18 bis 20 Monaten, aber seit 2000 bis 2005 ist das nicht mehr der Fall. Heute finden maximial 4GHz im Desktop und Serverbereich Anwendung.\\Man spricht von einer sogenannten "Frequency Wall", wenn die Taktfrequenz nicht mehr erhöt werden kann, weil höhere Frequenz bedeutet höhere Spannung, höhere Spannung heißt, höhere Verlustleistung. Das hat zur Folge, dass die entstehnde Wärme, die durch den Anhib der Taktfrequenz und durch die Datenverarbeitung entsteht, nicht mehr abgeführt werden kann.
-Existierende nicht parallelisierte Software profitiert nicht mehr automatisch von der Leistungsseigerung der Hardware. Ein weiterer Nachteil ist, dass das Laufzeitverhalten paralleler Algorithmen schwieriger nachvollziehbar sein kann als das eines äquivalenten sequentiellen Algorithmus.\\\\
+Die Taktfrequenze verdoppelte sich in den 1990-er Jahre alle 18 bis 20 Monate, aber seit 2000 bis 2005 ist das nicht mehr der Fall. Heute finden maximial 4GHz im Desktop und Serverbereich Anwendung.\\Man spricht von einer sogenannten "Frequency Wall", wenn die Taktfrequenz nicht mehr erhöht werden kann, weil höhere Frequenz höhere Spannung bedeutet, höhere Spannung heißt, höhere Verlustleistung. Das hat zur Folge, dass die entstehende Wärme, die durch den Anhieb der Taktfrequenz und durch die Datenverarbeitung entsteht, nicht mehr abgeführt werden kann.
+Existierende nicht parallelisierte Software profitiert nicht mehr automatisch von der Leistungssteigerung der Hardware. Ein weiterer Nachteil ist, dass das Laufzeitverhalten paralleler Algorithmen schwieriger nachvollziehbar sein kann, als das eines äquivalenten sequentiellen Algorithmus.\\\\
 \textbf{Lösungsansätze\\}
-Der einfachste Lösungsantz ist der, indem man dein Problemraum einschränkt, damit ist gemeint der Algorithmus wird für den jeweiligen Aufwand eingeschränkt und angepasst. Eine weiter Idee wäre, dass man den Algorithmus selbst optimiert, jedoch ist das nicht immer möglich. Weiters ist die Verbesserung der Implementierung von Vorteil.(z.B Facebook -> eigener String)
-Auch durch den Bereich Hardware kann eine Software verbessert werden, dennoch ist diese Strategie mit hohen Kosten verbunden. Am effizientesten ist es hingegen, die Software in Teilprobleme aufzuteilen und diese parallel abzuarbeiten. Da ein Prozessor mehrere Kerne besitzt können mehrere unterschiedliche unabhängigvoneinandere Prozesse abgearbeitet werden. 
+Der einfachste Lösungsansatz ist der, indem man den Problemraum einschränkt. Damit ist gemeint, der Algorithmus wird für den jeweiligen Aufwand eingeschränkt und angepasst. Eine weitere Idee wäre, dass man den Algorithmus selbst optimiert, jedoch ist das nicht immer möglich. Weiters ist die Verbesserung der Implementierung von Vorteil. (z.B Facebook -> eigener String)
+Auch durch den Bereich Hardware kann eine Software verbessert werden, dennoch ist diese Strategie mit hohen Kosten verbunden. Am effizientesten ist es hingegen, die Software in Teilprobleme aufzuteilen und diese parallel abzuarbeiten. Da ein Prozessor mehrere Kerne besitzt, können mehrere unterschiedliche, unabhängig voneinander, Prozesse abgearbeitet werden. 
 \begin{description}
     \item[Möglichkeiten der Parallelisierung] ~\par
     \begin{itemize}
-        \item Zerlegung der Gesamtaufgabe in kleinere, mehreren Teilaufgaben, sodass die maximale Auslastung aller Prozesser(HW) stattfindetn, weil jede Teilaufgabe auf einem einzelnen Prozessor stattfindet.
-        \item Zerlegung der Gesamtaufgabe in kleinere, mehreren Teilaufgaben, die hintereinander ausgeführt werden, allerding wird die Gesamtzeit der Lösung einer Gesamtaufgabe nich kürzer und der Durchsatz bei der Lösung von vielen Aufgaben höher.
-        \item Zerlegung der Gesamtaufgabe in kleinere, mehreren Teilaufgaben, die hintereinander ausgeführt werden, aber mit spezieller Hardware gelöst werden.
+        \item Zerlegung der Gesamtaufgabe in kleinere, mehrere Teilaufgaben, sodass die maximale Auslastung aller Prozesser(HW) stattfindet, weil jede Teilaufgabe auf einem einzelnen Prozessor stattfindet.
+        \item Zerlegung der Gesamtaufgabe in kleinere, mehrere Teilaufgaben, die hintereinander ausgeführt werden, allerding wird die Gesamtzeit der Lösung einer Gesamtaufgabe nich kürzer und der Durchsatz bei der Lösung von vielen Aufgaben höher.
+        \item Zerlegung der Gesamtaufgabe in kleinere, mehrere Teilaufgaben, die hintereinander ausgeführt werden, aber mit spezieller Hardware gelöst werden.
     \end{itemize} 
 \end{description}
 \textbf{Pipelinig\\}
-Pipelinig beschreibt den Vorgang wie ein Prozessor vorgeht, wenn er mehrere Befehle verarbeiten werden müssen. Als Erstets wird der Befehl aus dem Arbeispeicher geladen(fetch), weiters wird dieser Befehlt in Maschiensprache umgewandelt und dekodiert(decode), werden zusätzliche Daten benötigt läd der Prozessor diese aus Registern oder aus dem Arbeitspeicher. Folgedessen wird der Befehlt schlussendlich ausgeführt(execute) und das Resultat des Befehls wird in einem Register oder im Arbeitspeicher geschrieben(write back).
-Die einzelnen Schritte werden in einer eigenen Hardwarekomponente ausgeführt, deshalb ist es möglich, wenn ein Befehl gefechte wird und danach dekodiert werden kann, kann in der Zeit, in der er dekodiert wird, ein andere Befehl gefetched werden, weil die Hardwarekomponente nicht verwendet wird. Das ist möglich bei jedem einzelnen Schritt beim Pipelinig. Die Abarbeitungzeit der einzelnen Prozessr wird nicht minimiert, hingegen können mehrere Prozesse in einer Zeitspanne abgewickelt werden d.h. der Durschastz ist höher.\\
+Pipelinig beschreibt den Vorgang wie ein Prozessor vorgeht, wenn er mehrere Befehle verarbeiten muss. Als Erstens wird der Befehl aus dem Arbeitsspeicher geladen(fetch), weiters wird dieser Befehl in Maschinensprache umgewandelt und dekodiert(decode). Werden zusätzliche Daten benötigt, lädt der Prozessor diese aus Registern oder aus dem Arbeitspeicher. Folgedessen wird der Befehl ausgeführt(execute) und das Resultat des Befehls wird in einem Register oder im Arbeitspeicher geschrieben (write back).
+Die einzelnen Schritte werden in einer eigenen Hardwarekomponente ausgeführt, deshalb ist es möglich, wenn ein Befehl gefetched wird und danach dekodiert werden kann, kann in der Zeit, in der er dekodiert wird, ein andere Befehl gefetched werden, weil die Hardwarekomponente nicht verwendet wird. Das ist bei jedem einzelnen Schritt beim Pipelinig möglich. Die Abarbeitungzeit der einzelnen Prozesse wird nicht minimiert, hingegen können mehrere Prozesse in einer Zeitspanne abgewickelt werden, d.h. der Durchsatz ist höher.\\
 \textbf{Probleme\\}
-Befehle zwischen denen Abhängigkeiten herrschen, können zu Problemen führen. Dabei kann es zu einer längeren Abarbeitung der Prozesse kommen, weil einzelne Prozesse auf das Ergbniss, des davor durchgeführten Prozesses, warten.\\ Zusätzlich kann zwischen den Prozessen nicht nur eine Datenabhänigkeit herschen, sonder auch eine Abhängigkeiten im Kontrollfluss. In diesem Fall existiert eine Abhängigkeit zwischen den Prozessschritten selbst. Wie in der Datenabhänigkeit müssen auch hier Wartezyklen eingeführt werden.\\
+Befehle, zwischen denen Abhängigkeiten herrschen, können zu Problemen führen. Dabei kann es zu einer längeren Abarbeitung der Prozesse kommen, weil einzelne Prozesse auf das Ergbniss des davor durchgeführten Prozesses warten.\\ Zusätzlich kann zwischen den Prozessen nicht nur eine Datenabhänigkeit herrschen, sonder auch eine Abhängigkeit im Kontrollfluss. In diesem Fall existiert eine Abhängigkeit zwischen den Prozessschritten selbst. Wie in der Datenabhänigkeit müssen auch hier Wartezyklen eingeführt werden.\\
 Weiters kann auch passieren, dass die Abarbeitungsschritte vom Prozessor selbst umgeordnet werden, obwohl es zwischen den Anweisungen Abhängigkeiten herrschen. Diese werden vom Prozessor nicht berücksichtigt.\\
-Daten die für einen Prozess benötigt werden, können schon weit vor der Benutzung aus dem Hauptspeicher gelesen werden und schlussendlich auch für die Abarbeitung verwendet werden. Ihr kann es zu Problemen kommen, wenn nich aktuelle Daten oder falsche Daten gelesen werden, weil das Result nicht den gewünschten Wert hat.\\\\
+Daten, die für einen Prozess benötigt werden, können schon weit vor der Benutzung aus dem Hauptspeicher gelesen werden und schlussendlich auch für die Abarbeitung verwendet werden. Hier kann es zu Problemen kommen, wenn nicht aktuelle Daten oder falsche Daten gelesen werden, weil das Result nicht den gewünschten Wert hat.\\\\
 \textbf{Superskalarität\\}
-Superskalare Prozesse enthalten mehrere gleichartige Funktionseinheiten zum Beispiel Rechenwerke für Ganzzahl- und Gleitkommaarithmetik oder Lade- und Speichereinheiten. Damit können mehrere Befehle parallel ausgeführt werden, wenn keine Abhängigkeiten existieren.\\\\
+Superskalare Prozesse enthalten mehrere gleichartige Funktionseinheiten, zum Beispiel Rechenwerke für Ganzzahl- und Gleitkommaarithmetik oder Lade- und Speichereinheiten. Damit können mehrere Befehle parallel ausgeführt werden, wenn keine Abhängigkeiten existieren.\\\\
 \textbf{Hardware seitiges Multithreading\\}
-Wenn mehrere Threads auf ein Szenario warten, können daher in der Zwischenzeit Befehle eines anderen Threads durchgeführt werden, dazu werden aber mehrere Registersätzte benötigt.
+Wenn mehrere Threads auf ein Szenario warten, können daher in der Zwischenzeit Befehle eines anderen Threads durchgeführt werden, dazu werden aber mehrere Registersätze benötigt.
 Die Hardwarethreads erscheinen dem Benutzer wie echte Kerne des Prozessors, obwohl sie keine sind. Der Performancegewinn liegt bei ca 10 bis 20\%.\\\\
 \textbf{Vectoreinheiten\\}
-Um die Abarbeitung zu beschleunigen können sogennante Vectoreinheiten eingesetzt werden, dabei kann ein Befehtl mehrere Daten zur selben Zeit verarbeiten.\\
+Um die Abarbeitung zu beschleunigen, können sogenannte Vectoreinheiten eingesetzt werden, dabei kann ein Befehl mehrere Daten zur selben Zeit verarbeiten.\\
 Parallele Architekturen lassen sich auf unterschiedliche Arten klassifizieren. Eine sehr grundlegende Einteilung von Computersystemen allgemein stellt „Flynn’s Taxonomy“ dar. Diese behandelt nicht allein parallele Systeme, beinhaltet diese aber, was verdeutlicht, dass Parallelisierung bereits vor über 40 Jahren ein Thema war.
 \newpage
 \noindent
 Eine mögliche Kategorisierung von ausschließlich parallelen Systemen kann nach der Art der Speicherverwaltung getroffen werden.
-Unabhängig davon, welche Klassifizierung herangezogen wird, ist jedoch zu erwähnen, dass die Übergänge zwischen den Kategorien oft fließend sind. Viele Lösungen sind also durchaus in unterschiedlichen Bereichen einzuordnen.
+Unabhängig davon, welche Klassifizierung herangezogen wird, ist jedoch zu erwähnen, dass die Übergänge zwischen den Kategorien oft fließend sind. Viele Lösungen sind also durchaus in unterschiedliche Bereichen einzuordnen.
 \begin{description}
     \item[Flynnsche Klassifikation] ~\par
     \begin{itemize}
@@ -278,14 +278,14 @@ Unabhängig davon, welche Klassifizierung herangezogen wird, ist jedoch zu erwä
     \end{itemize} 
 \end{description}
 \textbf{Rechnerarchitekt\\}
-Man unterscheidet zwischen einem homogenen unter heterogenen Aufbau. Beim homognene Aufbau haben alle Rechner die gleichen Hardwarekomponenten und beim heterogenen Aufbau haben die Rechner verschiedenartige Prozessoren, Kerne usw.\\
-Bei der Speicherarchitektur gibt es ebenfalls zwei unterschiedlich Arten, nämlich UMA (uniform memory access) und NUMA(none uniform memory access). Bei der UMA Variante haben alle Prozessoren und Kerne Zugriff auf den gleichen Hauptspeicher, wobei der NUMA Variante, jeder Prozess besitzt einen eigenen Speicher und der Zugriff auf einen Fremndenspeicher erfolgt über ein Verbindungsnetzwerk.\\
+Man unterscheidet zwischen einem homogenen und einem heterogenen Aufbau. Beim homognenen Aufbau haben alle Rechner die gleichen Hardwarekomponenten und beim heterogenen Aufbau haben die Rechner verschiedenartige Prozessoren, Kerne usw.\\
+Bei der Speicherarchitektur gibt es ebenfalls zwei unterschiedlich Arten, nämlich UMA (uniform memory access) und NUMA(none uniform memory access). Bei der UMA Variante haben alle Prozessoren und Kerne Zugriff auf den gleichen Hauptspeicher. Bei der NUMA Variante, besitz jeder Prozess einen eigenen Speicher und der Zugriff auf einen Fremndenspeicher erfolgt über ein Verbindungsnetzwerk.\\
 In der Rechnerarchitektur gibt es Multicore und Multiprozessor. Multi-Core bedeutet, dass in einem Prozessor mehrere Prozessor-Kerne eingebaut sind. Man bezeichnet diese Prozessoren als Multi-Core- oder Mehrkern-Prozessoren. Rein äußerlich unterscheiden sich Multi-Core-CPUs nicht von Single-Core-CPUs. Der Rechenkern ist bei Multi-Core-CPUs einfach mehrfach vorhanden. Innerhalb des Betriebssystems wird der Multi-Core-Prozessor wie mehrere Recheneinheiten behandelt.\\
 \newpage
 \noindent
 \textbf{Parallelität in der Software\\}
 Im Zeitalter exponentiell ansteigenden Datenverkehrs wird der Bedarf an harten und weichen Rechenkapazitäten immer größer. Auch die Rechenprozesse selbst werden deutlich komplexer und erfordern mehr Ressourcen. Eine Antwort darauf ist die Cloud, die der Nachfrage nach Serverleistung mit virtuellen Hostingdiensten nachkommt und so erheblichen Druck von Rechenzentren und Serverlandschaften nimmt.
-Eine andere Antwort darauf sind Computer, die statt mit nur einem gleich mit mehreren Prozessorkernen ausgestattet werden. Damit schaffen sie ideale Bedingungen für die parallele Programmierung, weil sie eine nebenläufige, sprich parallele Abwicklung mehrerer Rechenprozesse ermöglichen – so genannte Threads. Dabei spielt es keine Rolle, ob die Teilprozesse auf die Sekunde genau parallel verlaufen – vielmehr geht es darum, dass die Software dadurch verschiedene Dinge gleichzeitig erledigen kann, also die Fähigkeit zum Multitasking besitzt.\\\\
+Eine andere Antwort darauf sind Computer, die statt mit nur einem gleich mit mehreren Prozessorkernen ausgestattet werden. Damit schaffen sie ideale Bedingungen für die parallele Programmierung, weil sie eine nebenläufige, sprich parallele, Abwicklung mehrerer Rechenprozesse ermöglichen – so genannte Threads. Dabei spielt es keine Rolle, ob die Teilprozesse auf die Sekunde genau parallel verlaufen – vielmehr geht es darum, dass die Software dadurch verschiedene Dinge gleichzeitig erledigen kann, also die Fähigkeit zum Multitasking besitzt.\\\\
 \textbf{Das Amdahl‘sche Gesetz\\}
 Das Amdahl’sche Gesetz bezeichnet in der Informatik ein Modell zur Beschleunigung von Programmen durch Parallelisierung, deren Voraussetzung bekanntlich die Verwendung mehrerer Prozessoren ist. Verwendet man zum Beispiel doppelt so viele Prozessoren, benötigt man nach Amdahl im besten Fall die halbe Zeit zur Durchführung des Programms aka zur Lösung des Problems. Dabei wird die Temposteigerung allerdings dadurch ausgebremst, dass Programme niemals vollständig parallel operieren können und dass es immer einen gewissen Anteil an sequentiellen Programmteilen geben muss – etwa bei der Initialisierung oder in der Speicherverwaltung, weil diese Dinge entweder auf nur einem Prozessor ablaufen oder in Abhängigkeit zu anderen Ereignissen stehen. Deshalb sieht Amdahl vor, den Programmcode in sortenreine Abschnitte aufzuteilen – solche, die rein sequentiell und solche, die rein parallel operieren. Die komplette Dauer eines Programmes ergibt sich dann aus der Formel Z =zs +zp.
 Amdahl beobachtet, dass bei steigender Anzahl der Prozessoren dieser Beschleunigungsfaktor (Speed-up) immer stärker von den sequenziellen Anteilen des Prozesses gehemmt wird, da mit der Inbetriebnahme weiterer Prozessoren auch weitere Aufwände anfallen, für die Initialisierung etwa oder für die Synchronisierung, sprich z0.
@@ -293,20 +293,20 @@ Amdahl beobachtet, dass bei steigender Anzahl der Prozessoren dieser Beschleunig
 \newpage
 \noindent
 \subsection{Kommunikation}
-Das Prinzip der Kommunikation im Internet ist, dass man strikt sein sollen beim Senden der Daten und tolerant beim Empfängen. Der Zweck einer Kommunikation sind die Interoperabilität, das bedeutet
-das mehrere Systeme die aus Rechner bestehen in der Lage sind Daten untereinander auszutauschen, und die Fehlertolaranz, das bedeutet das die Daten durch festegelegte Regeln übertragen werden aber beim Empfangen in einer
-gewünschen Form umgewandelt werden können.
+Das Prinzip der Kommunikation im Internet ist, dass man strikt sein soll beim Senden der Daten und tolerant beim Empfangen. Der Zweck einer Kommunikation ist die Interoperabilität, das bedeutet, 
+dass mehrere Systeme, die aus Rechner bestehen, in der Lage sind, Daten untereinander auszutauschen. Die Fehlertolaranz bedeutet, dass die Daten durch festgelegte Regeln übertragen werden aber beim Empfangen in einer
+gewünschten Form umgewandelt werden können.
 
 \begin{description}
     \item[Beziehungen zwischen den einzelnen Knoten] ~\par
     \begin{itemize}
         \item one-to-one
         \begin{itemize}
-            \item{Ein Knote kommuniziert mit einen anderen Knoten}
+            \item{Ein Knote kommuniziert mit einenm anderen Knoten}
         \end{itemize}
         \item one-to-many
         \begin{itemize}
-            \item{Ein Knoten spricht mit mehreren Knoten und alle lauschen und hören zu. Diese Art von Kommunikation zwischen den Rechner nennt man multicast}
+            \item{Ein Knoten spricht mit mehreren Knoten und alle lauschen und hören zu. Diese Art von Kommunikation zwischen den Rechnern nennt man multicast}
         \end{itemize}
         \item one-to-any
         \begin{itemize}
@@ -314,77 +314,77 @@ gewünschen Form umgewandelt werden können.
         \end{itemize}
         \item many-to-one
         \begin{itemize}
-            \item{Mehrere Knoten sprechen zu einen konkreten Knoten}
+            \item{Mehrere Knoten sprechen zu einem konkreten Knoten}
         \end{itemize}
         \item many-to-many
         \begin{itemize}
-            \item{Mehrer Knoten kommuniziert mit mehreren anderen Knoten.\\}
+            \item{Mehrere Knoten kommunizieren mit mehreren anderen Knoten.\\}
         \end{itemize}
     \end{itemize} 
 \end{description}
 \textbf{Kommunikationsrichtung\\}
-Beim Datenautausch ist wichtig festzuhalten, in welche Richtung die Daten übertragen werden. Mittel simplex werden die Daten nur in eine Richtung übertragen. 
-Bei half-duplex werden die Daten ebenso in eine Richtung übertragen, jedoch kann die Richtung in der Übertragen wird änderen. Bei der Variante duplex werden die Daten in beide Richtungen übertragen wie im TCP Protokoll realisiert, werden zwei Streams
-zur Verfügung gestellt um Daten zu senden und zu empfangen.
+Beim Datenautausch ist wichtig festzuhalten, in welche Richtung die Daten übertragen werden. Mittels simplex werden die Daten nur in eine Richtung übertragen. 
+Bei half-duplex werden die Daten ebenso in eine Richtung übertragen, jedoch kann die Richtung in der Übertragung geändert werden. Bei der Variante duplex werden die Daten in beide Richtungen übertragen. Wie im TCP Protokoll realisiert, werden zwei Streams
+zur Verfügung gestellt, um Daten zu senden und zu empfangen.
 \newpage
 \noindent
 \textbf{Verbindungen\\}
-Im Grunde genommen unterscheidet man zwischen verbindungsorientierter und verbindungsloser Kommunikation. Bei der verbindungsorientierter Kommunikation wird eine Verbindung zwischen zwei Knoten aufgebaut, danach werden Daten ausgetauscht und zum Schluss kommt es zur
-Verbindungsabbau. Wohingegen bei der verbindungsloser Kommunikation nur die Datenübertragen werden und keine Verbindung aufgebaut und abgebaut wird. Es ist in der Regel effizienter, aber es wird nicht sichergestellt ob die Daten wirklich beim Empfänger angekommen sind.\\ \\
+Im Grunde genommen unterscheidet man zwischen verbindungsorientiertern und verbindungsloser Kommunikation. Bei der verbindungsorientierter Kommunikation wird eine Verbindung zwischen zwei Knoten aufgebaut, danach werden Daten ausgetauscht und zum Schluss kommt es zum
+Verbindungsabbau. Hingegen werden bei der verbindungslosen Kommunikation nur die Datenübertragen und keine Verbindung aufgebaut und abgebaut. Es ist in der Regel effizienter, aber es wird nicht sichergestellt, ob die Daten wirklich beim Empfänger angekommen sind.\\ \\
 \textbf{Signalisierung\\}
-Bei der Kommunikation werden auch Nachrichten ausgetauscht, die zum Aufbau, der Überwachung und dem Abbau einer Verbindug notwendig sind. Man spricht von in-bank signalling, es wird ein gleicher logischer Kanal wie Nutzdaten und Steuerungsdaten verwendet, oder out-of-band signalling, hier wird ein getrennter logischer Kanal verwendet. Es gibt einen
-physischen Kanal der in mehrere logische Kanäle unterteilt sind. \\ \\
+Bei der Kommunikation werden auch Nachrichten ausgetauscht, die zum Aufbau, der Überwachung und dem Abbau einer Verbindung notwendig sind. Man spricht von in-bank signalling. Es wird ein gleicher logischer Kanal wie Nutzdaten und Steuerungsdaten verwendet, oder out-of-band signalling, hier wird ein getrennter logischer Kanal verwendet. Es gibt einen
+physischen Kanal, der in mehrere logische Kanäle unterteilt ist. \\ \\
 \textbf{Protokoll\\}
-Für die Kommunikation benötigt man auch festgelegte Regeln, die für eine Kommunikation notwendig sind, darunter versteht man den Begriff Protokoll. Das betrifft das Format der Nachrichten, Reihenfolge der Nachrichten und die Spezifikation der Fehlersituation. Es gibt zustandsbehaftete und zustandlose Protokolle. zustandsbehaftete Protokolle sind, jene bei denen die Nachrichten
-vom Zustand der zuvor gesendete Nachrichten abhängt. Bei dem zustandlos Protokol heißt, die Nachrichten sind unabhängig von zuvor gesendeten Nachrichten.\\\\
+Für die Kommunikation benötigt man auch festgelegte Regeln, die für eine Kommunikation notwendig sind, darunter versteht man den Begriff Protokoll. Das betrifft das Format der Nachrichten, Reihenfolge der Nachrichten und die Spezifikation der Fehlersituation. Es gibt zustandsbehaftete und zustandslose Protokolle. Zustandsbehaftete Protokolle sind jene, bei denen die Nachrichten
+vom Zustand der zuvor gesendete Nachrichten abhängt. Bei zustandlosen Protokol sind, die Nachrichten unabhängig von zuvor gesendeten Nachrichten.\\\\
 \textbf{Session\\}
-Im Informationaustausch spielt auch der Begriff Session eine wichtige Rolle. Dieser beschreibt eine feste Beziehung zwischen kommunizierenden Prozessen mit vereinbarten Eigenschaften wie Namen, Ressourcen, Charakteristika. Dadurch bildet sich ein gemeinsamer Zustand zwischen dein einzelnen Prozessen. Um sicherzustellen welcher Knoten welcher ist und welche Rechte dieser hat 
-bei der Kommunikation mit anderen hat, werden Mechanismen zu Authentifikation und Autorisierung. Bei HTTP sieht die Kommunikation folgendermaßen aus, ein Client der mittels Browser eine Seite aufruft sendet einen Request an den Server, dieser überprüft die Daten der Anfragen und welche Daten der Client benötigt und sendet den Client danach mittels Respone die angefragten Daten zurück.\\
-Wird die Seite neu geladen so verschwinden auch die Daten die in einem Cache zwischengespeichert sind und für weitere Aktionen relevant sind. Dies kann oft zu Problem führen, deshalb wird ein sogenanter Session-Cookie verwendet, in dem Daten abgelegt werden, die in einer Session entstehen und für weitere Tätigkeiten relevant sind und in diesem abgespeichert werden.\\ \\
+Im Informationaustausch spielt auch der Begriff Session eine wichtige Rolle. Dieser beschreibt eine feste Beziehung zwischen kommunizierenden Prozessen mit vereinbarten Eigenschaften, wie Namen, Ressourcen, Charakteristika. Dadurch bildet sich ein gemeinsamer Zustand zwischen den einzelnen Prozessen. Um sicherzustellen, welcher Knoten welcher ist und welche Rechte dieser
+bei der Kommunikation mit anderen hat, werden Mechanismen zu Authentifikation und Autorisierung eingesetzt. Bei HTTP sieht die Kommunikation folgendermaßen aus. Ein Client der mittels Browser eine Seite aufruft sendet einen Request an den Server. Dieser überprüft die Daten der Anfragen und welche Daten der Client benötigt und sendet den Client danach mittels Respones die angefragten Daten zurück.\\
+Wird die Seite neu geladen, so verschwinden auch die Daten, die in einem Cache zwischengespeichert sind und für weitere Aktionen relevant sind. Dies kann oft zu Problemen führen. Deshalb wird ein sogenanter Session-Cookie verwendet, in dem Daten abgelegt werden, die in einer Session entstehen und für weitere Tätigkeiten relevant sind und in diesem abgespeichert werden.\\ \\
 \textbf{Hierachie von Protokollen\\}
-Protokolle sind hierachisch angeordnet, dass hat den Vorteil, dass mit Problemen zwischen den unterschiedlichen Protokollen besser umgehen kann und jede Schicht nur wissen muss was mit der darunterliegenden Schicht zu tun ist und wie Daten an die darüberliegenden Schicht geben kann. Die Schichten können auch ausgetauscht werden.
+Protokolle sind hierachisch angeordnet, das hat den Vorteil, dass man mit Problemen zwischen den unterschiedlichen Protokollen besser umgehen kann und jede Schicht nur wissen muss, was mit der darunterliegenden Schicht zu tun ist und wie man Daten an die darüberliegenden Schicht geben kann. Die Schichten können auch ausgetauscht werden.
 \\\\
 \textbf{Kommunikationsstile\\}
-Die Kommunikation kann durch unterschiedlichen Stillen durchgeführt werden wie zum Beipsiel wird ein gemeinsamer genutzer Knoten verwendet und auf diesem zugegriffen auf dem alle Daten abgespeichert werden, wie es bei Datenbanken der fall ist, beim Versenden von Nachrichten spricht man von nachrichten-orientierte Kommunikation. \\\\
-Im Vergleich beim Aufruf einer Funktion oder Methoden die auf einem Client abgespeichert sind
-spricht man von Entfernte Funktionsaufrufe (Entfernte Methodenaufrufe), wenn Daten verarbeite werden wenn sie eintreffen spricht man von stream-orientierter Kommunikation.\\\\
+Die Kommunikation kann durch unterschiedliche Stilen durchgeführt werden. Zum Beispiel wird ein gemeinsamer genutzter Knoten verwendet und auf diesen zugegriffen, auf dem alle Daten abgespeichert werden, wie es bei Datenbanken der Fall ist. Beim Versenden von Nachrichten spricht man von nachrichten-orientierter Kommunikation.\\\\
+Im Vergleich beim Aufruf einer Funktion oder Methoden, die auf einem Client abgespeichert sind,
+spricht man von entfernter Funktionsaufrufe (entfernte Methodenaufrufe), wenn Daten verarbeitet werden oder wenn sie eintreffen, spricht man von stream-orientierter Kommunikation.\\\\
 \textbf{synchron vs. asynchron\\}
-Ein Nachrichtenautausch kann entweder synchron oder asynchron passierten. Bei einer synchronen Austausch wird die Operation begonnen, wenn der Sender die Nachricht initiert hat und der Empfänger bereit ist die Nachricht zu empfangen. Wobei bei einer asynchronen Nachrichtenaustauch, der Sender die Nachrichten unabhängig, ob der bereit ist oder nicht. 
+Ein Nachrichtenautausch kann entweder synchron oder asynchron passieren. Bei einem synchronen Austausch wird die Operation begonnen, wenn der Sender die Nachricht initiert hat und der Empfänger bereit, ist die Nachricht zu empfangen. Bei einem asynchronen Nachrichtenaustauch ist es unabhängig davon, ob der Sender bereit ist oder nicht. 
 \newpage
 \begin{description}
     \item[Semantik der Nachrichtenübermittlung] ~\par
     \begin{itemize}
         \item no-wait-send
         \begin{itemize}
-            \item{Der Sendeprozess wartet lediglich bis die Nachricht im Transportsystem zum Absenden bereitgestellt ist.}
+            \item{Der Sendeprozess wartet lediglich, bis die Nachricht im Transportsystem zum Absenden bereitgestellt ist.}
         \end{itemize}
         \item synchronization send
         \begin{itemize}
-            \item{Der Sendeprozess wartet bis die Nachricht vom Empfangsprozess entgegengenommen worden ist.}
+            \item{Der Sendeprozess wartet, bis die Nachricht vom Empfangsprozess entgegengenommen worden ist.}
         \end{itemize}
         \item remote-invocation send
         \begin{itemize}
-            \item{Der Sendeprozess wartet bis die Nachricht vom Empfangsprozess verarbeitet und beantwortet worden ist.\\\\\\}
+            \item{Der Sendeprozess wartet, bis die Nachricht vom Empfangsprozess verarbeitet und beantwortet worden ist.\\\\\\}
         \end{itemize}
     \end{itemize} 
 \end{description}
 \textbf{transient vs. persistent\\}
-Die Datenübertragen in einem Netzwerk kann transient sein(Message Passing), das heißt beide Kommunikationspartner müssen online sein, weil das Kommunikationssystem speichert Nachrichten nur solange, wie die
-sendende und die empfangene Operation ausgeführt wird, oder Persistent(Message Queueing), darunter versteht man das Kommunikationssystem speichert Nachrichten bis diese vollständig an den Empfänger ausgeliefert wurden.\\\\
-Musterlösungen einer Datenübertragung kann sein request/response(A sendet an B, B sendet an A), oneway(A sendet an B, A sendet an B), batching(Zusammenfassung von oneway Nachrichten) und publish/subscribe. Daten können durch zweit verscheiden Möglichkeiten interoperable übertragen werden, nämlich Daten werden ganz einfach in ein maschinenunabhängiges Format transformiert oder Empfänger muss sich um eine notwendige Konvertierung kümmern.\\ Im ersten Fall müssen beide Kommunikationspartner
-die Daten so umwandelen, sodass diese für sie verständlich sind und im zweiten Fall spezifiziert der Sender den Datentyp aus einer Liste von vorgegebenen Datentypen.
+Die Datenübertragen in einem Netzwerk kann transient sein (Message Passing), das heißt, beide Kommunikationspartner müssen online sein, weil das Kommunikationssystem Nachrichten nur solange speichert, wie die
+sendende und die empfangene Operation ausgeführt wird. Unter Persistent (Message Queueing), versteht man, dass Kommunikationssystem Nachrichten speichert bis diese vollständig an den Empfänger ausgeliefert wurden.\\\\
+Musterlösungen einer Datenübertragung kann request/response(A sendet an B, B sendet an A) sein, oneway(A sendet an B, A sendet an B), batching(Zusammenfassung von oneway Nachrichten) und publish/subscribe. Daten können durch zwei verschiedene Möglichkeiten interoperable übertragen werden, nämlich Daten werden ganz einfach in ein maschinenunabhängiges Format transformiert, oder der Empfänger muss sich um eine notwendige Konvertierung kümmern.\\ Im ersten Fall müssen beide Kommunikationspartner
+die Daten so umwandeln, sodass diese für sie verständlich sind und im zweiten Fall spezifiziert der Sender den Datentyp aus einer Liste von vorgegebenen Datentypen.
 \cite{communication1}
 \newpage
 \noindent
 \textbf{Message Oriented Middleware\\}
-Message Oriented Middleware ist eine Softwareinfrastruktur, die durch asynchrone Verbindung (nicht im klassischen Sinne, sondern im Sinne von Kommunikationsbeziehungen) charakterisiert ist und die mittels mehrere Systeme durch Nachrichten miteinander verbindet. Protokolle für MOM währen zum Beispiel: 
+Message Oriented Middleware ist eine Softwareinfrastruktur, die durch asynchrone Verbindung (nicht im klassischen Sinne, sondern im Sinne von Kommunikationsbeziehungen) charakterisiert ist und die sich mittels mehreren Systeme durch Nachrichten miteinander verbindet. Protokolle für MOM wären zum Beispiel: 
 AMQP, STOMP, OpenWire, Java Message Service, XMPP, REDIS und MQTT.\\\\Im Unterricht wurde besonders auf das Protokoll MQTT Rücksicht genommen, weil es aktuell ist. MQTT ist ein Protokoll das ursprünglich von IBM zur Überwachung von Ölpipelines. Das Protokoll ist sehr leichtgewichtig gehalten, weil eine große Datenmenge
-mittels einfachen Protokoll übertragen werden soll. \\\\
-Das Protokoll basiert auf einem publish/subscribe Ansatz und die Idee diese Protokolls ist, dass es kompaitble mit anderen Programmiersprachen wie C++, Java, .Net, Python, PHP usw. ist. Der Aufbau des Protokolls ist hiearchisch wie unter Linux der Verzeichnissbaum. \\\\Der Vorteil ist der, dass durch den hiearchischen Topic Aufbau, mann nur die 
-Daten erhält die man auch zwingend anfordert. z.b etage1/wohnzimmer/ bekommt man nur alle Daten vom Wohnzimmer aus der ersten Etgae und wenn man alle Daten von der ersten Etage möchte fordert man mittels /etage1/ diese an. Wichtige Charakteristika sind auch Themen wie Quaility of Service, Last Will and Testament, Retained Message und Authentifizierung.\\
+mittels einfachem Protokoll übertragen werden soll. \\\\
+Das Protokoll basiert auf einem publish/subscribe Ansatz und die Idee dieses Protokolls ist, dass es kompatible mit anderen Programmiersprachen, wie C++, Java, .Net, Python, PHP usw. ist. Der Aufbau des Protokolls ist hierarchisch, wie unter Linux der Verzeichnisbaum. \\\\Der Vorteil ist der, dass man durch den hierarchisch Topic Aufbau, nur die 
+Daten erhält, die man auch zwingend anfordert, Z.B bei etage1/wohnzimmer/ bekommt man nur alle Daten vom Wohnzimmer aus der ersten Etage und wenn man alle Daten von der ersten Etage möchte, fordert man mittels /etage1/ diese an. Wichtige Charakteristika sind auch Themen, wie Quaility of Service, Last Will and Testament, Retained Message und Authentifizierung.\\
 \\
 \textbf{Entfernte Funktionsaufrufe}\\
-Unter Remote Procedure Call (RPC) versteht man, dass nach dem Funktionsaufruf, der Prozess der durch den Aufruf gestarten wird auf einem anderem Host im lokalen Netzwerk gestartet wird. Die Zugriffstransparenz kann bei Nachrichten-orientierter Kommunikation nicht erfüllt werden, wenn lediglicht eine Operation am Server ausgeführt werden soll. Dieses Konzept findet Anwendung auf Basis von Proxy-Pattern.\\\\
+Unter Remote Procedure Call (RPC) versteht man, dass nach dem Funktionsaufruf der Prozess, der durch den Aufruf gestartet wird, auf einem anderem Host im lokalen Netzwerk gestartet wird. Die Zugriffstransparenz kann bei nachrichtenorientierter Kommunikation nicht erfüllt werden, wenn lediglicht eine Operation am Server ausgeführt werden soll. Dieses Konzept findet Anwendung auf Basis von Proxy-Pattern.\\\\
 \newpage
 \noindent
 \textbf{Proxy-Pattern}\\
@@ -394,13 +394,13 @@ Elemente des Proxy-Patterns sind: Client-Objekt, Client Stub(Proxy), Server Stub
     \includegraphics[width=8cm]{ProxyPattern.png}
 \end{figure}
 \\
-Die Vorgehnsweise sieht folgendermaßen aus, nämlich ein User möchte auf einem Objekt eine Methode aufrufen, er ruft die Methode nicht direkt auf dem Objekt auf sondern der Client verwendet ein Interface. Die Implementierung des Interface kann entweder eine abstrakte Klasse sein oder
-ein Interface, dass vorgibt welche Methoden definiert werden sollen bzw. zur Verfügung stehen.
-Zusätzlich gibt es noch eine Klasse Proxy und RealSubject, auf dem die Operation die von oben vererbet wird ausgeführt wird. Im Remote Proxy Pattern ruft ein Client mit dem Interface auf dem Proxy Objekt einer Operation auf. Diese Proxy Objekt dient als Stellverdrehtung des realen Objekts. Das Proxy Objekt baut nach der Ausführung der Operation
-eine Verbindung zu dem wirklichen Objekt auf und über diese Verbindung wird ein Protokoll abgewickelt werden. Bei der Übertragung werden sämtliche Informationen bezüglich des Funktionsaufrufs wie zum Beispiel Eingangsparameter, Ausgabeparameter, Funktionsname mit übertragen. \\\\
+Die Vorgehensweise sieht folgendermaßen aus: Ein User möchte auf einem Objekt eine Methode aufrufen er ruft die Methode nicht direkt auf dem Objekt auf, sondern der Client verwendet ein Interface. Die Implementierung des Interface kann entweder eine abstrakte Klasse sein oder
+ein Interface, das vorgibt, welche Methoden definiert werden sollen bzw. zur Verfügung stehen.
+Zusätzlich gibt es noch eine Klasse Proxy und RealSubject, auf dem die Operation die von oben vererbt wird, ausgeführt wird. Im Remote Proxy Pattern ruft ein Client mit dem Interface auf dem Proxy Objekt einer Operation auf. Diese Proxy Objekt dient als Stellvertretung des realen Objekts. Das Proxy Objekt baut nach der Ausführung der Operation
+eine Verbindung zu dem wirklichen Objekt auf und über diese Verbindung wird ein Protokoll abgewickelt. Bei der Übertragung werden sämtliche Informationen bezüglich des Funktionsaufrufe wie zum Beispiel Eingangsparameter, Ausgabeparameter oder Funktionsname mit übertragen. \\\\
 Nach der Ausführung wird das Resultat des Objekts anhand des Protokolls zurück zum Proxy Objekt und dann zum Client zurückgesendet. Der Aufruf wirkt wie ein lokaler Aufruf, jedoch funktioniert dies über das verwendete Netzwerk.
 Das Sekeleton ist zuständig, die Kommunikation zwischen dem Proxy und dem RealSubject abzuwickeln.\\\\
-Problem, die bei der Umsetzung eines Proxy-Patterns aufdrehten können sind vorallem Interoperabilitätsprobleme(Probleme die beim Zusammenspiel zwischen verschiedener Systemen, Techniken oder Organisationen aufdrehten), call-by-refernce, Behandlung von Excpetions, die Transparenz kann nicht gewährleistet werden und die Behandlung von Threads und Prozessen erfolgt nur serverseitig, Client findet den Server nicht, Client stürtzt ab, nachdem senden der Nachricht, Nachricht geht verloren, Server stürzt ab, Antwort geht verloren, Client stürzt ab, bevor diese die Antwort bekommt.
+Probleme, die bei der Umsetzung eines Proxy-Patterns auftreteb könnten sind vor allem Interoperabilitätsprobleme (Probleme die beim Zusammenspiel zwischen verschiedener Systeme, Techniken oder Organisationen auftreten), call-by-refernce, Behandlung von Excpetions, die Transparenz kann nicht gewährleistet werden und die Behandlung von Threads und Prozessen erfolgt nur serverseitig, Client findet den Server nicht, Client stürzt nach dem senden der Nachricht ab, Nachricht geht verloren, Server stürzt ab, Antwort geht verloren, Client stürzt ab, bevor diese die Antwort bekommt.
 \newpage
 \noindent
 \begin{description}
@@ -413,7 +413,7 @@ Problem, die bei der Umsetzung eines Proxy-Patterns aufdrehten können sind vora
     \end{itemize} 
 \end{description}
 \textbf{Stream-orientierte Kommunikation}\\
-Stream-orientiert Kommunikation, bezeichnet die gleichzeitige Übertragung und Wiedergabe von Video- und Audiodaten über ein Netzwerk.
+Stream-orientiert Kommunikation bezeichnet die gleichzeitige Übertragung und Wiedergabe von Video- und Audiodaten über ein Netzwerk.
 Dabei werden Streams von Daten versendet, keine Nachrichten, sondern nicht abgeschlossene Informationeneinheiten.
 Den Vorgang der Datenübertragung selbst nennt man Streaming und übertragene Programme werden als Livestream oder kurz Stream bezeichnet. Streaming-Media, das über das WWW bzw. HTML angestoßen wurde, wird auch Webradio oder Web-TV genannt. Im Gegensatz zum Herunterladen ist das Ziel beim Streaming nicht, eine Kopie der Medien beim Nutzer anzulegen, sondern die Medien direkt auszugeben, anschließend werden die Daten verworfen.
 \\\\
@@ -481,27 +481,27 @@ beschrieben. Außerdem enthält dieses Kapitel auch die Dokumentation
 des Source Codes und wichtige Informationen bezgüglich Bibliotheken, die
 im Projekt verwendet wurden.
 \subsection{Projektstruktur}
-Das Projekt wird ein drei wesentliche Verzeichnisse eingeteilt, nämlich declaration, documentation und source. In dem Verzeichniss declaration sind alle Unterlagen abgelegt, die als Projektinput dient. In diesen Dokumenten sind die genauen Vorgaben des jeweiligen Projekts festgehalten. Im Ordner documenation sind alle Dateien der theoretischen Ausarbeitung des Themas und der Realisierung des Projekt abgespeichert, wohingegen im source Verzeichniss alle Datein der technischen Realisierung abgesichert werden.
-Im Verzeichniss source gibt es drei Unterverzeichnisse dem build Ordner, indem alle generierten Datein abgespeichert werden, der include Ordern, indem alle Header-Datein abgelegt werden und der src Folger, in diesem sind die main.cpp Dateien und die dazugehörigen .cpp Dateien des .h Dateien. Das Projekt wird in Module eingeteilt. Das heißt die Klassendefinition,
+Das Projekt wird ein drei wesentliche Verzeichnise eingeteilt, nämlich declaration, documentation und source. In dem Verzeichnis declaration sind alle Unterlagen abgelegt, die als Projektinput dient. In diesen Dokumenten sind die genauen Vorgaben des jeweiligen Projekts festgehalten. Im Ordner documenation sind alle Dateien der theoretischen Ausarbeitung des Themas und der Realisierung des Projekt abgespeichert, wohingegen im source Verzeichnis alle Datein der technischen Realisierung abgesichert werden.
+Im Verzeichnis source gibt es drei Unterverzeichnisse dem build Ordner, indem alle generierten Datein abgespeichert werden, der include Ordern, indem alle Header-Datein abgelegt werden und der src Folger, in diesem sind die main.cpp Dateien und die dazugehörigen .cpp Dateien des .h Dateien. Das Projekt wird in Module eingeteilt. Das heißt die Klassendefinition,
 Konstruktoren und Methodenprototypen von Client, SlaveServer und MasterServer stehen in der jeweiligen h-Datei.
 Die Methodendefinitionen, der dazugehörigen Klasse, wurden in der dazugehörigen cpp-Datei kodiert.
 Zusätzlichen Funktionen die für die Umsetzung des Projekts dringend notwendig
 waren, wurden in dem Modul utils declariert und definiert. 
-Der Compiler generiert drei auszuführende Programm, dem Client, dem SlaveServer und dem MaterServer. Welche Zielsetzungen die einzelnen Programme haben wird im jeweiligen Verzeichniss beschrieben.
+Der Compiler generiert drei auszuführende Programm, dem Client, dem SlaveServer und dem MaterServer. Welche Zielsetzungen die einzelnen Programme haben wird im jeweiligen Verzeichnis beschrieben.
 Da einige Source Code Abschnitte nicht verständlich und nachfollziebar sind, wurden
 alle Variablen, Funktionen, Klassen, Methoden und sonstiges gut dokumentiert.
 \newpage
-Im unterem Verzeichnissbaum wird die Struktur des Projekts abgebildet
+Im unterem Verzeichnisbaum wird die Struktur des Projektes abgebildet
 \\
 \dirtree{%
-.1 declaration\DTcomment{enthält alle Datein die für die Umsetzung}.
+.1 declaration\DTcomment{enthält alle Dateien die für die Umsetzung}.
 .2 {issues.pdf}.
 .2 {projects.pdf}.
-.1 documentation\DTcomment{enthält alle Datein der theoretisch Ausarbeitung}.
+.1 documentation\DTcomment{enthält alle Dateien der theoretiscenh Ausarbeitung}.
 .2 {MapReduce\_System\_Dokumentation.pdf}.
 .2 {MapReduce\_System\_Dokumentation.tex}.
 .2 {literatur.bib}.
-.1 source\DTcomment{enthält alle Datein der praktischen Ausarbeitung}.
+.1 source\DTcomment{enthält alle Dateien der praktischen Ausarbeitung}.
 .2 build\DTcomment{darin befinden sich alle automatisch generiert Datein}.
 .2 include\DTcomment{darin befinden sich alle h-Dateien}.
 .3 {client.h}.
@@ -585,16 +585,16 @@ Die Asio-Bibliothek ist für Programmierer gedacht, die C++ für die Systemprogr
 \end{description}
 \subsubsection{CLI11}
 CLI11 bietet alle Funktionen, die man von einem leistungsstarken Befehlszeilenparser erwartet, mit einer schönen, minimalen Syntax und ohne 
-Abhängigkeiten über C++11 hinaus. Es ist eine header-only, um die Einbindung im Projekte zu 
+Abhängigkeiten über C++11 hinaus. Es ist eine header-only, um die Einbindung in Projekte zu 
 vereinfachen. CLI11 ist einfach für kleine Projekte zu verwenden, aber leistungsstark genug für komplexe Befehlszeilenprojekte und kann für Frameworks angepasst werden. \\\\
 Die Bibliothek wird mit Travis-, AppVeyor-, Azure- und GitHub-Aktionen getestet und vom GooFit-GPU-Anpassungsframework verwendet. 
-Es wurde von plumbum.cli für Python inspiriert. CLI11 bietet eine benutzerfreundliche Einführung in diese README-Datei, ein ausführlicheres Tutorial-GitBook sowie eine von Travis generierte API-Dokumentation. 
+Es wurde von plumbum.cli für Python inspiriert. CLI11 bietet eine benutzerfreundliche Einführung in diese README-Datei, ein ausführlicheres Tutorial-GitBook, sowie eine von Travis generierte API-Dokumentation. 
 Weitere Informationen zu aktuellen und früheren Versionen findet man im Changelog oder in den GitHub-Versionen.
 \subsubsection{spdlog}
 spdlog ist eine sehr effiziente headeronly C++ Protokollierungsbibliothek. Sie bietet auch ebenfalls eine Python-ähnliche Formatierungs-API unter Verwendung der mitgelieferten fmt lib.
 spdlog verfolgt den Ansatz "include what you need". Der Source Code sollte die Funktionen enthalten, die tatsächlich benötigt werden.\\\\
 Den Programmierer wird eine funktionsreiche Formatierung mit der hervorragenden fmt-Bibliothek geboten.
-Im Projekt wird die Libary verwendet, um die Logging Informationen in der Kommandozeile ausgegeben werden kann. Zusätzlich ist es auch möglich
+Im Projekt wird die Libary verwendet, damit die Logging Informationen in der Kommandozeile ausgegeben werden kann. Zusätzlich ist es auch möglich,
 die Logging Daten nicht nur auszugeben, sonder auch direkt in einem Log-File zu schreiben.
 \subsubsection{json}
 In Sprachen wie Python fühlt sich JSON wie ein erstklassiger Datentyp an. 
@@ -602,19 +602,19 @@ Die Entwickler haben die ganze Operator-Magie des modernen C++ verwendet, um das
 Der gesamter Code besteht aus einer einzelnen Header-Datei json.hpp. Keine Bibliothek, kein Teilprojekt, keine Abhängigkeiten, kein komplexes Build-System. 
 Die Klasse ist in Vanilla C++ 11geschrieben. \\\\
 Alles in allem ist keine Anpassung der Compiler-Flags oder Projekteinstellungen erforderlich.
-Jedes JSON-Objekt hat einen Overhead und einem Aufzählungselement. Die Standardverallgemeinerung verwendet die folgenden C++-Datentypen: std::string für Zeichenfolgen, int64\_t, uint64\_t oder double für Zahlen, std::map für Objekte, std::vector für Arrays und bool für Boolesche Werte. 
+Jedes JSON-Objekt hat einen Overhead und ein Aufzählungselement. Die Standardverallgemeinerung verwendet die folgenden C++-Datentypen: std::string für Zeichenfolgen, int64\_t, uint64\_t oder double für Zahlen, std::map für Objekte, std::vector für Arrays und bool für Boolesche Werte. 
 json.hpp ist die einzige erforderliche Datei in single\_include/nlohmann, jedoch muss sie im Projekt mit eingebunden werden. \\
 Die Libary wurde in diesem Projekt verwendet, um die zusammengefassten Daten des Master-Server abzuspeichern.
 \subsubsection{rang}
-rang only hängt von der C++ Standardbibliothek, dem Systemheader unistd.h unter Unix und den Systemheadern windows.h und io.h auf Windows\-basierten Systemen ab. Mit anderen Worten, man benötigen keine Abhängigkeiten von Drittanbietern. Diese Standardbibliothek ermöglich es den
+rang only hängt von der C++ Standardbibliothek, dem Systemheader unist d.h unter Unix und den Systemheadern windows.h und io.h auf Windows\-basierten Systemen ab. Mit anderen Worten, man benötigt keine Abhängigkeiten von Drittanbietern. Diese Standardbibliothek ermöglich es den
 Output der Console zu formatieren. Dabei kann die Schriftart, Farbe und sonstige Eigenschaften bezüglich der Consolenausgabe konfigurieren.
 \newpage
 \noindent
 \subsubsection{tabulat}
 tabulate ist eine reine headeronly-Bibliothek. 
 Man legt eine Objekt Table an und kann mittel Table.add\_rows neue Zeilen in der Tabelle hinzufügen.
-Die Tabelle kann mittels Table.format() formatieren werden, das ein Format-Objekt zurückgibt. 
-Es können damit die Eigenschaften der Tabelle formatieren werden, z. B. Rahmen, Schriftstile, Farben usw.
+Die Tabelle kann mittels Table.format() formatiert werden, das ein Format-Objekt zurückgibt. 
+Es können damit die Eigenschaften der Tabelle formatiert werden, z. B. Rahmen, Schriftstile, Farben usw.
 Auf Zeilen in der Tabelle greift man mitTabelle [row\_index] zu. Dies gibt ein Zeilenobjekt zurück, für das man Row.format() auf ähnliche Weise aufrufen kann, um die Eigenschaften aller Zellen in dieser Zeile zu formatierne.\\
 Die Bibliothek wurde verwendet, sodass am Ende des Programmes eine übersichtliche Tabelle ausgegeben werden kann, wie viele Daten in Struktur gebracht wurden.
 beinhaltet.
