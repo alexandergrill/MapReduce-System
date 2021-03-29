@@ -1,0 +1,200 @@
+[2021-03-22 16:48:51.627] [file_logger] [info] IP Adresse is valid 1
+[2021-03-22 16:48:51.627] [file_logger] [info] PORT is valid 1
+[2021-03-22 16:48:51.628] [file_logger] [info] established connection to server
+[2021-03-22 16:48:51.634] [file_logger] [info] write random string into file
+[2021-03-22 16:48:51.634] [file_logger] [info] File is found
+[2021-03-22 16:48:51.634] [file_logger] [info] call Map funktion, sort data in dictionary
+[2021-03-22 16:48:51.635] [file_logger] [info] convert dictionary to transportdata
+[2021-03-22 16:48:51.635] [file_logger] [info] send data to server
+[2021-03-22 16:48:57.148] [file_logger] [info] IP Adresse is valid 1
+[2021-03-22 16:48:57.148] [file_logger] [info] PORT is valid 1
+[2021-03-22 16:48:57.148] [file_logger] [info] established connection to server
+[2021-03-22 16:48:57.154] [file_logger] [info] write random string into file
+[2021-03-22 16:48:57.154] [file_logger] [info] File is found
+[2021-03-22 16:48:57.155] [file_logger] [info] call Map funktion, sort data in dictionary
+[2021-03-22 16:48:57.155] [file_logger] [info] convert dictionary to transportdata
+[2021-03-22 16:48:57.155] [file_logger] [info] send data to server
+[2021-03-23 14:12:46.713] [file_logger] [info] IP Adresse is valid 1
+[2021-03-23 14:12:46.726] [file_logger] [info] PORT is valid 1
+[2021-03-23 14:12:46.726] [file_logger] [info] established connection to server
+[2021-03-23 14:12:46.732] [file_logger] [info] write random string into file
+[2021-03-23 14:12:46.732] [file_logger] [info] File is found
+[2021-03-23 14:12:46.732] [file_logger] [info] call Map funktion, sort data in dictionary
+[2021-03-23 14:12:46.733] [file_logger] [info] convert dictionary to transportdata
+[2021-03-23 14:12:46.733] [file_logger] [info] send data to server
+[2021-03-23 14:16:37.297] [file_logger] [info] IP Adresse is valid 1
+[2021-03-23 14:16:37.297] [file_logger] [info] PORT is valid 1
+[2021-03-23 14:16:37.297] [file_logger] [info] established connection to server
+[2021-03-23 14:16:37.304] [file_logger] [info] write random string into file
+[2021-03-23 14:16:37.304] [file_logger] [info] File is found
+[2021-03-23 14:16:37.304] [file_logger] [info] call Map funktion, sort data in dictionary
+[2021-03-23 14:16:37.305] [file_logger] [info] convert dictionary to transportdata
+[2021-03-23 14:16:37.305] [file_logger] [info] send data to server
+[2021-03-23 14:16:47.778] [file_logger] [info] IP Adresse is valid 1
+[2021-03-23 14:16:47.778] [file_logger] [info] PORT is valid 1
+[2021-03-23 14:16:47.778] [file_logger] [info] established connection to server
+[2021-03-23 14:16:47.788] [file_logger] [info] write random string into file
+[2021-03-23 14:16:47.788] [file_logger] [info] File is found
+[2021-03-23 14:16:47.788] [file_logger] [info] call Map funktion, sort data in dictionary
+[2021-03-23 14:16:47.789] [file_logger] [info] convert dictionary to transportdata
+[2021-03-23 14:16:47.789] [file_logger] [info] send data to server
+[2021-03-28 20:25:38.285] [file_logger] [info] IP Adresse is valid 1
+[2021-03-28 20:25:38.290] [file_logger] [info] PORT is valid 1
+[2021-03-28 20:25:38.290] [file_logger] [info] established connection to server
+[2021-03-28 20:25:38.299] [file_logger] [info] write random string into file
+[2021-03-28 20:25:38.299] [file_logger] [info] File is found
+[2021-03-28 20:25:38.299] [file_logger] [info] call Map funktion, sort data in dictionary
+[2021-03-28 20:25:38.299] [file_logger] [info] convert dictionary to transportdata
+[2021-03-28 20:25:38.299] [file_logger] [info] send data to server
+[2021-03-28 20:25:52.736] [file_logger] [info] IP Adresse is valid 1
+[2021-03-28 20:25:52.736] [file_logger] [info] PORT is valid 1
+[2021-03-28 20:25:52.736] [file_logger] [info] established connection to server
+[2021-03-28 20:25:52.746] [file_logger] [info] write random string into file
+[2021-03-28 20:25:52.746] [file_logger] [info] File is found
+[2021-03-28 20:25:52.746] [file_logger] [info] call Map funktion, sort data in dictionary
+[2021-03-28 20:25:52.746] [file_logger] [info] convert dictionary to transportdata
+[2021-03-28 20:25:52.746] [file_logger] [info] send data to server
+[2021-03-28 20:29:36.887] [file_logger] [info] IP Adresse is valid 1
+[2021-03-28 20:29:36.887] [file_logger] [info] PORT is valid 1
+[2021-03-28 20:29:36.887] [file_logger] [info] established connection to server
+[2021-03-28 20:29:36.893] [file_logger] [info] write random string into file
+[2021-03-28 20:29:36.894] [file_logger] [info] File is found
+[2021-03-28 20:29:36.894] [file_logger] [info] call Map funktion, sort data in dictionary
+[2021-03-28 20:29:36.894] [file_logger] [info] convert dictionary to transportdata
+[2021-03-28 20:29:36.894] [file_logger] [info] send data to server
+[2021-03-28 20:29:39.592] [file_logger] [info] IP Adresse is valid 1
+[2021-03-28 20:29:39.592] [file_logger] [info] PORT is valid 1
+[2021-03-28 20:29:39.592] [file_logger] [info] established connection to server
+[2021-03-28 20:29:39.600] [file_logger] [info] write random string into file
+[2021-03-28 20:29:39.600] [file_logger] [info] File is found
+[2021-03-28 20:29:39.600] [file_logger] [info] call Map funktion, sort data in dictionary
+[2021-03-28 20:29:39.600] [file_logger] [info] convert dictionary to transportdata
+[2021-03-28 20:29:39.600] [file_logger] [info] send data to server
+[2021-03-28 20:32:17.596] [file_logger] [info] IP Adresse is valid 1
+[2021-03-28 20:32:17.596] [file_logger] [info] PORT is valid 1
+[2021-03-28 20:32:17.597] [file_logger] [info] established connection to server
+[2021-03-28 20:32:17.605] [file_logger] [info] write random string into file
+[2021-03-28 20:32:17.605] [file_logger] [info] File is found
+[2021-03-28 20:32:17.605] [file_logger] [info] call Map funktion, sort data in dictionary
+[2021-03-28 20:32:17.605] [file_logger] [info] convert dictionary to transportdata
+[2021-03-28 20:32:17.605] [file_logger] [info] send data to server
+[2021-03-28 20:33:29.831] [file_logger] [info] IP Adresse is valid 1
+[2021-03-28 20:33:29.831] [file_logger] [info] PORT is valid 1
+[2021-03-28 20:33:29.832] [file_logger] [info] established connection to server
+[2021-03-28 20:33:29.840] [file_logger] [info] write random string into file
+[2021-03-28 20:33:29.840] [file_logger] [info] File is found
+[2021-03-28 20:33:29.841] [file_logger] [info] call Map funktion, sort data in dictionary
+[2021-03-28 20:33:29.841] [file_logger] [info] convert dictionary to transportdata
+[2021-03-28 20:33:29.841] [file_logger] [info] send data to server
+[2021-03-28 20:34:25.143] [file_logger] [info] IP Adresse is valid 1
+[2021-03-28 20:34:25.143] [file_logger] [info] PORT is valid 1
+[2021-03-28 20:34:25.143] [file_logger] [info] established connection to server
+[2021-03-28 20:34:25.149] [file_logger] [info] write random string into file
+[2021-03-28 20:34:25.149] [file_logger] [info] File is found
+[2021-03-28 20:34:25.150] [file_logger] [info] call Map funktion, sort data in dictionary
+[2021-03-28 20:34:25.150] [file_logger] [info] convert dictionary to transportdata
+[2021-03-28 20:34:25.150] [file_logger] [info] send data to server
+[2021-03-28 20:35:28.986] [file_logger] [info] IP Adresse is valid 1
+[2021-03-28 20:35:28.986] [file_logger] [info] PORT is valid 1
+[2021-03-28 20:35:28.986] [file_logger] [info] established connection to server
+[2021-03-28 20:35:28.997] [file_logger] [info] write random string into file
+[2021-03-28 20:35:28.997] [file_logger] [info] File is found
+[2021-03-28 20:35:28.997] [file_logger] [info] call Map funktion, sort data in dictionary
+[2021-03-28 20:35:28.997] [file_logger] [info] convert dictionary to transportdata
+[2021-03-28 20:35:28.997] [file_logger] [info] send data to server
+[2021-03-28 20:37:38.964] [file_logger] [info] IP Adresse is valid 1
+[2021-03-28 20:37:38.964] [file_logger] [info] PORT is valid 1
+[2021-03-28 20:37:38.964] [file_logger] [info] established connection to server
+[2021-03-28 20:37:38.972] [file_logger] [info] write random string into file
+[2021-03-28 20:37:38.972] [file_logger] [info] File is found
+[2021-03-28 20:37:38.972] [file_logger] [info] call Map funktion, sort data in dictionary
+[2021-03-28 20:37:38.973] [file_logger] [info] convert dictionary to transportdata
+[2021-03-28 20:37:38.973] [file_logger] [info] send data to server
+[2021-03-28 20:56:39.950] [file_logger] [info] IP Adresse is valid 1
+[2021-03-28 20:56:39.951] [file_logger] [info] PORT is valid 1
+[2021-03-28 20:56:39.951] [file_logger] [info] established connection to server
+[2021-03-28 20:56:39.958] [file_logger] [info] write random string into file
+[2021-03-28 20:56:39.958] [file_logger] [info] File is found
+[2021-03-28 20:56:39.958] [file_logger] [info] call Map funktion, sort data in dictionary
+[2021-03-28 20:56:39.958] [file_logger] [info] convert dictionary to transportdata
+[2021-03-28 20:56:39.958] [file_logger] [info] send data to server
+[2021-03-28 20:57:58.122] [file_logger] [info] IP Adresse is valid 1
+[2021-03-28 20:57:58.122] [file_logger] [info] PORT is valid 1
+[2021-03-28 20:57:58.122] [file_logger] [info] established connection to server
+[2021-03-28 20:57:58.129] [file_logger] [info] write random string into file
+[2021-03-28 20:57:58.129] [file_logger] [info] File is found
+[2021-03-28 20:57:58.129] [file_logger] [info] call Map funktion, sort data in dictionary
+[2021-03-28 20:57:58.129] [file_logger] [info] convert dictionary to transportdata
+[2021-03-28 20:57:58.129] [file_logger] [info] send data to server
+[2021-03-28 21:04:03.291] [file_logger] [info] IP Adresse is valid 1
+[2021-03-28 21:04:03.291] [file_logger] [info] PORT is valid 1
+[2021-03-28 21:04:03.291] [file_logger] [info] established connection to server
+[2021-03-28 21:04:03.298] [file_logger] [info] write random string into file
+[2021-03-28 21:04:03.298] [file_logger] [info] File is found
+[2021-03-28 21:04:03.298] [file_logger] [info] call Map funktion, sort data in dictionary
+[2021-03-28 21:04:03.298] [file_logger] [info] convert dictionary to transportdata
+[2021-03-28 21:04:03.298] [file_logger] [info] send data to server
+[2021-03-28 21:07:09.431] [file_logger] [info] IP Adresse is valid 1
+[2021-03-28 21:07:09.431] [file_logger] [info] PORT is valid 1
+[2021-03-28 21:07:09.431] [file_logger] [info] established connection to server
+[2021-03-28 21:07:09.438] [file_logger] [info] write random string into file
+[2021-03-28 21:07:09.438] [file_logger] [info] File is found
+[2021-03-28 21:07:09.438] [file_logger] [info] call Map funktion, sort data in dictionary
+[2021-03-28 21:07:09.438] [file_logger] [info] convert dictionary to transportdata
+[2021-03-28 21:07:09.439] [file_logger] [info] send data to server
+[2021-03-28 21:08:22.987] [file_logger] [info] IP Adresse is valid 1
+[2021-03-28 21:08:22.987] [file_logger] [info] PORT is valid 1
+[2021-03-28 21:08:22.988] [file_logger] [info] established connection to server
+[2021-03-28 21:08:22.996] [file_logger] [info] write random string into file
+[2021-03-28 21:08:22.996] [file_logger] [info] File is found
+[2021-03-28 21:08:22.996] [file_logger] [info] call Map funktion, sort data in dictionary
+[2021-03-28 21:08:22.996] [file_logger] [info] convert dictionary to transportdata
+[2021-03-28 21:08:22.996] [file_logger] [info] send data to server
+[2021-03-28 21:08:54.624] [file_logger] [info] IP Adresse is valid 1
+[2021-03-28 21:08:54.624] [file_logger] [info] PORT is valid 1
+[2021-03-28 21:08:54.625] [file_logger] [info] established connection to server
+[2021-03-28 21:08:54.633] [file_logger] [info] write random string into file
+[2021-03-28 21:08:54.633] [file_logger] [info] File is found
+[2021-03-28 21:08:54.633] [file_logger] [info] call Map funktion, sort data in dictionary
+[2021-03-28 21:08:54.633] [file_logger] [info] convert dictionary to transportdata
+[2021-03-28 21:08:54.633] [file_logger] [info] send data to server
+[2021-03-28 21:10:39.964] [file_logger] [info] IP Adresse is valid 1
+[2021-03-28 21:10:39.964] [file_logger] [info] PORT is valid 1
+[2021-03-28 21:10:39.964] [file_logger] [info] established connection to server
+[2021-03-28 21:10:39.971] [file_logger] [info] write random string into file
+[2021-03-28 21:10:39.971] [file_logger] [info] File is found
+[2021-03-28 21:10:39.971] [file_logger] [info] call Map funktion, sort data in dictionary
+[2021-03-28 21:10:39.971] [file_logger] [info] convert dictionary to transportdata
+[2021-03-28 21:10:39.971] [file_logger] [info] send data to server
+[2021-03-28 21:10:52.967] [file_logger] [info] IP Adresse is valid 1
+[2021-03-28 21:10:52.967] [file_logger] [info] PORT is valid 1
+[2021-03-28 21:10:52.968] [file_logger] [info] established connection to server
+[2021-03-28 21:10:52.976] [file_logger] [info] write random string into file
+[2021-03-28 21:10:52.976] [file_logger] [info] File is found
+[2021-03-28 21:10:52.976] [file_logger] [info] call Map funktion, sort data in dictionary
+[2021-03-28 21:10:52.976] [file_logger] [info] convert dictionary to transportdata
+[2021-03-28 21:10:52.976] [file_logger] [info] send data to server
+[2021-03-28 21:12:13.624] [file_logger] [info] IP Adresse is valid 1
+[2021-03-28 21:12:13.624] [file_logger] [info] PORT is valid 1
+[2021-03-28 21:12:13.625] [file_logger] [info] established connection to server
+[2021-03-28 21:12:13.631] [file_logger] [info] write random string into file
+[2021-03-28 21:12:13.631] [file_logger] [info] File is found
+[2021-03-28 21:12:13.631] [file_logger] [info] call Map funktion, sort data in dictionary
+[2021-03-28 21:12:13.631] [file_logger] [info] convert dictionary to transportdata
+[2021-03-28 21:12:13.631] [file_logger] [info] send data to server
+[2021-03-28 21:12:34.357] [file_logger] [info] IP Adresse is valid 1
+[2021-03-28 21:12:34.357] [file_logger] [info] PORT is valid 1
+[2021-03-28 21:12:34.357] [file_logger] [info] established connection to server
+[2021-03-28 21:12:34.366] [file_logger] [info] write random string into file
+[2021-03-28 21:12:34.366] [file_logger] [info] File is found
+[2021-03-28 21:12:34.366] [file_logger] [info] call Map funktion, sort data in dictionary
+[2021-03-28 21:12:34.366] [file_logger] [info] convert dictionary to transportdata
+[2021-03-28 21:12:34.366] [file_logger] [info] send data to server
+[2021-03-28 21:12:38.171] [file_logger] [info] IP Adresse is valid 1
+[2021-03-28 21:12:38.171] [file_logger] [info] PORT is valid 1
+[2021-03-28 21:12:38.171] [file_logger] [info] established connection to server
+[2021-03-28 21:12:38.178] [file_logger] [info] write random string into file
+[2021-03-28 21:12:38.178] [file_logger] [info] File is found
+[2021-03-28 21:12:38.178] [file_logger] [info] call Map funktion, sort data in dictionary
+[2021-03-28 21:12:38.178] [file_logger] [info] convert dictionary to transportdata
+[2021-03-28 21:12:38.178] [file_logger] [info] send data to server

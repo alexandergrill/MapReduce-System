@@ -99,7 +99,6 @@ void Client::WriteIntoFile(int wordnum, string filename){
 void Client::Map(string filename){
     string line;
     fstream file;
-    int counter{0};
     try{
         file.open(filename, ios::in);
         if (!file){
@@ -117,7 +116,7 @@ void Client::Map(string filename){
                 bool isin = Search(line, &datamap);
                 if (isin == false){
                     datamap.insert(pair<string, int>(line, 1));
-                    counter += 1;
+
                 }
                 else{
                     auto it = datamap.find(line);
@@ -125,7 +124,6 @@ void Client::Map(string filename){
                 }
             }
             file.close();
-            cout << "Elements: " << counter << endl;
         }
     }
     catch (...){

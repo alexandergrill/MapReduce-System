@@ -13,6 +13,7 @@
 #include <iostream>
 #include <vector>
 #include <sstream>
+#include <cstring>
 
 using namespace std;
 
@@ -78,19 +79,42 @@ string ConvertMaptoString(std::map<std::string, int>* dic){
 }
 
 void Print(std::map<std::string, int>* dic){
+    int counter{0};
     cout << "Data Map Dictionary" << endl;
     for (map<string, int>::iterator t = dic->begin(); t != dic->end(); ++t){
         cout << "Data " << t->first << " " << t->second << endl;
+        counter += 1;
     }
+    cout << "Elements: " << counter << endl;
 }
 
 map<string, int>* ConvertStringtoMap(std::string transportstr){
     map<string, int>* mapd = new map<string, int>();
-    vector<string> stringdata;
     stringstream ss(transportstr);
     string data;
+    string mapelementdata;
+    int mapelementcounter;
+    int cnt{0};
     while(getline(ss, data, ':')){
-        stringdata.push_back(data);
+        int n = data.length();
+        char* str = new char[n+1];
+        strcpy(str, data.c_str());
+        char* strelement;
+        strelement = strtok(str,",");
+        while(strelement != NULL){
+            if(cnt == 0){
+                mapelementdata = strelement;
+            }
+            else{
+                mapelementcounter = stoi(strelement);
+            }
+            cnt += 1;
+            strelement = strtok(NULL, ",");
+        }
+        cnt = 0;
+        delete str;
+        mapd->insert(pair<string, int>(mapelementdata, mapelementcounter));
     }
     return mapd;
+    
  }

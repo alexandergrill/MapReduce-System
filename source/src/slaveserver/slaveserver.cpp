@@ -90,7 +90,8 @@ void SlaveServer::PrintList(){
     int cnt{1};
     list<map<string, int>>::iterator itlist = maplist->begin();
     for (; itlist != maplist->end(); ++itlist){
-        cout << cnt << " Map List" << endl;
+        cout << cnt << " Map from List" << endl;
         Print(&(*itlist));
+        cnt += 1;
     }
 }
