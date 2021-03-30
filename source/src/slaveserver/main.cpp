@@ -34,7 +34,7 @@ int main(int argc, char *argv[]){
 
     CLI::App app("MapReduceSystem_SlaverServer");
     app.add_option("-i,--i", ipadress, "ipadress for the server");
-    //app.add_option("-p,--p", port, "port to connect to")->required();
+    app.add_option("-p,--p", port, "port to connect to")->required();
     app.add_option("-s,--s", serverport, "serverport")->required();
     app.add_option("-c,--c", maxclient, "the maximum of clients");
     CLI11_PARSE(app, argc, argv);
