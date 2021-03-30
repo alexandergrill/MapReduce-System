@@ -39,6 +39,13 @@ int main(int argc, char *argv[]){
     app.add_option("-c,--c", maxclient, "the maximum of clients");
     CLI11_PARSE(app, argc, argv);
 
+    cout << fg::green << flush;
+    auto file = spdlog::basic_logger_mt("file_logger", "log-File.txt");
+    spdlog::set_default_logger(file);
+    spdlog::flush_on(spdlog::level::info);
+    auto console = spdlog::stderr_color_mt("slaveserver_logger");
+    console->set_level(spdlog::level::trace);
+
     vector<thread> pool(maxclient);
     SlaveServer *sl = SlaveServer::GetSlaveServer(ipadress, port, serverport);
 
