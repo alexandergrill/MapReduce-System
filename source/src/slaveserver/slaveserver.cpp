@@ -11,6 +11,7 @@
 #include <map>
 #include <iostream>
 
+
 using namespace std;
 
 SlaveServer* SlaveServer::GetSlaveServer(std::string ip, std::string port, std::string sport){
@@ -54,36 +55,41 @@ int SlaveServer::GetListLength(){
 }
 
 void SlaveServer::Shuffle(){
-    list<map<string, int>>::iterator it = maplist->begin();
-    advance(it, maplist->size()-1);
-    map<string, int> mapdic1 = *it;
-    advance(it, maplist->size()-2);
-    map<string, int> mapdic2 = *it;
-    bool isfound;
-    for (auto &t1 : mapdic1){
-        isfound = false;
-        string worddic1 = t1.first;
-        int countdic1 = t1.second;
-        for(auto &t2 : mapdic2){
-            string worddic2 = t2.first;
-            int countdic2 = t2.second;
-            if(worddic1.compare(worddic2)){
-                isfound = true;
-                resultmap.insert(pair<string,int>(worddic1, countdic1 + countdic2));
+    auto listiterator = maplist->begin();
+    advance(listiterator, maplist->size()-2);
+
+    map<string, int> mapf = *listiterator;
+    ++listiterator;
+    map<string, int> maps = *listiterator;
+    Print(&mapf);
+    Print(&maps);
+    maplist->pop_front();
+    maplist->pop_front();
+    bool found = false;
+    for (map<string, int>::iterator t1 = mapf.begin(); t1 != mapf.end(); ++t1){
+
+        cout << "Value 1 " << t1->first << " Count 1 " << t1->second << endl; 
+        for (map<string, int>::iterator t2 = maps.begin(); t2 != maps.end(); ++t2){
+            cout << "Value 2 " << t2->first << " Count 2 " << t2->second << endl;
+            if(t1->first == t2->first){
+                cout << "found" << endl;
+                resultmap.insert(pair<string, int>(t1->first, t1->second + t2->second));
+                maps.erase(t2);
+                found = true;
+                break;
             }
         }
-        if(isfound == false){
-            resultmap.insert(pair<string,int>(worddic1, countdic1));
+        if(found == false){
+            cout << "not found " << endl;
+            resultmap.insert(pair<string, int>(t1->first, t1->second));
         }
+        found = false;
     }
 
-    for(auto &t3 : mapdic2){
-        string worddic3 = t3.first;
-        int countdic3 = t3.second;
-        if (!resultmap.count(worddic3)){
-             resultmap.insert(pair<string,int>(worddic3, countdic3));
-        }
+    for (map<string, int>::iterator t3 = maps.begin(); t3 != maps.end(); ++t3){
+        resultmap.insert(pair<string, int>(t3->first, t3->second));
     }
+    Print(&resultmap);
 }
 
 void SlaveServer::PrintList(){

@@ -17,6 +17,8 @@
 #include <CLI11.hpp>
 
 #include <iostream>
+#include <thread>
+#include <vector>
 
 using namespace std;
 using namespace asio::ip;
@@ -27,6 +29,8 @@ int main(int argc, char *argv[]){
     string serverport = "1113";
     string transportstring = "";
     int maxclient{4};
+    int threadcounter{0};
+    vector<thread> pool;
 
     CLI::App app("MapReduceSystem_SlaverServer");
     app.add_option("-i,--i", ipadress, "ipadress for the server");
@@ -55,7 +59,8 @@ int main(int argc, char *argv[]){
                         map<string, int>* clientmap = ConvertStringtoMap(data);
                         sl->AddList(clientmap);
                         if(sl->GetListLength() == 2){
-                            sl->PrintList();
+                            pool[threadcounter] = thread (&SlaveServer::Shuffle, &*sl);
+                            threadcounter += 1;
                         }
                         delete clientmap;
                     }
@@ -76,6 +81,9 @@ int main(int argc, char *argv[]){
     }
     catch(...){
         cout << "Slaveserver is null" << endl;
+    }
+    for(auto& t : pool){
+        t.join();
     }
     delete sl;
 }
