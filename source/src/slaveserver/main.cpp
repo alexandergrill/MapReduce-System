@@ -30,7 +30,7 @@ int main(int argc, char *argv[]){
     string transportstring = "";
     int maxclient{4};
     int threadcounter{0};
-    vector<thread> pool;
+    
 
     CLI::App app("MapReduceSystem_SlaverServer");
     app.add_option("-i,--i", ipadress, "ipadress for the server");
@@ -39,6 +39,7 @@ int main(int argc, char *argv[]){
     app.add_option("-c,--c", maxclient, "the maximum of clients");
     CLI11_PARSE(app, argc, argv);
 
+    vector<thread> pool(maxclient);
     SlaveServer *sl = SlaveServer::GetSlaveServer(ipadress, port, serverport);
 
     try{
@@ -48,7 +49,7 @@ int main(int argc, char *argv[]){
         if(sl != nullptr){
             while(true){
                 ap.listen();
-                cout << "Server is listening" << endl;
+                cout << "Server is listening\n" << flush;
                 try{
                     tcp::iostream strm{ap.accept()};
                     sl->SetClientCounter();

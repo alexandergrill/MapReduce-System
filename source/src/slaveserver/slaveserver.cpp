@@ -61,18 +61,12 @@ void SlaveServer::Shuffle(){
     map<string, int> mapf = *listiterator;
     ++listiterator;
     map<string, int> maps = *listiterator;
-    Print(&mapf);
-    Print(&maps);
     maplist->pop_front();
     maplist->pop_front();
     bool found = false;
     for (map<string, int>::iterator t1 = mapf.begin(); t1 != mapf.end(); ++t1){
-
-        cout << "Value 1 " << t1->first << " Count 1 " << t1->second << endl; 
         for (map<string, int>::iterator t2 = maps.begin(); t2 != maps.end(); ++t2){
-            cout << "Value 2 " << t2->first << " Count 2 " << t2->second << endl;
             if(t1->first == t2->first){
-                cout << "found" << endl;
                 resultmap.insert(pair<string, int>(t1->first, t1->second + t2->second));
                 maps.erase(t2);
                 found = true;
@@ -80,7 +74,6 @@ void SlaveServer::Shuffle(){
             }
         }
         if(found == false){
-            cout << "not found " << endl;
             resultmap.insert(pair<string, int>(t1->first, t1->second));
         }
         found = false;
@@ -89,7 +82,7 @@ void SlaveServer::Shuffle(){
     for (map<string, int>::iterator t3 = maps.begin(); t3 != maps.end(); ++t3){
         resultmap.insert(pair<string, int>(t3->first, t3->second));
     }
-    Print(&resultmap);
+    cout << "finished\n" << flush;
 }
 
 void SlaveServer::PrintList(){
