@@ -70,19 +70,19 @@ void SlaveServer::Shuffle(){
     for (map<string, int>::iterator t1 = mapf.begin(); t1 != mapf.end(); ++t1){
         for (map<string, int>::iterator t2 = maps.begin(); t2 != maps.end(); ++t2){
             if(t1->first == t2->first){
-                resultmap.insert(pair<string, int>(t1->first, t1->second + t2->second));
+                datatmap.insert(pair<string, int>(t1->first, t1->second + t2->second));
                 maps.erase(t2);
                 found = true;
                 break;
             }
         }
         if(found == false){
-            resultmap.insert(pair<string, int>(t1->first, t1->second));
+            datatmap.insert(pair<string, int>(t1->first, t1->second));
         }
         found = false;
     }
     for (map<string, int>::iterator t3 = maps.begin(); t3 != maps.end(); ++t3){
-        resultmap.insert(pair<string, int>(t3->first, t3->second));
+        datatmap.insert(pair<string, int>(t3->first, t3->second));
     }
     cout << "finished\n" << flush;
 }

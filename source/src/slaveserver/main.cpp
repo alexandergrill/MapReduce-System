@@ -57,33 +57,42 @@ int main(int argc, char *argv[]){
             while(true){
                 ap.listen();
                 cout << fg::green << flush;
-                spdlog::get("client_logger")->info("Server is listening");
-                spdlog::get("file_logger")->info("Server is listening";
+                spdlog::get("client_logger")->info("server is listening");
+                spdlog::get("file_logger")->info("server is listening";
                 try{
                     tcp::iostream strm{ap.accept()};
                     sl->SetClientCounter();
                     cout << fg::green << flush;
                     spdlog::get("client_logger")->info("Client " << sl->GetClientCounter() << " has connected to server");
                     spdlog::get("file_logger")->info("Client " << sl->GetClientCounter() << " has connected to server");
-                    cout <<  << endl;
                     if(sl->GetClientCounter() <= maxclient){
                         string data = "";
                         strm >> data;
                         map<string, int>* clientmap = ConvertStringtoMap(data);
+                        cout << fg::green << flush;
+                        spdlog::get("client_logger")->info("convert data from client to map");
+                        spdlog::get("file_logger")->info("convert data from client to map");
                         sl->AddList(clientmap);
                         if(sl->GetListLength() == 2){
+                            cout << fg::green << flush;
+                            spdlog::get("client_logger")->info("call SHUFFLE function");
+                            spdlog::get("file_logger")->info("call SHUFFLE function");
                             pool[threadcounter] = thread (&SlaveServer::Shuffle, &*sl);
                             threadcounter += 1;
                         }
                         delete clientmap;
                     }
                     else{
-                        cout << "The maximum of clients was reached" << endl;
+                        cout << fg::green << flush;
+                        spdlog::get("client_logger")->info("the maximum of clients was reached");
+                        spdlog::get("file_logger")->info("the maximum of clients was reached");
                         break;
                     }
                 }
                 catch(...){
-                    cerr << "Error" << endl;
+                    cout << fg::red << flush;
+                    spdlog::get("client_logger")->error("clients are not reachable");
+                    spdlog::get("file_logger")->error("lients are not reachable");
                 }
             }
         }

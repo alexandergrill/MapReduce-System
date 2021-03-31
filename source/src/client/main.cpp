@@ -68,15 +68,15 @@ int main(int argc, char* argv[]){
 
                     c->Map(filepath);
                     cout << fg::green << flush;
-                    spdlog::get("client_logger")->info("call Map funktion, sort data in dictionary");
-                    spdlog::get("file_logger")->info("call Map funktion, sort data in dictionary");
+                    spdlog::get("client_logger")->info("call MAP function, sort data in dictionary");
+                    spdlog::get("file_logger")->info("call MAP function, sort data in dictionary");
 
                     Print(c->GetMap());
                     
                     transportstring = ConvertMaptoString(c->GetMap());
                     cout << fg::green << flush;
-                    spdlog::get("client_logger")->info("convert dictionary to transportdata");
-                    spdlog::get("file_logger")->info("convert dictionary to transportdata");
+                    spdlog::get("client_logger")->info("convert map to transportdata");
+                    spdlog::get("file_logger")->info("convert map to transportdata");
                     
                     tcpconnection << transportstring << endl;
                     cout << fg::green << flush;
