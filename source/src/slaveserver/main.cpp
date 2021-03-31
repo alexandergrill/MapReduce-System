@@ -56,11 +56,16 @@ int main(int argc, char *argv[]){
         if(sl != nullptr){
             while(true){
                 ap.listen();
-                cout << "Server is listening\n" << flush;
+                cout << fg::green << flush;
+                spdlog::get("client_logger")->info("Server is listening");
+                spdlog::get("file_logger")->info("Server is listening";
                 try{
                     tcp::iostream strm{ap.accept()};
                     sl->SetClientCounter();
-                    cout << "Client " << sl->GetClientCounter() << " has connected to server" << endl;
+                    cout << fg::green << flush;
+                    spdlog::get("client_logger")->info("Client " << sl->GetClientCounter() << " has connected to server");
+                    spdlog::get("file_logger")->info("Client " << sl->GetClientCounter() << " has connected to server");
+                    cout <<  << endl;
                     if(sl->GetClientCounter() <= maxclient){
                         string data = "";
                         strm >> data;
