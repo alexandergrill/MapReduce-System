@@ -5,8 +5,8 @@
  * date:    27.02.2021
 */
 
-#include "client.h"
 #include "utils.h"
+#include "client.h"
 
 #include "spdlog/spdlog.h"
 #include "spdlog/sinks/stdout_color_sinks.h"

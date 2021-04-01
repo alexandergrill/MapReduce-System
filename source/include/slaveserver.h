@@ -18,23 +18,26 @@ private:
     std::string port;
     int clientcounter{0};
     unsigned short serverport;
-     std::map<std::string, int> datatmap;
+    std::map<std::string, int> datamap;
     std::map<std::string, int> resultmap;
     std::list<std::map<std::string, int>>* maplist;
     SlaveServer(std::string ip, std::string pr, unsigned short spr):ipadresse{ip}, port{pr}, serverport{spr}{
         maplist = new std::list<std::map<std::string, int>>();
     }
+    
 public:
     ~SlaveServer(){
         delete maplist;
     }
     static SlaveServer* GetSlaveServer(std::string ip, std::string port, std::string lport);
     unsigned short GetServerPort();
+    std::map<std::string, int>* GetMap();
     int GetListLength();
     int GetClientCounter();
     void SetClientCounter();
     void AddList(std::map<std::string, int>* mapdic);
     void PrintList();
+    void ShrinkDataMap();
     void Shuffle();
 };
 

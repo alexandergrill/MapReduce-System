@@ -38,6 +38,10 @@ unsigned short SlaveServer::GetServerPort(){
     return serverport;
 }
 
+map<string, int>* SlaveServer::GetMap(){
+    return &resultmap;
+}
+
 int SlaveServer::GetClientCounter(){
     return clientcounter;
 }
@@ -53,7 +57,20 @@ void SlaveServer::AddList(std::map<std::string, int>* mapdic){
 int SlaveServer::GetListLength(){
     return maplist->size();
 }
-
+void SlaveServer::ShrinkDataMap(){
+    Print(&datamap);
+    for (map<string, int>::iterator t1 = datamap.begin(); t1 != datamap.end(); ++t1){
+        int valuecounter = t1->second;
+        for (map<string, int>::iterator t2 = datamap.begin(); t2 != datamap.end(); ++t2){
+            if(t1->first == t2->first){
+                valuecounter += t2->second;
+                datamap.erase(t2);
+            }
+        }
+        datamap.insert(pair<string, int>(t1->first, valuecounter));
+    }
+    Print(&resultmap);
+}
 void SlaveServer::Shuffle(){
     auto listiterator = maplist->begin();
     advance(listiterator, maplist->size()-2);
@@ -70,19 +87,19 @@ void SlaveServer::Shuffle(){
     for (map<string, int>::iterator t1 = mapf.begin(); t1 != mapf.end(); ++t1){
         for (map<string, int>::iterator t2 = maps.begin(); t2 != maps.end(); ++t2){
             if(t1->first == t2->first){
-                datatmap.insert(pair<string, int>(t1->first, t1->second + t2->second));
+                datamap.insert(pair<string, int>(t1->first, t1->second + t2->second));
                 maps.erase(t2);
                 found = true;
                 break;
             }
         }
         if(found == false){
-            datatmap.insert(pair<string, int>(t1->first, t1->second));
+            datamap.insert(pair<string, int>(t1->first, t1->second));
         }
         found = false;
     }
     for (map<string, int>::iterator t3 = maps.begin(); t3 != maps.end(); ++t3){
-        datatmap.insert(pair<string, int>(t3->first, t3->second));
+        datamap.insert(pair<string, int>(t3->first, t3->second));
     }
     cout << "finished\n" << flush;
 }
