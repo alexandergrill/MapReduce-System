@@ -10,11 +10,12 @@
 
 #include <map>
 #include <iostream>
+#include <mutex>
 
 
 using namespace std;
 
-SlaveServer* SlaveServer::GetSlaveServer(std::string ip, std::string port, std::string sport){
+SlaveServer* SlaveServer::GetSlaveServer(string ip, string port, string sport, mutex& mx){
     bool ipvalid;
     bool portvalid;
     bool povalid;
@@ -29,7 +30,7 @@ SlaveServer* SlaveServer::GetSlaveServer(std::string ip, std::string port, std::
         ssl = nullptr;
     }
     else{
-        ssl = new SlaveServer(ip, port, stoul(sport, nullptr, 0));
+        ssl = new SlaveServer(ip, port, stoul(sport, nullptr, 0), mx);
     }
     return ssl;
 }
@@ -50,28 +51,41 @@ void SlaveServer::SetClientCounter(){
     clientcounter += 1;
 }
 
-void SlaveServer::AddList(std::map<std::string, int>* mapdic){
+void SlaveServer::AddList(map<string, int>* mapdic){
     maplist->push_back(*mapdic);
 }
 
 int SlaveServer::GetListLength(){
     return maplist->size();
 }
+
+int SlaveServer::FindElementinDataMap(string value){
+    int cnt{0};
+    for (map<string, int>::iterator t = datamap.begin(); t != datamap.end(); ++t){
+        if(datamap.find(value) != datamap.end()){
+            cnt = t->second;
+            datamap.erase(t);
+        }
+    }
+    return cnt;
+}
+
 void SlaveServer::ShrinkDataMap(){
     Print(&datamap);
-    for (map<string, int>::iterator t1 = datamap.begin(); t1 != datamap.end(); ++t1){
-        int valuecounter = t1->second;
-        for (map<string, int>::iterator t2 = datamap.begin(); t2 != datamap.end(); ++t2){
-            if(t1->first == t2->first){
-                valuecounter += t2->second;
-                datamap.erase(t2);
-            }
+    for (map<string, int>::iterator t = datamap.begin(); t != datamap.end(); ++t){
+        int valuecounter{0};
+        int cnt = FindElementinDataMap(t->first);
+        while(cnt != 0){
+            valuecounter += cnt;
+            cnt = FindElementinDataMap(t->first);
         }
-        datamap.insert(pair<string, int>(t1->first, valuecounter));
+        resultmap.insert(pair<string, int>(t->first, valuecounter));
     }
     Print(&resultmap);
 }
+
 void SlaveServer::Shuffle(){
+    unique_lock<mutex> uls{mxss};
     auto listiterator = maplist->begin();
     advance(listiterator, maplist->size()-2);
 

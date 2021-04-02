@@ -19,18 +19,23 @@
 #include <iostream>
 #include <thread>
 #include <vector>
+#include <mutex>
 
 using namespace std;
 using namespace rang;
 using namespace asio::ip;
 
 int main(int argc, char *argv[]){
+
     string ipadress = "127.0.0.1";
     string port = "1116";
     string serverport = "1113";
     string transportstring = "";
+
     int maxclient{4};
     int threadcounter{0};
+
+    mutex mx;
     
 
     CLI::App app("MapReduceSystem_SlaverServer");
@@ -48,9 +53,9 @@ int main(int argc, char *argv[]){
     console->set_level(spdlog::level::trace);
 
     vector<thread> pool(maxclient);
-    SlaveServer *sl = SlaveServer::GetSlaveServer(ipadress, port, serverport);
+    SlaveServer *sl = SlaveServer::GetSlaveServer(ipadress, port, serverport, ref(mx));
 
-    try{
+    
         tcp::endpoint ep{tcp::v4(),sl->GetServerPort()};
         asio::io_context cox;
         tcp::acceptor ap{cox, ep};
@@ -84,26 +89,26 @@ int main(int argc, char *argv[]){
                 delete clientmap; 
             }
 
-            cout << fg::green << flush;
-            spdlog::get("slaveserver_logger")->info("send data to masterserver");
-            spdlog::get("file_logger")->info("send data to masterserver");
             for (auto &t : pool){
                 t.join();
             }
-            
             sl->ShrinkDataMap();
 
             transportstring = ConvertMaptoString(sl->GetMap());
             cout << fg::green << flush;
-            spdlog::get("client_logger")->info("convert map to transportdata");
+            spdlog::get("slaveserver_logger")->info("convert map to transportdata");
             spdlog::get("file_logger")->info("convert map to transportdata");
+
+            /*cout << fg::green << flush;
+            spdlog::get("slaveserver_logger")->info("send data to masterserver");
+            spdlog::get("file_logger")->info("send data to masterserver");*/
         }
-    }
-    catch(...){
+    
+    /*catch(...){
         cout << fg::red << flush;
         spdlog::get("slaveserver_logger")->error("clients are not reachable");
         spdlog::get("file_logger")->error("lients are not reachable");
-    }
+    }*/
     
     delete sl;
 }

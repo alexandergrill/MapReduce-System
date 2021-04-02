@@ -11,6 +11,8 @@
 #include <map>
 #include <iostream>
 #include <list>
+#include <mutex>
+#include <condition_variable>
 
 class SlaveServer{
 private:
@@ -21,15 +23,17 @@ private:
     std::map<std::string, int> datamap;
     std::map<std::string, int> resultmap;
     std::list<std::map<std::string, int>>* maplist;
-    SlaveServer(std::string ip, std::string pr, unsigned short spr):ipadresse{ip}, port{pr}, serverport{spr}{
+    std::mutex &mxss;
+    SlaveServer(std::string ip, std::string pr, unsigned short spr, std::mutex& xss):ipadresse{ip}, port{pr}, serverport{spr}, mxss{xss}{
         maplist = new std::list<std::map<std::string, int>>();
     }
-    
+    int FindElementinDataMap(std::string value);
 public:
+    std::condition_variable slavEx;
     ~SlaveServer(){
         delete maplist;
     }
-    static SlaveServer* GetSlaveServer(std::string ip, std::string port, std::string lport);
+    static SlaveServer* GetSlaveServer(std::string ip, std::string port, std::string lport, std::mutex& mx);
     unsigned short GetServerPort();
     std::map<std::string, int>* GetMap();
     int GetListLength();

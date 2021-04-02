@@ -80,8 +80,8 @@ int main(int argc, char* argv[]){
                     
                     tcpconnection << transportstring << endl;
                     cout << fg::green << flush;
-                    spdlog::get("client_logger")->info("send data to server");
-                    spdlog::get("file_logger")->info("send data to server");
+                    spdlog::get("client_logger")->info("send data to slaveserver");
+                    spdlog::get("file_logger")->info("send data to slaveserver");
                 }
                 catch(...){
                     cout << fg::red << flush;
