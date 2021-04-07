@@ -28,8 +28,8 @@ using namespace asio::ip;
 int main(int argc, char *argv[]){
 
     string ipadress = "127.0.0.1";
-    string port = "1116";
-    string serverport = "1113";
+    string port;
+    string serverport;
     string transportstring = "";
 
     int maxclient{4};
@@ -37,10 +37,9 @@ int main(int argc, char *argv[]){
 
     mutex mx;
     
-
     CLI::App app("MapReduceSystem_SlaverServer");
     app.add_option("-i,--i", ipadress, "ipadress for the server");
-    //app.add_option("-p,--p", port, "port to connect to")->required();
+    app.add_option("-p,--p", port, "port to connect to")->required();
     app.add_option("-s,--s", serverport, "serverport")->required();
     app.add_option("-c,--c", maxclient, "the maximum of clients");
     CLI11_PARSE(app, argc, argv);
