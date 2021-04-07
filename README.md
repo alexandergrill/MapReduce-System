@@ -3,7 +3,7 @@
     <br />
     <img src="./documentation/Logo.png" alt="MapReduce_System_Logo" width="350"/>
 </div>
-<img alt="License" src="https://img.shields.io/github/license/alexandergrill/grill_project_2">
+[![License](https://img.shields.io/badge/License-Boost%201.0-lightblue.svg)](https://www.boost.org/LICENSE_1_0.txt)
 
 ## Grill Alexander NVS Projekt 2021
 Die Lage in Österreich bezgl. COVID-19 ist auch im Jahr 2021, im zweiten Schulsemster ernst. Ein Lockdown nach dem anderem, Festlegungen von Maßnahmen und Ausgangsbeschränkungen,
