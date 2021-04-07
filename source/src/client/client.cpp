@@ -75,8 +75,8 @@ void Client::WriteIntoFile(int wordnum, string filename){
         file.open(filename, ios::out);
         if (!file){
             cout << fg::red << flush;
-            spdlog::get("client_logger")->error("File not found");
-            spdlog::get("file_logger")->error("File not found");
+            spdlog::get("client_logger")->error("file not found");
+            spdlog::get("file_logger")->error("file not found");
         }
         else{
             for (int i = 0; i < wordnum; i++){
@@ -91,8 +91,8 @@ void Client::WriteIntoFile(int wordnum, string filename){
     }
     catch (...){
         cout << fg::red << flush;
-        spdlog::get("client_logger")->error("It is not possible to write into file");
-        spdlog::get("file_logger")->error("It is not possible to write into file");
+        spdlog::get("client_logger")->error("it is not possible to write into file");
+        spdlog::get("file_logger")->error("it is not possible to write into file");
     }
 }
 
@@ -103,13 +103,13 @@ void Client::Map(string filename){
         file.open(filename, ios::in);
         if (!file){
             cout << fg::red << flush;
-            spdlog::get("client_logger")->error("File not found");
-            spdlog::get("file_logger")->error("File not found");
+            spdlog::get("client_logger")->error("file not found");
+            spdlog::get("file_logger")->error("file not found");
         }
         else{
             cout << fg::green << flush;
-            spdlog::get("client_logger")->info("File found");
-            spdlog::get("file_logger")->info("File found");
+            spdlog::get("client_logger")->info("file found");
+            spdlog::get("file_logger")->info("file found");
 
             while (!file.eof()){
                 file >> line;
@@ -128,7 +128,7 @@ void Client::Map(string filename){
     }
     catch (...){
         cout << fg::red << flush;
-        spdlog::get("client_logger")->error("It is not possible to open file");
-        spdlog::get("file_logger")->error("It is not possible to open file");
+        spdlog::get("client_logger")->error("it is not possible to open file");
+        spdlog::get("file_logger")->error("it is not possible to open file");
     }
 }

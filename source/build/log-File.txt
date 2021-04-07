@@ -10,3 +10,15 @@
 [2021-04-07 18:34:21.884] [file_logger] [info] send data to slaveserver
 [2021-04-07 18:34:21.939] [file_logger] [info] convert data from client to map
 [2021-04-07 18:34:21.948] [file_logger] [info] server is listening
+[2021-04-07 19:59:19.685] [file_logger] [info] server is listening
+[2021-04-07 20:00:14.596] [file_logger] [info] IP Adresse is valid 1
+[2021-04-07 20:00:14.596] [file_logger] [info] PORT is valid 1
+[2021-04-07 20:00:14.596] [file_logger] [info] established connection to server
+[2021-04-07 20:00:14.596] [file_logger] [info] client 1 has connected to server
+[2021-04-07 20:00:20.697] [file_logger] [info] write random string into file
+[2021-04-07 20:00:20.697] [file_logger] [info] File is found
+[2021-04-07 20:00:20.782] [file_logger] [info] call map function, sort data in dictionary
+[2021-04-07 20:00:20.793] [file_logger] [info] convert map to transportdata
+[2021-04-07 20:00:20.794] [file_logger] [info] send data to slaveserver
+[2021-04-07 20:00:20.850] [file_logger] [info] convert data from client to map
+[2021-04-07 20:00:20.859] [file_logger] [info] server is listening
