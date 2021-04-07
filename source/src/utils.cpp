@@ -80,7 +80,7 @@ string ConvertMaptoString(std::map<std::string, int>* dic){
 
 void Print(std::map<std::string, int>* dic){
     int counter{0};
-    cout << "Data Map Dictionary" << endl;
+    cout << "Data Map" << endl;
     for (map<string, int>::iterator t = dic->begin(); t != dic->end(); ++t){
         //cout << "Data " << t->first << " " << t->second << endl;
         counter += 1;
