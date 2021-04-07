@@ -1,0 +1,15 @@
+# ninja log v5
+1	1810	1617804562723966160	client@exe/src_utils.cpp.o	f69b260cce34573a
+9	2099	1617804563015960658	slaveserver@exe/src_utils.cpp.o	5d73932e73fa6cb5
+1	10873	1617804571779795522	client@exe/src_client_client.cpp.o	3d45d7bd4023d80
+0	18574	1617804579475650466	client@exe/src_client_main.cpp.o	2f10fa34ee2a18e7
+4	50	1617804607899114371	masterserver@exe/src_masterserver_main.cpp.o	24964cf35d5cf394
+2	1081	1617804608927094972	client	20a29ce4a2b2abc
+3	1206	1617804609055092556	slaveserver@exe/src_slaveserver_slaveserver.cpp.o	6980d17fead82bbc
+5	1340	1617804609191089991	masterserver@exe/src_utils.cpp.o	1a4d03fe3419a629
+1340	1433	1617804609283088254	masterserver	ce78f3475e78165a
+3	15976	1617804623814813953	slaveserver@exe/src_slaveserver_main.cpp.o	2ab0dd5f80759785
+15976	16473	1617804624322804361	slaveserver	e5c54ab2850d7416
+4	960	1617805038727411511	slaveserver@exe/src_slaveserver_slaveserver.cpp.o	6980d17fead82bbc
+3	16422	1617805054175292689	slaveserver@exe/src_slaveserver_main.cpp.o	2ab0dd5f80759785
+16422	16941	1617805054703288544	slaveserver	e5c54ab2850d7416

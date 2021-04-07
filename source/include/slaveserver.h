@@ -20,14 +20,6 @@ private:
     std::string port;
     int clientcounter{0};
     unsigned short serverport;
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-    std::map<std::string, int> datatmap;
-=======
-    std::map<std::string, int> datamap;
->>>>>>> b50782ec0bfe9408454101a5af9d2520e4808572
->>>>>>> 9493dfd6ba7f0e4bca2d1eec26f6354c63314942
     std::map<std::string, int> resultmap;
     std::list<std::map<std::string, int>>* maplist;
     std::mutex &mxss;
@@ -40,11 +32,7 @@ public:
     ~SlaveServer(){
         delete maplist;
     }
-<<<<<<< HEAD
-    static SlaveServer* GetSlaveServer(std::string ip, std::string port, std::string sport);
-=======
     static SlaveServer* GetSlaveServer(std::string ip, std::string port, std::string lport, std::mutex& mx);
->>>>>>> b50782ec0bfe9408454101a5af9d2520e4808572
     unsigned short GetServerPort();
     std::map<std::string, int>* GetMap();
     int GetListLength();

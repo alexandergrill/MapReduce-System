@@ -1,0 +1,127 @@
+Build started at 2021-04-07T16:09:19.157509
+Main binary: /usr/bin/python3
+Build Options: 
+Python system: Linux
+The Meson build system
+Version: 0.53.2
+Source dir: /home/alex/Desktop/grill_project_2/source
+Build dir: /home/alex/Desktop/grill_project_2/source/build
+Build type: native build
+Project name: mapreduce-system
+Project version: 0.1
+No CXXFLAGS in the environment, not changing global flags.
+No LDFLAGS in the environment, not changing global flags.
+No CPPFLAGS in the environment, not changing global flags.
+Sanity testing C++ compiler: c++
+Is cross compiler: False.
+Sanity check compiler command line: c++ /home/alex/Desktop/grill_project_2/source/build/meson-private/sanitycheckcpp.cc -o /home/alex/Desktop/grill_project_2/source/build/meson-private/sanitycheckcpp.exe -pipe -D_FILE_OFFSET_BITS=64
+Sanity check compile stdout:
+
+-----
+Sanity check compile stderr:
+
+-----
+Running test binary command: /home/alex/Desktop/grill_project_2/source/build/meson-private/sanitycheckcpp.exe
+C++ compiler for the build machine: c++ (gcc 9.3.0 "c++ (Ubuntu 9.3.0-17ubuntu1~20.04) 9.3.0")
+C++ linker for the build machine: c++ ld.bfd 2.34
+No CXXFLAGS in the environment, not changing global flags.
+No LDFLAGS in the environment, not changing global flags.
+No CPPFLAGS in the environment, not changing global flags.
+Sanity testing C++ compiler: c++
+Is cross compiler: False.
+Sanity check compiler command line: c++ /home/alex/Desktop/grill_project_2/source/build/meson-private/sanitycheckcpp.cc -o /home/alex/Desktop/grill_project_2/source/build/meson-private/sanitycheckcpp.exe -pipe -D_FILE_OFFSET_BITS=64
+Sanity check compile stdout:
+
+-----
+Sanity check compile stderr:
+
+-----
+Running test binary command: /home/alex/Desktop/grill_project_2/source/build/meson-private/sanitycheckcpp.exe
+C++ compiler for the host machine: c++ (gcc 9.3.0 "c++ (Ubuntu 9.3.0-17ubuntu1~20.04) 9.3.0")
+C++ linker for the host machine: c++ ld.bfd 2.34
+Build machine cpu family: x86_64
+Build machine cpu: x86_64
+Host machine cpu family: x86_64
+Host machine cpu: x86_64
+Target machine cpu family: x86_64
+Target machine cpu: x86_64
+Run-time dependency threads found: YES
+Program protoc found: YES (/usr/local/bin/protoc)
+Pkg-config binary for MachineChoice.HOST is not cached.
+Pkg-config binary missing from cross or native file, or env var undefined.
+Trying a default pkg-config fallback at pkg-config
+Trying pkg-config binary pkg-config for machine MachineChoice.HOST at ['/usr/bin/pkg-config']
+Found pkg-config: /usr/bin/pkg-config (0.29.1)
+Determining dependency 'protobuf' with pkg-config executable '/usr/bin/pkg-config'
+PKG_CONFIG_PATH: 
+Called `/usr/bin/pkg-config --modversion protobuf` -> 0
+3.15.3
+PKG_CONFIG_PATH: 
+Called `/usr/bin/pkg-config --cflags protobuf` -> 0
+-pthread -I/usr/local/include
+PKG_CONFIG_PATH: 
+Called `/usr/bin/pkg-config protobuf --libs` -> 0
+-L/usr/local/lib -lprotobuf -lpthread
+PKG_CONFIG_PATH: 
+Called `/usr/bin/pkg-config protobuf --libs` -> 0
+-L/usr/local/lib -lprotobuf -lpthread
+Running compile:
+Working directory:  /home/alex/Desktop/grill_project_2/source/build/meson-private/tmp3br6rr5g
+Command line:  c++ /home/alex/Desktop/grill_project_2/source/build/meson-private/tmp3br6rr5g/testfile.cpp -o /home/alex/Desktop/grill_project_2/source/build/meson-private/tmp3br6rr5g/output.exe -pipe -D_FILE_OFFSET_BITS=64 -O0 -fpermissive 
+
+Code:
+ #include<stdio.h>
+        
+        int main(void) {
+            printf("%ld\n", (long)(sizeof(void *)));
+            return 0;
+        };
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Program stdout:
+
+8
+
+Program stderr:
+
+
+Running compile:
+Working directory:  /home/alex/Desktop/grill_project_2/source/build/meson-private/tmpnip4nwtt
+Command line:  c++ /home/alex/Desktop/grill_project_2/source/build/meson-private/tmpnip4nwtt/testfile.cpp -o /home/alex/Desktop/grill_project_2/source/build/meson-private/tmpnip4nwtt/output.obj -pipe -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive --print-search-dirs 
+
+Code:
+ 
+Compiler stdout:
+ install: /usr/lib/gcc/x86_64-linux-gnu/9/
+programs: =/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/9/../../../../x86_64-linux-gnu/bin/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/9/../../../../x86_64-linux-gnu/bin/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/9/../../../../x86_64-linux-gnu/bin/
+libraries: =/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/9/../../../../x86_64-linux-gnu/lib/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/9/../../../../x86_64-linux-gnu/lib/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/9/../../../../x86_64-linux-gnu/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/9/../../../../lib/:/lib/x86_64-linux-gnu/9/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/9/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/9/../../../../x86_64-linux-gnu/lib/:/usr/lib/gcc/x86_64-linux-gnu/9/../../../:/lib/:/usr/lib/
+
+Compiler stderr:
+ 
+Running compile:
+Working directory:  /home/alex/Desktop/grill_project_2/source/build/meson-private/tmpzhivs6qa
+Command line:  c++ /home/alex/Desktop/grill_project_2/source/build/meson-private/tmpzhivs6qa/testfile.cpp -o /home/alex/Desktop/grill_project_2/source/build/meson-private/tmpzhivs6qa/output.exe -pipe -D_FILE_OFFSET_BITS=64 -O0 -fpermissive -Wl,--start-group -lpthread -Wl,--end-group -Wl,--allow-shlib-undefined 
+
+Code:
+ int main(void) { return 0; }
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Run-time dependency protobuf found: YES 3.15.3
+Build targets in project: 3
+
+Found ninja-1.10.0 at /usr/bin/ninja
+Running compile:
+Working directory:  /tmp/tmpg8ulj1lz
+Command line:  c++ /tmp/tmpg8ulj1lz/testfile.cpp -o /tmp/tmpg8ulj1lz/output.obj -pipe -D_FILE_OFFSET_BITS=64 -c -std=c++17 
+
+Code:
+ int i = static_cast<int>(0);
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Compiler accepts -std=c++17: YES

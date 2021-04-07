@@ -92,7 +92,7 @@ int main(int argc, char *argv[]){
             for (auto &t : pool){
                 t.join();
             }
-
+            Print(sl->GetMap());
             transportstring = ConvertMaptoString(sl->GetMap());
             cout << fg::green << flush;
             spdlog::get("slaveserver_logger")->info("convert map to transportdata");
