@@ -6,7 +6,6 @@
 
 
 ## Grill Alexander NVS Projekt 2021
-[LICENSE](https://img.shields.io/badge/License-Boost%201.0-lightblue.svg)](https://www.boost.org/LICENSE_1_0.txt)
 Die Lage in Österreich bezgl. COVID-19 ist auch im Jahr 2021, im zweiten Schulsemster ernst. Ein Lockdown nach dem anderem, Festlegungen von Maßnahmen und Ausgangsbeschränkungen,
 die Anzahl der aktiven Fälle steigt, daher muss die Bundesregierung mit solchen stengen Maßnahmen agieren, um die Bevölerunge zu schützen.
 So wurden Schulerunterrichtstunden bis Ende Jänner online gehaltet, anschließend erfolgte Schichbetrieb in den Schulen.
@@ -66,17 +65,8 @@ Dadurch erhält man alle Information bezgl. der Kommandozeilenparameter
 Startet den SlaveServer mit der IP Adresse 127.0.0.1 und versucht sich auf Port 1116 zum MasterServer zu verbinden und sendet den MasterServer die Daten(Result der Shuffle Funktion). Der SlaveServer hört auf Port 1113 ab und baut eine Verbindung bei einem Request eines Clients auf. Der SlaveServer empfängt alle Daten der Clients.
 Die Ports sind beim Aufruf des Programms zwingend notwendig. 
 ```
-./client -p 1113 -i 192.168.8.1
+./slaveserver -s 1113 -p 1116 -i 192.168.8.1
 ```
-Startet den Client mit der IP Adresse 192.168.8.1 und versucht sich auf Port 1113 zum SlaveServer zu verbinden und sendet den SlaveServer die Daten(Result der Map Funktion)
+Startet den SlaveServer mit der IP Adresse 192.168.8.1 und versucht sich auf Port 1116 zum MasterServer zu verbinden und sendet den MasterServer die Daten(Result der Shuffle Funktion)
 ```
-./client -p 1113 -w 100000
-```
-Startet den Client mit der IP Adresse 127.0.0.1 und versucht sich auf Port 1113 zum SlaveServer zu verbinden und sendet den SlaveServer die Daten(Result der Map Funktion)
-Dabei werden 100 000 unterschiedliche Strings in eine Datei geschrieben, die in der Map Funktion komprimiert werden. 
-```
-./client -p 1113 -f "../Desktop/file.txt"
-```
-Startet den Client mit der IP Adresse 127.0.0.1 und versucht sich auf Port 1113 zum SlaveServer zu verbinden und sendet den SlaveServer die Daten(Result der Map Funktion)
-In diesem Fall werden die random generierten strings in die Datei file.txt abgespeichert.
 
