@@ -18,7 +18,7 @@ using namespace std;
 SlaveServer* SlaveServer::GetSlaveServer(string ip, string port, string sport, mutex& mx){
     bool ipvalid;
     bool portvalid;
-    bool povalid;
+    bool povalid; 
     SlaveServer *ssl;
 
     ipvalid = IPIsValid(ip);

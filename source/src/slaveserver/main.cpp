@@ -52,7 +52,7 @@ int main(int argc, char *argv[]){
     auto console = spdlog::stderr_color_mt("slaveserver_logger");
     console->set_level(spdlog::level::trace);
 
-    vector<thread> pool(maxclient);
+    vector<thread> pool(maxclient-1);
     SlaveServer *sl = SlaveServer::GetSlaveServer(ipadress, port, serverport, ref(mx));
 
     
