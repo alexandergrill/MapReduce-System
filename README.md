@@ -30,5 +30,21 @@ Dadurch erhält man alle Information bezgl. der Kommandozeilenparameter
 ```
 ./client -p 1113
 ```
-Startet den Client und versucht sich auf Port 1113 zum SlaveServer mit der IP 127.0.0.1 zu verbinden und sendet den SlaveServer die Daten(Result der Map Funktion)
+Startet den Client mit der IP Adresse 127.0.0.1 und versucht sich auf Port 1113 zum SlaveServer zu verbinden und sendet den SlaveServer die Daten(Result der Map Funktion)
+Der Port ist bei Aufruf des Programms zwingend notwendig. Es werden, ohne Aufruf von -w "ANZAHL", 50 000 unterschiedliche strings in die Datei clientfile.txt geschreiben und
+folgedessen in der Map Funktion komprimiert.
+```
+./client -p 1113 -i 192.168.8.1
+```
+Startet den Client mit der IP Adresse 192.168.8.1 und versucht sich auf Port 1113 zum SlaveServer zu verbinden und sendet den SlaveServer die Daten(Result der Map Funktion)
+```
+./client -p 1113 -w 100000
+```
+Startet den Client mit der IP Adresse 127.0.0.1 und versucht sich auf Port 1113 zum SlaveServer zu verbinden und sendet den SlaveServer die Daten(Result der Map Funktion)
+Dabei werden 100 000 unterschiedliche Strings in eine Datei geschrieben, die in der Map Funktion komprimiert werden. 
+```
+./client -p 1113 -f "../Desktop/file.txt"
+```
+Startet den Client mit der IP Adresse 127.0.0.1 und versucht sich auf Port 1113 zum SlaveServer zu verbinden und sendet den SlaveServer die Daten(Result der Map Funktion)
+In diesem Fall werden die random generierten strings in die Datei file.txt abgespeichert.
 
