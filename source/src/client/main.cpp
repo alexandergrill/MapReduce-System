@@ -23,8 +23,7 @@ using namespace rang;
 using namespace asio::ip;
 
 int main(int argc, char* argv[]){
-    //int wordcount = 500000;
-    int wordcount = 50;
+    int wordcount = 500000;
     string filepath = "../src/client/clientfile.txt";
     string ipadress = "127.0.0.1";
     string port;
