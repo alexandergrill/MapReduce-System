@@ -3,7 +3,7 @@
     <br />
     <img src="./documentation/Logo.png" alt="MapReduce_System_Logo" width="350"/>
 </div>
-[License](https://img.shields.io/badge/License-Boost%201.0-lightblue.svg)](https://www.boost.org/LICENSE_1_0.txt)
+
 ## Grill Alexander NVS Projekt 2021
 Die Lage in Österreich bezgl. COVID-19 ist auch im Jahr 2021, im zweiten Schulsemster ernst. Ein Lockdown nach dem anderem, Festlegungen von Maßnahmen und Ausgangsbeschränkungen,
 die Anzahl der aktiven Fälle steigt, daher muss die Bundesregierung mit solchen stengen Maßnahmen agieren, um die Bevölerunge zu schützen.
@@ -77,4 +77,4 @@ Dabei werden 100 000 unterschiedliche Strings in eine Datei geschrieben, die in 
 ```
 Startet den Client mit der IP Adresse 127.0.0.1 und versucht sich auf Port 1113 zum SlaveServer zu verbinden und sendet den SlaveServer die Daten(Result der Map Funktion)
 In diesem Fall werden die random generierten strings in die Datei file.txt abgespeichert.
-
+[License](https://img.shields.io/badge/License-Boost%201.0-lightblue.svg)](https://www.boost.org/LICENSE_1_0.txt)
