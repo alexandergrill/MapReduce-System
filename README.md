@@ -71,4 +71,4 @@ Startet den SlaveServer mit der IP Adresse 192.168.8.1 und versucht sich auf Por
 ```
 ./slaveserver -s 1113 -p 1116 -c 6
 ```
-Der SlaveServer 
+Der SlaveServer sendet nachdem von 6 Clients die Daten geshuffelt wurden an dem MasterServer
