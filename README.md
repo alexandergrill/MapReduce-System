@@ -3,6 +3,7 @@
     <br />
     <img src="./documentation/Logo.png" alt="MapReduce_System_Logo" width="350"/>
 </div>
+
 [![License](https://img.shields.io/badge/License-Boost%201.0-lightblue.svg)](https://www.boost.org/LICENSE_1_0.txt)
 
 ## Grill Alexander NVS Projekt 2021
