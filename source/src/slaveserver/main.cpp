@@ -106,7 +106,7 @@ int main(int argc, char *argv[]){
     catch(...){
         cout << fg::red << flush;
         spdlog::get("slaveserver_logger")->error("clients are not reachable");
-        spdlog::get("file_logger")->error("lients are not reachable");
+        spdlog::get("file_logger")->error("clients are not reachable");
     }
     
     delete sl;

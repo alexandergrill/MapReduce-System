@@ -531,7 +531,7 @@ Die Komponente Client ist eine ausführbare Datei und bildet den Input für die 
 die der Benutzer beim Aufruf mitübergibt, generiert und in eine Datei geschrieben. In der nächsten Phase durchforstet das Programm, die Datei zeilenweise durch und speichert die Datensätze in einer Art Dictionary ab(Key:Value). Der zufällig generierte String entspricht im Dictionary dem Key und der Value die Anzahl des Strings wie oft dieser in der Datei vorkommt.
 Diesen Part wird im MapReduce-System als Map Funktion bezeichnet. Zum Schluss wenn alle Daten im Dictionary abgespeichert sind, wird dieses in einem
 String konvertiert, um diesen daraufhin an dem Server zu übertragen. Bei der Umwandlung des Dictionarys, werden den Key-Werten und Value-Werten Trennsymbole angehängt, sodass der Slaveserver die Zeichenkette aufteilen und weiters in ein Dictionary zurück umkonvertieren kann.\\\\
-\textbf{Klasse}\\
+\textbf{Klassenaufbau}\\
 \textbf{Kommandozeilenparameter}\\
 \subsection{SlaveServer}
 \textbf{Modulbeschreibung}\\
@@ -539,11 +539,11 @@ Diese Komponente bildete die Schnittstelle zwischen den Clients und dem Masterse
 einzelnen Werte durch ein ; getrennt werden. Wenn der Slaverserver von 2 unterschieldichen Clients Daten bekommen hat, werden die Strings zurück in eine Map konvertiert und in einer Map-List abgespeichert. Wenn sich zwei Maps in dieser Liste befinden, wird zu jedem Paar(also wenn immer 2 Maps in der Liste gespeichert sind)
 ein Thread gestartet. In jedem Thread werden die einzelnen Werte eine Map vergliechen und verkleinert, d.h Durchführung der Shuffle Phase. Die resultierenden Daten werden dann in der Map datamap abgespeichert. Da alle erzeugten Threads ihre Daten in der datamap abspeichern, werden redundante Daten erzeugt. Diese müssen schlussendlich auch komprimiert werden. Am Ende dieser Phase werden alle Daten in der resultmap abspeichert. 
 Auf Grund der parallele Abarbeitung der Daten bietet, dieses System eine hohe effizienz. Wie im Modul Client wird die Map am Ende zu einem Übertragungsstring umgewandlet und dem MasterServer versendet.
-\textbf{Klasse}\\
+\textbf{Klassenaufbau}\\
 \textbf{Kommandozeilenparameter}\\
 \subsection{MasterServer}
 \textbf{Modulbeschreibung}\\
-\textbf{Klasse}\\
+\textbf{Klassenaufbau}\\
 \textbf{Kommandozeilenparameter}\\ 
 \subsection{utils}
 \textbf{Funktionen}\\

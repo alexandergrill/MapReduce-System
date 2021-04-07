@@ -35,8 +35,8 @@ Client* Client::GetClient(std::string ip, std::string pr){
     ipvalid = IPIsValid(ip);
     povalid = PORTIsValid(pr);
     cout << fg::green << flush;
-    spdlog::get("client_logger")->info("IP Adresse is valid " + to_string(ipvalid));
-    spdlog::get("file_logger")->info("IP Adresse is valid " + to_string(ipvalid));
+    spdlog::get("client_logger")->info("IP Adress is valid " + to_string(ipvalid));
+    spdlog::get("file_logger")->info("IP Adress is valid " + to_string(ipvalid));
     cout << fg::green << flush;
     spdlog::get("client_logger")->info("PORT is valid " + to_string(povalid));
     spdlog::get("file_logger")->info("PORT is valid " + to_string(povalid));
@@ -75,8 +75,8 @@ void Client::WriteIntoFile(int wordnum, string filename){
         file.open(filename, ios::out);
         if (!file){
             cout << fg::red << flush;
-            spdlog::get("client_logger")->error("File is not found");
-            spdlog::get("file_logger")->error("File is not found");
+            spdlog::get("client_logger")->error("File not found");
+            spdlog::get("file_logger")->error("File not found");
         }
         else{
             for (int i = 0; i < wordnum; i++){
@@ -103,13 +103,13 @@ void Client::Map(string filename){
         file.open(filename, ios::in);
         if (!file){
             cout << fg::red << flush;
-            spdlog::get("client_logger")->error("File is not found");
-            spdlog::get("file_logger")->error("File is not found");
+            spdlog::get("client_logger")->error("File not found");
+            spdlog::get("file_logger")->error("File not found");
         }
         else{
             cout << fg::green << flush;
-            spdlog::get("client_logger")->info("File is found");
-            spdlog::get("file_logger")->info("File is found");
+            spdlog::get("client_logger")->info("File found");
+            spdlog::get("file_logger")->info("File found");
 
             while (!file.eof()){
                 file >> line;
