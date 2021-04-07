@@ -1,5 +1,14 @@
 * Changelog
 
+** [0.0.7] - 2021-04-05
+*** Added
+- Verwendete Bibliotheken[TH]
+- Slave Server Shuffle Funktion[PR]
+- Slave Server Shrink Funktion etc.[PR]
+- Verbesserung der Dokumentation 1 Chapter[TH]
+- Modulbeschreibung-Client[TH]
+- Slave Server add spdlog[PR]
+
 ** [0.0.6] - 2021-03-22
 *** Added
 - Grundlagen Parallel Programming[TH]

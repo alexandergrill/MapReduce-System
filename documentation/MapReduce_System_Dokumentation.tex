@@ -535,6 +535,10 @@ String konvertiert, um diesen daraufhin an dem Server zu übertragen. Bei der Um
 \textbf{Kommandozeilenparameter}\\
 \subsection{SlaveServer}
 \textbf{Modulbeschreibung}\\
+Diese Komponente bildete die Schnittstelle zwischen den Clients und dem Masterserver. Der SlaveServer hört auf einen Port ab und empfängt, jene Daten die ihm der Client sendet. Die Übetragungsdaten wird in Form von einem String übertragen, wobei die 
+einzelnen Werte durch ein ; getrennt werden. Wenn der Slaverserver von 2 unterschieldichen Clients Daten bekommen hat, werden die Strings zurück in eine Map konvertiert und in einer Map-List abgespeichert. Wenn sich zwei Maps in dieser Liste befinden, wird zu jedem Paar(also wenn immer 2 Maps in der Liste gespeichert sind)
+ein Thread gestartet. In jedem Thread werden die einzelnen Werte eine Map vergliechen und verkleinert, d.h Durchführung der Shuffle Phase. Die resultierenden Daten werden dann in der Map datamap abgespeichert. Da alle erzeugten Threads ihre Daten in der datamap abspeichern, werden redundante Daten erzeugt. Diese müssen schlussendlich auch komprimiert werden. Am Ende dieser Phase werden alle Daten in der resultmap abspeichert. 
+Auf Grund der parallele Abarbeitung der Daten bietet, dieses System eine hohe effizienz. Wie im Modul Client wird die Map am Ende zu einem Übertragungsstring umgewandlet und dem MasterServer versendet.
 \textbf{Klasse}\\
 \textbf{Kommandozeilenparameter}\\
 \subsection{MasterServer}
@@ -554,6 +558,7 @@ Asio wird in allen Arten von Anwendungen eingesetzt, von Telefon-Apps bis hin zu
 Die meisten Programme interagieren auf irgendeine Weise mit der Außenwelt, sei es über eine Datei, ein Netzwerk, ein serielles Kabel oder die Konsole. Manchmal, wie z. B. bei Netzwerken, können einzelne E/A-Operationen sehr lange dauern, bis sie abgeschlossen sind. Dies stellt besondere Herausforderungen an die Anwendungsentwicklung.
 Asio stellt die Werkzeuge zur Verfügung, um diese langwierigen Operationen zu verwalten, ohne dass die Programme Gleichzeitigkeitsmodelle auf Basis von Threads und explizitem Sperren verwenden müssen.
 Die Asio-Bibliothek ist für Programmierer gedacht, die C++ für die Systemprogrammierung verwenden, bei der häufig der Zugriff auf Betriebssystemfunktionen wie z. B. Netzwerke erforderlich ist. Obwohl sich Asio anfangs hauptsächlich auf Netzwerke konzentrierte, wurden seine Konzepte der asynchronen I/O auf andere Betriebssystemressourcen wie serielle Schnittstellen, Dateideskriptoren usw. erweitert.
+\cite{asio}
 \begin{description}
     \item[Im Besonderen verfolgt Asio folgenden Ziele:] ~\par
     \begin{itemize}
@@ -591,14 +596,16 @@ vereinfachen. CLI11 ist einfach für kleine Projekte zu verwenden, aber leistung
 Die Bibliothek wird mit Travis-, AppVeyor-, Azure- und GitHub-Aktionen getestet und vom GooFit-GPU-Anpassungsframework verwendet. 
 Es wurde von plumbum.cli für Python inspiriert. CLI11 bietet eine benutzerfreundliche Einführung in diese README-Datei, ein ausführlicheres Tutorial-GitBook, sowie eine von Travis generierte API-Dokumentation. 
 Weitere Informationen zu aktuellen und früheren Versionen findet man im Changelog oder in den GitHub-Versionen.
+\cite{cli11}
 \subsubsection{spdlog}
 spdlog ist eine sehr effiziente headeronly C++ Protokollierungsbibliothek. Sie bietet auch ebenfalls eine Python-ähnliche Formatierungs-API unter Verwendung der mitgelieferten fmt lib.
 spdlog verfolgt den Ansatz "include what you need". Der Source Code sollte die Funktionen enthalten, die tatsächlich benötigt werden.\\\\
 Den Programmierer wird eine funktionsreiche Formatierung mit der hervorragenden fmt-Bibliothek geboten.
 Im Projekt wird die Libary verwendet, damit die Logging Informationen in der Kommandozeile ausgegeben werden kann. Zusätzlich ist es auch möglich,
 die Logging Daten nicht nur auszugeben, sonder auch direkt in einem Log-File zu schreiben.
+\cite{spdlog}
 \subsubsection{json}
-In Sprachen wie Python fühlt sich JSON wie ein erstklassiger Datentyp an. 
+In Sprachen wie Python fühlt sich JSON wie ein erstklassiger Datentyp an.
 Die Entwickler haben die ganze Operator-Magie des modernen C++ verwendet, um das gleiche Gefühl in einem c++ Projekt zu erzielen. 
 Der gesamter Code besteht aus einer einzelnen Header-Datei json.hpp. Keine Bibliothek, kein Teilprojekt, keine Abhängigkeiten, kein komplexes Build-System. 
 Die Klasse ist in Vanilla C++ 11geschrieben. \\\\
@@ -606,9 +613,11 @@ Alles in allem ist keine Anpassung der Compiler-Flags oder Projekteinstellungen 
 Jedes JSON-Objekt hat einen Overhead und ein Aufzählungselement. Die Standardverallgemeinerung verwendet die folgenden C++-Datentypen: std::string für Zeichenfolgen, int64\_t, uint64\_t oder double für Zahlen, std::map für Objekte, std::vector für Arrays und bool für Boolesche Werte. 
 json.hpp ist die einzige erforderliche Datei in single\_include/nlohmann, jedoch muss sie im Projekt mit eingebunden werden. \\
 Die Libary wurde in diesem Projekt verwendet, um die zusammengefassten Daten des Master-Server abzuspeichern.
+\cite{json}
 \subsubsection{rang}
 rang only hängt von der C++ Standardbibliothek, dem Systemheader unist d.h unter Unix und den Systemheadern windows.h und io.h auf Windows\-basierten Systemen ab. Mit anderen Worten, man benötigt keine Abhängigkeiten von Drittanbietern. Diese Standardbibliothek ermöglich es den
 Output der Console zu formatieren. Dabei kann die Schriftart, Farbe und sonstige Eigenschaften bezüglich der Consolenausgabe konfigurieren.
+\cite{rang}
 \newpage
 \noindent
 \subsubsection{tabulat}
@@ -619,7 +628,7 @@ Es können damit die Eigenschaften der Tabelle formatiert werden, z. B. Rahmen, 
 Auf Zeilen in der Tabelle greift man mitTabelle [row\_index] zu. Dies gibt ein Zeilenobjekt zurück, für das man Row.format() auf ähnliche Weise aufrufen kann, um die Eigenschaften aller Zellen in dieser Zeile zu formatierne.\\
 Die Bibliothek wurde verwendet, sodass am Ende des Programmes eine übersichtliche Tabelle ausgegeben werden kann, wie viele Daten in Struktur gebracht wurden.
 beinhaltet.
-
+\cite{tabulate}
 \section{Anwendungsfälle}
 
 \section{Schlusswort}
