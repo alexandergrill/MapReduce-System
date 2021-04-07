@@ -10,14 +10,15 @@
 
 #include <map>
 #include <iostream>
+#include <mutex>
 
 
 using namespace std;
 
-SlaveServer* SlaveServer::GetSlaveServer(std::string ip, std::string port, std::string sport){
+SlaveServer* SlaveServer::GetSlaveServer(string ip, string port, string sport, mutex& mx){
     bool ipvalid;
     bool portvalid;
-    bool povalid;
+    bool povalid; 
     SlaveServer *ssl;
 
     ipvalid = IPIsValid(ip);
@@ -29,13 +30,17 @@ SlaveServer* SlaveServer::GetSlaveServer(std::string ip, std::string port, std::
         ssl = nullptr;
     }
     else{
-        ssl = new SlaveServer(ip, port, stoul(sport, nullptr, 0));
+        ssl = new SlaveServer(ip, port, stoul(sport, nullptr, 0), mx);
     }
     return ssl;
 }
 
 unsigned short SlaveServer::GetServerPort(){
     return serverport;
+}
+
+map<string, int>* SlaveServer::GetMap(){
+    return &resultmap;
 }
 
 int SlaveServer::GetClientCounter(){
@@ -46,7 +51,7 @@ void SlaveServer::SetClientCounter(){
     clientcounter += 1;
 }
 
-void SlaveServer::AddList(std::map<std::string, int>* mapdic){
+void SlaveServer::AddList(map<string, int>* mapdic){
     maplist->push_back(*mapdic);
 }
 
@@ -54,7 +59,33 @@ int SlaveServer::GetListLength(){
     return maplist->size();
 }
 
+int SlaveServer::FindElementinDataMap(string value){
+    int cnt{0};
+    for (map<string, int>::iterator t = datamap.begin(); t != datamap.end(); ++t){
+        if(datamap.find(value) != datamap.end()){
+            cnt = t->second;
+            datamap.erase(t);
+        }
+    }
+    return cnt;
+}
+
+void SlaveServer::ShrinkDataMap(){
+    Print(&datamap);
+    for (map<string, int>::iterator t = datamap.begin(); t != datamap.end(); ++t){
+        int valuecounter{0};
+        int cnt = FindElementinDataMap(t->first);
+        while(cnt != 0){
+            valuecounter += cnt;
+            cnt = FindElementinDataMap(t->first);
+        }
+        resultmap.insert(pair<string, int>(t->first, valuecounter));
+    }
+    Print(&resultmap);
+}
+
 void SlaveServer::Shuffle(){
+    unique_lock<mutex> uls{mxss};
     auto listiterator = maplist->begin();
     advance(listiterator, maplist->size()-2);
 
@@ -70,19 +101,19 @@ void SlaveServer::Shuffle(){
     for (map<string, int>::iterator t1 = mapf.begin(); t1 != mapf.end(); ++t1){
         for (map<string, int>::iterator t2 = maps.begin(); t2 != maps.end(); ++t2){
             if(t1->first == t2->first){
-                datatmap.insert(pair<string, int>(t1->first, t1->second + t2->second));
+                datamap.insert(pair<string, int>(t1->first, t1->second + t2->second));
                 maps.erase(t2);
                 found = true;
                 break;
             }
         }
         if(found == false){
-            datatmap.insert(pair<string, int>(t1->first, t1->second));
+            datamap.insert(pair<string, int>(t1->first, t1->second));
         }
         found = false;
     }
     for (map<string, int>::iterator t3 = maps.begin(); t3 != maps.end(); ++t3){
-        datatmap.insert(pair<string, int>(t3->first, t3->second));
+        datamap.insert(pair<string, int>(t3->first, t3->second));
     }
     cout << "finished\n" << flush;
 }
