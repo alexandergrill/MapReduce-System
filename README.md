@@ -2,6 +2,7 @@
 <div align="center">
     <br />
     <img src="./documentation/Logo.png" alt="MapReduce_System_Logo" width="350"/>
+    [LICENSE](https://img.shields.io/badge/License-Boost%201.0-lightblue.svg)](https://www.boost.org/LICENSE_1_0.txt)
 </div>
 
 ## Grill Alexander NVS Projekt 2021
@@ -77,4 +78,4 @@ Dabei werden 100 000 unterschiedliche Strings in eine Datei geschrieben, die in 
 ```
 Startet den Client mit der IP Adresse 127.0.0.1 und versucht sich auf Port 1113 zum SlaveServer zu verbinden und sendet den SlaveServer die Daten(Result der Map Funktion)
 In diesem Fall werden die random generierten strings in die Datei file.txt abgespeichert.
-[License](https://img.shields.io/badge/License-Boost%201.0-lightblue.svg)](https://www.boost.org/LICENSE_1_0.txt)
+
