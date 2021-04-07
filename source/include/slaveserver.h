@@ -20,7 +20,6 @@ private:
     std::string port;
     int clientcounter{0};
     unsigned short serverport;
-    std::map<std::string, int> datamap;
     std::map<std::string, int> resultmap;
     std::list<std::map<std::string, int>>* maplist;
     std::mutex &mxss;
@@ -41,7 +40,7 @@ public:
     void SetClientCounter();
     void AddList(std::map<std::string, int>* mapdic);
     void PrintList();
-    void ShrinkDataMap();
+    void InsertElementinMap(std::string value, int valuecnt);
     void Shuffle();
 };
 

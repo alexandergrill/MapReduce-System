@@ -59,29 +59,20 @@ int SlaveServer::GetListLength(){
     return maplist->size();
 }
 
-int SlaveServer::FindElementinDataMap(string value){
-    int cnt{0};
-    for (map<string, int>::iterator t = datamap.begin(); t != datamap.end(); ++t){
-        if(datamap.find(value) != datamap.end()){
-            cnt = t->second;
-            datamap.erase(t);
+void SlaveServer::InsertElementinMap(string value, int valuecnt){
+    if(resultmap.empty()){
+        resultmap.insert(pair<string, int>(value, valuecnt));
+    }
+    else{
+        map<string, int>::iterator it;
+        it = resultmap.find(value);
+        if (it != resultmap.end()){
+            resultmap.find(value)->second += valuecnt; 
+        }
+        else{
+            resultmap.insert(pair<string, int>(value, valuecnt));
         }
     }
-    return cnt;
-}
-
-void SlaveServer::ShrinkDataMap(){
-    Print(&datamap);
-    for (map<string, int>::iterator t = datamap.begin(); t != datamap.end(); ++t){
-        int valuecounter{0};
-        int cnt = FindElementinDataMap(t->first);
-        while(cnt != 0){
-            valuecounter += cnt;
-            cnt = FindElementinDataMap(t->first);
-        }
-        resultmap.insert(pair<string, int>(t->first, valuecounter));
-    }
-    Print(&resultmap);
 }
 
 void SlaveServer::Shuffle(){
@@ -101,19 +92,19 @@ void SlaveServer::Shuffle(){
     for (map<string, int>::iterator t1 = mapf.begin(); t1 != mapf.end(); ++t1){
         for (map<string, int>::iterator t2 = maps.begin(); t2 != maps.end(); ++t2){
             if(t1->first == t2->first){
-                datamap.insert(pair<string, int>(t1->first, t1->second + t2->second));
+                InsertElementinMap(t1->first, t1->second + t2->second);
                 maps.erase(t2);
                 found = true;
                 break;
             }
         }
         if(found == false){
-            datamap.insert(pair<string, int>(t1->first, t1->second));
+            InsertElementinMap(t1->first, t1->second);
         }
         found = false;
     }
     for (map<string, int>::iterator t3 = maps.begin(); t3 != maps.end(); ++t3){
-        datamap.insert(pair<string, int>(t3->first, t3->second));
+        InsertElementinMap(t3->first, t3->second);
     }
     cout << "finished\n" << flush;
 }

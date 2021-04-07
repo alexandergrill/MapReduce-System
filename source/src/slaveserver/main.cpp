@@ -52,10 +52,10 @@ int main(int argc, char *argv[]){
     auto console = spdlog::stderr_color_mt("slaveserver_logger");
     console->set_level(spdlog::level::trace);
 
-    vector<thread> pool(maxclient-1);
+    vector<thread> pool(maxclient/2);
     SlaveServer *sl = SlaveServer::GetSlaveServer(ipadress, port, serverport, ref(mx));
 
-    
+    try{
         tcp::endpoint ep{tcp::v4(),sl->GetServerPort()};
         asio::io_context cox;
         tcp::acceptor ap{cox, ep};
@@ -92,7 +92,6 @@ int main(int argc, char *argv[]){
             for (auto &t : pool){
                 t.join();
             }
-            sl->ShrinkDataMap();
 
             transportstring = ConvertMaptoString(sl->GetMap());
             cout << fg::green << flush;
@@ -103,12 +102,12 @@ int main(int argc, char *argv[]){
             spdlog::get("slaveserver_logger")->info("send data to masterserver");
             spdlog::get("file_logger")->info("send data to masterserver");*/
         }
-    
-    /*catch(...){
+    }
+    catch(...){
         cout << fg::red << flush;
         spdlog::get("slaveserver_logger")->error("clients are not reachable");
         spdlog::get("file_logger")->error("lients are not reachable");
-    }*/
+    }
     
     delete sl;
 }

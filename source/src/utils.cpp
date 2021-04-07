@@ -82,7 +82,7 @@ void Print(std::map<std::string, int>* dic){
     int counter{0};
     cout << "Data Map Dictionary" << endl;
     for (map<string, int>::iterator t = dic->begin(); t != dic->end(); ++t){
-        cout << "Data " << t->first << " " << t->second << endl;
+        //cout << "Data " << t->first << " " << t->second << endl;
         counter += 1;
     }
     cout << "Elements: " << counter << endl;
