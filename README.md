@@ -23,8 +23,12 @@ zugesendet. Dies erfolgt so lange bis alle Daten, die am Beginn auf mehreren Kno
 
 #### Demo
 
-#### Bedienung
+<div align="center">
+    <br />
+    <img src="./docuemntation/clientdemo.png" alt="Usage Demo Server" width="100%"/>
+</div>
 
+#### Bedienung
 ```
 ./client -h
 ```
