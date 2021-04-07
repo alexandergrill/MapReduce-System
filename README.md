@@ -3,7 +3,7 @@
     <br />
     <img src="./documentation/Logo.png" alt="MapReduce_System_Logo" width="350"/>
 </div>
-
+<img alt="License" src="https://img.shields.io/github/license/alexandergrill/grill_project_2/>
 
 ## Grill Alexander NVS Projekt 2021
 Die Lage in Österreich bezgl. COVID-19 ist auch im Jahr 2021, im zweiten Schulsemster ernst. Ein Lockdown nach dem anderem, Festlegungen von Maßnahmen und Ausgangsbeschränkungen,
@@ -69,4 +69,6 @@ Die Ports sind beim Aufruf des Programms zwingend notwendig.
 ```
 Startet den SlaveServer mit der IP Adresse 192.168.8.1 und versucht sich auf Port 1116 zum MasterServer zu verbinden und sendet den MasterServer die Daten(Result der Shuffle Funktion)
 ```
-
+./slaveserver -s 1113 -p 1116 -c 6
+```
+Der SlaveServer 
