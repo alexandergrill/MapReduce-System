@@ -28,7 +28,7 @@ zugesendet. Dies erfolgt so lange bis alle Daten, die am Beginn auf mehreren Kno
     <img src="./documentation/clientdemo.png" alt="Usage Demo Server" width="100%"/>
 </div>
 
-#### Bedienung
+#### Bedienungen
 ```
 ./client -h
 ```
@@ -58,7 +58,7 @@ In diesem Fall werden die random generierten strings in die Datei file.txt abges
 
 #### Demo
 
-#### Bedienung
+#### Bedienungen
 
 ```
 ./slaveserver -h
