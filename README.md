@@ -27,4 +27,8 @@ zugesendet. Dies erfolgt so lange bis alle Daten, die am Beginn auf mehreren Kno
 ./client -h
 ```
 Dadurch erhält man alle Information bezgl. der Kommandozeilenparameter
+```
+./client -p 1113
+```
+Startet den Client und versucht sich auf Port 1113 zum SlaveServer mit der IP 127.0.0.1 zu verbinden und sendet den SlaveServer die Daten(Result der Map Funktion)
 
