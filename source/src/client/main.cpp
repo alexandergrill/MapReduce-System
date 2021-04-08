@@ -45,62 +45,55 @@ int main(int argc, char* argv[]){
 
     Client* c = Client::GetClient(ipadress, port);
 
-    try{
-        if(c != nullptr && wordcount > 0){
-            cout << fg::green << flush;
+    if(c != nullptr && wordcount > 0){
 
-            char* my_ip = &ipadress[0];
-            char* my_port = &port[0];
+        char* my_ip = &ipadress[0];
+        char* my_port = &port[0];
 
-            tcp::iostream tcpconnection{my_ip, my_port};
+        tcp::iostream tcpconnection{my_ip, my_port};
             
-         if(tcpconnection){
-                try{
-                    cout << fg::green << flush;
-                    spdlog::get("client_logger")->info("established connection to server");
-                    spdlog::get("file_logger")->info("established connection to server");
+        if(tcpconnection){
+            cout << fg::green << flush;
+            spdlog::get("client_logger")->info("established connection to server");
+            spdlog::get("file_logger")->info("established connection to server");
 
-                    c->WriteIntoFile(wordcount, filepath);
-                    cout << fg::green << flush;
-                    spdlog::get("client_logger")->info("write random string into file");
-                    spdlog::get("file_logger")->info("write random string into file");
+            c->WriteIntoFile(wordcount, filepath);
+            cout << fg::green << flush;
+            spdlog::get("client_logger")->info("write random string into file");
+            spdlog::get("file_logger")->info("write random string into file");
 
-                    c->Map(filepath);
-                    cout << fg::green << flush;
-                    spdlog::get("client_logger")->info("call map function, sort data in dictionary");
-                    spdlog::get("file_logger")->info("call map function, sort data in dictionary");
+            c->Map(filepath);
+            cout << fg::green << flush;
+            spdlog::get("client_logger")->info("call map function, sort data in dictionary");
+            spdlog::get("file_logger")->info("call map function, sort data in dictionary");
 
-                    Print(c->GetMap());
+            Print(c->GetMap());
                     
-                    transportstring = ConvertMaptoString(c->GetMap());
-                    cout << fg::green << flush;
-                    spdlog::get("client_logger")->info("convert map to transportdata");
-                    spdlog::get("file_logger")->info("convert map to transportdata");
+            transportstring = ConvertMaptoString(c->GetMap());
+            cout << fg::green << flush;
+            spdlog::get("client_logger")->info("convert map to transportdata");
+            spdlog::get("file_logger")->info("convert map to transportdata");
                     
-                    tcpconnection << transportstring << endl;
-                    cout << fg::green << flush;
-                    spdlog::get("client_logger")->info("send data to slaveserver");
-                    spdlog::get("file_logger")->info("send data to slaveserver");
-                }
-                catch(...){
-                    cout << fg::red << flush;
-                    spdlog::get("client_logger")->error("server is not reachable");
-                    spdlog::get("file_logger")->error("server is not reachable");
-                }
-            } 
+            tcpconnection << transportstring << endl;
+            cout << fg::green << flush;
+            spdlog::get("client_logger")->info("send data to slaveserver");
+            spdlog::get("file_logger")->info("send data to slaveserver");
+             
             tcpconnection.close();  
         }
         else{
             cout << fg::red << flush;
             spdlog::get("client_logger")->error("server is not reachable");
             spdlog::get("file_logger")->error("server is not reachable");
+            
         }
     }
-    catch(int e){
+    else{
         cout << fg::red << flush;
         spdlog::get("client_logger")->error("check input parameter");
         spdlog::get("file_logger")->error("check input parameter");
-        return -1;
     }
+    
+
     delete c;
 }
