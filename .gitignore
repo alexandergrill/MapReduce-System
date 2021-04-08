@@ -1,6 +1,3 @@
-../build/*
-!../build/.gitkeep
-
 
 .vscode/*
 !.vscode/settings.json
