@@ -1,0 +1,1 @@
+[{"name": "threads", "version": "unknown", "compile_args": ["-pthread"], "link_args": ["-pthread"]}, {"name": "protobuf", "version": "3.15.3", "compile_args": ["-pthread", "-I/usr/local/include"], "link_args": ["/usr/local/lib/libprotobuf.so", "-lpthread"]}]
