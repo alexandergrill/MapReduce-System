@@ -8,12 +8,19 @@
 #include "slaveserver.h"
 #include "utils.h"
 
+#include "spdlog/spdlog.h"
+#include "spdlog/sinks/stdout_color_sinks.h"
+#include "spdlog/sinks/basic_file_sink.h"
+
+#include <rang.hpp>
+
 #include <map>
 #include <iostream>
 #include <mutex>
 
 
 using namespace std;
+using namespace rang;
 
 SlaveServer* SlaveServer::GetSlaveServer(string ip, string port, string sport, mutex& mx){
     bool ipvalid;
@@ -88,7 +95,11 @@ void SlaveServer::Shuffle(){
     maplist->pop_front();
     
     bool found = false;
-    
+
+    cout << fg::green << flush;
+    spdlog::get("slaveserver_logger")->info("call shuffle function");
+    spdlog::get("file_logger")->info("call shuffle function");
+
     for (map<string, int>::iterator t1 = mapf.begin(); t1 != mapf.end(); ++t1){
         for (map<string, int>::iterator t2 = maps.begin(); t2 != maps.end(); ++t2){
             if(t1->first == t2->first){
@@ -106,7 +117,6 @@ void SlaveServer::Shuffle(){
     for (map<string, int>::iterator t3 = maps.begin(); t3 != maps.end(); ++t3){
         InsertElementinMap(t3->first, t3->second);
     }
-    cout << "finished\n" << flush;
 }
 
 void SlaveServer::PrintList(){

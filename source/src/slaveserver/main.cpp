@@ -26,31 +26,28 @@ using namespace rang;
 using namespace asio::ip;
 
 int main(int argc, char *argv[]){
-
     string ipadress = "127.0.0.1";
     string port;
     string serverport;
     string transportstring = "";
-
     int maxclient{4};
     int threadcounter{0};
-
     mutex mx;
-    
+
     CLI::App app("MapReduceSystem_SlaverServer");
     app.add_option("-i,--i", ipadress, "ipadress for the server");
     app.add_option("-p,--p", port, "port to connect to")->required();
     app.add_option("-s,--s", serverport, "serverport")->required();
     app.add_option("-c,--c", maxclient, "the maximum of clients");
     CLI11_PARSE(app, argc, argv);
-
+    
     cout << fg::green << flush;
     auto file = spdlog::basic_logger_mt("file_logger", "log-File.txt");
     spdlog::set_default_logger(file);
     spdlog::flush_on(spdlog::level::info);
     auto console = spdlog::stderr_color_mt("slaveserver_logger");
     console->set_level(spdlog::level::trace);
-
+    
     vector<thread> pool(maxclient/2);
     SlaveServer *sl = SlaveServer::GetSlaveServer(ipadress, port, serverport, ref(mx));
 
@@ -97,9 +94,24 @@ int main(int argc, char *argv[]){
             spdlog::get("slaveserver_logger")->info("convert map to transportdata");
             spdlog::get("file_logger")->info("convert map to transportdata");
 
-            /*cout << fg::green << flush;
-            spdlog::get("slaveserver_logger")->info("send data to masterserver");
-            spdlog::get("file_logger")->info("send data to masterserver");*/
+            char *my_ip = &ipadress[0];
+            char *my_port = &port[0];
+
+            tcp::iostream tcpconnection{my_ip, my_port};
+
+            if (tcpconnection){
+                transportstring = ConvertMaptoString(sl->GetMap());
+                tcpconnection << transportstring << endl;
+                cout << fg::green << flush;
+                
+                spdlog::get("slaveserver_logger")->info("send data to masterserver");
+                spdlog::get("file_logger")->info("send data to masterserver");
+            
+                tcpconnection.close();
+            }
+
+            
+
         }
     }
     catch(...){
