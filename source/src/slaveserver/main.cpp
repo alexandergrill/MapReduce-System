@@ -26,13 +26,14 @@ using namespace rang;
 using namespace asio::ip;
 
 int main(int argc, char *argv[]){
+    mutex mx;
     string ipadress = "127.0.0.1";
     string port;
     string serverport;
     string transportstring = "";
     int maxclient{4};
     int threadcounter{0};
-    mutex mx;
+    
 
     CLI::App app("MapReduceSystem_SlaverServer");
     app.add_option("-i,--i", ipadress, "ipadress for the server");
@@ -94,10 +95,10 @@ int main(int argc, char *argv[]){
             spdlog::get("slaveserver_logger")->info("convert map to transportdata");
             spdlog::get("file_logger")->info("convert map to transportdata");
 
-            char *my_ip = &ipadress[0];
-            char *my_port = &port[0];
+            char *slaveserver_ip = &ipadress[0];
+            char *slaveserver_port = &port[0];
 
-            tcp::iostream tcpconnection{my_ip, my_port};
+            tcp::iostream tcpconnection{slaveserver_ip, slaveserver_port};
 
             if (tcpconnection){
                 transportstring = ConvertMaptoString(sl->GetMap());
@@ -109,9 +110,6 @@ int main(int argc, char *argv[]){
             
                 tcpconnection.close();
             }
-
-            
-
         }
     }
     catch(...){

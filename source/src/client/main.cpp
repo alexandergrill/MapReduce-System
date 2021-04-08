@@ -47,10 +47,10 @@ int main(int argc, char* argv[]){
 
     if(c != nullptr && wordcount > 0){
 
-        char* my_ip = &ipadress[0];
-        char* my_port = &port[0];
+        char* client_ip = &ipadress[0];
+        char* client_port = &port[0];
 
-        tcp::iostream tcpconnection{my_ip, my_port};
+        tcp::iostream tcpconnection{client_ip, client_port};
             
         if(tcpconnection){
             cout << fg::green << flush;

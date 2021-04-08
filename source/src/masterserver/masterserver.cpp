@@ -1,11 +1,11 @@
 /*
  * author:  Alexander Grill
- * file:    slaveserver.cpp
+ * file:    masterserver.cpp
  * project: mapreduce
  * date:    27.02.2021
 */
 
-#include "slaveserver.h"
+#include "masterserver.h"
 #include "utils.h"
 
 #include "spdlog/spdlog.h"
@@ -18,63 +18,58 @@
 #include <iostream>
 #include <mutex>
 
-
 using namespace std;
 using namespace rang;
 
-SlaveServer* SlaveServer::GetSlaveServer(string ip, string port, string sport, mutex& mx){
-    bool ipvalid;
+MasterServer *MasterServer::GetMasterServer(string port, mutex &mx){
     bool portvalid;
-    bool povalid; 
-    SlaveServer *sls;
+    MasterServer *mas;
 
-    ipvalid = IPIsValid(ip);
     portvalid = PORTIsValid(port);
-    povalid = PORTIsValid(sport);
 
-    if (ipvalid == false || portvalid == false || povalid == false){
-        std::cerr << "IP Adress or Port is invalid!" << std::endl;
-        sls = nullptr;
+    if (portvalid == false){
+        std::cerr << "Port is invalid!" << std::endl;
+        mas = nullptr;
     }
     else{
-        sls = new SlaveServer(ip, port, stoul(sport, nullptr, 0), mx);
+        mas = new MasterServer(stoul(port, nullptr, 0), mx);
     }
-    return sls;
+    return mas;
 }
 
-unsigned short SlaveServer::GetServerPort(){
+unsigned short MasterServer::GetServerPort(){
     return serverport;
 }
 
-map<string, int>* SlaveServer::GetMap(){
+map<string, int>* MasterServer::GetMap(){
     return &resultmap;
 }
 
-int SlaveServer::GetClientCounter(){
+int MasterServer::GetClientCounter(){
     return clientcounter;
 }
 
-void SlaveServer::SetClientCounter(){
+void MasterServer::SetClientCounter(){
     clientcounter += 1;
 }
 
-void SlaveServer::AddList(map<string, int>* mapdic){
+void MasterServer::AddList(map<string, int> *mapdic){
     maplist->push_back(*mapdic);
 }
 
-int SlaveServer::GetListLength(){
+int MasterServer::GetListLength(){
     return maplist->size();
 }
 
-void SlaveServer::InsertElementinMap(string value, int valuecnt){
-    if(resultmap.empty()){
+void MasterServer::InsertElementinMap(string value, int valuecnt){
+    if (resultmap.empty()){
         resultmap.insert(pair<string, int>(value, valuecnt));
     }
     else{
         map<string, int>::iterator it;
         it = resultmap.find(value);
         if (it != resultmap.end()){
-            resultmap.find(value)->second += valuecnt; 
+            resultmap.find(value)->second += valuecnt;
         }
         else{
             resultmap.insert(pair<string, int>(value, valuecnt));
@@ -82,10 +77,10 @@ void SlaveServer::InsertElementinMap(string value, int valuecnt){
     }
 }
 
-void SlaveServer::Shuffle(){
-    unique_lock<mutex> uls{mxss};
+void MasterServer::Reduce(){
+    unique_lock<mutex> uls{mxms};
     auto listiterator = maplist->begin();
-    advance(listiterator, maplist->size()-2);
+    advance(listiterator, maplist->size() - 2);
 
     map<string, int> mapf = *listiterator;
     ++listiterator;
@@ -93,23 +88,23 @@ void SlaveServer::Shuffle(){
 
     maplist->pop_front();
     maplist->pop_front();
-    
+
     bool found = false;
 
     cout << fg::green << flush;
-    spdlog::get("slaveserver_logger")->info("call shuffle function");
+    spdlog::get("masterserver_logger")->info("call reduce function");
     spdlog::get("file_logger")->info("call shuffle function");
 
     for (map<string, int>::iterator t1 = mapf.begin(); t1 != mapf.end(); ++t1){
         for (map<string, int>::iterator t2 = maps.begin(); t2 != maps.end(); ++t2){
-            if(t1->first == t2->first){
+            if (t1->first == t2->first){
                 InsertElementinMap(t1->first, t1->second + t2->second);
                 maps.erase(t2);
                 found = true;
                 break;
             }
         }
-        if(found == false){
+        if (found == false){
             InsertElementinMap(t1->first, t1->second);
         }
         found = false;
@@ -118,4 +113,3 @@ void SlaveServer::Shuffle(){
         InsertElementinMap(t3->first, t3->second);
     }
 }
-

@@ -5,7 +5,93 @@
  * date:    27.02.2021
 */
 
+#include "masterserver.h"
+#include "utils.h"
 
-int main(){
-    return 1;
+#include "spdlog/spdlog.h"
+#include "spdlog/sinks/stdout_color_sinks.h"
+#include "spdlog/sinks/basic_file_sink.h"
+
+#include <asio.hpp>
+#include <rang.hpp>
+#include <CLI11.hpp>
+
+#include <iostream>
+#include <thread>
+#include <vector>
+#include <mutex>
+
+using namespace std;
+using namespace rang;
+using namespace asio::ip;
+
+int main(int argc, char *argv[]){
+    mutex mx;
+    string port;
+    int maxslaveserver{2};
+    int threadcounter{0};
+
+    CLI::App app("MapReduceSystem_MasterServer");
+    app.add_option("-p,--p", port, "serverport")->required();
+    app.add_option("-c,--c", maxslaveserver, "the maximum of clients");
+    CLI11_PARSE(app, argc, argv);
+
+    cout << fg::green << flush;
+    auto file = spdlog::basic_logger_mt("file_logger", "log-File.txt");
+    spdlog::set_default_logger(file);
+    spdlog::flush_on(spdlog::level::info);
+    auto console = spdlog::stderr_color_mt("masterserver_logger");
+    console->set_level(spdlog::level::trace);
+
+    vector<thread> pool(maxslaveserver / 2);
+    MasterServer *ma = MasterServer::GetMasterServer(port, ref(mx));
+
+    try{
+        tcp::endpoint ep{tcp::v4(), ma->GetServerPort()};
+        asio::io_context cox;
+        tcp::acceptor ap{cox, ep};
+        if (ma != nullptr){
+            while (ma->GetClientCounter() < maxslaveserver){
+                ap.listen();
+                cout << fg::green << flush;
+                spdlog::get("masterserver_logger")->info("server is listening");
+                spdlog::get("file_logger")->info("server is listening");
+
+                tcp::iostream strm{ap.accept()};
+                ma->SetClientCounter();
+                cout << fg::green << flush;
+                spdlog::get("masterserver_logger")->info("client " + to_string(ma->GetClientCounter()) + " has connected to server");
+                spdlog::get("file_logger")->info("client " + to_string(ma->GetClientCounter()) + " has connected to server");
+
+                string data = "";
+                strm >> data;
+                map<string, int>* slaveservermap = ConvertStringtoMap(data);
+                cout << fg::green << flush;
+                spdlog::get("masterserver_logger")->info("convert data from client to map");
+                spdlog::get("file_logger")->info("convert data from client to map");
+                ma->AddList(slaveservermap);
+                if (ma->GetListLength() == 2){
+                    cout << fg::green << flush;
+                    spdlog::get("masterserver_logger")->info("call shuffle function");
+                    spdlog::get("file_logger")->info("call shuffle function");
+                    pool[threadcounter] = thread(&MasterServer::Reduce, &*ma);
+                    threadcounter += 1;
+                }
+                delete slaveservermap;
+            }
+
+            for (auto &t : pool){
+                t.join();
+            }
+            Print(ma->GetMap());
+        }
+    }
+
+    catch (...){
+        cout << fg::red << flush;
+        spdlog::get("masterserver_logger")->error("clients are not reachable");
+        spdlog::get("file_logger")->error("clients are not reachable");
+    }
+
+    delete ma;
 }
