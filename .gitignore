@@ -1,5 +1,5 @@
-build/*
+../build/*
 !build/.gitkeep
 
-.vscode
+.vscode/*
 vscode
