@@ -14,6 +14,7 @@
 
 #include <json/json.hpp>
 #include <rang.hpp>
+#include <tabulate/table.hpp>
 
 #include <map>
 #include <iostream>
@@ -23,6 +24,7 @@
 
 using namespace std;
 using namespace rang;
+using namespace tabulate;
 
 using json = nlohmann::json;
 
@@ -67,33 +69,29 @@ void MasterServer::AddList(map<string, int> *mapdic){
 int MasterServer::GetListLength(){
     return maplist->size();
 }
-void MasterServer::SetClientsData(std::string value, int valuecnt){
+
+void MasterServer::SetClientsData(string value, int valuecnt){
     clientsslserverdata += value + "," + to_string(valuecnt) + ":";
 }
 
-void MasterServer::ConvertStringtoMap(std::string transportstr)
-{
+void MasterServer::ConvertStringtoMap(std::string transportstr){
     map<string, int> *mapd = new map<string, int>();
     stringstream ss(transportstr);
     string data;
     string mapelementdata;
     int mapelementcounter;
     int cnt{0};
-    while (getline(ss, data, ':'))
-    {
+    while (getline(ss, data, ':')){
         int n = data.length();
         char *str = new char[n + 1];
         strcpy(str, data.c_str());
         char *strelement;
         strelement = strtok(str, ",");
-        while (strelement != NULL)
-        {
-            if (cnt == 0)
-            {
+        while (strelement != NULL){
+            if (cnt == 0){
                 mapelementdata = strelement;
             }
-            else
-            {
+            else{
                 mapelementcounter = stoi(strelement);
             }
             cnt += 1;
@@ -101,12 +99,10 @@ void MasterServer::ConvertStringtoMap(std::string transportstr)
         }
         cnt = 0;
 
-        if (any_of(mapelementdata.begin(), mapelementdata.end(), ::isdigit))
-        {
+        if (any_of(mapelementdata.begin(), mapelementdata.end(), ::isdigit)){
             SetClientsData(mapelementdata, mapelementcounter);
         }
-        else
-        {
+        else{
             mapd->insert(pair<string, int>(mapelementdata, mapelementcounter));
         }
         delete str;
@@ -140,6 +136,68 @@ void MasterServer::WriteIntoFile(string jsonfile){
         data["number"] = valuecounter;
         of << data << endl;
     }
+}
+
+void MasterServer::SetMaps(){
+    stringstream sstring(clientsslserverdata);
+    string data;
+    string clientservername = "";
+    string datacnt1;
+    string datacnt2;
+    int cnt{0};
+    cout << clientsslserverdata << endl;
+    while (getline(sstring, data, ':')){
+        int n = data.length();
+        char *str = new char[n + 1];
+        strcpy(str, data.c_str());
+        char *strelement;
+        strelement = strtok(str, ",");
+        while (strelement != NULL){
+            if(cnt == 0){
+                clientservername = strelement;
+                cnt += 1;
+            }
+            else{
+                if(cnt == 1){
+                    datacnt1 = strelement;
+                    cout << "HELLO   " << cnt << endl;
+                    cnt += 1;
+                }
+                else{
+                    
+                    datacnt2 = strelement;
+                    cnt += 1;
+                    cout << "setcnt2   " << cnt << endl;
+                }
+            }
+            strelement = strtok(NULL, ",");
+            if (cnt == 3)
+            {
+                cout << "ServerName " << clientservername << " Start Num " << datacnt1 << " Convert Num" << datacnt2 << endl;
+                cnt = 0;
+            }
+        }
+       
+
+        delete str;
+        
+    }
+}
+
+void MasterServer::PrintTable(){
+    
+    Table objects_table;
+    objects_table.format().font_style({FontStyle::bold}).width(30);
+    //objects_table.add_row({"Cleints", "Elves", "Reindeer"});
+    
+    SetMaps();
+    /*
+
+
+    objects_table.format().font_style({FontStyle::bold}).width(30);
+    objects_table.add_row({"Santa Claus", "Elves", "Reindeer"});
+    objects_table.add_row({to_string(btime), to_string(esum), to_string(rsum)});
+    cout << objects_table << endl;*/
 }
 
 void MasterServer::Reduce(){

@@ -75,7 +75,7 @@ int main(int argc, char* argv[]){
             cout << fg::green << flush;
             spdlog::get("client_logger")->info("convert map to transportdata");
             spdlog::get("file_logger")->info("convert map to transportdata");
-            transportstring += clientname + "0," + to_string(wordcount) + ":" + clientname + "1," + to_string(c->GetDataMapSize()) + ":";
+            transportstring += clientname + "+0," + to_string(wordcount) + ":" + clientname + "+1," + to_string(c->GetDataMapSize()) + ":";
             tcpconnection << transportstring << endl;
 
             cout << fg::green << flush;

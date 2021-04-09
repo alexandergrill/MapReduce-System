@@ -31,11 +31,13 @@ int main(int argc, char *argv[]){
     string jsonfile;
     int maxslaveserver{2};
     int threadcounter{0};
+    bool displaytable{false};
 
     CLI::App app("MapReduceSystem_MasterServer");
     app.add_option("-p,--p", port, "serverport")->required();
     app.add_option("-c,--c", maxslaveserver, "the maximum of slaveserver");
     app.add_option("-j,--j", jsonfile, "write reduced data in json-file")->check(CLI::ExistingFile);
+    app.add_flag("-t,--t", displaytable, "show you a table about the reduced data");
     CLI11_PARSE(app, argc, argv);
 
     cout << fg::green << flush;
@@ -84,10 +86,12 @@ int main(int argc, char *argv[]){
         }
         Print(ma->GetMap());
 
+        if (displaytable == true){
+            ma->PrintTable();
+        }
         if(jsonfile.empty() == false){
             ma->WriteIntoFile(jsonfile);
         }
-        cout << "Data " << ma->clientsslserverdata << endl;
     }
     else{
         cout << fg::red << flush;

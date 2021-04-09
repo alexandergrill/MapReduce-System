@@ -99,12 +99,12 @@ void SlaveServer::InsertElementinMap(string value, int valuecnt){
 void SlaveServer::ConvertStringtoMap(std::string transportstr)
 {
     map<string, int> *mapd = new map<string, int>();
-    stringstream ss(transportstr);
+    stringstream sstring(transportstr);
     string data;
     string mapelementdata;
     int mapelementcounter;
     int cnt{0};
-    while (getline(ss, data, ':'))
+    while (getline(sstring, data, ':'))
     {
         int n = data.length();
         char *str = new char[n + 1];

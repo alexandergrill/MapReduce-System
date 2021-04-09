@@ -90,7 +90,7 @@ int main(int argc, char *argv[]){
         Print(sl->GetMap());
         transportstring = ConvertMaptoString(sl->GetMap());
         transportstring += sl->GetClientsData();
-        transportstring += slaveservername + "0," + to_string(-1) + ":" + slaveservername + "1," + to_string(sl->GetDataMapSize()) + ":";
+        transportstring += slaveservername + "+1," + to_string(-1) + ":" + slaveservername + "+1," + to_string(sl->GetDataMapSize()) + ":";
 
         cout << fg::green << flush;
         spdlog::get("slaveserver_logger")->info("convert map to transportdata");
