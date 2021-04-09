@@ -31,11 +31,13 @@ int main(int argc, char *argv[]){
     string port;
     string serverport;
     string transportstring = "";
+    string slaveservername;
     int maxclient{4};
     int threadcounter{0};
     
 
     CLI::App app("MapReduceSystem_SlaverServer");
+    app.add_option("-n,--n", slaveservername, "name for the client")->required();
     app.add_option("-i,--i", ipadress, "ipadress for the server");
     app.add_option("-p,--p", port, "port to connect to")->required();
     app.add_option("-s,--s", serverport, "serverport")->required();
@@ -70,17 +72,16 @@ int main(int argc, char *argv[]){
 
             string data = "";
             strm >> data;
-            map<string, int> *clientmap = ConvertStringtoMap(data);
+            sl->ConvertStringtoMap(data);
+
             cout << fg::green << flush;
             spdlog::get("slaveserver_logger")->info("convert data from client to map");
             spdlog::get("file_logger")->info("convert data from client to map");
-            sl->AddList(clientmap);
             if (sl->GetListLength() == 2){
                 cout << fg::green << flush;
                 pool[threadcounter] = thread(&SlaveServer::Shuffle, &*sl);
                 threadcounter += 1;
             }
-            delete clientmap; 
         }
 
         for (auto &t : pool){
@@ -88,6 +89,8 @@ int main(int argc, char *argv[]){
         }
         Print(sl->GetMap());
         transportstring = ConvertMaptoString(sl->GetMap());
+        transportstring += sl->GetClientsData();
+        transportstring += slaveservername + "0," + to_string(-1) + ":" + slaveservername + "1," + to_string(sl->GetDataMapSize()) + ":";
 
         cout << fg::green << flush;
         spdlog::get("slaveserver_logger")->info("convert map to transportdata");

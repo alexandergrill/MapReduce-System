@@ -27,9 +27,11 @@ int main(int argc, char* argv[]){
     string filepath = "../src/client/clientfile.txt";
     string ipadress = "127.0.0.1";
     string port;
+    string clientname;
     string transportstring = "";
     
     CLI::App app("MapReduceSystem_Client");
+    app.add_option("-n,--n", clientname, "name for the client")->required();
     app.add_option("-i,--i", ipadress, "ipadress for the client");
     app.add_option("-p,--p", port, "port to connect to")->required();
     app.add_option("-w,--w", wordcount, "wortcount how many random strings are used for the system");
@@ -73,8 +75,9 @@ int main(int argc, char* argv[]){
             cout << fg::green << flush;
             spdlog::get("client_logger")->info("convert map to transportdata");
             spdlog::get("file_logger")->info("convert map to transportdata");
-                    
+            transportstring += clientname + "0," + to_string(wordcount) + ":" + clientname + "1," + to_string(c->GetDataMapSize()) + ":";
             tcpconnection << transportstring << endl;
+
             cout << fg::green << flush;
             spdlog::get("client_logger")->info("send data to slaveserver");
             spdlog::get("file_logger")->info("send data to slaveserver");

@@ -17,7 +17,7 @@
 #include <map>
 #include <iostream>
 #include <mutex>
-
+#include <sstream>
 
 using namespace std;
 using namespace rang;
@@ -64,6 +64,18 @@ void SlaveServer::AddList(map<string, int>* mapdic){
     maplist->push_back(*mapdic);
 }
 
+void SlaveServer::SetClientsData(std::string value, int valuecnt){
+    clientsdata += value + "," + to_string(valuecnt) + ":";
+}
+
+string SlaveServer::GetClientsData(){
+    return clientsdata;
+}
+
+int SlaveServer::GetDataMapSize(){
+    return resultmap.size();
+}
+
 int SlaveServer::GetListLength(){
     return maplist->size();
 }
@@ -82,6 +94,49 @@ void SlaveServer::InsertElementinMap(string value, int valuecnt){
             resultmap.insert(pair<string, int>(value, valuecnt));
         }
     }
+}
+
+void SlaveServer::ConvertStringtoMap(std::string transportstr)
+{
+    map<string, int> *mapd = new map<string, int>();
+    stringstream ss(transportstr);
+    string data;
+    string mapelementdata;
+    int mapelementcounter;
+    int cnt{0};
+    while (getline(ss, data, ':'))
+    {
+        int n = data.length();
+        char *str = new char[n + 1];
+        strcpy(str, data.c_str());
+        char *strelement;
+        strelement = strtok(str, ",");
+        while (strelement != NULL)
+        {
+            if (cnt == 0)
+            {
+                mapelementdata = strelement;
+            }
+            else
+            {
+                mapelementcounter = stoi(strelement);
+            }
+            cnt += 1;
+            strelement = strtok(NULL, ",");
+        }
+        cnt = 0;
+
+        if (any_of(mapelementdata.begin(), mapelementdata.end(), ::isdigit))
+        {
+            SetClientsData(mapelementdata, mapelementcounter);
+        }
+        else
+        {
+            mapd->insert(pair<string, int>(mapelementdata, mapelementcounter));
+        }
+        delete str;
+    }
+    AddList(mapd);
 }
 
 void SlaveServer::Shuffle(){
@@ -120,4 +175,3 @@ void SlaveServer::Shuffle(){
         InsertElementinMap(t3->first, t3->second);
     }
 }
-

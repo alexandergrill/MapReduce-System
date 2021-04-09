@@ -57,6 +57,10 @@ map<string, int>* Client::GetMap(){
     return &datamap;
 }
 
+int Client::GetDataMapSize(){
+    return datamap.size();
+}
+
 string Client::GetRandomString(){
     int wordlength = GetRandomNum(1, 5);
     int wordletter = GetRandomNum(0, 51);

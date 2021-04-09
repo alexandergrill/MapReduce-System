@@ -24,8 +24,12 @@ private:
         maplist = new std::list<std::map<std::string, int>>();
     }
     int FindElementinDataMap(std::string value);
+        void AddList(std::map<std::string, int> *mapdic);
+    void SetClientsData(std::string value, int valuecnt);
+    
 
 public:
+    std::string clientsslserverdata = "";
     ~MasterServer(){
         delete maplist;
     }
@@ -35,7 +39,8 @@ public:
     int GetListLength();
     int GetClientCounter();
     void SetClientCounter();
-    void AddList(std::map<std::string, int>* mapdic);
+
+    void ConvertStringtoMap(std::string transportstr);
     void InsertElementinMap(std::string value, int valuecnt);
     void WriteIntoFile(std::string jsonfile);
     void Reduce();

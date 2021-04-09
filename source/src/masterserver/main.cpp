@@ -67,18 +67,16 @@ int main(int argc, char *argv[]){
 
             string data = "";
             strm >> data;
-            map<string, int>* slaveservermap = ConvertStringtoMap(data);
-            
+            ma->ConvertStringtoMap(data);
+
             cout << fg::green << flush;
             spdlog::get("masterserver_logger")->info("convert data from slaveserver to map");
             spdlog::get("file_logger")->info("convert data from slaveserver to map");
-            ma->AddList(slaveservermap);
             
             if (ma->GetListLength() == 2){
                 pool[threadcounter] = thread(&MasterServer::Reduce, &*ma);
                 threadcounter += 1;
             }
-            delete slaveservermap;
         }
 
         for (auto &t : pool){
@@ -89,6 +87,7 @@ int main(int argc, char *argv[]){
         if(jsonfile.empty() == false){
             ma->WriteIntoFile(jsonfile);
         }
+        cout << "Data " << ma->clientsslserverdata << endl;
     }
     else{
         cout << fg::red << flush;

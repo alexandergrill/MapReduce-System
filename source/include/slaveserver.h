@@ -17,6 +17,7 @@ class SlaveServer{
 private:
     std::string ipadresse;
     std::string port;
+    
     int clientcounter{0};
     unsigned short serverport;
     std::map<std::string, int> resultmap;
@@ -26,7 +27,11 @@ private:
         maplist = new std::list<std::map<std::string, int>>();
     }
     int FindElementinDataMap(std::string value);
+    void AddList(std::map<std::string, int> *mapdic);
+    void SetClientsData(std::string value, int valuecnt);
+
 public:
+    std::string clientsdata = "";
     ~SlaveServer(){
         delete maplist;
     }
@@ -35,8 +40,10 @@ public:
     std::map<std::string, int>* GetMap();
     int GetListLength();
     int GetClientCounter();
+    int GetDataMapSize();
     void SetClientCounter();
-    void AddList(std::map<std::string, int>* mapdic);
+    std::string GetClientsData();
+    void ConvertStringtoMap(std::string transportstr);
     void InsertElementinMap(std::string value, int valuecnt);
     void Shuffle();
 };

@@ -31,6 +31,7 @@ public :
     static Client *GetClient(std::string ip, std::string pr);
     std::map<std::string, int>* GetMap();
     std::string ConvertMap();
+    int GetDataMapSize();
     void WriteIntoFile(int wordnum, std::string filename);
     void Map(std::string filename);
 };

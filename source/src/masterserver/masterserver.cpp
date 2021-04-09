@@ -19,6 +19,7 @@
 #include <iostream>
 #include <mutex>
 #include <fstream>
+#include <sstream>
 
 using namespace std;
 using namespace rang;
@@ -65,6 +66,52 @@ void MasterServer::AddList(map<string, int> *mapdic){
 
 int MasterServer::GetListLength(){
     return maplist->size();
+}
+void MasterServer::SetClientsData(std::string value, int valuecnt){
+    clientsslserverdata += value + "," + to_string(valuecnt) + ":";
+}
+
+void MasterServer::ConvertStringtoMap(std::string transportstr)
+{
+    map<string, int> *mapd = new map<string, int>();
+    stringstream ss(transportstr);
+    string data;
+    string mapelementdata;
+    int mapelementcounter;
+    int cnt{0};
+    while (getline(ss, data, ':'))
+    {
+        int n = data.length();
+        char *str = new char[n + 1];
+        strcpy(str, data.c_str());
+        char *strelement;
+        strelement = strtok(str, ",");
+        while (strelement != NULL)
+        {
+            if (cnt == 0)
+            {
+                mapelementdata = strelement;
+            }
+            else
+            {
+                mapelementcounter = stoi(strelement);
+            }
+            cnt += 1;
+            strelement = strtok(NULL, ",");
+        }
+        cnt = 0;
+
+        if (any_of(mapelementdata.begin(), mapelementdata.end(), ::isdigit))
+        {
+            SetClientsData(mapelementdata, mapelementcounter);
+        }
+        else
+        {
+            mapd->insert(pair<string, int>(mapelementdata, mapelementcounter));
+        }
+        delete str;
+    }
+    AddList(mapd);
 }
 
 void MasterServer::InsertElementinMap(string value, int valuecnt){
