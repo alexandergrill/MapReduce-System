@@ -4,3 +4,4 @@ option('json_include_dir', type : 'string', value : '/home/alex/json/json/', des
 option('rang_include_dir', type : 'string', value : '/home/alex/rang/rang/', description : 'the dir containing rang.hpp')
 option('spdlog_include_dir', type : 'string', value : '/home/alex/spdlog-1.8.2/include', description : 'the include dir of spdlog')
 option('tabulate_include_dir', type : 'string', value : '/home/alex/tabulate/tabulate/', description : 'the dir containing tabulate.hpp')
+option('json_include_dir', type : 'string', value : '/home/alex/json/', description : 'the include dir of json')

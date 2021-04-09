@@ -12,14 +12,18 @@
 #include "spdlog/sinks/stdout_color_sinks.h"
 #include "spdlog/sinks/basic_file_sink.h"
 
+#include <json/json.hpp>
 #include <rang.hpp>
 
 #include <map>
 #include <iostream>
 #include <mutex>
+#include <fstream>
 
 using namespace std;
 using namespace rang;
+
+using json = nlohmann::json;
 
 MasterServer *MasterServer::GetMasterServer(string port, mutex &mx){
     bool portvalid;
@@ -28,7 +32,9 @@ MasterServer *MasterServer::GetMasterServer(string port, mutex &mx){
     portvalid = PORTIsValid(port);
 
     if (portvalid == false){
-        std::cerr << "Port is invalid!" << std::endl;
+        cout << fg::red << flush;
+        spdlog::get("masterserver_logger")->error("IP Adress or Port is invalid!");
+        spdlog::get("file_logger")->error("IP Adress or Port is invalid!");
         mas = nullptr;
     }
     else{
@@ -74,6 +80,18 @@ void MasterServer::InsertElementinMap(string value, int valuecnt){
         else{
             resultmap.insert(pair<string, int>(value, valuecnt));
         }
+    }
+}
+
+void MasterServer::WriteIntoFile(string jsonfile){
+    json data;
+    ofstream of(jsonfile);
+    for (map<string, int>::iterator t = resultmap.begin(); t != resultmap.end(); ++t){
+        string value = t->first;
+        int valuecounter = t->second;
+        data["value"] = value;
+        data["number"] = valuecounter;
+        of << data << endl;
     }
 }
 

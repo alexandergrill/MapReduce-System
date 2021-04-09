@@ -52,70 +52,71 @@ int main(int argc, char *argv[]){
     vector<thread> pool(maxclient/2);
     SlaveServer *sl = SlaveServer::GetSlaveServer(ipadress, port, serverport, ref(mx));
 
-    try{
-        tcp::endpoint ep{tcp::v4(),sl->GetServerPort()};
+    if(sl != nullptr){
+        tcp::endpoint ep{tcp::v4(), sl->GetServerPort()};
         asio::io_context cox;
         tcp::acceptor ap{cox, ep};
-        if(sl != nullptr){
-            while (sl->GetClientCounter() < maxclient){
-                ap.listen();
-                cout << fg::green << flush;
-                spdlog::get("slaveserver_logger")->info("server is listening");
-                spdlog::get("file_logger")->info("server is listening");
-
-                tcp::iostream strm{ap.accept()};
-                sl->SetClientCounter();
-                cout << fg::green << flush;
-                spdlog::get("slaveserver_logger")->info("client " + to_string(sl->GetClientCounter()) + " has connected to server");
-                spdlog::get("file_logger")->info("client " + to_string(sl->GetClientCounter()) + " has connected to server");
-                    
-                string data = "";
-                strm >> data;
-                map<string, int>* clientmap = ConvertStringtoMap(data);
-                cout << fg::green << flush;
-                spdlog::get("slaveserver_logger")->info("convert data from client to map");
-                spdlog::get("file_logger")->info("convert data from client to map");
-                sl->AddList(clientmap);
-                if(sl->GetListLength() == 2){
-                    cout << fg::green << flush;
-                    spdlog::get("slaveserver_logger")->info("call shuffle function");
-                    spdlog::get("file_logger")->info("call shuffle function");
-                    pool[threadcounter] = thread (&SlaveServer::Shuffle, &*sl);
-                    threadcounter += 1;
-                }
-                delete clientmap; 
-            }
-
-            for (auto &t : pool){
-                t.join();
-            }
-            Print(sl->GetMap());
-            transportstring = ConvertMaptoString(sl->GetMap());
+        while (sl->GetClientCounter() < maxclient){
+            ap.listen();
             cout << fg::green << flush;
-            spdlog::get("slaveserver_logger")->info("convert map to transportdata");
-            spdlog::get("file_logger")->info("convert map to transportdata");
+            spdlog::get("slaveserver_logger")->info("server is listening");
+            spdlog::get("file_logger")->info("server is listening");
 
-            char *slaveserver_ip = &ipadress[0];
-            char *slaveserver_port = &port[0];
+            tcp::iostream strm{ap.accept()};
+            sl->SetClientCounter();
+            cout << fg::green << flush;
+            spdlog::get("slaveserver_logger")->info("client " + to_string(sl->GetClientCounter()) + " has connected to server");
+            spdlog::get("file_logger")->info("client " + to_string(sl->GetClientCounter()) + " has connected to server");
 
-            tcp::iostream tcpconnection{slaveserver_ip, slaveserver_port};
-
-            if (tcpconnection){
-                transportstring = ConvertMaptoString(sl->GetMap());
-                tcpconnection << transportstring << endl;
+            string data = "";
+            strm >> data;
+            map<string, int> *clientmap = ConvertStringtoMap(data);
+            cout << fg::green << flush;
+            spdlog::get("slaveserver_logger")->info("convert data from client to map");
+            spdlog::get("file_logger")->info("convert data from client to map");
+            sl->AddList(clientmap);
+            if (sl->GetListLength() == 2){
                 cout << fg::green << flush;
-                
-                spdlog::get("slaveserver_logger")->info("send data to masterserver");
-                spdlog::get("file_logger")->info("send data to masterserver");
-            
-                tcpconnection.close();
+                pool[threadcounter] = thread(&SlaveServer::Shuffle, &*sl);
+                threadcounter += 1;
             }
+            delete clientmap; 
         }
+
+        for (auto &t : pool){
+            t.join();
+        }
+        Print(sl->GetMap());
+        transportstring = ConvertMaptoString(sl->GetMap());
+
+        cout << fg::green << flush;
+        spdlog::get("slaveserver_logger")->info("convert map to transportdata");
+        spdlog::get("file_logger")->info("convert map to transportdata");
+
+        char *slaveserver_ip = &ipadress[0];
+        char *slaveserver_port = &port[0];
+
+        tcp::iostream tcpconnection{slaveserver_ip, slaveserver_port};
+
+        if (tcpconnection){
+            tcpconnection << transportstring << endl;
+            
+            cout << fg::green << flush;
+            spdlog::get("slaveserver_logger")->info("send data to masterserver");
+            spdlog::get("file_logger")->info("send data to masterserver");
+        }
+        else{
+            cout << fg::red << flush;
+            spdlog::get("slaveserver_logger")->error("masterserver are not reachable");
+            spdlog::get("file_logger")->error("masterserver are not reachable");
+        }
+        tcpconnection.close();
     }
-    catch(...){
+
+    else{
         cout << fg::red << flush;
-        spdlog::get("slaveserver_logger")->error("clients are not reachable");
-        spdlog::get("file_logger")->error("clients are not reachable");
+        spdlog::get("slaveserver_logger")->error("check input parameter");
+        spdlog::get("file_logger")->error("check input parameter");
     }
     
     delete sl;

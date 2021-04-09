@@ -1,0 +1,56 @@
+[
+  {
+    "directory": "/home/alex/Desktop/grill_project_2",
+    "command": "c++ -Iclient@exe -I. -Isource -Isource/include -I/home/alex/spdlog-1.8.2/include -I/home/alex/CLI11/CLI11/ -I/home/alex/rang/rang/ -I/home/alex/asio/ -I/usr/local/include -I/home/alex/json/json/ -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -Werror -std=c++17 -g -DASIO_STANDALONE -DASIO_NO_DEPRECATED -pthread -MD -MQ 'client@exe/src_client_main.cpp.o' -MF 'client@exe/src_client_main.cpp.o.d' -o 'client@exe/src_client_main.cpp.o' -c source/src/client/main.cpp",
+    "file": "source/src/client/main.cpp",
+    "output": "client@exe/src_client_main.cpp.o"
+  },
+  {
+    "directory": "/home/alex/Desktop/grill_project_2",
+    "command": "c++ -Iclient@exe -I. -Isource -Isource/include -I/home/alex/spdlog-1.8.2/include -I/home/alex/CLI11/CLI11/ -I/home/alex/rang/rang/ -I/home/alex/asio/ -I/usr/local/include -I/home/alex/json/json/ -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -Werror -std=c++17 -g -DASIO_STANDALONE -DASIO_NO_DEPRECATED -pthread -MD -MQ 'client@exe/src_client_client.cpp.o' -MF 'client@exe/src_client_client.cpp.o.d' -o 'client@exe/src_client_client.cpp.o' -c source/src/client/client.cpp",
+    "file": "source/src/client/client.cpp",
+    "output": "client@exe/src_client_client.cpp.o"
+  },
+  {
+    "directory": "/home/alex/Desktop/grill_project_2",
+    "command": "c++ -Iclient@exe -I. -Isource -Isource/include -I/home/alex/spdlog-1.8.2/include -I/home/alex/CLI11/CLI11/ -I/home/alex/rang/rang/ -I/home/alex/asio/ -I/usr/local/include -I/home/alex/json/json/ -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -Werror -std=c++17 -g -DASIO_STANDALONE -DASIO_NO_DEPRECATED -pthread -MD -MQ 'client@exe/src_utils.cpp.o' -MF 'client@exe/src_utils.cpp.o.d' -o 'client@exe/src_utils.cpp.o' -c source/src/utils.cpp",
+    "file": "source/src/utils.cpp",
+    "output": "client@exe/src_utils.cpp.o"
+  },
+  {
+    "directory": "/home/alex/Desktop/grill_project_2",
+    "command": "c++ -Islaveserver@exe -I. -Isource -Isource/include -I/home/alex/spdlog-1.8.2/include -I/home/alex/CLI11/CLI11/ -I/home/alex/rang/rang/ -I/home/alex/asio/ -I/usr/local/include -I/home/alex/json/json/ -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -Werror -std=c++17 -g -DASIO_STANDALONE -DASIO_NO_DEPRECATED -pthread -MD -MQ 'slaveserver@exe/src_slaveserver_main.cpp.o' -MF 'slaveserver@exe/src_slaveserver_main.cpp.o.d' -o 'slaveserver@exe/src_slaveserver_main.cpp.o' -c source/src/slaveserver/main.cpp",
+    "file": "source/src/slaveserver/main.cpp",
+    "output": "slaveserver@exe/src_slaveserver_main.cpp.o"
+  },
+  {
+    "directory": "/home/alex/Desktop/grill_project_2",
+    "command": "c++ -Islaveserver@exe -I. -Isource -Isource/include -I/home/alex/spdlog-1.8.2/include -I/home/alex/CLI11/CLI11/ -I/home/alex/rang/rang/ -I/home/alex/asio/ -I/usr/local/include -I/home/alex/json/json/ -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -Werror -std=c++17 -g -DASIO_STANDALONE -DASIO_NO_DEPRECATED -pthread -MD -MQ 'slaveserver@exe/src_slaveserver_slaveserver.cpp.o' -MF 'slaveserver@exe/src_slaveserver_slaveserver.cpp.o.d' -o 'slaveserver@exe/src_slaveserver_slaveserver.cpp.o' -c source/src/slaveserver/slaveserver.cpp",
+    "file": "source/src/slaveserver/slaveserver.cpp",
+    "output": "slaveserver@exe/src_slaveserver_slaveserver.cpp.o"
+  },
+  {
+    "directory": "/home/alex/Desktop/grill_project_2",
+    "command": "c++ -Islaveserver@exe -I. -Isource -Isource/include -I/home/alex/spdlog-1.8.2/include -I/home/alex/CLI11/CLI11/ -I/home/alex/rang/rang/ -I/home/alex/asio/ -I/usr/local/include -I/home/alex/json/json/ -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -Werror -std=c++17 -g -DASIO_STANDALONE -DASIO_NO_DEPRECATED -pthread -MD -MQ 'slaveserver@exe/src_utils.cpp.o' -MF 'slaveserver@exe/src_utils.cpp.o.d' -o 'slaveserver@exe/src_utils.cpp.o' -c source/src/utils.cpp",
+    "file": "source/src/utils.cpp",
+    "output": "slaveserver@exe/src_utils.cpp.o"
+  },
+  {
+    "directory": "/home/alex/Desktop/grill_project_2",
+    "command": "c++ -Imasterserver@exe -I. -Isource -Isource/include -I/home/alex/spdlog-1.8.2/include -I/home/alex/CLI11/CLI11/ -I/home/alex/rang/rang/ -I/home/alex/asio/ -I/usr/local/include -I/home/alex/json/json/ -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -Werror -std=c++17 -g -DASIO_STANDALONE -DASIO_NO_DEPRECATED -pthread -MD -MQ 'masterserver@exe/src_masterserver_main.cpp.o' -MF 'masterserver@exe/src_masterserver_main.cpp.o.d' -o 'masterserver@exe/src_masterserver_main.cpp.o' -c source/src/masterserver/main.cpp",
+    "file": "source/src/masterserver/main.cpp",
+    "output": "masterserver@exe/src_masterserver_main.cpp.o"
+  },
+  {
+    "directory": "/home/alex/Desktop/grill_project_2",
+    "command": "c++ -Imasterserver@exe -I. -Isource -Isource/include -I/home/alex/spdlog-1.8.2/include -I/home/alex/CLI11/CLI11/ -I/home/alex/rang/rang/ -I/home/alex/asio/ -I/usr/local/include -I/home/alex/json/json/ -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -Werror -std=c++17 -g -DASIO_STANDALONE -DASIO_NO_DEPRECATED -pthread -MD -MQ 'masterserver@exe/src_masterserver_masterserver.cpp.o' -MF 'masterserver@exe/src_masterserver_masterserver.cpp.o.d' -o 'masterserver@exe/src_masterserver_masterserver.cpp.o' -c source/src/masterserver/masterserver.cpp",
+    "file": "source/src/masterserver/masterserver.cpp",
+    "output": "masterserver@exe/src_masterserver_masterserver.cpp.o"
+  },
+  {
+    "directory": "/home/alex/Desktop/grill_project_2",
+    "command": "c++ -Imasterserver@exe -I. -Isource -Isource/include -I/home/alex/spdlog-1.8.2/include -I/home/alex/CLI11/CLI11/ -I/home/alex/rang/rang/ -I/home/alex/asio/ -I/usr/local/include -I/home/alex/json/json/ -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -Werror -std=c++17 -g -DASIO_STANDALONE -DASIO_NO_DEPRECATED -pthread -MD -MQ 'masterserver@exe/src_utils.cpp.o' -MF 'masterserver@exe/src_utils.cpp.o.d' -o 'masterserver@exe/src_utils.cpp.o' -c source/src/utils.cpp",
+    "file": "source/src/utils.cpp",
+    "output": "masterserver@exe/src_utils.cpp.o"
+  }
+]

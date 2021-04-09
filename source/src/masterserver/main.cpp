@@ -28,12 +28,14 @@ using namespace asio::ip;
 int main(int argc, char *argv[]){
     mutex mx;
     string port;
+    string jsonfile;
     int maxslaveserver{2};
     int threadcounter{0};
 
     CLI::App app("MapReduceSystem_MasterServer");
     app.add_option("-p,--p", port, "serverport")->required();
-    app.add_option("-c,--c", maxslaveserver, "the maximum of clients");
+    app.add_option("-c,--c", maxslaveserver, "the maximum of slaveserver");
+    app.add_option("-j,--j", jsonfile, "write reduced data in json-file")->check(CLI::ExistingFile);
     CLI11_PARSE(app, argc, argv);
 
     cout << fg::green << flush;
@@ -44,53 +46,54 @@ int main(int argc, char *argv[]){
     console->set_level(spdlog::level::trace);
 
     vector<thread> pool(maxslaveserver / 2);
-    MasterServer *ma = MasterServer::GetMasterServer(port, ref(mx));
+    MasterServer* ma = MasterServer::GetMasterServer(port, ref(mx));
 
-    try{
+    
+    if (ma != nullptr){
         tcp::endpoint ep{tcp::v4(), ma->GetServerPort()};
         asio::io_context cox;
         tcp::acceptor ap{cox, ep};
-        if (ma != nullptr){
-            while (ma->GetClientCounter() < maxslaveserver){
-                ap.listen();
-                cout << fg::green << flush;
-                spdlog::get("masterserver_logger")->info("server is listening");
-                spdlog::get("file_logger")->info("server is listening");
+        while (ma->GetClientCounter() < maxslaveserver){
+            ap.listen();
+            cout << fg::green << flush;
+            spdlog::get("masterserver_logger")->info("server is listening");
+            spdlog::get("file_logger")->info("server is listening");
 
-                tcp::iostream strm{ap.accept()};
-                ma->SetClientCounter();
-                cout << fg::green << flush;
-                spdlog::get("masterserver_logger")->info("client " + to_string(ma->GetClientCounter()) + " has connected to server");
-                spdlog::get("file_logger")->info("client " + to_string(ma->GetClientCounter()) + " has connected to server");
+            tcp::iostream strm{ap.accept()};
+            ma->SetClientCounter();
+            cout << fg::green << flush;
+            spdlog::get("masterserver_logger")->info("slaveserver " + to_string(ma->GetClientCounter()) + " has connected to server");
+            spdlog::get("file_logger")->info("slaveserver " + to_string(ma->GetClientCounter()) + " has connected to server");
 
-                string data = "";
-                strm >> data;
-                map<string, int>* slaveservermap = ConvertStringtoMap(data);
-                cout << fg::green << flush;
-                spdlog::get("masterserver_logger")->info("convert data from client to map");
-                spdlog::get("file_logger")->info("convert data from client to map");
-                ma->AddList(slaveservermap);
-                if (ma->GetListLength() == 2){
-                    cout << fg::green << flush;
-                    spdlog::get("masterserver_logger")->info("call shuffle function");
-                    spdlog::get("file_logger")->info("call shuffle function");
-                    pool[threadcounter] = thread(&MasterServer::Reduce, &*ma);
-                    threadcounter += 1;
-                }
-                delete slaveservermap;
+            string data = "";
+            strm >> data;
+            map<string, int>* slaveservermap = ConvertStringtoMap(data);
+            
+            cout << fg::green << flush;
+            spdlog::get("masterserver_logger")->info("convert data from slaveserver to map");
+            spdlog::get("file_logger")->info("convert data from slaveserver to map");
+            ma->AddList(slaveservermap);
+            
+            if (ma->GetListLength() == 2){
+                pool[threadcounter] = thread(&MasterServer::Reduce, &*ma);
+                threadcounter += 1;
             }
+            delete slaveservermap;
+        }
 
-            for (auto &t : pool){
-                t.join();
-            }
-            Print(ma->GetMap());
+        for (auto &t : pool){
+            t.join();
+        }
+        Print(ma->GetMap());
+
+        if(jsonfile.empty() == false){
+            ma->WriteIntoFile(jsonfile);
         }
     }
-
-    catch (...){
+    else{
         cout << fg::red << flush;
-        spdlog::get("masterserver_logger")->error("clients are not reachable");
-        spdlog::get("file_logger")->error("clients are not reachable");
+        spdlog::get("masterserver_logger")->error("check input parameter");
+        spdlog::get("file_logger")->error("check input parameter");
     }
 
     delete ma;

@@ -37,6 +37,7 @@ public:
     void SetClientCounter();
     void AddList(std::map<std::string, int>* mapdic);
     void InsertElementinMap(std::string value, int valuecnt);
+    void WriteIntoFile(std::string jsonfile);
     void Reduce();
 };
 

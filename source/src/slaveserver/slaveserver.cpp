@@ -33,7 +33,9 @@ SlaveServer* SlaveServer::GetSlaveServer(string ip, string port, string sport, m
     povalid = PORTIsValid(sport);
 
     if (ipvalid == false || portvalid == false || povalid == false){
-        std::cerr << "IP Adress or Port is invalid!" << std::endl;
+        cout << fg::red << flush;
+        spdlog::get("slaveserver_logger")->error("IP Adress or Port is invalid!");
+        spdlog::get("file_logger")->error("IP Adress or Port is invalid!");
         sls = nullptr;
     }
     else{

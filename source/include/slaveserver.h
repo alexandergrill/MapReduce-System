@@ -37,7 +37,6 @@ public:
     int GetClientCounter();
     void SetClientCounter();
     void AddList(std::map<std::string, int>* mapdic);
-    void PrintList();
     void InsertElementinMap(std::string value, int valuecnt);
     void Shuffle();
 };
