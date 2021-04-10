@@ -17,7 +17,6 @@ class SlaveServer{
 private:
     std::string ipadresse;
     std::string port;
-    
     int clientcounter{0};
     unsigned short serverport;
     std::map<std::string, int> resultmap;
@@ -29,7 +28,6 @@ private:
     int FindElementinDataMap(std::string value);
     void AddList(std::map<std::string, int> *mapdic);
     void SetClientsData(std::string value, int valuecnt);
-
 public:
     std::string clientsdata = "";
     ~SlaveServer(){

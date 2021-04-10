@@ -22,10 +22,8 @@ private:
     std::map<std::string, int> resultmap;
     std::list<std::map<std::string, int>> *maplist;
     std::mutex &mxms;
-
     std::map<std::string, std::map<std::string, std::string>> clients;
     std::map<std::string, std::string> slaveserver;
-
     MasterServer(unsigned short pr, std::mutex &mx) : serverport{pr}, mxms{mx}{
         maplist = new std::list<std::map<std::string, int>>();
     }
@@ -44,7 +42,6 @@ public :
     int GetListLength();
     int GetClientCounter();
     void SetClientCounter();
-
     void ConvertStringtoMap(std::string transportstr);
     void InsertElementinMap(std::string value, int valuecnt);
     void WriteIntoFile(std::string jsonfile);

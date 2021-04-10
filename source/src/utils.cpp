@@ -15,11 +15,7 @@
 #include <vector>
 #include <sstream>
 #include <cstring>
-
 #include <algorithm>
-
-
-
 
 using namespace std;
 
@@ -74,7 +70,6 @@ bool Search(string value, std::map<std::string, int>* dic){
 
 string ConvertMaptoString(std::map<std::string, int>* dic){
     string dicstring = "";
-
     for (map<string, int>::iterator i = dic->begin(); i != dic->end(); ++i){
         dicstring += i->first;
         dicstring += ",";

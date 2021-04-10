@@ -168,37 +168,25 @@ void MasterServer::SetMaps(){
                 }
             }
             strelement = strtok(NULL, ",");
-            if (cnt == 4)
-            {
-              
+            if (cnt == 4){              
                 cnt = 0;
                 if(clientservername.find("+0") != string::npos){
                     clientservername.erase(clientservername.size()-1);
                     clientservername.erase(clientservername.size() - 1);
                     clients[clientservername][datacnt1] = datacnt2;
-
-    
                 }
                 else{
                     clientservername.erase(clientservername.size() - 1);
                     clientservername.erase(clientservername.size() - 1);
                     slaveserver[clientservername] = datacnt2;
-
-
                 }
             }
         }
-       
-
         delete str;
-
-
     }
 }
 
-void MasterServer::PrintTable(string masterservername)
-{
-
+void MasterServer::PrintTable(string masterservername){
     Table objects_table;
     objects_table.format().font_style({FontStyle::bold}).width(14);
     objects_table.add_row({"number of strings", "client", "map", "slaveserver", "shuffle", "masterserver", "reduce"});
@@ -210,10 +198,8 @@ void MasterServer::PrintTable(string masterservername)
     itr2 = slaveserver.begin();
     cout << "ClientMAP" << endl;
     int cnt{0};
-    for (itr = clients.begin(); itr != clients.end(); itr++)
-    {
-        for (ptr = itr->second.begin(); ptr != itr->second.end(); ptr++)
-        {
+    for (itr = clients.begin(); itr != clients.end(); itr++){
+        for (ptr = itr->second.begin(); ptr != itr->second.end(); ptr++){
             if(cnt == 0){
                 objects_table.add_row({ptr->first, itr->first, ptr->second, itr2->first, itr2->second, masterservername, to_string(resultmap.size())});
                 itr2++;

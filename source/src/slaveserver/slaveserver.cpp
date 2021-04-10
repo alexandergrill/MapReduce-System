@@ -96,29 +96,24 @@ void SlaveServer::InsertElementinMap(string value, int valuecnt){
     }
 }
 
-void SlaveServer::ConvertStringtoMap(std::string transportstr)
-{
+void SlaveServer::ConvertStringtoMap(std::string transportstr){
     map<string, int> *mapd = new map<string, int>();
     stringstream sstring(transportstr);
     string data;
     string mapelementdata;
     int mapelementcounter;
     int cnt{0};
-    while (getline(sstring, data, ':'))
-    {
+    while (getline(sstring, data, ':')){
         int n = data.length();
         char *str = new char[n + 1];
         strcpy(str, data.c_str());
         char *strelement;
         strelement = strtok(str, ",");
-        while (strelement != NULL)
-        {
-            if (cnt == 0)
-            {
+        while (strelement != NULL){
+            if (cnt == 0){
                 mapelementdata = strelement;
             }
-            else
-            {
+            else{
                 mapelementcounter = stoi(strelement);
             }
             cnt += 1;
@@ -126,12 +121,10 @@ void SlaveServer::ConvertStringtoMap(std::string transportstr)
         }
         cnt = 0;
 
-        if (any_of(mapelementdata.begin(), mapelementdata.end(), ::isdigit))
-        {
+        if (any_of(mapelementdata.begin(), mapelementdata.end(), ::isdigit)){
             SetClientsData(mapelementdata, mapelementcounter);
         }
-        else
-        {
+        else{
             mapd->insert(pair<string, int>(mapelementdata, mapelementcounter));
         }
         delete str;
