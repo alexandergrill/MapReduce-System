@@ -44,30 +44,6 @@ SlaveServer* SlaveServer::GetSlaveServer(string ip, string port, string sport, m
     return sls;
 }
 
-unsigned short SlaveServer::GetServerPort(){
-    return serverport;
-}
-
-map<string, int>* SlaveServer::GetMap(){
-    return &resultmap;
-}
-
-int SlaveServer::GetClientCounter(){
-    return clientcounter;
-}
-
-void SlaveServer::SetClientCounter(){
-    clientcounter += 1;
-}
-
-void SlaveServer::AddList(map<string, int>* mapdic){
-    maplist->push_back(*mapdic);
-}
-
-void SlaveServer::SetClientsData(std::string value, int valuecnt){
-    clientsdata += value + "," + to_string(valuecnt) + ":";
-}
-
 string SlaveServer::GetClientsData(){
     return clientsdata;
 }
@@ -76,68 +52,6 @@ int SlaveServer::GetDataMapSize(){
     return resultmap.size();
 }
 
-int SlaveServer::GetListLength(){
-    return maplist->size();
-}
-
-void SlaveServer::InsertElementinMap(string value, int valuecnt){
-    if(resultmap.empty()){
-        resultmap.insert(pair<string, int>(value, valuecnt));
-    }
-    else{
-        map<string, int>::iterator it;
-        it = resultmap.find(value);
-        if (it != resultmap.end()){
-            resultmap.find(value)->second += valuecnt; 
-        }
-        else{
-            resultmap.insert(pair<string, int>(value, valuecnt));
-        }
-    }
-}
-
-void SlaveServer::ConvertStringtoMap(std::string transportstr)
-{
-    map<string, int> *mapd = new map<string, int>();
-    stringstream sstring(transportstr);
-    string data;
-    string mapelementdata;
-    int mapelementcounter;
-    int cnt{0};
-    while (getline(sstring, data, ':'))
-    {
-        int n = data.length();
-        char *str = new char[n + 1];
-        strcpy(str, data.c_str());
-        char *strelement;
-        strelement = strtok(str, ",");
-        while (strelement != NULL)
-        {
-            if (cnt == 0)
-            {
-                mapelementdata = strelement;
-            }
-            else
-            {
-                mapelementcounter = stoi(strelement);
-            }
-            cnt += 1;
-            strelement = strtok(NULL, ",");
-        }
-        cnt = 0;
-
-        if (any_of(mapelementdata.begin(), mapelementdata.end(), ::isdigit))
-        {
-            SetClientsData(mapelementdata, mapelementcounter);
-        }
-        else
-        {
-            mapd->insert(pair<string, int>(mapelementdata, mapelementcounter));
-        }
-        delete str;
-    }
-    AddList(mapd);
-}
 
 void SlaveServer::Shuffle(){
     unique_lock<mutex> uls{mxss};
