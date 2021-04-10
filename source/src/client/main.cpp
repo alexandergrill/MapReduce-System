@@ -23,8 +23,8 @@ using namespace rang;
 using namespace asio::ip;
 
 int main(int argc, char* argv[]){
-    int wordcount = 500000;
-    string filepath = "../src/client/clientfile.txt";
+    int wordcount = 10000;
+    string filepath = "";
     string ipadress = "127.0.0.1";
     string port;
     string clientname;
@@ -34,7 +34,6 @@ int main(int argc, char* argv[]){
     app.add_option("-n,--n", clientname, "name for the client")->required();
     app.add_option("-i,--i", ipadress, "ipadress for the client");
     app.add_option("-p,--p", port, "port to connect to")->required();
-    app.add_option("-w,--w", wordcount, "wortcount how many random strings are used for the system");
     app.add_option("-f,--f", filepath, "filepath of the file");
     CLI11_PARSE(app, argc, argv);
 
@@ -58,12 +57,15 @@ int main(int argc, char* argv[]){
             cout << fg::green << flush;
             spdlog::get("client_logger")->info("established connection to server");
             spdlog::get("file_logger")->info("established connection to server");
-
-            c->WriteIntoFile(wordcount, filepath);
-            cout << fg::green << flush;
-            spdlog::get("client_logger")->info("write random string into file");
-            spdlog::get("file_logger")->info("write random string into file");
-
+            
+            if(filepath.empty()){
+                filepath = "../src/client/clientfile.txt";
+                c->WriteIntoFile(wordcount, filepath);
+                cout << fg::green << flush;
+                spdlog::get("client_logger")->info("write random string into file");
+                spdlog::get("file_logger")->info("write random string into file");
+            }
+            
             c->Map(filepath);
             cout << fg::green << flush;
             spdlog::get("client_logger")->info("call map function, sort data in dictionary");
@@ -75,7 +77,7 @@ int main(int argc, char* argv[]){
             cout << fg::green << flush;
             spdlog::get("client_logger")->info("convert map to transportdata");
             spdlog::get("file_logger")->info("convert map to transportdata");
-            transportstring += clientname + "+0," + to_string(wordcount) + ":" + clientname + "+1," + to_string(c->GetDataMapSize()) + ":";
+            transportstring += clientname + "+0," + to_string(wordcount) + ":" + clientname + "+0," + to_string(c->GetDataMapSize()) + ":";
             tcpconnection << transportstring << endl;
 
             cout << fg::green << flush;

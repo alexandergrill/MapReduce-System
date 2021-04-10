@@ -145,7 +145,6 @@ void MasterServer::SetMaps(){
     string datacnt1;
     string datacnt2;
     int cnt{0};
-    cout << clientsslserverdata << endl;
     while (getline(sstring, data, ':')){
         int n = data.length();
         char *str = new char[n + 1];
@@ -160,44 +159,77 @@ void MasterServer::SetMaps(){
             else{
                 if(cnt == 1){
                     datacnt1 = strelement;
-                    cout << "HELLO   " << cnt << endl;
                     cnt += 1;
                 }
                 else{
                     
                     datacnt2 = strelement;
                     cnt += 1;
-                    cout << "setcnt2   " << cnt << endl;
                 }
             }
             strelement = strtok(NULL, ",");
-            if (cnt == 3)
+            if (cnt == 4)
             {
-                cout << "ServerName " << clientservername << " Start Num " << datacnt1 << " Convert Num" << datacnt2 << endl;
+              
                 cnt = 0;
+                if(clientservername.find("+0") != string::npos){
+                    clientservername.erase(clientservername.size()-1);
+                    clientservername.erase(clientservername.size() - 1);
+                    clients[clientservername][datacnt1] = datacnt2;
+
+    
+                }
+                else{
+                    clientservername.erase(clientservername.size() - 1);
+                    clientservername.erase(clientservername.size() - 1);
+                    slaveserver[clientservername] = datacnt2;
+
+
+                }
             }
         }
        
 
         delete str;
-        
+
+
     }
 }
 
-void MasterServer::PrintTable(){
-    
+void MasterServer::PrintTable(string masterservername)
+{
+
     Table objects_table;
-    objects_table.format().font_style({FontStyle::bold}).width(30);
-    //objects_table.add_row({"Cleints", "Elves", "Reindeer"});
-    
+    objects_table.format().font_style({FontStyle::bold}).width(14);
+    objects_table.add_row({"number of strings", "client", "map", "slaveserver", "shuffle", "masterserver", "reduce"});
     SetMaps();
-    /*
 
-
-    objects_table.format().font_style({FontStyle::bold}).width(30);
-    objects_table.add_row({"Santa Claus", "Elves", "Reindeer"});
-    objects_table.add_row({to_string(btime), to_string(esum), to_string(rsum)});
-    cout << objects_table << endl;*/
+    map<string, map<string, string>>::iterator itr;
+    map<string, string>::iterator ptr;
+    map<string, string>::iterator itr2;
+    itr2 = slaveserver.begin();
+    cout << "ClientMAP" << endl;
+    int cnt{0};
+    for (itr = clients.begin(); itr != clients.end(); itr++)
+    {
+        for (ptr = itr->second.begin(); ptr != itr->second.end(); ptr++)
+        {
+            if(cnt == 0){
+                objects_table.add_row({ptr->first, itr->first, ptr->second, itr2->first, itr2->second, masterservername, to_string(resultmap.size())});
+                itr2++;
+                cnt = 1;
+            }
+            else if(itr2 != slaveserver.end()){
+                objects_table.add_row({ptr->first, itr->first, ptr->second, itr2->first, itr2->second, "", ""});
+                itr2++;
+            }
+            else{
+                objects_table.add_row({ptr->first, itr->first, ptr->second, "", "", "", ""});
+            }
+            
+        }
+    }
+    cout << objects_table << endl;
 }
 
 void MasterServer::Reduce(){

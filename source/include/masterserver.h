@@ -40,7 +40,7 @@ public :
     static MasterServer* GetMasterServer(std::string port, std::mutex &mx);
     unsigned short GetServerPort();
     std::map<std::string, int>* GetMap();
-    void PrintTable();
+    void PrintTable(std::string masterservername);
     int GetListLength();
     int GetClientCounter();
     void SetClientCounter();

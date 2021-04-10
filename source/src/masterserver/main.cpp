@@ -29,11 +29,13 @@ int main(int argc, char *argv[]){
     mutex mx;
     string port;
     string jsonfile;
+    string masterservername;
     int maxslaveserver{2};
     int threadcounter{0};
     bool displaytable{false};
 
     CLI::App app("MapReduceSystem_MasterServer");
+    app.add_option("-n,--n", masterservername, "name for the masterserver")->required();
     app.add_option("-p,--p", port, "serverport")->required();
     app.add_option("-c,--c", maxslaveserver, "the maximum of slaveserver");
     app.add_option("-j,--j", jsonfile, "write reduced data in json-file")->check(CLI::ExistingFile);
@@ -87,7 +89,7 @@ int main(int argc, char *argv[]){
         Print(ma->GetMap());
 
         if (displaytable == true){
-            ma->PrintTable();
+            ma->PrintTable(masterservername);
         }
         if(jsonfile.empty() == false){
             ma->WriteIntoFile(jsonfile);
