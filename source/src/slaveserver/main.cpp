@@ -58,17 +58,17 @@ int main(int argc, char *argv[]){
         tcp::endpoint ep{tcp::v4(), sl->GetServerPort()};
         asio::io_context cox;
         tcp::acceptor ap{cox, ep};
-        while (sl->GetClientCounter() < maxclient){
+        while (sl->GetConnectionCounter() < maxclient){
             ap.listen();
             cout << fg::green << flush;
             spdlog::get("slaveserver_logger")->info("server is listening");
             spdlog::get("file_logger")->info("server is listening");
 
             tcp::iostream strm{ap.accept()};
-            sl->SetClientCounter();
+            sl->SetConnectionCounter();
             cout << fg::green << flush;
-            spdlog::get("slaveserver_logger")->info("client " + to_string(sl->GetClientCounter()) + " has connected to server");
-            spdlog::get("file_logger")->info("client " + to_string(sl->GetClientCounter()) + " has connected to server");
+            spdlog::get("slaveserver_logger")->info("client " + to_string(sl->GetConnectionCounter()) + " has connected to server");
+            spdlog::get("file_logger")->info("client " + to_string(sl->GetConnectionCounter()) + " has connected to server");
 
             string data = "";
             strm >> data;
@@ -89,7 +89,7 @@ int main(int argc, char *argv[]){
         }
         Print(sl->GetMap());
         transportstring = ConvertMaptoString(sl->GetMap());
-        transportstring += sl->GetClientsData();
+        transportstring += sl->GetTableData();
         transportstring += slaveservername + "+1," + to_string(-1) + ":" + slaveservername + "+1," + to_string(sl->GetDataMapSize()) + ":";
 
         cout << fg::green << flush;

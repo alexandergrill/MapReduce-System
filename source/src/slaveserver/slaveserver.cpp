@@ -44,9 +44,6 @@ SlaveServer* SlaveServer::GetSlaveServer(string ip, string port, string sport, m
     return sls;
 }
 
-string SlaveServer::GetClientsData(){
-    return clientsdata;
-}
 
 int SlaveServer::GetDataMapSize(){
     return resultmap.size();
@@ -54,7 +51,7 @@ int SlaveServer::GetDataMapSize(){
 
 
 void SlaveServer::Shuffle(){
-    unique_lock<mutex> uls{mxss};
+    unique_lock<mutex> uls{mux};
     auto listiterator = maplist->begin();
     advance(listiterator, maplist->size()-2);
 

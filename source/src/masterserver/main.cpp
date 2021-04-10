@@ -57,17 +57,17 @@ int main(int argc, char *argv[]){
         tcp::endpoint ep{tcp::v4(), ma->GetServerPort()};
         asio::io_context cox;
         tcp::acceptor ap{cox, ep};
-        while (ma->GetClientCounter() < maxslaveserver){
+        while (ma->GetConnectionCounter() < maxslaveserver){
             ap.listen();
             cout << fg::green << flush;
             spdlog::get("masterserver_logger")->info("server is listening");
             spdlog::get("file_logger")->info("server is listening");
 
             tcp::iostream strm{ap.accept()};
-            ma->SetClientCounter();
+            ma->SetConnectionCounter();
             cout << fg::green << flush;
-            spdlog::get("masterserver_logger")->info("slaveserver " + to_string(ma->GetClientCounter()) + " has connected to server");
-            spdlog::get("file_logger")->info("slaveserver " + to_string(ma->GetClientCounter()) + " has connected to server");
+            spdlog::get("masterserver_logger")->info("slaveserver " + to_string(ma->GetConnectionCounter()) + " has connected to server");
+            spdlog::get("file_logger")->info("slaveserver " + to_string(ma->GetConnectionCounter()) + " has connected to server");
 
             string data = "";
             strm >> data;

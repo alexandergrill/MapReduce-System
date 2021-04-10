@@ -15,25 +15,23 @@
 #include <list>
 #include <mutex>
 
-class SlaveServer : MasterServer{
+class SlaveServer : public MasterServer{
 private:
-    std::string ipadresse;
+    std::string ipadress;
     std::string port;
-    std::map<std::string, int> resultmap;
-    std::list<std::map<std::string, int>>* maplist;
 
-    SlaveServer(std::string ip, std::string pr, unsigned short spr, std::mutex& mx): Basis(spr, mx){
+
+    SlaveServer(std::string ip, std::string pr, unsigned short spr, std::mutex& mx): MasterServer(spr, mx){
         ipadress = ip;
         port = pr;
     }
-    ~SlaveServer(){
-        delete maplist;
-    }
+    
 
 public:
+    ~SlaveServer(){
+    }
     static SlaveServer* GetSlaveServer(std::string ip, std::string port, std::string lport, std::mutex& mx);
     int GetDataMapSize();
-    std::string GetClientsData();
     void Shuffle();
 };
 

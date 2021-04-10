@@ -54,12 +54,12 @@ map<string, int>* MasterServer::GetMap(){
     return &resultmap;
 }
 
-int MasterServer::GetClientCounter(){
-    return clientcounter;
+int MasterServer::GetConnectionCounter(){
+    return connectioncounter;
 }
 
-void MasterServer::SetClientCounter(){
-    clientcounter += 1;
+void MasterServer::SetConnectionCounter(){
+    connectioncounter += 1;
 }
 
 void MasterServer::AddList(map<string, int> *mapdic){
@@ -70,8 +70,12 @@ int MasterServer::GetListLength(){
     return maplist->size();
 }
 
-void MasterServer::SetClientsData(string value, int valuecnt){
-    clientsslserverdata += value + "," + to_string(valuecnt) + ":";
+string MasterServer::GetTableData(){
+    return tabledata;
+}
+
+void MasterServer::SetTableData(string value, int valuecnt){
+    tabledata += value + "," + to_string(valuecnt) + ":";
 }
 
 void MasterServer::ConvertStringtoMap(std::string transportstr){
@@ -100,7 +104,7 @@ void MasterServer::ConvertStringtoMap(std::string transportstr){
         cnt = 0;
 
         if (any_of(mapelementdata.begin(), mapelementdata.end(), ::isdigit)){
-            SetClientsData(mapelementdata, mapelementcounter);
+            SetTableData(mapelementdata, mapelementcounter);
         }
         else{
             mapd->insert(pair<string, int>(mapelementdata, mapelementcounter));
@@ -139,7 +143,7 @@ void MasterServer::WriteIntoFile(string jsonfile){
 }
 
 void MasterServer::SetMaps(){
-    stringstream sstring(clientsslserverdata);
+    stringstream sstring(tabledata);
     string data;
     string clientservername = "";
     string datacnt1;
@@ -219,7 +223,7 @@ void MasterServer::PrintTable(string masterservername){
 }
 
 void MasterServer::Reduce(){
-    unique_lock<mutex> uls{mxms};
+    unique_lock<mutex> uls{mux};
     auto listiterator = maplist->begin();
     advance(listiterator, maplist->size() - 2);
 
