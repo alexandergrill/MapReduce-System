@@ -525,14 +525,27 @@ Im unterem Verzeichnisbaum wird die Struktur des Projektes abgebildet
 }
 \newpage
 \noindent
+\subsection{UML Klassendiagramm}
+\:
+\:
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=12cm, height=12cm]{uml.jpeg}
+\end{figure}
+\newpage
 \subsection{Client}
 \textbf{Modulbeschreibung}\\
 Die Komponente Client ist eine ausführbare Datei und bildet den Input für die Datenverarbeitung des MapReduce-Systems. Wenn das Programm vom Benutzer gestartet wird, wird eine Verbindung zum jeweiligen Server aufgebaut. Wenn diese erfolgt, wird eine bestimmte Anzahl von Strings, 
 die der Benutzer beim Aufruf mitübergibt, generiert und in eine Datei geschrieben. In der nächsten Phase durchforstet das Programm, die Datei zeilenweise durch und speichert die Datensätze in einer Art Dictionary ab(Key:Value). Der zufällig generierte String entspricht im Dictionary dem Key und der Value die Anzahl des Strings wie oft dieser in der Datei vorkommt.
 Diesen Part wird im MapReduce-System als Map Funktion bezeichnet. Zum Schluss wenn alle Daten im Dictionary abgespeichert sind, wird dieses in einem
 String konvertiert, um diesen daraufhin an dem Server zu übertragen. Bei der Umwandlung des Dictionarys, werden den Key-Werten und Value-Werten Trennsymbole angehängt, sodass der Slaveserver die Zeichenkette aufteilen und weiters in ein Dictionary zurück umkonvertieren kann.\\\\
-\textbf{Klassenaufbau}\\
 \textbf{Kommandozeilenparameter}\\
+\begin{minted}{cpp}
+
+\end{minted}
+\newpage
+\textbf{Klassenaufbau}\\
+
 \subsection{SlaveServer}
 \textbf{Modulbeschreibung}\\
 Diese Komponente bildete die Schnittstelle zwischen den Clients und dem Masterserver. Der SlaveServer hört auf einen Port ab und empfängt, jene Daten die ihm der Client sendet. Die Übetragungsdaten wird in Form von einem String übertragen, wobei die 

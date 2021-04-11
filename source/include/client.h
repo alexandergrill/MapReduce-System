@@ -25,8 +25,8 @@ private:
         'h', 'i', 'j', 'k', 'l', 'm', 'n',
         'o', 'p', 'q', 'r', 's', 't', 'u',
         'v', 'w', 'x', 'y', 'z'};
-    std::string GetRandomString();
     Client(std::string ip, std::string pr):ipadress{ip}, port{pr}{}
+    std::string GetRandomString();
 public :
     static Client *GetClient(std::string ip, std::string pr);
     std::map<std::string, int>* GetMap();
