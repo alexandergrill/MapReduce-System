@@ -65,13 +65,13 @@ In diesem Fall werden die random generierten strings in die Datei file.txt abges
 
 <div align="center">
     <br />
-    <img src="./documentation/slaveserver1.png" alt="Usage Demo Server" width="100%"/>
+    <img src="./documentation/slaveserverdemo1.png" alt="Usage Demo Server" width="100%"/>
 </div>
 
 
 <div align="center">
     <br />
-    <img src="./documentation/slaveserver2.png" alt="Usage Demo Server" width="100%"/>
+    <img src="./documentation/slaveserverdemo2.png" alt="Usage Demo Server" width="100%"/>
 </div>
 
 #### Bedienungen
