@@ -5,6 +5,7 @@
  * date:    27.02.2021
 */
 
+//includes
 #include "utils.h"
 
 #include <string.h>
@@ -17,8 +18,17 @@
 #include <cstring>
 #include <algorithm>
 
+//namespaces
 using namespace std;
 
+//Funktionen Definitionen
+
+/*
+-Name: GetRandomNum
+-Beschreibung: liefert eine zufällige Zahl von start bis end
+-Input: int start, int end
+-Output: int
+*/
 int GetRandomNum(int start, int end){
     random_device rd;
     mt19937 gen{rd()};
@@ -27,6 +37,12 @@ int GetRandomNum(int start, int end){
     return num;
 }
 
+/*
+-Name: IPIsValid
+-Beschreibung: überprüft ob die mitübergebene IP Adresse valid is (korrekt is)
+-Input: string ip
+-Output: bool
+*/
 bool IPIsValid(string ip){
     int c{0};
     char *ip_input = strtok(&ip[0], ".");
@@ -49,6 +65,12 @@ bool IPIsValid(string ip){
     return true;
 }
 
+/*
+-Name: PORTIsValid
+-Beschreibung: überprüft ob der mitübergebene PORT valid is (korrekt is)
+-Input: string port
+-Output: bool
+*/
 bool PORTIsValid(string port){
     size_t pos;
     int num = stoi(port, &pos);
@@ -61,6 +83,12 @@ bool PORTIsValid(string port){
     return true;
 }
 
+/*
+-Name: Search
+-Beschreibung: überprüft ob der mitübergebene string in der Map enthalten ist
+-Input: string value, std::map<std::string, int>* dic
+-Output: bool
+*/
 bool Search(string value, std::map<std::string, int>* dic){
     if (dic->find(value) == dic->end()){
         return false;
@@ -68,6 +96,12 @@ bool Search(string value, std::map<std::string, int>* dic){
     return true;
 }
 
+/*
+-Name: Search
+-Beschreibung: konvertiert die Map (dic Pointer auf das Objekt) zu einem string
+-Input: std::map<std::string, int>* dic
+-Output: string
+*/
 string ConvertMaptoString(std::map<std::string, int>* dic){
     string dicstring = "";
     for (map<string, int>::iterator i = dic->begin(); i != dic->end(); ++i){
@@ -79,6 +113,12 @@ string ConvertMaptoString(std::map<std::string, int>* dic){
     return dicstring;
 }
 
+/*
+-Name: Print
+-Beschreibung: Printed die Map(dic Pointer auf das Objekt)
+-Input: std::map<std::string, int>* dic
+-Output: void
+*/
 void Print(std::map<std::string, int>* dic){
     int counter{0};
     cout << "Data Map" << endl;
