@@ -25,12 +25,12 @@ zugesendet. Dies erfolgt so lange bis alle Daten, die am Beginn auf mehreren Kno
 
 <div align="center">
     <br />
-    <img src="./documentation/clientdemo1.png" alt="Usage Demo Server" width="100%"/>
+    <img src="./documentation/clientdemo1.png" alt="Usage Demo Client" width="100%"/>
 </div>
 
 <div align="center">
     <br />
-    <img src="./documentation/clientdemo2.png" alt="Usage Demo Server" width="100%"/>
+    <img src="./documentation/clientdemo2.png" alt="Usage Demo Client" width="100%"/>
 </div>
 
 #### Bedienungen
@@ -65,13 +65,13 @@ In diesem Fall werden die random generierten strings in die Datei file.txt abges
 
 <div align="center">
     <br />
-    <img src="./documentation/slaveserverdemo1.png" alt="Usage Demo Server" width="100%"/>
+    <img src="./documentation/slaveserverdemo1.png" alt="Usage Demo SlaveServer" width="100%"/>
 </div>
 
 
 <div align="center">
     <br />
-    <img src="./documentation/slaveserverdemo2.png" alt="Usage Demo Server" width="100%"/>
+    <img src="./documentation/slaveserverdemo2.png" alt="Usage Demo SlaveServer" width="100%"/>
 </div>
 
 #### Bedienungen
@@ -100,13 +100,13 @@ Der SlaveServer sendet nachdem von 6 Clients die Daten geshuffelt wurden an dem 
 
 <div align="center">
     <br />
-    <img src="./documentation/masterserverdemo1.png" alt="Usage Demo Server" width="100%"/>
+    <img src="./documentation/masterserverdemo1.png" alt="Usage Demo MasterServer" width="100%"/>
 </div>
 
 
 <div align="center">
     <br />
-    <img src="./documentation/masterserverdemo2.png" alt="Usage Demo Server" width="100%"/>
+    <img src="./documentation/masterserverdemo2.png" alt="Usage Demo MasterServer" width="100%"/>
 </div>
 
 #### Bedienungen
