@@ -38,7 +38,7 @@ public :
     std::map<std::string, int>* GetMap();
     int GetDataMapSize();
     void WriteIntoFile(int wordnum, std::string filename);
-    void Map(std::string filename);
+    int Map(std::string filename);
 };
 
 #endif

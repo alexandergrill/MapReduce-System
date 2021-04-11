@@ -72,7 +72,7 @@ int main(int argc, char* argv[]){
                 spdlog::get("file_logger")->info("write random string into file");
             }
             //Aufruf der MAP Funktion
-            c->Map(filepath);
+            wordcount = c->Map(filepath);
             cout << fg::green << flush;
             spdlog::get("client_logger")->info("call map function, sort data in dictionary");
             spdlog::get("file_logger")->info("call map function, sort data in dictionary");

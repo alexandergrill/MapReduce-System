@@ -140,7 +140,8 @@ void Client::WriteIntoFile(int wordnum, string filename){
 -Input: string filename
 -Output: void    
 */
-void Client::Map(string filename){
+int Client::Map(string filename){
+    int cnt{0};
     string line;
     fstream file;
     try{
@@ -157,6 +158,7 @@ void Client::Map(string filename){
 
             while (!file.eof()){
                 file >> line;
+                cnt += 1;
                 line.erase(remove(line.begin(), line.end(), '.'),line.end());
                 line.erase(remove(line.begin(), line.end(), ','), line.end());
                 line.erase(remove(line.begin(), line.end(), '!'), line.end());
@@ -185,4 +187,5 @@ void Client::Map(string filename){
         spdlog::get("client_logger")->error("it is not possible to open file");
         spdlog::get("file_logger")->error("it is not possible to open file");
     }
+    return cnt-1;
 }
