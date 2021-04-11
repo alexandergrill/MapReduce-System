@@ -21,6 +21,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <regex>
 
 //namespaces
 using namespace std;
@@ -160,7 +161,8 @@ void Client::Map(string filename){
                 line.erase(remove(line.begin(), line.end(), '?'), line.end());
                 line.erase(remove(line.begin(), line.end(), ';'), line.end());
                 line.erase(remove(line.begin(), line.end(), ':'), line.end());
-                //line.erase(remove(line.begin(), line.end(), '„'), line.end());
+                line = regex_replace(line, regex("„"),"");
+                line = regex_replace(line, regex("“"), "");
                 line.erase(remove(line.begin(), line.end(), '"'), line.end());
 
                 bool isin = Search(line, &datamap);
