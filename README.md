@@ -126,4 +126,3 @@ gibt er in der Console eine Tabelle aus, die veranschaulicht in welcher Phase wi
 ```
 Der MasterServer hört auf Port 1116 und empfängt alle Daten die ihm die SlaveServer zu kommen lassen am Ende werden
 die komprimierten Daten in ein JSON-File geschrieben.
-f
