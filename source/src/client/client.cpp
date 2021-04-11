@@ -31,9 +31,9 @@ using namespace rang;
 
 /*
 -Name: GetRandomString
--Beschreibung: 
+-Beschreibung: generiert eine zufälligen String und gibt diesen zurück
 -Input: 
--Output:        
+-Output: string       
 */
 string Client::GetRandomString(){
     int wordlength = GetRandomNum(1, 5);
@@ -49,11 +49,12 @@ string Client::GetRandomString(){
 
 /*
 -Name: GetClient
--Beschreibung: 
--Input: 
--Output:        
+-Beschreibung: gibt ein Objekt vom Typ Client
+zurück, wenn Port und IP Adresse valid sind
+-Input: string ip, string pr
+-Output: Client*     
 */
-Client* Client::GetClient(std::string ip, std::string pr){
+Client* Client::GetClient(string ip, string pr){
     bool ipvalid;
     bool povalid;
     Client *cl;
@@ -81,9 +82,9 @@ Client* Client::GetClient(std::string ip, std::string pr){
 
 /*
 -Name: GetMap
--Beschreibung: 
+-Beschreibung: gibt einen Pointer des Objekts datamap zurück
 -Input: 
--Output:        
+-Output: map<string, int>*     
 */
 map<string, int>* Client::GetMap(){
     return &datamap;
@@ -91,9 +92,9 @@ map<string, int>* Client::GetMap(){
 
 /*
 -Name: GetDataMapSize
--Beschreibung: 
+-Beschreibung: gibt die Länge der Map zurück
 -Input: 
--Output:        
+-Output: int      
 */
 int Client::GetDataMapSize(){
     return datamap.size();
@@ -101,9 +102,10 @@ int Client::GetDataMapSize(){
 
 /*
 -Name: WriteIntoFile
--Beschreibung: 
--Input: 
--Output:        
+-Beschreibung: dabei werden zufällige String(Anzahl = wordnum)
+in die Datei(filename) geschrieben und abgespeichert
+-Input: int wordnum, string filename
+-Output: void    
 */
 void Client::WriteIntoFile(int wordnum, string filename){
     ofstream file;
@@ -134,9 +136,9 @@ void Client::WriteIntoFile(int wordnum, string filename){
 
 /*
 -Name: Map
--Beschreibung: 
--Input: 
--Output:        
+-Beschreibung: 1 Phase des Map-Reduce Systems
+-Input: string filename
+-Output: void    
 */
 void Client::Map(string filename){
     string line;
