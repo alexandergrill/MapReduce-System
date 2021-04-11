@@ -28,9 +28,11 @@ using namespace rang;
 
 /*
 -Name: GetSlaveServer
--Beschreibung: 
--Input: 
--Output:        
+-Beschreibung: gibt ein Objekt vom Typ SlaveServer
+zurück, wenn Port und IP Adresse valid sind
+-Input: string ip, string pr
+-Input: string ip, string port, string sport, mutex& mx
+-Output: SlaveServer*    
 */
 SlaveServer* SlaveServer::GetSlaveServer(string ip, string port, string sport, mutex& mx){
     bool ipvalid;
@@ -56,9 +58,9 @@ SlaveServer* SlaveServer::GetSlaveServer(string ip, string port, string sport, m
 
 /*
 -Name: GetDataMapSize
--Beschreibung: 
+-Beschreibung: gibt die Länger der Map resultmap zurück
 -Input: 
--Output:        
+-Output: int       
 */
 int SlaveServer::GetDataMapSize(){
     return resultmap.size();
@@ -66,9 +68,9 @@ int SlaveServer::GetDataMapSize(){
 
 /*
 -Name: Shuffle
--Beschreibung: 
+-Beschreibung: 1 Phase des Map-Reduce Systems
 -Input: 
--Output:        
+-Output: void   
 */
 void SlaveServer::Shuffle(){
     unique_lock<mutex> uls{mux};

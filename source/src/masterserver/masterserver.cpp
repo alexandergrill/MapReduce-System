@@ -33,9 +33,11 @@ using json = nlohmann::json;
 
 /*
 -Name: AddList
--Beschreibung: 
+-Beschreibung: dabei werden die Daten des Strings tablesata,
+der für die Ausgabe der Tabelle auf der Console von Relevant sind,
+in den jeweiligen Maps abgespeichert
 -Input: 
--Output:        
+-Output: void    
 */
 void MasterServer::SetMaps(){
     stringstream sstring(tabledata);
@@ -87,9 +89,9 @@ void MasterServer::SetMaps(){
 
 /*
 -Name: AddList
--Beschreibung: 
--Input: 
--Output:        
+-Beschreibung: fügt eine neue Map in die Liste maplist hinzu
+-Input: map<string, int> *mapdic
+-Output: void      
 */
 void MasterServer::AddList(map<string, int> *mapdic){
     maplist->push_back(*mapdic);
@@ -97,9 +99,9 @@ void MasterServer::AddList(map<string, int> *mapdic){
 
 /*
 -Name: SetTableData
--Beschreibung: 
--Input: 
--Output:        
+-Beschreibung: erweitert den String tabledata
+-Input: string value, int valuecnt
+-Output: void
 */
 void MasterServer::SetTableData(string value, int valuecnt){
     tabledata += value + "," + to_string(valuecnt) + ":";
@@ -107,9 +109,9 @@ void MasterServer::SetTableData(string value, int valuecnt){
 
 /*
 -Name: GetTableData
--Beschreibung: 
+-Beschreibung: gibt den String tabledata zurück
 -Input: 
--Output:        
+-Output: string     
 */
 string MasterServer::GetTableData(){
     return tabledata;
@@ -117,11 +119,12 @@ string MasterServer::GetTableData(){
 
 /*
 -Name: GetMasterServer
--Beschreibung: 
--Input: 
--Output:        
+-Beschreibung: gibt ein Objekt vom Typ MasterServer
+zurück, wenn Port valid sind
+-Input: string port, mutex &mx
+-Output:  MasterServer*      
 */
-MasterServer *MasterServer::GetMasterServer(string port, mutex &mx){
+MasterServer* MasterServer::GetMasterServer(string port, mutex &mx){
     bool portvalid;
     MasterServer *mas;
 
@@ -139,15 +142,21 @@ MasterServer *MasterServer::GetMasterServer(string port, mutex &mx){
     return mas;
 }
 
+/*
+-Name: GetServerPort
+-Beschreibung: gibt den Port des Servers zurück
+-Input: 
+-Output: unsigned short     
+*/
 unsigned short MasterServer::GetServerPort(){
     return serverport;
 }
 
 /*
 -Name: GetMap
--Beschreibung: 
+-Beschreibung: gibt den Pointer des Objekts resultmap zurück
 -Input: 
--Output:        
+-Output: map<string, int>*     
 */
 map<string, int>* MasterServer::GetMap(){
     return &resultmap;
@@ -155,9 +164,9 @@ map<string, int>* MasterServer::GetMap(){
 
 /*
 -Name: GetListLength
--Beschreibung: 
+-Beschreibung: gibt die Länger der Liste zurück
 -Input: 
--Output:        
+-Output: int       
 */
 int MasterServer::GetListLength(){
     return maplist->size();
@@ -165,9 +174,9 @@ int MasterServer::GetListLength(){
 
 /*
 -Name: GetConnectionCounter
--Beschreibung: 
+-Beschreibung: gibt den Wert der Varible connectioncounter zurück
 -Input: 
--Output:        
+-Output: int       
 */
 int MasterServer::GetConnectionCounter(){
     return connectioncounter;
@@ -175,9 +184,9 @@ int MasterServer::GetConnectionCounter(){
 
 /*
 -Name: SetConnectionCounter
--Beschreibung: 
+-Beschreibung: erhöt die Variable connectioncounter um 1
 -Input: 
--Output:        
+-Output: void       
 */
 void MasterServer::SetConnectionCounter(){
     connectioncounter += 1;
@@ -185,11 +194,12 @@ void MasterServer::SetConnectionCounter(){
 
 /*
 -Name: ConvertStringtoMap
--Beschreibung: 
+-Beschreibung: konvertiert die Daten des Transport strings in eine Map
+und fügt die angelegte Map in die Liste hinzu
 -Input: 
--Output:        
+-Output: void     
 */
-void MasterServer::ConvertStringtoMap(std::string transportstr){
+void MasterServer::ConvertStringtoMap(string transportstr){
     map<string, int> *mapd = new map<string, int>();
     stringstream ss(transportstr);
     string data;
@@ -227,9 +237,9 @@ void MasterServer::ConvertStringtoMap(std::string transportstr){
 
 /*
 -Name: InsertElementinMap
--Beschreibung: 
+-Beschreibung: fügt Datensätze in die resultmap ein
 -Input: 
--Output:        
+-Output: void        
 */
 void MasterServer::InsertElementinMap(string value, int valuecnt){
     if (resultmap.empty()){
@@ -249,9 +259,11 @@ void MasterServer::InsertElementinMap(string value, int valuecnt){
 
 /*
 -Name: PrintTable
--Beschreibung: 
--Input: 
--Output:        
+-Beschreibung: wird aufgerufen wenn Benutzer das Programm MasterServer
+mit -t startet, dabei wird am Ende der Reduce Phase eine Tabelle in
+der Console ausgegeben bezgl. den überarbeiteten Daten
+-Input: string masterservername
+-Output: void     
 */
 void MasterServer::PrintTable(string masterservername){
     Table objects_table;
@@ -287,9 +299,11 @@ void MasterServer::PrintTable(string masterservername){
 
 /*
 -Name: WriteIntoFile
--Beschreibung: 
--Input: 
--Output:        
+-Beschreibung: wird aufgerufen wenn Benutzer das Programm MasterServer
+mit -j startet, dabei wird am Ende der Reduce Phase alle resultierenden
+Daten in ein JSON File geschrieben
+-Input: string jsonfile
+-Output: void      
 */
 void MasterServer::WriteIntoFile(string jsonfile){
     json data;
@@ -305,9 +319,9 @@ void MasterServer::WriteIntoFile(string jsonfile){
 
 /*
 -Name: Reduce
--Beschreibung: 
+-Beschreibung: 1 Phase des Map-Reduce Systems
 -Input: 
--Output:        
+-Output: void      
 */
 void MasterServer::Reduce(){
     unique_lock<mutex> uls{mux};
