@@ -34,27 +34,23 @@ zugesendet. Dies erfolgt so lange bis alle Daten, die am Beginn auf mehreren Kno
 </div>
 
 #### Bedienungen
+
 ```
 ./client -h
 ```
 Dadurch erhält man alle Information bezgl. der Kommandozeilenparameter
 ```
-./client -p 1113
+./client -n Client1 -p 1113 
 ```
 Startet den Client mit der IP Adresse 127.0.0.1 und versucht sich auf Port 1113 zum SlaveServer zu verbinden und sendet den SlaveServer die Daten(Result der Map Funktion)
 Der Port ist beim Aufruf des Programms zwingend notwendig. Es werden, ohne Aufruf von -w "ANZAHL", 50 000 unterschiedliche strings in die Datei clientfile.txt geschreiben und
 folgedessen in der Map Funktion komprimiert.
 ```
-./client -p 1113 -i 192.168.8.1
+./client -n Client1 -i 192.168.8.1 -p 1113  
 ```
 Startet den Client mit der IP Adresse 192.168.8.1 und versucht sich auf Port 1113 zum SlaveServer zu verbinden und sendet den SlaveServer die Daten(Result der Map Funktion)
 ```
-./client -p 1113 -w 100000
-```
-Startet den Client mit der IP Adresse 127.0.0.1 und versucht sich auf Port 1113 zum SlaveServer zu verbinden und sendet den SlaveServer die Daten(Result der Map Funktion)
-Dabei werden 100 000 unterschiedliche Strings in eine Datei geschrieben, die in der Map Funktion komprimiert werden. 
-```
-./client -p 1113 -f "../Desktop/file.txt"
+./client -n Client1 -p 1113 -f "../Desktop/file.txt"
 ```
 Startet den Client mit der IP Adresse 127.0.0.1 und versucht sich auf Port 1113 zum SlaveServer zu verbinden und sendet den SlaveServer die Daten(Result der Map Funktion)
 In diesem Fall werden die random generierten strings in die Datei file.txt abgespeichert.
@@ -81,18 +77,18 @@ In diesem Fall werden die random generierten strings in die Datei file.txt abges
 ```
 Dadurch erhält man alle Information bezgl. der Kommandozeilenparameter
 ```
-./slaveserver -s 1113 -p 1116
+./slaveserver -n SlaveServer1 -s 1113 -p 1116
 ```
 Startet den SlaveServer mit der IP Adresse 127.0.0.1 und versucht sich auf Port 1116 zum MasterServer zu verbinden und sendet den MasterServer die Daten(Result der Shuffle Funktion). Der SlaveServer hört auf Port 1113 ab und baut eine Verbindung bei einem Request eines Clients auf. Der SlaveServer empfängt alle Daten der Clients.
 Die Ports sind beim Aufruf des Programms zwingend notwendig. 
 ```
-./slaveserver -s 1113 -p 1116 -i 192.168.8.1
+./slaveserver -n SlaveServer1 -s 1113 -p 1116 -i 192.168.8.1
 ```
 Startet den SlaveServer mit der IP Adresse 192.168.8.1 und versucht sich auf Port 1116 zum MasterServer zu verbinden und sendet den MasterServer die Daten(Result der Shuffle Funktion)
 ```
-./slaveserver -s 1113 -p 1116 -c 6
+./slaveserver -n SlaveServer1 -s 1113 -p 1116 -c 6
 ```
-Der SlaveServer sendet nachdem von 6 Clients die Daten geshuffelt wurden an dem MasterServer
+Der SlaveServer sendet nachdem von 6 Clients die Daten geshuffelt wurden, das Ergebniss an dem MasterServer auf Port 1116
 
 ### Master Server
 
@@ -110,3 +106,27 @@ Der SlaveServer sendet nachdem von 6 Clients die Daten geshuffelt wurden an dem 
 </div>
 
 #### Bedienungen
+
+```
+./masterserver -h
+```
+Dadurch erhält man alle Information bezgl. der Kommandozeilenparameter
+```
+./masterserver -n MasterServer1 -p 1116
+```
+Der MasterServer hört auf Port 1116 und empfängt alle Daten die ihm die SlaveServer zu kommen lassen
+```
+./masterserver -n MasterServer1 -p 1116 -c 3
+```
+Der MasterServer hört auf Port 1116 und empfängt alle Daten die ihm die SlaveServer zu kommen lassen. Nachdem er von 3 SlaveServer
+Daten bekommen hat wird die Reduce Funktion aufgerufen.
+```
+./masterserver -n MasterServer1 -p 1116 -t 
+```
+Der MasterServer hört auf Port 1116 und empfängt alle Daten die ihm die SlaveServer zu kommen lassen am Ende 
+gibt er in der Console eine Tabelle aus, die veranschaulicht in welcher Phase wie viele Daten komprimiert wurden.
+```
+./masterserver -n MasterServer1 -p 1116 -j ../src/build/test.json
+```
+Der MasterServer hört auf Port 1116 und empfängt alle Daten die ihm die SlaveServer zu kommen lassen am Ende werden
+die komprimierten Daten in ein JSON-File geschrieben.
