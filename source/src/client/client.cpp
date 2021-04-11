@@ -117,6 +117,15 @@ void Client::Map(string filename){
 
             while (!file.eof()){
                 file >> line;
+                line.erase(remove(line.begin(), line.end(), '.'),line.end());
+                line.erase(remove(line.begin(), line.end(), ','), line.end());
+                line.erase(remove(line.begin(), line.end(), '!'), line.end());
+                line.erase(remove(line.begin(), line.end(), '?'), line.end());
+                line.erase(remove(line.begin(), line.end(), ';'), line.end());
+                line.erase(remove(line.begin(), line.end(), ':'), line.end());
+                //line.erase(remove(line.begin(), line.end(), '„'), line.end());
+                line.erase(remove(line.begin(), line.end(), '"'), line.end());
+
                 bool isin = Search(line, &datamap);
                 if (isin == false){
                     datamap.insert(pair<string, int>(line, 1));

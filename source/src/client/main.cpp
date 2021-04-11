@@ -34,7 +34,7 @@ int main(int argc, char* argv[]){
     app.add_option("-n,--n", clientname, "name for the client")->required();
     app.add_option("-i,--i", ipadress, "ipadress for the client");
     app.add_option("-p,--p", port, "port to connect to")->required();
-    app.add_option("-f,--f", filepath, "filepath of the file");
+    app.add_option("-f,--f", filepath, "filepath of the file")->check(CLI::ExistingFile);
     CLI11_PARSE(app, argc, argv);
 
     cout << fg::green << flush;
