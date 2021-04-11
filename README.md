@@ -43,7 +43,7 @@ Dadurch erhält man alle Information bezgl. der Kommandozeilenparameter
 ./client -n Client1 -p 1113 
 ```
 Startet den Client mit der IP Adresse 127.0.0.1 und versucht sich auf Port 1113 zum SlaveServer zu verbinden und sendet den SlaveServer die Daten(Result der Map Funktion)
-Der Port ist beim Aufruf des Programms zwingend notwendig. Es werden, ohne Aufruf von -w "ANZAHL", 50 000 unterschiedliche strings in die Datei clientfile.txt geschreiben und
+Der Port ist beim Aufruf des Programms zwingend notwendig. Es werden, ohne Aufruf von -f unterschiedliche strings in die Datei clientfile.txt geschreiben und
 folgedessen in der Map Funktion komprimiert.
 ```
 ./client -n Client1 -i 192.168.8.1 -p 1113  
