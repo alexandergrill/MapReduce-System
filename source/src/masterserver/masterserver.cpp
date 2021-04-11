@@ -37,6 +37,60 @@ using json = nlohmann::json;
 -Input: 
 -Output:        
 */
+void MasterServer::SetMaps(){
+    stringstream sstring(tabledata);
+    string data;
+    string clientservername = "";
+    string datacnt1;
+    string datacnt2;
+    int cnt{0};
+    while (getline(sstring, data, ':')){
+        int n = data.length();
+        char *str = new char[n + 1];
+        strcpy(str, data.c_str());
+        char *strelement;
+        strelement = strtok(str, ",");
+        while (strelement != NULL){
+            if (cnt == 0){
+                clientservername = strelement;
+                cnt += 1;
+            }
+            else{
+                if (cnt == 1){
+                    datacnt1 = strelement;
+                    cnt += 1;
+                }
+                else{
+
+                    datacnt2 = strelement;
+                    cnt += 1;
+                }
+            }
+            strelement = strtok(NULL, ",");
+            if (cnt == 4){
+                cnt = 0;
+                if (clientservername.find("+0") != string::npos){
+                    clientservername.erase(clientservername.size() - 1);
+                    clientservername.erase(clientservername.size() - 1);
+                    clients[clientservername][datacnt1] = datacnt2;
+                }
+                else{
+                    clientservername.erase(clientservername.size() - 1);
+                    clientservername.erase(clientservername.size() - 1);
+                    slaveserver[clientservername] = datacnt2;
+                }
+            }
+        }
+        delete str;
+    }
+}
+
+/*
+-Name: AddList
+-Beschreibung: 
+-Input: 
+-Output:        
+*/
 void MasterServer::AddList(map<string, int> *mapdic){
     maplist->push_back(*mapdic);
 }
