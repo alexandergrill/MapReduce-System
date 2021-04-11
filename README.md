@@ -100,13 +100,13 @@ Der SlaveServer sendet nachdem von 6 Clients die Daten geshuffelt wurden an dem 
 
 <div align="center">
     <br />
-    <img src="./documentation/masterserver1.png" alt="Usage Demo Server" width="100%"/>
+    <img src="./documentation/masterserverdemo1.png" alt="Usage Demo Server" width="100%"/>
 </div>
 
 
 <div align="center">
     <br />
-    <img src="./documentation/masterserver2.png" alt="Usage Demo Server" width="100%"/>
+    <img src="./documentation/masterserverdemo2.png" alt="Usage Demo Server" width="100%"/>
 </div>
 
 #### Bedienungen
