@@ -541,6 +541,15 @@ Diesen Part wird im MapReduce-System als Map Funktion bezeichnet. Zum Schluss we
 String konvertiert, um diesen daraufhin an dem Server zu übertragen. Bei der Umwandlung des Dictionarys, werden den Key-Werten und Value-Werten Trennsymbole angehängt, sodass der Slaveserver die Zeichenkette aufteilen und weiters in ein Dictionary zurück umkonvertieren kann.\\\\
 \textbf{Kommandozeilenparameter}\\
 \begin{minted}{cpp}
+MapReduceSystem_Client
+Usage: ./client [OPTIONS]
+
+Options:
+  -h,--help                   Print this help message and exit
+  -n,--n TEXT REQUIRED        name for the client
+  -i,--i TEXT                 ipadress for the client
+  -p,--p TEXT REQUIRED        port to connect to
+  -f,--f TEXT:FILE            filepath of the file
 
 \end{minted}
 \newpage
@@ -552,12 +561,38 @@ Diese Komponente bildete die Schnittstelle zwischen den Clients und dem Masterse
 einzelnen Werte durch ein ; getrennt werden. Wenn der Slaverserver von 2 unterschieldichen Clients Daten bekommen hat, werden die Strings zurück in eine Map konvertiert und in einer Map-List abgespeichert. Wenn sich zwei Maps in dieser Liste befinden, wird zu jedem Paar(also wenn immer 2 Maps in der Liste gespeichert sind)
 ein Thread gestartet. In jedem Thread werden die einzelnen Werte eine Map vergliechen und verkleinert, d.h Durchführung der Shuffle Phase. Die resultierenden Daten werden dann in der Map datamap abgespeichert. Da alle erzeugten Threads ihre Daten in der datamap abspeichern, werden redundante Daten erzeugt. Diese müssen schlussendlich auch komprimiert werden. Am Ende dieser Phase werden alle Daten in der resultmap abspeichert. 
 Auf Grund der parallele Abarbeitung der Daten bietet, dieses System eine hohe effizienz. Wie im Modul Client wird die Map am Ende zu einem Übertragungsstring umgewandlet und dem MasterServer versendet.
-\textbf{Klassenaufbau}\\
 \textbf{Kommandozeilenparameter}\\
+\begin{minted}{cpp}
+MapReduceSystem_SlaverServer
+Usage: ./slaveserver [OPTIONS]
+
+Options:
+  -h,--help                   Print this help message and exit
+  -n,--n TEXT REQUIRED        name for the slaveserver
+  -i,--i TEXT                 ipadress for the server
+  -p,--p TEXT REQUIRED        port to connect to
+  -s,--s TEXT REQUIRED        serverport
+  -c,--c INT                  the maximum of clients
+
+\end{minted}
+\textbf{Klassenaufbau}\\
 \subsection{MasterServer}
 \textbf{Modulbeschreibung}\\
-\textbf{Klassenaufbau}\\
 \textbf{Kommandozeilenparameter}\\ 
+\begin{minted}{cpp}
+MapReduceSystem_MasterServer
+Usage: ./masterserver [OPTIONS]
+
+Options:
+  -h,--help                   Print this help message and exit
+  -n,--n TEXT REQUIRED        name for the masterserver
+  -p,--p TEXT REQUIRED        serverport
+  -c,--c INT                  the maximum of slaveserver
+  -j,--j TEXT:FILE            write reduced data in json-file
+  -t,--t                      print a table about the reduced data
+
+\end{minted}
+\textbf{Klassenaufbau}\\
 \subsection{utils}
 \textbf{Funktionen}\\
 \subsection{Konsolenausgabe}
