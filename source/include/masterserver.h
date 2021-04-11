@@ -35,7 +35,6 @@ protected:
         maplist = new std::list<std::map<std::string, int>>();
     }
 //Methoden
-
     void AddList(std::map<std::string, int> *mapdic);
     void SetTableData(std::string value, int valuecnt);
 public:
