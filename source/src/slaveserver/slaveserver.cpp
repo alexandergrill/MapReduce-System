@@ -68,7 +68,7 @@ int SlaveServer::GetDataMapSize(){
 
 /*
 -Name: Shuffle
--Beschreibung: 1 Phase des Map-Reduce Systems
+-Beschreibung: 2 Phase des Map-Reduce Systems
 -Input: 
 -Output: void   
 */

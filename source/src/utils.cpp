@@ -67,7 +67,7 @@ bool IPIsValid(string ip){
 
 /*
 -Name: PORTIsValid
--Beschreibung: überprüft ob der mitübergebene PORT valid is (korrekt is)
+-Beschreibung: überprüft ob der mitübergebene PORT valid ist (korrekt ist)
 -Input: string port
 -Output: bool
 */

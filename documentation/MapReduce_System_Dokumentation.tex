@@ -379,13 +379,13 @@ die Daten so umwandeln, sodass diese für sie verständlich sind und im zweiten 
 \noindent
 \textbf{Message Oriented Middleware\\}
 Message Oriented Middleware ist eine Softwareinfrastruktur, die durch asynchrone Verbindung (nicht im klassischen Sinne, sondern im Sinne von Kommunikationsbeziehungen) charakterisiert ist und die sich mittels mehreren Systeme durch Nachrichten miteinander verbindet. Protokolle für MOM wären zum Beispiel: 
-AMQP, STOMP, OpenWire, Java Message Service, XMPP, REDIS und MQTT.\\\\Im Unterricht wurde besonders auf das Protokoll MQTT Rücksicht genommen, weil es aktuell ist. MQTT ist ein Protokoll das ursprünglich von IBM zur Überwachung von Ölpipelines. Das Protokoll ist sehr leichtgewichtig gehalten, weil eine große Datenmenge
+AMQP, STOMP, OpenWire, Java Message Service, XMPP, REDIS und MQTT.\\\\Im Unterricht wurde besonders auf das Protokoll MQTT Rücksicht genommen, weil es aktuell ist. MQTT ist ein Protokoll das ursprünglich von IBM zur Überwachung von Ölpipelines eingesetzt wird. Das Protokoll ist sehr leichtgewichtig gehalten, weil eine große Datenmenge
 mittels einfachem Protokoll übertragen werden soll. \\\\
 Das Protokoll basiert auf einem publish/subscribe Ansatz und die Idee dieses Protokolls ist, dass es kompatible mit anderen Programmiersprachen, wie C++, Java, .Net, Python, PHP usw. ist. Der Aufbau des Protokolls ist hierarchisch, wie unter Linux der Verzeichnisbaum. \\\\Der Vorteil ist der, dass man durch den hierarchisch Topic Aufbau, nur die 
-Daten erhält, die man auch zwingend anfordert, Z.B bei etage1/wohnzimmer/ bekommt man nur alle Daten vom Wohnzimmer aus der ersten Etage und wenn man alle Daten von der ersten Etage möchte, fordert man mittels /etage1/ diese an. Wichtige Charakteristika sind auch Themen, wie Quaility of Service, Last Will and Testament, Retained Message und Authentifizierung.\\
+Daten erhält, die man auch zwingend anfordert, bei etage1/wohnzimmer/ bekommt man nur alle Daten vom Wohnzimmer aus der ersten Etage und wenn man alle Daten von der ersten Etage möchte, fordert man mittels /etage1/ diese an. Wichtige Charakteristika sind auch Themen, wie Quaility of Service, Last Will and Testament, Retained Message und Authentifizierung.\\
 \\
 \textbf{Entfernte Funktionsaufrufe}\\
-Unter Remote Procedure Call (RPC) versteht man, dass nach dem Funktionsaufruf der Prozess, der durch den Aufruf gestartet wird, auf einem anderem Host im lokalen Netzwerk gestartet wird. Die Zugriffstransparenz kann bei nachrichtenorientierter Kommunikation nicht erfüllt werden, wenn lediglicht eine Operation am Server ausgeführt werden soll. Dieses Konzept findet Anwendung auf Basis von Proxy-Pattern.\\\\
+Unter Remote Procedure Call (RPC) versteht man, dass nach dem Funktionsaufruf der Prozess, der durch den Aufruf gestartet wird, auf einem anderem Host im lokalen Netzwerk gestartet wird. Die Zugriffstransparenz kann bei nachrichtenorientierter Kommunikation nicht erfüllt werden, wenn lediglich eine Operation am Server ausgeführt werden soll. Dieses Konzept findet Anwendung auf Basis von Proxy-Pattern.\\\\
 \newpage
 \noindent
 \textbf{Proxy-Pattern}\\
@@ -395,13 +395,13 @@ Elemente des Proxy-Patterns sind: Client-Objekt, Client Stub(Proxy), Server Stub
     \includegraphics[width=8cm]{ProxyPattern.png}
 \end{figure}
 \\
-Die Vorgehensweise sieht folgendermaßen aus: Ein User möchte auf einem Objekt eine Methode aufrufen er ruft die Methode nicht direkt auf dem Objekt auf, sondern der Client verwendet ein Interface. Die Implementierung des Interface kann entweder eine abstrakte Klasse sein oder
+Die Vorgehensweise sieht folgendermaßen aus: Ein User möchte auf einem Objekt eine Methode aufrufen. Er ruft die Methode nicht direkt auf dem Objekt auf, sondern der Client verwendet ein Interface. Die Implementierung des Interface kann entweder eine abstrakte Klasse sein oder
 ein Interface, das vorgibt, welche Methoden definiert werden sollen bzw. zur Verfügung stehen.
-Zusätzlich gibt es noch eine Klasse Proxy und RealSubject, auf dem die Operation die von oben vererbt wird, ausgeführt wird. Im Remote Proxy Pattern ruft ein Client mit dem Interface auf dem Proxy Objekt einer Operation auf. Diese Proxy Objekt dient als Stellvertretung des realen Objekts. Das Proxy Objekt baut nach der Ausführung der Operation
-eine Verbindung zu dem wirklichen Objekt auf und über diese Verbindung wird ein Protokoll abgewickelt. Bei der Übertragung werden sämtliche Informationen bezüglich des Funktionsaufrufe wie zum Beispiel Eingangsparameter, Ausgabeparameter oder Funktionsname mit übertragen. \\\\
+Zusätzlich gibt es noch eine Klasse Proxy und RealSubject, auf denen die Operation, die von oben vererbt wird, ausgeführt wird. Im Remote Proxy Pattern ruft ein Client mit dem Interface auf dem Proxy Objekt einer Operation auf. Diese Proxy Objekt dient als Stellvertretung des realen Objekts. Das Proxy Objekt baut nach der Ausführung der Operation
+eine Verbindung zu dem wirklichen Objekt auf und über diese Verbindung wird ein Protokoll abgewickelt. Bei der Übertragung werden sämtliche Informationen bezüglich des Funktionsaufrufes wie zum Beispiel Eingangsparameter, Ausgabeparameter oder Funktionsname mit übertragen. \\\\
 Nach der Ausführung wird das Resultat des Objekts anhand des Protokolls zurück zum Proxy Objekt und dann zum Client zurückgesendet. Der Aufruf wirkt wie ein lokaler Aufruf, jedoch funktioniert dies über das verwendete Netzwerk.
 Das Sekeleton ist zuständig, die Kommunikation zwischen dem Proxy und dem RealSubject abzuwickeln.\\\\
-Probleme, die bei der Umsetzung eines Proxy-Patterns auftreteb könnten sind vor allem Interoperabilitätsprobleme (Probleme die beim Zusammenspiel zwischen verschiedener Systeme, Techniken oder Organisationen auftreten), call-by-refernce, Behandlung von Excpetions, die Transparenz kann nicht gewährleistet werden und die Behandlung von Threads und Prozessen erfolgt nur serverseitig, Client findet den Server nicht, Client stürzt nach dem senden der Nachricht ab, Nachricht geht verloren, Server stürzt ab, Antwort geht verloren, Client stürzt ab, bevor diese die Antwort bekommt.
+Probleme, die bei der Umsetzung eines Proxy-Patterns auftreten könnten sind vor allem Interoperabilitätsprobleme (Probleme die beim Zusammenspiel zwischen verschiedener Systeme, Techniken oder Organisationen auftreten), call-by-refernce, Behandlung von Excpetions, die Transparenz kann nicht gewährleistet werden und die Behandlung von Threads und Prozessen erfolgt nur serverseitig, Client findet den Server nicht, Client stürzt nach dem senden der Nachricht ab, Nachricht geht verloren, Server stürzt ab, Antwort geht verloren, Client stürzt ab, bevor diese die Antwort bekommt.
 \newpage
 \noindent
 \begin{description}
@@ -415,30 +415,30 @@ Probleme, die bei der Umsetzung eines Proxy-Patterns auftreteb könnten sind vor
 \end{description}
 \textbf{Stream-orientierte Kommunikation}\\
 Stream-orientiert Kommunikation bezeichnet die gleichzeitige Übertragung und Wiedergabe von Video- und Audiodaten über ein Netzwerk.
-Dabei werden Streams von Daten versendet, keine Nachrichten, sondern nicht abgeschlossene Informationeneinheiten.
-Den Vorgang der Datenübertragung selbst nennt man Streaming und übertragene Programme werden als Livestream oder kurz Stream bezeichnet. Streaming-Media, das über das WWW bzw. HTML angestoßen wurde, wird auch Webradio oder Web-TV genannt. Im Gegensatz zum Herunterladen ist das Ziel beim Streaming nicht, eine Kopie der Medien beim Nutzer anzulegen, sondern die Medien direkt auszugeben, anschließend werden die Daten verworfen.
+Dabei werden Streams von Daten versendet, keine Nachrichten, sondern nicht abgeschlossene Informationseinheiten.
+Den Vorgang der Datenübertragung selbst nennt man Streaming und übertragene Programme werden als Livestream oder kurz Stream bezeichnet. Streaming-Media, das über das WWW bzw. HTML angestoßen wurde, wird auch Webradio oder Web-TV genannt. Im Gegensatz zum Herunterladen ist das Ziel beim Streaming, nicht eine Kopie der Medien beim Nutzer anzulegen, sondern die Medien direkt auszugeben, anschließend werden die Daten verworfen.
 \\\\
 Die Wiedergabe von Programmen über einen Livestream unterscheidet sich meist vom klassischen Rundfunk. Während beim Rundfunk an eine unbestimmte Anzahl Empfänger zugleich gesendet wird, handelt es sich beim Streaming meist jeweils um eine Direktverbindung zwischen dem Server des Senders und dem Client jedes einzelnen Benutzers. Die Verbreitung erfolgt oftmals über Streaming-Portale und internetbasierte Mediatheken.
 \cite{communication2}
 \newpage
 \noindent
 \subsection{TCP/IP}
-Das Transmissioncontrollprotokoll und Internet Protokoll ist eine Menge von Kommunikationsprotokollen, die für den Verbindungsaufbau zu einem Netzwerk verwendet werden. TCP/IP kann auch als Kommunikation in einem Intranet(Firmen internes Internet) oder Extranet(betriebsinternes Computersystem, das für bestimmte externe Benutzergruppen geöffnet ist) eingesetzt werden.TCP/IP ist eine Reihe von Regeln und Verfahren wie der Datenaustausch abgehalten werden soll, dabei sind TCP/IP die Hauptprotokolle. TCP/IP definiert, wie Daten über das Internet übertragen werden, indem eine Ende zu Ende Kommunikation bereit gestellt wird. Weiters ist das Protokoll zuständig für die Aufteilung der Daten in Packete, Adressierung, Übertragung, Weiterleitung und auch, dass die Daten beim richtigen Empfänger ankommen.\\\\
+Das Transmissioncontrollprotokoll und Internet Protokoll ist eine Menge von Kommunikationsprotokollen, die für den Verbindungsaufbau zu einem Netzwerk verwendet werden. TCP/IP kann auch als Kommunikation in einem Intranet(Firmen internes Internet) oder Extranet(betriebsinternes Computersystem, das für bestimmte externe Benutzergruppen geöffnet ist) eingesetzt werden.TCP/IP ist eine Reihe von Regeln und Verfahren wie der Datenaustausch abgehalten werden soll, dabei sind TCP/IP die Hauptprotokolle. TCP/IP definiert, wie Daten über das Internet übertragen werden, indem eine Ende zu Ende Kommunikation bereit gestellt wird. Weiters ist das Protokoll zuständig für die Aufteilung der Daten in Pakete, Adressierung, Übertragung, Weiterleitung und auch, dass die Daten beim richtigen Empfänger ankommen.\\\\
 \textbf{TCP}\\
-TCP bestimmt, wie Daten über ein Netzwerk geschafft werden können und zusätzlich auch wie Daten in Pakete aufgeteilt werden, sodass diese daraufhin über das Internet übertragen werden können und an der Zieladresse wieder in richtigen Reihenfolge wieder zusammenfgefügt werden können.
+TCP bestimmt, wie Daten über ein Netzwerk geschafft werden können und zusätzlich auch wie Daten in Pakete aufgeteilt werden, sodass diese daraufhin über das Internet übertragen werden können und an der Zieladresse wieder in richtigen Reihenfolge zusammenfgefügt werden können.
 In der Internetprotokollfamilie bildet TCP gemeinsam mit UDP und SCTP die Gruppe der Transportprotokolle, die nach dem OSI-Modell in der Netzwerk-Architektur auf der Transportschicht eingestuft werden. Da das TCP-Protokoll in fast allen Fällen auf dem Internet Protocol (IP) aufsetzt und diese Verbindung die Basis für den Großteil aller öffentlichen und lokalen Netzwerke und Netzwerkdienste bildet, ist häufig auch vom TCP/IP-Protokollstapel die Rede, wenn im eigentlichen Sinne die Internetprotokollfamilie gemeint ist.
 \\\\
 \textbf{IP}\\
-Wohingegen IP fixiert, wie jedes einzelne Datenpacket adressiert und geroutet wird, dass diese zum richtigen Empfänger geleitet werden.Deshalb bedarf es einer Möglichkeit das Netzwerk physikalisch (Topologie) und auch logisch (Adressierung) zu strukturieren. Innerhalb von TCP/IP übernimmt das Internet Protocol (IP) die logische Adressierung von Netzwerken und deren Teilnehmern. Dabei gelangen Datenpakete nur in das Netz, in dem sich das Ziel befindet. Die Verfahren der Adressierung sind zum Beispiel fest definierte Netzklassen, Subnetting und CIDR. Jeder Gatway im Netzwerk überprüft die IP-Adresse, um festzustellen, wohin die Nachricht weiter geleitet werden. Ein Gateway ist ein Netzwerk-Knoten, der als Eingang zu einem anderen Netzwerk dient. Internet-Knoten können entweder Gateway-Knoten oder Host-Knoten sein.\\\\
+Wohingegen IP fixiert, wie jedes einzelne Datenpaket adressiert und geroutet wird, dass diese zum richtigen Empfänger geleitet werden.Deshalb bedarf es einer Möglichkeit das Netzwerk physikalisch (Topologie) und auch logisch (Adressierung) zu strukturieren. Innerhalb von TCP/IP übernimmt das Internet Protocol (IP) die logische Adressierung von Netzwerken und deren Teilnehmern. Dabei gelangen Datenpakete nur in das Netz, in dem sich das Ziel befindet. Die Verfahren der Adressierung sind zum Beispiel fest definierte Netzklassen, Subnetting und CIDR. Jeder Gatway im Netzwerk überprüft die IP-Adresse, um festzustellen, wohin die Nachricht weiter geleitet werden. Ein Gateway ist ein Netzwerk-Knoten, der als Eingang zu einem anderen Netzwerk dient. Internet-Knoten können entweder Gateway-Knoten oder Host-Knoten sein.\\\\
 \textbf{HTTP/HTTPS}\\
-Dieses Protokoll ist zuständig für die Kommunikation zwischen Client(Browser) und Webserter. Wenn ein Benutzer im Browser eine Internetadresse aufruft, wird ein Request an den WebServer versendet. Dieser Server sucht die Daten, auf denen angefragt wurde und sendet die Daten der Webseit per Repsone dem Benutzer(Browser) zurück. Der WebBrowser sammelt die Daten zusammen und setzt diese zu der entgültigen Webseite zusammen. Bei HTTPS bassiert diese Kommunikation geschtüzt und verschlüsselt.
+Dieses Protokoll ist zuständig für die Kommunikation zwischen Client(Browser) und Webserter. Wenn ein Benutzer im Browser eine Internetadresse aufruft, wird ein Request an den WebServer versendet. Dieser Server sucht die Daten, auf denen angefragt wurde und sendet die Daten der Webseit per Repsone dem Benutzer(Browser) zurück. Der WebBrowser sammelt die Daten zusammen und setzt diese zu der entgültigen Webseite zusammen. Bei HTTPS bassiert diese Kommunikation geschüzt und verschlüsselt.
 \begin{figure}[h]
     \centering
     \includegraphics[width=10cm]{http.png}
 \end{figure}
 \\
 \textbf{FTP/SFTP}\\
-Das Protokoll ist dafür entwickelt worden, um mit Befehlen Downloads und Uploads imm Zusammenhang mit dem entsprechenden Server durchzuführen. So kann man Dateien von dem eigenen Gerät (PC, Smartphone usw.) auf einen Server übertragen auch und umgekehrt. Per FTP können Dateien auch vom Server auf das Gerät heruntergeladen werden.
+Das Protokoll ist dafür entwickelt worden, um mit Befehlen Downloads und Uploads im Zusammenhang mit dem entsprechenden Server durchzuführen. So kann man Dateien von dem eigenen Gerät (PC, Smartphone usw.) auf einen Server übertragen und auch umgekehrt. Per FTP können Dateien auch vom Server auf das Gerät heruntergeladen werden.
 Das File Transfer Protocol findet Anwendung beim Erstellen von Websites, weil mit dem FTP-Zugang können HTML-Dateien auf den Server übertragen werden. Außerdem können Betreiber von Websites Mediendateien für Besucher der Homepage bereitstellen.
 SSH File Transfer Protocol (SFTP) hingegen verwendet die Secure Shell für die sichere Übertragung von Dateien. Auch hierbei ist die Verbindung verschlüsselt.
 \begin{figure}[h]
@@ -456,11 +456,11 @@ SSH File Transfer Protocol (SFTP) hingegen verwendet die Secure Shell für die s
         \end{itemize}
         \item Internetschicht
         \begin{itemize}
-            \item{Das Internetprotokoll ist an diese Schicht gerichtet, weil dadurch die Daten an das richtige Ziel gesendet werden soll.  Über die IP-Adresse werden die Datenpakete durch das Netzwerk geroutet.}
+            \item{Das Internetprotokoll ist an diese Schicht gerichtet, weil dadurch die Daten an das richtige Ziel gesendet werden sollen.  Über die IP-Adresse werden die Datenpakete durch das Netzwerk geroutet.}
         \end{itemize}
         \item Transportschicht
         \begin{itemize}
-            \item{In diese Schicht kommt das Protkoll TCP zum Vorschein.  Das Protokoll ermöglicht die Ende-zu-Ende-Kommunikation, ist also verantwortlich für die Verbindung zwischen zwei Geräten. Neben TCP gehört auch UDP in diese Ebene.}
+            \item{In diese Schicht kommt das Protkoll TCP zum Vorschein.  Das Protokoll ermöglicht die Ende-zu-Ende-Kommunikation. Es ist also verantwortlich für die Verbindung zwischen zwei Geräten. Neben TCP gehört auch UDP in diese Ebene.}
         \end{itemize}
         \item Anwendungsschicht
         \begin{itemize}
@@ -477,25 +477,25 @@ SSH File Transfer Protocol (SFTP) hingegen verwendet die Secure Shell für die s
 \noindent
 \section{Implementierung}
 In diesem Kapitel geht es grundsätzlich um die technische Realisierung der
-Aufgabenstellung. Im folgendem Abschnitt wird auch der Aufbau des Projekts
+Aufgabenstellung. Im folgenden Abschnitt wird auch der Aufbau des Projekts
 beschrieben. Außerdem enthält dieses Kapitel auch die Dokumentation
 des Source Codes und wichtige Informationen bezgüglich Bibliotheken, die
 im Projekt verwendet wurden.
 \subsection{Projektstruktur}
-Das Projekt wird ein drei wesentliche Verzeichnise eingeteilt, nämlich declaration, documentation und source. In dem Verzeichnis declaration sind alle Unterlagen abgelegt, die als Projektinput dient. In diesen Dokumenten sind die genauen Vorgaben des jeweiligen Projekts festgehalten. Im Ordner documenation sind alle Dateien der theoretischen Ausarbeitung des Themas und der Realisierung des Projekt abgespeichert, wohingegen im source Verzeichnis alle Datein der technischen Realisierung abgesichert werden.
-Im Verzeichnis source gibt es drei Unterverzeichnisse dem build Ordner, indem alle generierten Datein abgespeichert werden, der include Ordern, indem alle Header-Datein abgelegt werden und der src Folger, in diesem sind die main.cpp Dateien und die dazugehörigen .cpp Dateien des .h Dateien. Das Projekt wird in Module eingeteilt. Das heißt die Klassendefinition,
+Das Projekt wird in drei wesentliche Verzeichnisse eingeteilt, nämlich declaration, documentation und source. In dem Verzeichnis declaration sind alle Unterlagen abgelegt, die als Projektinput dient. In diesen Dokumenten sind die genauen Vorgaben des jeweiligen Projekts festgehalten. Im Ordner documenation sind alle Dateien der theoretischen Ausarbeitung des Themas und der Realisierung des Projekt abgespeichert, wohingegen im source Verzeichnis alle Datein der technischen Realisierung abgesichert werden.
+Im Verzeichnis source gibt es drei Unterverzeichnisse dem build Ordner, indem alle generierten Datein abgespeichert werden, der include Ordern, indem alle Header-Datein abgelegt werden und der src Folger, in diesem sind die main.cpp Dateien und die dazugehörigen .cpp Dateien des .h Dateien. Das Projekt wird in Module eingeteilt. Das heißt, die Klassendefinition,
 Konstruktoren und Methodenprototypen von Client, SlaveServer und MasterServer stehen in der jeweiligen h-Datei.
 Die Methodendefinitionen, der dazugehörigen Klasse, wurden in der dazugehörigen cpp-Datei kodiert.
 Zusätzlichen Funktionen die für die Umsetzung des Projekts dringend notwendig
 waren, wurden in dem Modul utils declariert und definiert. 
-Der Compiler generiert drei auszuführende Programm, dem Client, dem SlaveServer und dem MaterServer. Welche Zielsetzungen die einzelnen Programme haben wird im jeweiligen Verzeichnis beschrieben.
-Da einige Source Code Abschnitte nicht verständlich und nachfollziebar sind, wurden
+Der Compiler generiert drei auszuführende Programm, dem Client, dem SlaveServer und dem MaterServer. Welche Zielsetzungen die einzelnen Programme haben, wird im jeweiligen Verzeichnis beschrieben.
+Da einige Source Code Abschnitte nicht verständlich und nachvollziebar sind, wurden
 alle Variablen, Funktionen, Klassen, Methoden und sonstiges gut dokumentiert.
 \newpage
 Im unterem Verzeichnisbaum wird die Struktur des Projektes abgebildet
 \\
 \dirtree{%
-.1 declaration\DTcomment{enthält alle Dateien die für die Umsetzung}.
+.1 declaration\DTcomment{enthält alle Dateien die für die Umsetzung wichtig sind}.
 .2 {issues.pdf}.
 .2 {projects.pdf}.
 .1 documentation\DTcomment{enthält alle Dateien der theoretiscenh Ausarbeitung}.
@@ -503,7 +503,7 @@ Im unterem Verzeichnisbaum wird die Struktur des Projektes abgebildet
 .2 {MapReduce\_System\_Dokumentation.tex}.
 .2 {literatur.bib}.
 .1 source\DTcomment{enthält alle Dateien der praktischen Ausarbeitung}.
-.2 build\DTcomment{darin befinden sich alle automatisch generiert Datein}.
+.2 build\DTcomment{darin befinden sich alle automatisch generierten Datein}.
 .2 include\DTcomment{darin befinden sich alle h-Dateien}.
 .3 {client.h}.
 .3 {slaveserver.h}.
@@ -537,8 +537,8 @@ Im unterem Verzeichnisbaum wird die Struktur des Projektes abgebildet
 \textbf{Modulbeschreibung}\\
 Die Komponente Client ist eine ausführbare Datei und bildet den Input für die Datenverarbeitung des MapReduce-Systems. Wenn das Programm vom Benutzer gestartet wird, wird eine Verbindung zum jeweiligen Server aufgebaut. Wenn diese erfolgt, wird eine bestimmte Anzahl von Strings, 
 die der Benutzer beim Aufruf mitübergibt, generiert und in eine Datei geschrieben. In der nächsten Phase durchforstet das Programm, die Datei zeilenweise durch und speichert die Datensätze in einer Art Dictionary ab(Key:Value). Der zufällig generierte String entspricht im Dictionary dem Key und der Value die Anzahl des Strings wie oft dieser in der Datei vorkommt.
-Diesen Part wird im MapReduce-System als Map Funktion bezeichnet. Zum Schluss wenn alle Daten im Dictionary abgespeichert sind, wird dieses in einem
-String konvertiert, um diesen daraufhin an dem Server zu übertragen. Bei der Umwandlung des Dictionarys, werden den Key-Werten und Value-Werten Trennsymbole angehängt, sodass der Slaveserver die Zeichenkette aufteilen und weiters in ein Dictionary zurück umkonvertieren kann.\\\\
+Dieser Part wird im MapReduce-System als Map Funktion bezeichnet. Zum Schluss wenn alle Daten im Dictionary abgespeichert sind, wird dieses in einem
+String konvertiert, um diesen daraufhin an dnm Server zu übertragen. Bei der Umwandlung des Dictionarys, werden den Key-Werten und Value-Werten Trennsymbole angehängt, sodass der Slaveserver die Zeichenkette aufteilen und weiters in ein Dictionary zurück umkonvertieren kann.\\\\
 \textbf{Kommandozeilenparameter}\\
 \usemintedstyle{bw}
 \begin{minted}{cpp}
@@ -556,15 +556,52 @@ Options:
 \newpage
 \noindent
 \textbf{Klassenaufbau}\\
+\usemintedstyle{linenos}
+\begin{minted}{cpp}
+class Client{
+private:
+//Variablen
+    //IP Adresse des Clients
+    string ipadress;  
+    //PORT des jeweiligen Servers                 
+    string port;   
+    /*in dieser Map werden alle komprimierten Daten 
+    nach der Map Phase abgespeichert*/               
+    map<string, int> datamap; 
+    //Array dient für die Generierung von random strings    
+    const char alphabet[52];
+//Konstruktor
+    Client(string ip, string pr):ipadress{ip}, port{pr}{}
+//Methoden
+    //generiert eine zufälligen String und gibt diesen zurück
+    string GetRandomString();
+public :
+//Methodena
+    /*gibt ein Objekt vom Typ Client zurück, 
+    wenn Port und IP Adresse valid sind*/
+    static Client *GetClient(string ip, string pr);
+    //gibt einen Pointer des Objekts datamap zurück
+    map<string, int>* GetMap();
+    //gibt die Länge der Map zurück
+    int GetDataMapSize();
+    /*dabei werden zufällige String(Anzahl = wordnum)
+    in die Datei(filename) geschrieben und abgespeichert*/
+    void WriteIntoFile(int wordnum, string filename);
+    //1 Phase des Map-Reduce Systems
+    int Map(string filename);
+};
+\end{minted}
+\newpage
 \subsection{SlaveServer}
 \textbf{Modulbeschreibung}\\
-Diese Komponente bildete die Schnittstelle zwischen den Clients und dem Masterserver. Der SlaveServer hört auf einen Port ab und empfängt, jene Daten die ihm der Client sendet. Die Übetragungsdaten wird in Form von einem String übertragen, wobei die 
+Diese Komponente bildete die Schnittstelle zwischen den Clients und dem Masterserver. Der SlaveServer hört auf einen Port ab und empfängt, jene Daten die ihm der Client sendet. Die Übetragungsdaten werden in Form von einem String übertragen, wobei die 
 einzelnen Werte durch ein ; getrennt werden. Wenn der Slaverserver von 2 unterschieldichen Clients Daten bekommen hat, werden die Strings zurück in eine Map konvertiert und in einer Map-List abgespeichert. Wenn sich zwei Maps in dieser Liste befinden, wird zu jedem Paar(also wenn immer 2 Maps in der Liste gespeichert sind)
-ein Thread gestartet. In jedem Thread werden die einzelnen Werte der Maps vergliechen und verkleinert, d.h Durchführung der Shuffle Phase. Die resultierenden Daten werden dann in der Map resultmap abgespeichert. Danach wird die Map resultmap wieder in einem Übertragungsstring umgewandelt und an dem Master Server versendet auf dem Port, der beim Aufruf des SlaveServers mitübergeben wurde.
-Auf Grund der parallele Abarbeitung der Daten bietet, dieses System eine hohe effizienz. Wie im Modul Client wird die Map am Ende zu einem Übertragungsstring umgewandlet und dem MasterServer versendet.\\\\
+ein Thread gestartet. In jedem Thread werden die einzelnen Werte der Maps verglichen und verkleinert, d.h Durchführung der Shuffle Phase. Die resultierenden Daten werden dann in der Map resultmap abgespeichert. Danach wird die Map resultmap wieder in einem Übertragungsstring umgewandelt und an de Master Server (Port) versendet, der beim Aufruf des SlaveServers mitübergeben wurde.
+Auf Grund der parallelen Abarbeitung der Daten bietet dieses System eine hohe Effizienz. Wie im Modul Client wird die Map am Ende zu einem Übertragungsstring umgewandlet und dem MasterServer versendet.\\\\
 \textbf{Kommandozeilenparameter}\\
+\usemintedstyle{bw}
 \begin{minted}{cpp}
-MapReduceSystem_SlaverServer
+MapReduceSystem_SlaveServer
 Usage: ./slaveserver [OPTIONS]
 
 Options:
@@ -579,12 +616,39 @@ Options:
 \newpage
 \noindent
 \textbf{Klassenaufbau}\\
+\usemintedstyle{linenos}
+\begin{minted}{cpp}
+class SlaveServer : public MasterServer{
+private:
+//Variablen
+    string ipadress;   //IP Adresse des SlaveServers
+    string port;       //PORT des jeweiligen Servers
+//Konstruktor
+    SlaveServer(string ip, ...):MasterServer(spr, mx){
+        ipadress = ip;
+        port = pr;
+    }
+public:
+//Destruktor
+    ~SlaveServer(){}
+//Methoden
+    /*gibt ein Objekt vom Typ SlaveServer
+    zurück, wenn Port und IP Adresse valid sind*/
+    static SlaveServer* GetSlaveServer(string ip, ...);
+    //gibt die Länger der Map resultmap zurück
+    int GetDataMapSize();
+    //2 Phase des Map-Reduce Systems
+    void Shuffle();
+};
+\end{minted}
+\newpage
 \subsection{MasterServer}
 \textbf{Modulbeschreibung}\\
-Der MasterServer ist die wichtigste Komponente des Projekt, weil diese hat am Ende des Prozederes die Aufgabe, die Daten, die er von den Slave Server bekommt, so klein wie möglich komprimiert. Diese Phase wird Reduce genannt und am Ende dieser Phase kommen keine doppelte Datensätze mehr vor. Der Master Server hört wie auch der Slave Server auf einem Port ab 
-und wartet so lange bis er einen Request von einem Slave Server bekommt. Wenn dieser von zwei unterschiedlichen Slave Server Daten bekommen hat, wird immer wieder Threads gestaterte die unabhängig voneinander die Daten der Slave Server verkleineren und in der resultmap abspeichern. Nach der Durchführung der Reduce Phase, wurden alle Daten die der Clients komprimiert was bedeutet es existieren in der Datenmenge
+Der MasterServer ist die wichtigste Komponente des Projekts, weil dieser hat am Ende des Prozederes die Aufgabe, die Daten, die er von dem Slave Server bekommt, so klein wie möglich zu komprimieren. Diese Phase wird Reduce genannt und am Ende dieser Phase kommen keine doppelten Datensätze mehr vor. Der Master Server hört wie auch der Slave Server auf einem Port ab 
+und wartet so lange bis er einen Request von einem Slave Server bekommt. Wenn dieser von zwei unterschiedlichen Slave Server Daten bekommen hat, wird immer wieder Threads gestaterte die unabhängig voneinander die Daten der Slave Server verkleinern und in der resultmap abspeichern. Nach der Durchführung der Reduce Phase, wurden alle Daten der Clients komprimiert, was bedeutet es existieren in der Datenmenge
 keine doppelten Wert mehr.\\\\
 \textbf{Kommandozeilenparameter}\\ 
+\usemintedstyle{bw}
 \begin{minted}{cpp}
 MapReduceSystem_MasterServer
 Usage: ./masterserver [OPTIONS]
@@ -598,10 +662,236 @@ Options:
   -t,--t                      print a table about the reduced data
 
 \end{minted}
+\newpage
 \textbf{Klassenaufbau}\\
+\usemintedstyle{linenos}
+\begin{minted}{cpp}
+class MasterServer{
+private:
+//Variablen
+    //map dient zur Ausgabe der Tabelle(tabulate)
+    map<string, map<string, string>> clients;      
+    //map dient zur Ausgabe der Tabelle(tabulate)
+    map<string, string> slaveserver;                         
+//Methoden
+    /*dabei werden die Daten des Strings tabledata,
+    der für die Ausgabe der Tabelle auf der Console von Relevant sind,
+    in den jeweiligen Maps abgespeichert*/
+    void SetMaps();
+protected:
+//Variablen
+    //max. Anzahl der SlaveServer
+    int connectioncounter{0};   
+    //Port des MasterServers                                            
+    unsigned short serverport;   
+    //notwendiger Übertragungsstring für Tabelle(tabulate)                                           
+    string tabledata = "";                                             
+    //Mutex Objekt
+    mutex &mux;  
+    /*in dieser Map werden alle komprimierten Daten
+     nach der Reduce Phase abgespeichert*/                                               
+    map<string, int> resultmap; 
+    //Liste aller Maps(SlaveServer)                                  
+    list<map<string, int>> *maplist;                         
+//Konstruktor
+    MasterServer(unsigned short pr, mutex &mx) : serverport{pr}, mux{mx}{
+        maplist = new list<map<string, int>>();
+    }
+//Methoden
+    //fügt eine neue Map in die Liste maplist hinzu
+    void AddList(map<string, int> *mapdic);
+    // erweitert den String tabledata
+    void SetTableData(string value, int valuecnt);
+\end{minted}
+\newpage
+\begin{minted}{cpp}
+public:
+//Destruktor
+    ~MasterServer(){
+        delete maplist;
+    }
+//Methoden
+    //gibt den String tabledata zurück
+    string GetTableData();
+    // gibt ein Objekt vom Typ MasterServer zurück, wenn Port valid sind
+    static MasterServer* GetMasterServer(string port, mutex &mx);
+    //gibt den Port des Servers zurück
+    unsigned short GetServerPort();
+    //gibt den Pointer des Objekts resultmap zurück
+    map<string, int>* GetMap();
+    //gibt die Größe der Liste zurück
+    int GetListLength();
+    //gibt den Wert der Varible connectioncounter zurück
+    int GetConnectionCounter();
+    //erhöht die Variable connectioncounter um 1
+    void SetConnectionCounter();
+    /*konvertiert die Daten des Transport strings in eine Map
+    und fügt die angelegte Map in die Liste hinzu*/
+    void ConvertStringtoMap(string transportstr);
+    //fügt Datensätze in die resultmap ein
+    void InsertElementinMap(string value, int valuecnt);
+    /*wird aufgerufen wenn Benutzer das Programm MasterServer
+    mit -t startet, dabei wird am Ende der Reduce Phase eine Tabelle in
+    der Console ausgegeben bezgl. den überarbeiteten Daten*/
+    void PrintTable(string masterservername);
+    /*wird aufgerufen wenn Benutzer das Programm MasterServer
+    mit -j startet, dabei wird am Ende der Reduce Phase alle resultierenden
+    Daten in ein JSON File geschrieben*/
+    void WriteIntoFile(string jsonfile);
+    //3 Phase des Map-Reduce Systems
+    void Reduce();
+};
+\end{minted}
+\newpage
 \subsection{utils}
 \textbf{Funktionen}\\
+Im folgendem Kapitel werden noch Funktionen festgehalten, die für die Umsetzung von Wichtigkeit sind.
+\begin{minted}{cpp}
+/*
+-Name: GetRandomNum
+-Beschreibung: liefert eine zufällige Zahl von start bis end
+-Input: int start, int end
+-Output: int
+*/
+
+int GetRandomNum(int start, int end){
+    random_device rd;
+    mt19937 gen{rd()};
+    uniform_int_distribution<> dis{start, end};
+    int num = dis(gen);
+    return num;
+}
+
+/*
+-Name: PORTIsValid
+-Beschreibung: überprüft ob der mitübergebene PORT valid ist (korrekt ist)
+-Input: string port
+-Output: bool
+*/
+
+bool PORTIsValid(string port){
+    size_t pos;
+    int num = stoi(port, &pos);
+    if (pos != port.size() || port.length() != 4){
+        return false;
+    }
+    if (num < 0 || num > 65535){
+        return false;
+    }
+    return true;
+}
+\end{minted}
+\newpage
+\begin{minted}{cpp}
+/*
+-Name: IPIsValid
+-Beschreibung: überprüft ob die mitübergebene
+ IP Adresse valid is (korrekt is)
+-Input: string ip
+-Output: bool
+*/
+bool IPIsValid(string ip){
+    int c{0};
+    char *ip_input = strtok(&ip[0], ".");
+    while (ip_input != NULL){
+        string ipstring = ip_input;
+        size_t pos;
+        int num = stoi(ipstring, &pos);
+        if (pos != ipstring.size()){
+            return false;
+        }
+        if (num < 0 || num > 255){
+            return false;
+        }
+        c += 1;
+        ip_input = strtok(NULL, ".");
+    }
+    if (c < 4){
+        return false;
+    }
+    return true;
+}
+
+/*
+-Name: Search
+-Beschreibung: überprüft ob der mitübergebene string in der Map enthalten ist
+-Input: string value, std::map<std::string, int>* dic
+-Output: bool
+*/
+bool Search(string value, std::map<std::string, int>* dic){
+    if (dic->find(value) == dic->end()){
+        return false;
+    }
+    return true;
+}
+
+/*
+-Name: Search
+-Beschreibung: konvertiert die Map (dic Pointer auf das Objekt) zu einem string
+-Input: std::map<std::string, int>* dic
+-Output: string
+*/
+string ConvertMaptoString(std::map<std::string, int>* dic){
+    string dicstring = "";
+    for (map<string, int>::iterator i = dic->begin(); i != dic->end(); ++i){
+        dicstring += i->first;
+        dicstring += ",";
+        dicstring += to_string(i->second);
+        dicstring += ":";
+    }
+    return dicstring;
+}
+
+/*
+-Name: Print
+-Beschreibung: Printed die Map(dic Pointer auf das Objekt)
+-Input: std::map<std::string, int>* dic
+-Output: void
+*/
+void Print(std::map<std::string, int>* dic){
+    int counter{0};
+    cout << "Data Map" << endl;
+    for (map<string, int>::iterator t = dic->begin(); t != dic->end(); ++t){
+        cout << "Data " << t->first << " " << t->second << endl;
+        counter += 1;
+    }
+    cout << "Elements: " << counter << endl;
+}
+
+\end{minted}
+\newpage
+\noindent
 \subsection{Konsolenausgabe}
+\textbf{Client}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=12cm]{clientdemo1.png}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=12cm]{clientdemo2.png}
+\end{figure}
+\\
+\textbf{Slave Server}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=10cm]{slaveserverdemo1.png}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=9.5cm]{slaveserverdemo2.png}
+\end{figure}
+\newpage
+\textbf{Master Server}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=10cm]{masterserverdemo1.png}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=10cm]{masterserverdemo2.png}
+\end{figure}
+\newpage
 \newpage
 \noindent
 \subsection{Verwendete Bibliotheken}
@@ -611,7 +901,7 @@ Asio bietet die grundlegenden Bausteine für C++-Netzwerke, Gleichzeitigkeit und
 Asio wird in allen Arten von Anwendungen eingesetzt, von Telefon-Apps bis hin zu den schnellsten Aktienmärkten der Welt.\\\\
 Die meisten Programme interagieren auf irgendeine Weise mit der Außenwelt, sei es über eine Datei, ein Netzwerk, ein serielles Kabel oder die Konsole. Manchmal, wie z. B. bei Netzwerken, können einzelne E/A-Operationen sehr lange dauern, bis sie abgeschlossen sind. Dies stellt besondere Herausforderungen an die Anwendungsentwicklung.
 Asio stellt die Werkzeuge zur Verfügung, um diese langwierigen Operationen zu verwalten, ohne dass die Programme Gleichzeitigkeitsmodelle auf Basis von Threads und explizitem Sperren verwenden müssen.
-Die Asio-Bibliothek ist für Programmierer gedacht, die C++ für die Systemprogrammierung verwenden, bei der häufig der Zugriff auf Betriebssystemfunktionen wie z. B. Netzwerke erforderlich ist. Obwohl sich Asio anfangs hauptsächlich auf Netzwerke konzentrierte, wurden seine Konzepte der asynchronen I/O auf andere Betriebssystemressourcen wie serielle Schnittstellen, Dateideskriptoren usw. erweitert.
+Die Asio-Bibliothek ist für Programmierer gedacht, die C++ für die Systemprogrammierung verwenden, bei der der Zugriff auf Betriebssystemfunktionen wie z. B. Netzwerke erforderlich ist. Obwohl sich Asio anfangs hauptsächlich auf Netzwerke konzentrierte, wurden seine Konzepte der asynchronen I/O auf andere Betriebssystemressourcen wie serielle Schnittstellen, Dateideskriptoren usw. erweitert.
 \cite{asio}
 \begin{description}
     \item[Im Besonderen verfolgt Asio folgenden Ziele:] ~\par
@@ -630,7 +920,7 @@ Die Asio-Bibliothek ist für Programmierer gedacht, die C++ für die Systemprogr
         \end{itemize}
         \item Model concepts from established APIs, such as BSD sockets
         \begin{itemize}
-            \item{Die BSD-Socket-API ist weithin implementiert und verstanden und wird in viel Literatur behandelt. Andere Programmiersprachen verwenden oft eine ähnliche Schnittstelle für Netzwerk-APIs. Soweit dies sinnvoll ist, sollte Asio die bestehende Praxis nutzen.}
+            \item{Die BSD-Socket-API ist weithin implementiert und verstanden und wird in vielen Literaturen behandelt. Andere Programmiersprachen verwenden oft eine ähnliche Schnittstelle für Netzwerk-APIs. Soweit dies sinnvoll ist, sollte Asio die bestehende Praxis nutzen.}
         \end{itemize}
         \item Ease of use
         \begin{itemize}
@@ -661,10 +951,10 @@ die Logging Daten nicht nur auszugeben, sonder auch direkt in einem Log-File zu 
 \subsubsection{json}
 In Sprachen wie Python fühlt sich JSON wie ein erstklassiger Datentyp an.
 Die Entwickler haben die ganze Operator-Magie des modernen C++ verwendet, um das gleiche Gefühl in einem c++ Projekt zu erzielen. 
-Der gesamter Code besteht aus einer einzelnen Header-Datei json.hpp. Keine Bibliothek, kein Teilprojekt, keine Abhängigkeiten, kein komplexes Build-System. 
+Der gesamte Code besteht aus einer einzelnen Header-Datei json.hpp. Keine Bibliothek, kein Teilprojekt, keine Abhängigkeiten, kein komplexes Build-System. 
 Die Klasse ist in Vanilla C++ 11geschrieben. \\\\
 Alles in allem ist keine Anpassung der Compiler-Flags oder Projekteinstellungen erforderlich.
-Jedes JSON-Objekt hat einen Overhead und ein Aufzählungselement. Die Standardverallgemeinerung verwendet die folgenden C++-Datentypen: std::string für Zeichenfolgen, int64\_t, uint64\_t oder double für Zahlen, std::map für Objekte, std::vector für Arrays und bool für Boolesche Werte. 
+Jedes JSON-Objekt hat einen Overhead und ein Aufzählungselement. Die Standardverallgemeinerung verwendet die folgenden C++-Datentypen: string für Zeichenfolgen, int64\_t, uint64\_t oder double für Zahlen, map für Objekte, vector für Arrays und bool für Boolesche Werte. 
 json.hpp ist die einzige erforderliche Datei in single\_include/nlohmann, jedoch muss sie im Projekt mit eingebunden werden. \\
 Die Libary wurde in diesem Projekt verwendet, um die zusammengefassten Daten des Master-Server abzuspeichern.
 \cite{json}
@@ -679,13 +969,68 @@ tabulate ist eine reine headeronly-Bibliothek.
 Man legt eine Objekt Table an und kann mittel Table.add\_rows neue Zeilen in der Tabelle hinzufügen.
 Die Tabelle kann mittels Table.format() formatiert werden, das ein Format-Objekt zurückgibt. 
 Es können damit die Eigenschaften der Tabelle formatiert werden, z. B. Rahmen, Schriftstile, Farben usw.
-Auf Zeilen in der Tabelle greift man mitTabelle [row\_index] zu. Dies gibt ein Zeilenobjekt zurück, für das man Row.format() auf ähnliche Weise aufrufen kann, um die Eigenschaften aller Zellen in dieser Zeile zu formatierne.\\
-Die Bibliothek wurde verwendet, sodass am Ende des Programmes eine übersichtliche Tabelle ausgegeben werden kann, wie viele Daten in Struktur gebracht wurden.
-beinhaltet.
+Auf Zeilen in der Tabelle greift man mitTabelle [row\_index] zu. Dies gibt ein Zeilenobjekt zurück, für das man Row.format() auf ähnliche Weise aufrufen kann, um die Eigenschaften aller Zellen in dieser Zeile zu formatieren.\\
+Die Bibliothek wurde verwendet, sodass am Ende des Programmes eine übersichtliche Tabelle ausgegeben werden kann, wie viele Daten in Struktur gebracht.
 \cite{tabulate}
 \section{Anwendungsfälle}
-
+\usemintedstyle{bw}
+\begin{minted}{cpp}
+./client -h
+./slaveserver -h
+./masterserver -h
+\end{minted}
+Dadurch erhält man alle Information bezgl. der Kommandozeilenparameter\\
+\begin{minted}{cpp}
+./client -n Client1 -p 1113 
+\end{minted}
+Startet den Client mit der IP Adresse 127.0.0.1 und versucht sich auf Port 1113 zum SlaveServer zu verbinden und sendet den SlaveServer die Daten(Result der Map Funktion) Der Port ist beim Aufruf des Programms zwingend notwendig. Es werden, ohne Aufruf von -w "ANZAHL", 50 000 unterschiedliche strings in die Datei clientfile.txt geschreiben und folgedessen in der Map Funktion komprimiert.\\
+\begin{minted}{cpp}
+    ./client -n Client1 -i 192.168.8.1 -p 1113  
+\end{minted}
+Startet den Client mit der IP Adresse 192.168.8.1 und versucht sich auf Port 1113 zum SlaveServer zu verbinden und sendet den SlaveServer die Daten(Result der Map Funktion)\\
+\newpage
+\begin{minted}{cpp}
+    ./client -n Client1 -p 1113 -f "../Desktop/file.txt"
+\end{minted}
+Startet den Client mit der IP Adresse 127.0.0.1 und versucht sich auf Port 1113 zum SlaveServer zu verbinden und sendet den SlaveServer die Daten(Result der Map Funktion) In diesem Fall werden die random generierten strings in die Datei file.txt abgespeichert.\\
+\begin{minted}{cpp}
+    ./slaveserver -n SlaveServer1 -s 1113 -p 1116
+\end{minted}
+Startet den SlaveServer mit der IP Adresse 127.0.0.1 und versucht sich auf Port 1116 zum MasterServer zu verbinden und sendet den MasterServer die Daten(Result der Shuffle Funktion). Der SlaveServer hört auf Port 1113 ab und baut eine Verbindung bei einem Request eines Clients auf. Der SlaveServer empfängt alle Daten der Clients. Die Ports sind beim Aufruf des Programms zwingend notwendig.\\
+\begin{minted}{cpp}
+    ./slaveserver -n SlaveServer1 -s 1113 -p 1116 -i 192.168.8.1
+\end{minted}
+Startet den SlaveServer mit der IP Adresse 192.168.8.1 und versucht sich auf Port 1116 zum MasterServer zu verbinden und sendet den MasterServer die Daten(Result der Shuffle Funktion)\\
+\begin{minted}{cpp}
+    ./slaveserver -n SlaveServer1 -s 1113 -p 1116 -c 6
+\end{minted}
+Der SlaveServer sendet nachdem von 6 Clients die Daten geshuffelt wurden, das Ergebniss an dem MasterServer auf Port 1116\\
+\begin{minted}{cpp}
+    ./masterserver -n MasterServer1 -p 1116
+\end{minted}
+Der MasterServer hört auf Port 1116 und empfängt alle Daten die ihm die SlaveServer zu kommen lassen\\
+\begin{minted}{cpp}
+    ./masterserver -n MasterServer1 -p 1116 -c 3
+\end{minted}
+Der MasterServer hört auf Port 1116 und empfängt alle Daten die ihm die SlaveServer zu kommen lassen. Nachdem er von 3 SlaveServer Daten bekommen hat wird die Reduce Funktion aufgerufen.\\
+\newpage
+\begin{minted}{cpp}
+    ./masterserver -n MasterServer1 -p 1116 -t 
+\end{minted}
+Der MasterServer hört auf Port 1116 und empfängt alle Daten die ihm die SlaveServer zu kommen lassen am Ende gibt er in der Console eine Tabelle aus, die veranschaulicht in welcher Phase wie viele Daten komprimiert wurden.\\
+\begin{minted}{cpp}
+    ./masterserver -n MasterServer1 -p 1116 -j ../src/build/test.json
+\end{minted}
+Der MasterServer hört auf Port 1116 und empfängt alle Daten die ihm die SlaveServer zu kommen lassen am Ende werden die komprimierten Daten in ein JSON-File geschrieben.
 \section{Schlusswort}
+Die gesamte Ausarbeitung meines Projekts hat mir persönlich sehr gut gefallen, weil ich sehr viele neue programmiertechnische Kenntnisse erlernt habe. Gleichzeitig habe ich aber auch vieles zu den Thematiken "Datenübrtragung", "TCP/IP", "Parallel Programming" und vorallem zum Thema MapReduce gelernt.
+Ich bedanke mich sehr herzlich bei meinem Professor Günter Kolousek, der die Idee hatte, statt der praktischen Arbeit und dem Theorietest solch eine Arbeit zu machen. Das Ausarbeiten wie auch das Programmiern hat mir sehr viel Freude bereitet, weil ich meine eigenen Kenntnisse anwenden konnte.
+Auch bei Problemen oder Fragen war Herr Professor immer sehr hilfsbereit und war jederzeit erreichbar. 
+Mit diesem Projekt habe ich zunehmend Erfahrungen, Kenntnisse und vorallem
+Wissen sammeln können, bezgüglich Threads, Prozesse, Loggin, Kommunikation zwischen Server und Clients, SPDLOG, CLI11, Tabulat usw.
+Zum Schluss möcht ich nochmals daraufeingehen, dass mir die
+Realisierung des Projekt "MapReduce-System" sehr viel Freude gemacht hat, obwohl manche Problem ziemlich
+schwierig zu lösen waren.
 \newpage
 \printbibliography
 \end{document}

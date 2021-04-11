@@ -33,7 +33,7 @@ using json = nlohmann::json;
 
 /*
 -Name: AddList
--Beschreibung: dabei werden die Daten des Strings tablesata,
+-Beschreibung: dabei werden die Daten des Strings tabledata,
 der für die Ausgabe der Tabelle auf der Console von Relevant sind,
 in den jeweiligen Maps abgespeichert
 -Input: 
@@ -164,7 +164,7 @@ map<string, int>* MasterServer::GetMap(){
 
 /*
 -Name: GetListLength
--Beschreibung: gibt die Länger der Liste zurück
+-Beschreibung: gibt die Größe der Liste zurück
 -Input: 
 -Output: int       
 */
@@ -184,7 +184,7 @@ int MasterServer::GetConnectionCounter(){
 
 /*
 -Name: SetConnectionCounter
--Beschreibung: erhöt die Variable connectioncounter um 1
+-Beschreibung: erhöht die Variable connectioncounter um 1
 -Input: 
 -Output: void       
 */
@@ -319,7 +319,7 @@ void MasterServer::WriteIntoFile(string jsonfile){
 
 /*
 -Name: Reduce
--Beschreibung: 1 Phase des Map-Reduce Systems
+-Beschreibung: 3 Phase des Map-Reduce Systems
 -Input: 
 -Output: void      
 */

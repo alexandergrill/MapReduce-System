@@ -27,7 +27,7 @@ using namespace asio::ip;
 int main(int argc, char* argv[]){
     //Variablen
     int wordcount = 10000;              //Max. Anzahl der random generierten strings
-    string filepath = "";               //Pfad der Date
+    string filepath = "";               //Pfad der Datei
     string ipadress = "127.0.0.1";      //IP Adresse  des Clients
     string port;                        //Port zu den jeweiligen SlaveServer
     string clientname;                  //Name des Clients
