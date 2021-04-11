@@ -5,6 +5,7 @@
  * date:    27.02.2021
 */
 
+//includes
 #include "client.h"
 #include "utils.h"
 
@@ -18,18 +19,21 @@
 
 #include <iostream>
 
+//namespaces
 using namespace std;
 using namespace rang;
 using namespace asio::ip;
 
 int main(int argc, char* argv[]){
-    int wordcount = 10000;
-    string filepath = "";
-    string ipadress = "127.0.0.1";
-    string port;
-    string clientname;
-    string transportstring = "";
+    //Variablen
+    int wordcount = 10000;              //Max. Anzahl der random generierten strings
+    string filepath = "";               //Pfad der Date
+    string ipadress = "127.0.0.1";      //IP Adresse  des Clients
+    string port;                        //Port zu den jeweiligen SlaveServer
+    string clientname;                  //Name des Clients
+    string transportstring = "";        //Übertragungsstring
     
+    //Kommandozeilenparameter
     CLI::App app("MapReduceSystem_Client");
     app.add_option("-n,--n", clientname, "name for the client")->required();
     app.add_option("-i,--i", ipadress, "ipadress for the client");
@@ -37,6 +41,7 @@ int main(int argc, char* argv[]){
     app.add_option("-f,--f", filepath, "filepath of the file")->check(CLI::ExistingFile);
     CLI11_PARSE(app, argc, argv);
 
+    //SPLOG
     cout << fg::green << flush;
     auto file = spdlog::basic_logger_mt("file_logger", "log-File.txt");
     spdlog::set_default_logger(file);
@@ -46,13 +51,14 @@ int main(int argc, char* argv[]){
 
     Client* c = Client::GetClient(ipadress, port);
 
+    //Daten an Server senden
     if(c != nullptr && wordcount > 0){
-
+        //Verbindung zu Server wird versucht aufzubauen
         char* client_ip = &ipadress[0];
         char* client_port = &port[0];
 
         tcp::iostream tcpconnection{client_ip, client_port};
-            
+        
         if(tcpconnection){
             cout << fg::green << flush;
             spdlog::get("client_logger")->info("established connection to server");
@@ -65,14 +71,15 @@ int main(int argc, char* argv[]){
                 spdlog::get("client_logger")->info("write random string into file");
                 spdlog::get("file_logger")->info("write random string into file");
             }
-            
+            //Aufruf der MAP Funktion
             c->Map(filepath);
             cout << fg::green << flush;
             spdlog::get("client_logger")->info("call map function, sort data in dictionary");
             spdlog::get("file_logger")->info("call map function, sort data in dictionary");
 
             Print(c->GetMap());
-                    
+
+            //befüllen des Transportstrings  
             transportstring = ConvertMaptoString(c->GetMap());
             cout << fg::green << flush;
             spdlog::get("client_logger")->info("convert map to transportdata");

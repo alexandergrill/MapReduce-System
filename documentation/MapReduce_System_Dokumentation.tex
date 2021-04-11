@@ -540,6 +540,7 @@ die der Benutzer beim Aufruf mitübergibt, generiert und in eine Datei geschrieb
 Diesen Part wird im MapReduce-System als Map Funktion bezeichnet. Zum Schluss wenn alle Daten im Dictionary abgespeichert sind, wird dieses in einem
 String konvertiert, um diesen daraufhin an dem Server zu übertragen. Bei der Umwandlung des Dictionarys, werden den Key-Werten und Value-Werten Trennsymbole angehängt, sodass der Slaveserver die Zeichenkette aufteilen und weiters in ein Dictionary zurück umkonvertieren kann.\\\\
 \textbf{Kommandozeilenparameter}\\
+\usemintedstyle{bw}
 \begin{minted}{cpp}
 MapReduceSystem_Client
 Usage: ./client [OPTIONS]
@@ -553,14 +554,14 @@ Options:
 
 \end{minted}
 \newpage
+\noindent
 \textbf{Klassenaufbau}\\
-
 \subsection{SlaveServer}
 \textbf{Modulbeschreibung}\\
 Diese Komponente bildete die Schnittstelle zwischen den Clients und dem Masterserver. Der SlaveServer hört auf einen Port ab und empfängt, jene Daten die ihm der Client sendet. Die Übetragungsdaten wird in Form von einem String übertragen, wobei die 
 einzelnen Werte durch ein ; getrennt werden. Wenn der Slaverserver von 2 unterschieldichen Clients Daten bekommen hat, werden die Strings zurück in eine Map konvertiert und in einer Map-List abgespeichert. Wenn sich zwei Maps in dieser Liste befinden, wird zu jedem Paar(also wenn immer 2 Maps in der Liste gespeichert sind)
-ein Thread gestartet. In jedem Thread werden die einzelnen Werte eine Map vergliechen und verkleinert, d.h Durchführung der Shuffle Phase. Die resultierenden Daten werden dann in der Map datamap abgespeichert. Da alle erzeugten Threads ihre Daten in der datamap abspeichern, werden redundante Daten erzeugt. Diese müssen schlussendlich auch komprimiert werden. Am Ende dieser Phase werden alle Daten in der resultmap abspeichert. 
-Auf Grund der parallele Abarbeitung der Daten bietet, dieses System eine hohe effizienz. Wie im Modul Client wird die Map am Ende zu einem Übertragungsstring umgewandlet und dem MasterServer versendet.
+ein Thread gestartet. In jedem Thread werden die einzelnen Werte der Maps vergliechen und verkleinert, d.h Durchführung der Shuffle Phase. Die resultierenden Daten werden dann in der Map resultmap abgespeichert. Danach wird die Map resultmap wieder in einem Übertragungsstring umgewandelt und an dem Master Server versendet auf dem Port, der beim Aufruf des SlaveServers mitübergeben wurde.
+Auf Grund der parallele Abarbeitung der Daten bietet, dieses System eine hohe effizienz. Wie im Modul Client wird die Map am Ende zu einem Übertragungsstring umgewandlet und dem MasterServer versendet.\\\\
 \textbf{Kommandozeilenparameter}\\
 \begin{minted}{cpp}
 MapReduceSystem_SlaverServer
@@ -575,9 +576,14 @@ Options:
   -c,--c INT                  the maximum of clients
 
 \end{minted}
+\newpage
+\noindent
 \textbf{Klassenaufbau}\\
 \subsection{MasterServer}
 \textbf{Modulbeschreibung}\\
+Der MasterServer ist die wichtigste Komponente des Projekt, weil diese hat am Ende des Prozederes die Aufgabe, die Daten, die er von den Slave Server bekommt, so klein wie möglich komprimiert. Diese Phase wird Reduce genannt und am Ende dieser Phase kommen keine doppelte Datensätze mehr vor. Der Master Server hört wie auch der Slave Server auf einem Port ab 
+und wartet so lange bis er einen Request von einem Slave Server bekommt. Wenn dieser von zwei unterschiedlichen Slave Server Daten bekommen hat, wird immer wieder Threads gestaterte die unabhängig voneinander die Daten der Slave Server verkleineren und in der resultmap abspeichern. Nach der Durchführung der Reduce Phase, wurden alle Daten die der Clients komprimiert was bedeutet es existieren in der Datenmenge
+keine doppelten Wert mehr.\\\\
 \textbf{Kommandozeilenparameter}\\ 
 \begin{minted}{cpp}
 MapReduceSystem_MasterServer

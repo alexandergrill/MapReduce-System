@@ -8,15 +8,18 @@
 #ifndef CLIENT_H
 #define CLIENT_H
 
+//includes
 #include <map>
 #include <iostream>
 
+//Klasse Client
 class Client{
 private:
-    std::string ipadress;
-    std::string port;
-    std::map<std::string, int> datamap;
-    const char alphabet[52] = {
+//Variablen
+    std::string ipadress;                   //IP Adresse des Clients
+    std::string port;                       //PORT des jeweiligen Servers
+    std::map<std::string, int> datamap;     //in dieser Map werden alle komprimierten Daten nach der Map Phase abgespeichert
+    const char alphabet[52] = {             //Array dient für die Generierung von random strings
         'A', 'B', 'C', 'D', 'E', 'F', 'G',
         'H', 'I', 'J', 'K', 'L', 'M', 'N',
         'O', 'P', 'Q', 'R', 'S', 'T', 'U',
@@ -25,12 +28,14 @@ private:
         'h', 'i', 'j', 'k', 'l', 'm', 'n',
         'o', 'p', 'q', 'r', 's', 't', 'u',
         'v', 'w', 'x', 'y', 'z'};
+//Konstruktor
     Client(std::string ip, std::string pr):ipadress{ip}, port{pr}{}
+//Methoden
     std::string GetRandomString();
 public :
+//Methoden
     static Client *GetClient(std::string ip, std::string pr);
     std::map<std::string, int>* GetMap();
-    std::string ConvertMap();
     int GetDataMapSize();
     void WriteIntoFile(int wordnum, std::string filename);
     void Map(std::string filename);

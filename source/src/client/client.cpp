@@ -5,6 +5,7 @@
  * date:    27.02.2021
 */
 
+//includes
 #include "utils.h"
 #include "client.h"
 
@@ -13,8 +14,6 @@
 #include "spdlog/sinks/basic_file_sink.h"
 
 #include <rang.hpp>
-
-
 #include <time.h>
 
 #include <map>
@@ -23,10 +22,36 @@
 #include <iostream>
 #include <string>
 
-
+//namespaces
 using namespace std;
 using namespace rang;
 
+//Methoden Definitionen
+
+/*
+-Name: GetRandomString
+-Beschreibung: 
+-Input: 
+-Output:        
+*/
+string Client::GetRandomString(){
+    int wordlength = GetRandomNum(1, 5);
+    int wordletter = GetRandomNum(0, 51);
+    string word = "";
+    for (int i = 0; i < wordlength; i++){
+        word = word + alphabet[wordletter];
+        wordletter = GetRandomNum(0, 51);
+    }
+    word += " ";
+    return word;
+}
+
+/*
+-Name: GetClient
+-Beschreibung: 
+-Input: 
+-Output:        
+*/
 Client* Client::GetClient(std::string ip, std::string pr){
     bool ipvalid;
     bool povalid;
@@ -53,26 +78,32 @@ Client* Client::GetClient(std::string ip, std::string pr){
     return cl;
 }
 
+/*
+-Name: GetMap
+-Beschreibung: 
+-Input: 
+-Output:        
+*/
 map<string, int>* Client::GetMap(){
     return &datamap;
 }
 
+/*
+-Name: GetDataMapSize
+-Beschreibung: 
+-Input: 
+-Output:        
+*/
 int Client::GetDataMapSize(){
     return datamap.size();
 }
 
-string Client::GetRandomString(){
-    int wordlength = GetRandomNum(1, 5);
-    int wordletter = GetRandomNum(0, 51);
-    string word = "";
-    for (int i = 0; i < wordlength; i++){
-        word = word + alphabet[wordletter];
-        wordletter = GetRandomNum(0, 51);
-    }
-    word += " ";
-    return word;
-}
-
+/*
+-Name: WriteIntoFile
+-Beschreibung: 
+-Input: 
+-Output:        
+*/
 void Client::WriteIntoFile(int wordnum, string filename){
     ofstream file;
     try{
@@ -100,6 +131,12 @@ void Client::WriteIntoFile(int wordnum, string filename){
     }
 }
 
+/*
+-Name: Map
+-Beschreibung: 
+-Input: 
+-Output:        
+*/
 void Client::Map(string filename){
     string line;
     fstream file;

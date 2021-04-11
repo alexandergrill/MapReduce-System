@@ -5,6 +5,7 @@
  * date:    27.02.2021
 */
 
+//includes
 #include "utils.h"
 #include "slaveserver.h"
 
@@ -21,21 +22,23 @@
 #include <vector>
 #include <mutex>
 
+//namespaces
 using namespace std;
 using namespace rang;
 using namespace asio::ip;
 
 int main(int argc, char *argv[]){
-    mutex mx;
-    string ipadress = "127.0.0.1";
-    string port;
-    string serverport;
-    string transportstring = "";
-    string slaveservername;
-    int maxclient{4};
-    int threadcounter{0};
+    //Variablen
+    mutex mx;                           //Mutex Objekt
+    string ipadress = "127.0.0.1";      //IP Adresse  des SlaveServers
+    string port;                        //Port zu den jeweiligen MasterServer
+    string serverport;                  //Port des SlaveServer
+    string transportstring = "";        //Übertragungsstring
+    string slaveservername;             //Name des SlaveServer
+    int maxclient{4};                   //Max. Anzahl der Clients
+    int threadcounter{0};               //Hilfvariable für Threads
     
-
+    //Kommandozeilenparameter
     CLI::App app("MapReduceSystem_SlaverServer");
     app.add_option("-n,--n", slaveservername, "name for the slaveserver")->required();
     app.add_option("-i,--i", ipadress, "ipadress for the server");
@@ -44,6 +47,7 @@ int main(int argc, char *argv[]){
     app.add_option("-c,--c", maxclient, "the maximum of clients");
     CLI11_PARSE(app, argc, argv);
     
+    //SPDLOG
     cout << fg::green << flush;
     auto file = spdlog::basic_logger_mt("file_logger", "log-File.txt");
     spdlog::set_default_logger(file);
@@ -54,6 +58,7 @@ int main(int argc, char *argv[]){
     vector<thread> pool(maxclient/2);
     SlaveServer *sl = SlaveServer::GetSlaveServer(ipadress, port, serverport, ref(mx));
 
+    //Auf Port abhören um Daten von Clients zu empfangen
     if(sl != nullptr){
         tcp::endpoint ep{tcp::v4(), sl->GetServerPort()};
         asio::io_context cox;
@@ -69,7 +74,8 @@ int main(int argc, char *argv[]){
             cout << fg::green << flush;
             spdlog::get("slaveserver_logger")->info("client " + to_string(sl->GetConnectionCounter()) + " has connected to server");
             spdlog::get("file_logger")->info("client " + to_string(sl->GetConnectionCounter()) + " has connected to server");
-
+            
+            //Übertragungsstring in Map abspeichern
             string data = "";
             strm >> data;
             sl->ConvertStringtoMap(data);
@@ -77,6 +83,8 @@ int main(int argc, char *argv[]){
             cout << fg::green << flush;
             spdlog::get("slaveserver_logger")->info("convert data from client to map");
             spdlog::get("file_logger")->info("convert data from client to map");
+            
+            //Thread mit der Funktion Shuffle wird gestartet
             if (sl->GetListLength() == 2){
                 cout << fg::green << flush;
                 pool[threadcounter] = thread(&SlaveServer::Shuffle, &*sl);
@@ -88,6 +96,8 @@ int main(int argc, char *argv[]){
             t.join();
         }
         Print(sl->GetMap());
+
+        //setzten des Transportstrings
         transportstring = ConvertMaptoString(sl->GetMap());
         transportstring += sl->GetTableData();
         transportstring += slaveservername + "+1," + to_string(-1) + ":" + slaveservername + "+1," + to_string(sl->GetDataMapSize()) + ":";
@@ -99,6 +109,7 @@ int main(int argc, char *argv[]){
         char *slaveserver_ip = &ipadress[0];
         char *slaveserver_port = &port[0];
 
+        //Verbindung zu MasterServer aufbauen, wenn erfolgreich, werden die Daten gesendet
         tcp::iostream tcpconnection{slaveserver_ip, slaveserver_port};
 
         if (tcpconnection){

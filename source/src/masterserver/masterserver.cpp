@@ -5,6 +5,7 @@
  * date:    27.02.2021
 */
 
+//includes
 #include "masterserver.h"
 #include "utils.h"
 
@@ -22,12 +23,50 @@
 #include <fstream>
 #include <sstream>
 
+//namespaces
 using namespace std;
 using namespace rang;
 using namespace tabulate;
-
 using json = nlohmann::json;
 
+//Methoden Definitionen
+
+/*
+-Name: AddList
+-Beschreibung: 
+-Input: 
+-Output:        
+*/
+void MasterServer::AddList(map<string, int> *mapdic){
+    maplist->push_back(*mapdic);
+}
+
+/*
+-Name: SetTableData
+-Beschreibung: 
+-Input: 
+-Output:        
+*/
+void MasterServer::SetTableData(string value, int valuecnt){
+    tabledata += value + "," + to_string(valuecnt) + ":";
+}
+
+/*
+-Name: GetTableData
+-Beschreibung: 
+-Input: 
+-Output:        
+*/
+string MasterServer::GetTableData(){
+    return tabledata;
+}
+
+/*
+-Name: GetMasterServer
+-Beschreibung: 
+-Input: 
+-Output:        
+*/
 MasterServer *MasterServer::GetMasterServer(string port, mutex &mx){
     bool portvalid;
     MasterServer *mas;
@@ -50,34 +89,52 @@ unsigned short MasterServer::GetServerPort(){
     return serverport;
 }
 
+/*
+-Name: GetMap
+-Beschreibung: 
+-Input: 
+-Output:        
+*/
 map<string, int>* MasterServer::GetMap(){
     return &resultmap;
 }
 
-int MasterServer::GetConnectionCounter(){
-    return connectioncounter;
-}
-
-void MasterServer::SetConnectionCounter(){
-    connectioncounter += 1;
-}
-
-void MasterServer::AddList(map<string, int> *mapdic){
-    maplist->push_back(*mapdic);
-}
-
+/*
+-Name: GetListLength
+-Beschreibung: 
+-Input: 
+-Output:        
+*/
 int MasterServer::GetListLength(){
     return maplist->size();
 }
 
-string MasterServer::GetTableData(){
-    return tabledata;
+/*
+-Name: GetConnectionCounter
+-Beschreibung: 
+-Input: 
+-Output:        
+*/
+int MasterServer::GetConnectionCounter(){
+    return connectioncounter;
 }
 
-void MasterServer::SetTableData(string value, int valuecnt){
-    tabledata += value + "," + to_string(valuecnt) + ":";
+/*
+-Name: SetConnectionCounter
+-Beschreibung: 
+-Input: 
+-Output:        
+*/
+void MasterServer::SetConnectionCounter(){
+    connectioncounter += 1;
 }
 
+/*
+-Name: ConvertStringtoMap
+-Beschreibung: 
+-Input: 
+-Output:        
+*/
 void MasterServer::ConvertStringtoMap(std::string transportstr){
     map<string, int> *mapd = new map<string, int>();
     stringstream ss(transportstr);
@@ -114,6 +171,12 @@ void MasterServer::ConvertStringtoMap(std::string transportstr){
     AddList(mapd);
 }
 
+/*
+-Name: InsertElementinMap
+-Beschreibung: 
+-Input: 
+-Output:        
+*/
 void MasterServer::InsertElementinMap(string value, int valuecnt){
     if (resultmap.empty()){
         resultmap.insert(pair<string, int>(value, valuecnt));
@@ -130,66 +193,12 @@ void MasterServer::InsertElementinMap(string value, int valuecnt){
     }
 }
 
-void MasterServer::WriteIntoFile(string jsonfile){
-    json data;
-    ofstream of(jsonfile);
-    for (map<string, int>::iterator t = resultmap.begin(); t != resultmap.end(); ++t){
-        string value = t->first;
-        int valuecounter = t->second;
-        data["value"] = value;
-        data["number"] = valuecounter;
-        of << data << endl;
-    }
-}
-
-void MasterServer::SetMaps(){
-    stringstream sstring(tabledata);
-    string data;
-    string clientservername = "";
-    string datacnt1;
-    string datacnt2;
-    int cnt{0};
-    while (getline(sstring, data, ':')){
-        int n = data.length();
-        char *str = new char[n + 1];
-        strcpy(str, data.c_str());
-        char *strelement;
-        strelement = strtok(str, ",");
-        while (strelement != NULL){
-            if(cnt == 0){
-                clientservername = strelement;
-                cnt += 1;
-            }
-            else{
-                if(cnt == 1){
-                    datacnt1 = strelement;
-                    cnt += 1;
-                }
-                else{
-                    
-                    datacnt2 = strelement;
-                    cnt += 1;
-                }
-            }
-            strelement = strtok(NULL, ",");
-            if (cnt == 4){              
-                cnt = 0;
-                if(clientservername.find("+0") != string::npos){
-                    clientservername.erase(clientservername.size()-1);
-                    clientservername.erase(clientservername.size() - 1);
-                    clients[clientservername][datacnt1] = datacnt2;
-                }
-                else{
-                    clientservername.erase(clientservername.size() - 1);
-                    clientservername.erase(clientservername.size() - 1);
-                    slaveserver[clientservername] = datacnt2;
-                }
-            }
-        }
-        delete str;
-    }
-}
-
+/*
+-Name: PrintTable
+-Beschreibung: 
+-Input: 
+-Output:        
+*/
 void MasterServer::PrintTable(string masterservername){
     Table objects_table;
     objects_table.format().font_style({FontStyle::bold}).width(14);
@@ -222,6 +231,30 @@ void MasterServer::PrintTable(string masterservername){
     cout << objects_table << endl;
 }
 
+/*
+-Name: WriteIntoFile
+-Beschreibung: 
+-Input: 
+-Output:        
+*/
+void MasterServer::WriteIntoFile(string jsonfile){
+    json data;
+    ofstream of(jsonfile);
+    for (map<string, int>::iterator t = resultmap.begin(); t != resultmap.end(); ++t){
+        string value = t->first;
+        int valuecounter = t->second;
+        data["value"] = value;
+        data["number"] = valuecounter;
+        of << data << endl;
+    }
+}
+
+/*
+-Name: Reduce
+-Beschreibung: 
+-Input: 
+-Output:        
+*/
 void MasterServer::Reduce(){
     unique_lock<mutex> uls{mux};
     auto listiterator = maplist->begin();
@@ -258,3 +291,5 @@ void MasterServer::Reduce(){
         InsertElementinMap(t3->first, t3->second);
     }
 }
+
+

@@ -5,6 +5,7 @@
  * date:    27.02.2021
 */
 
+//includes
 #include "slaveserver.h"
 #include "utils.h"
 
@@ -19,9 +20,18 @@
 #include <mutex>
 #include <sstream>
 
+//namespaces
 using namespace std;
 using namespace rang;
 
+//Methoden Definitionen
+
+/*
+-Name: GetSlaveServer
+-Beschreibung: 
+-Input: 
+-Output:        
+*/
 SlaveServer* SlaveServer::GetSlaveServer(string ip, string port, string sport, mutex& mx){
     bool ipvalid;
     bool portvalid;
@@ -44,12 +54,22 @@ SlaveServer* SlaveServer::GetSlaveServer(string ip, string port, string sport, m
     return sls;
 }
 
-
+/*
+-Name: GetDataMapSize
+-Beschreibung: 
+-Input: 
+-Output:        
+*/
 int SlaveServer::GetDataMapSize(){
     return resultmap.size();
 }
 
-
+/*
+-Name: Shuffle
+-Beschreibung: 
+-Input: 
+-Output:        
+*/
 void SlaveServer::Shuffle(){
     unique_lock<mutex> uls{mux};
     auto listiterator = maplist->begin();

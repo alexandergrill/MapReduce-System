@@ -5,6 +5,7 @@
  * date:    27.02.2021
 */
 
+//includes
 #include "masterserver.h"
 #include "utils.h"
 
@@ -21,19 +22,22 @@
 #include <vector>
 #include <mutex>
 
+//namespaces
 using namespace std;
 using namespace rang;
 using namespace asio::ip;
 
 int main(int argc, char *argv[]){
-    mutex mx;
-    string port;
-    string jsonfile;
-    string masterservername;
-    int maxslaveserver{2};
-    int threadcounter{0};
-    bool displaytable{false};
+    //Variablen
+    mutex mx;                   //Mutex Objekt
+    string port;                //Port des Master Servers
+    string jsonfile;            //Pfad des JSON-Files
+    string masterservername;    //Name des MasterServers
+    int maxslaveserver{2};      //Max. Anzahl der SlaveServer
+    int threadcounter{0};       //Hilfvariable für Threads
+    bool displaytable{false};   //bool ob Tabelle geprinted werden soll
 
+    //Kommandozeilenparameter
     CLI::App app("MapReduceSystem_MasterServer");
     app.add_option("-n,--n", masterservername, "name for the masterserver")->required();
     app.add_option("-p,--p", port, "serverport")->required();
@@ -42,6 +46,7 @@ int main(int argc, char *argv[]){
     app.add_flag("-t,--t", displaytable, "print a table about the reduced data");
     CLI11_PARSE(app, argc, argv);
 
+    //SPDLOG
     cout << fg::green << flush;
     auto file = spdlog::basic_logger_mt("file_logger", "log-File.txt");
     spdlog::set_default_logger(file);
@@ -52,7 +57,7 @@ int main(int argc, char *argv[]){
     vector<thread> pool(maxslaveserver / 2);
     MasterServer* ma = MasterServer::GetMasterServer(port, ref(mx));
 
-    
+    //Auf Port abhören um Daten von SlaveServer zu empfangen
     if (ma != nullptr){
         tcp::endpoint ep{tcp::v4(), ma->GetServerPort()};
         asio::io_context cox;
@@ -69,6 +74,7 @@ int main(int argc, char *argv[]){
             spdlog::get("masterserver_logger")->info("slaveserver " + to_string(ma->GetConnectionCounter()) + " has connected to server");
             spdlog::get("file_logger")->info("slaveserver " + to_string(ma->GetConnectionCounter()) + " has connected to server");
 
+            //Übertragungsstring in Map abspeichern
             string data = "";
             strm >> data;
             ma->ConvertStringtoMap(data);
@@ -77,6 +83,7 @@ int main(int argc, char *argv[]){
             spdlog::get("masterserver_logger")->info("convert data from slaveserver to map");
             spdlog::get("file_logger")->info("convert data from slaveserver to map");
             
+            //Thread mit der Funktion Reduce wird gestartet
             if (ma->GetListLength() == 2){
                 pool[threadcounter] = thread(&MasterServer::Reduce, &*ma);
                 threadcounter += 1;
@@ -86,11 +93,14 @@ int main(int argc, char *argv[]){
         for (auto &t : pool){
             t.join();
         }
-        Print(ma->GetMap());
 
+        Print(ma->GetMap());
+        
+        //Ausgabe der Tabelle auf der Konsole
         if (displaytable == true){
             ma->PrintTable(masterservername);
         }
+        //Daten werden nach der Reduce Phase JSON-File abgespeichert
         if(jsonfile.empty() == false){
             ma->WriteIntoFile(jsonfile);
         }
@@ -100,6 +110,5 @@ int main(int argc, char *argv[]){
         spdlog::get("masterserver_logger")->error("check input parameter");
         spdlog::get("file_logger")->error("check input parameter");
     }
-
     delete ma;
 }

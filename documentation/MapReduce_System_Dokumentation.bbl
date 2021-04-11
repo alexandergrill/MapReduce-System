@@ -1,0 +1,299 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{asio}{online}{}
+      \name{author}{1}{}{%
+        {{hash=c864bb04801891ecbf38f1bb43db5dc1}{%
+           family={asio},
+           familyi={a\bibinitperiod}}}%
+      }
+      \strng{namehash}{c864bb04801891ecbf38f1bb43db5dc1}
+      \strng{fullhash}{c864bb04801891ecbf38f1bb43db5dc1}
+      \strng{bibnamehash}{c864bb04801891ecbf38f1bb43db5dc1}
+      \strng{authorbibnamehash}{c864bb04801891ecbf38f1bb43db5dc1}
+      \strng{authornamehash}{c864bb04801891ecbf38f1bb43db5dc1}
+      \strng{authorfullhash}{c864bb04801891ecbf38f1bb43db5dc1}
+      \field{sortinit}{a}
+      \field{sortinithash}{a3dcedd53b04d1adfd5ac303ecd5e6fa}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{besucht am 15.01.2021}
+      \field{title}{asioC++Libary}
+      \field{year}{2021}
+      \verb{urlraw}
+      \verb https://think-async.com/Asio/asio-1.18.1/doc/
+      \endverb
+      \verb{url}
+      \verb https://think-async.com/Asio/asio-1.18.1/doc/
+      \endverb
+    \endentry
+    \entry{vorteil/nachteilemrsystem}{online}{}
+      \name{author}{1}{}{%
+        {{hash=77b8722d7aabdda3195b1d0f5a64778d}{%
+           family={BigDataInsider},
+           familyi={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{77b8722d7aabdda3195b1d0f5a64778d}
+      \strng{fullhash}{77b8722d7aabdda3195b1d0f5a64778d}
+      \strng{bibnamehash}{77b8722d7aabdda3195b1d0f5a64778d}
+      \strng{authorbibnamehash}{77b8722d7aabdda3195b1d0f5a64778d}
+      \strng{authornamehash}{77b8722d7aabdda3195b1d0f5a64778d}
+      \strng{authorfullhash}{77b8722d7aabdda3195b1d0f5a64778d}
+      \field{sortinit}{B}
+      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{besucht am 24.02.2021}
+      \field{title}{Was ist MapReduce?}
+      \field{year}{2021}
+      \verb{urlraw}
+      \verb https://www.bigdata-insider.de/was-ist-mapreduce-a-624936/
+      \endverb
+      \verb{url}
+      \verb https://www.bigdata-insider.de/was-ist-mapreduce-a-624936/
+      \endverb
+    \endentry
+    \entry{cli11}{online}{}
+      \field{sortinit}{c}
+      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
+      \field{labeltitlesource}{title}
+      \field{note}{besucht am 15.01.2021}
+      \field{title}{cli11C++Libary}
+      \field{year}{2021}
+      \verb{urlraw}
+      \verb https://github.com/CLIUtils/CLI11
+      \endverb
+      \verb{url}
+      \verb https://github.com/CLIUtils/CLI11
+      \endverb
+    \endentry
+    \entry{mrsystempic}{online}{}
+      \name{author}{1}{}{%
+        {{hash=180528d76f3f3f74527b86bcd2ce0531}{%
+           family={Data},
+           familyi={D\bibinitperiod},
+           given={Big},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{180528d76f3f3f74527b86bcd2ce0531}
+      \strng{fullhash}{180528d76f3f3f74527b86bcd2ce0531}
+      \strng{bibnamehash}{180528d76f3f3f74527b86bcd2ce0531}
+      \strng{authorbibnamehash}{180528d76f3f3f74527b86bcd2ce0531}
+      \strng{authornamehash}{180528d76f3f3f74527b86bcd2ce0531}
+      \strng{authorfullhash}{180528d76f3f3f74527b86bcd2ce0531}
+      \field{sortinit}{D}
+      \field{sortinithash}{c438b3d5d027251ba63f5ed538d98af5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{besucht am 24.02.2021}
+      \field{title}{MapReduce-System}
+      \field{year}{2021}
+      \verb{urlraw}
+      \verb https://www.bigdataschool.ru/wiki/mapreduce
+      \endverb
+      \verb{url}
+      \verb https://www.bigdataschool.ru/wiki/mapreduce
+      \endverb
+    \endentry
+    \entry{tcpip}{online}{}
+      \name{author}{1}{}{%
+        {{hash=f59148b905444e29b2ca485e20a357d9}{%
+           family={ionos},
+           familyi={i\bibinitperiod}}}%
+      }
+      \strng{namehash}{f59148b905444e29b2ca485e20a357d9}
+      \strng{fullhash}{f59148b905444e29b2ca485e20a357d9}
+      \strng{bibnamehash}{f59148b905444e29b2ca485e20a357d9}
+      \strng{authorbibnamehash}{f59148b905444e29b2ca485e20a357d9}
+      \strng{authornamehash}{f59148b905444e29b2ca485e20a357d9}
+      \strng{authorfullhash}{f59148b905444e29b2ca485e20a357d9}
+      \field{sortinit}{i}
+      \field{sortinithash}{9417e9a1288a9371e2691d999083ed39}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{besucht am 18.01.2021}
+      \field{title}{TCP/IP}
+      \field{year}{2021}
+      \verb{urlraw}
+      \verb https://www.ionos.at/
+      \endverb
+      \verb{url}
+      \verb https://www.ionos.at/
+      \endverb
+    \endentry
+    \entry{json}{online}{}
+      \field{sortinit}{j}
+      \field{sortinithash}{c45040a764d616897e7f5b30174d7b92}
+      \field{labeltitlesource}{title}
+      \field{note}{besucht am 15.01.2021}
+      \field{title}{json++Libary}
+      \field{year}{2021}
+      \verb{urlraw}
+      \verb https://github.com/nlohmann/json
+      \endverb
+      \verb{url}
+      \verb https://github.com/nlohmann/json
+      \endverb
+    \endentry
+    \entry{parallelprogramming}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=2378bad2157da7421dca55f9fbf82db7}{%
+           family={Kolousek},
+           familyi={K\bibinitperiod},
+           given={Günter},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{2378bad2157da7421dca55f9fbf82db7}
+      \strng{fullhash}{2378bad2157da7421dca55f9fbf82db7}
+      \strng{bibnamehash}{2378bad2157da7421dca55f9fbf82db7}
+      \strng{authorbibnamehash}{2378bad2157da7421dca55f9fbf82db7}
+      \strng{authornamehash}{2378bad2157da7421dca55f9fbf82db7}
+      \strng{authorfullhash}{2378bad2157da7421dca55f9fbf82db7}
+      \field{extraname}{1}
+      \field{sortinit}{K}
+      \field{sortinithash}{d3edc18d54b9438a72c24c925bfb38f4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{selfmade_online_webinar}
+      \field{note}{besucht am 14.03.2021}
+      \field{title}{19_parallel_programming}
+      \field{year}{2021}
+    \endentry
+    \entry{communication1}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=2378bad2157da7421dca55f9fbf82db7}{%
+           family={Kolousek},
+           familyi={K\bibinitperiod},
+           given={Günter},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{2378bad2157da7421dca55f9fbf82db7}
+      \strng{fullhash}{2378bad2157da7421dca55f9fbf82db7}
+      \strng{bibnamehash}{2378bad2157da7421dca55f9fbf82db7}
+      \strng{authorbibnamehash}{2378bad2157da7421dca55f9fbf82db7}
+      \strng{authornamehash}{2378bad2157da7421dca55f9fbf82db7}
+      \strng{authorfullhash}{2378bad2157da7421dca55f9fbf82db7}
+      \field{extraname}{2}
+      \field{sortinit}{K}
+      \field{sortinithash}{d3edc18d54b9438a72c24c925bfb38f4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{selfmade_online_webinar}
+      \field{note}{besucht am 02.03.2021}
+      \field{title}{25_communication_1}
+      \field{year}{2021}
+    \endentry
+    \entry{communication2}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=2378bad2157da7421dca55f9fbf82db7}{%
+           family={Kolousek},
+           familyi={K\bibinitperiod},
+           given={Günter},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{2378bad2157da7421dca55f9fbf82db7}
+      \strng{fullhash}{2378bad2157da7421dca55f9fbf82db7}
+      \strng{bibnamehash}{2378bad2157da7421dca55f9fbf82db7}
+      \strng{authorbibnamehash}{2378bad2157da7421dca55f9fbf82db7}
+      \strng{authornamehash}{2378bad2157da7421dca55f9fbf82db7}
+      \strng{authorfullhash}{2378bad2157da7421dca55f9fbf82db7}
+      \field{extraname}{3}
+      \field{sortinit}{K}
+      \field{sortinithash}{d3edc18d54b9438a72c24c925bfb38f4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{selfmade_online_webinar}
+      \field{note}{besucht am 09.03.2021}
+      \field{title}{25_communication_2}
+      \field{year}{2021}
+    \endentry
+    \entry{rang}{online}{}
+      \field{sortinit}{r}
+      \field{sortinithash}{b9c68a358aea118dfa887b6e902414a7}
+      \field{labeltitlesource}{title}
+      \field{note}{besucht am 15.01.2021}
+      \field{title}{rang++Libary}
+      \field{year}{2021}
+      \verb{urlraw}
+      \verb https://github.com/agauniyal/rang
+      \endverb
+      \verb{url}
+      \verb https://github.com/agauniyal/rang
+      \endverb
+    \endentry
+    \entry{spdlog}{online}{}
+      \field{sortinit}{s}
+      \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
+      \field{labeltitlesource}{title}
+      \field{note}{besucht am 15.01.2021}
+      \field{title}{spdlog++Libary}
+      \field{year}{2021}
+      \verb{urlraw}
+      \verb https://github.com/gabime/spdlog
+      \endverb
+      \verb{url}
+      \verb https://github.com/gabime/spdlog
+      \endverb
+    \endentry
+    \entry{tabulate}{online}{}
+      \field{sortinit}{t}
+      \field{sortinithash}{51f9faf24c60c62ca764a77f78cf5666}
+      \field{labeltitlesource}{title}
+      \field{note}{besucht am 15.01.2021}
+      \field{title}{tabulate++Libary}
+      \field{year}{2021}
+      \verb{urlraw}
+      \verb https://github.com/p-ranav/tabulate
+      \endverb
+      \verb{url}
+      \verb https://github.com/p-ranav/tabulate
+      \endverb
+    \endentry
+    \entry{mrsystem}{online}{}
+      \name{author}{1}{}{%
+        {{hash=12672e79b01e9ca7018105efb0ef871c}{%
+           family={wikipedia},
+           familyi={w\bibinitperiod}}}%
+      }
+      \strng{namehash}{12672e79b01e9ca7018105efb0ef871c}
+      \strng{fullhash}{12672e79b01e9ca7018105efb0ef871c}
+      \strng{bibnamehash}{12672e79b01e9ca7018105efb0ef871c}
+      \strng{authorbibnamehash}{12672e79b01e9ca7018105efb0ef871c}
+      \strng{authornamehash}{12672e79b01e9ca7018105efb0ef871c}
+      \strng{authorfullhash}{12672e79b01e9ca7018105efb0ef871c}
+      \field{sortinit}{w}
+      \field{sortinithash}{1af34bd8c148ffb32de1494636b49713}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{besucht am 24.02.2021}
+      \field{title}{MapReduce-System}
+      \field{year}{2021}
+      \verb{urlraw}
+      \verb https://de.wikipedia.org/wiki/MapReduce
+      \endverb
+      \verb{url}
+      \verb https://de.wikipedia.org/wiki/MapReduce
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
