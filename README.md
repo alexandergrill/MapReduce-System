@@ -108,6 +108,10 @@ Der SlaveServer sendet nachdem von 6 Clients die Daten geshuffelt wurden, das Er
 #### Bedienungen
 
 ```
+./masterserver -h
+```
+Dadurch erhält man alle Information bezgl. der Kommandozeilenparameter
+```
 ./masterserver -n MasterServer1 -p 1116
 ```
 Der MasterServer hört auf Port 1116 und empfängt alle Daten die ihm die SlaveServer zu kommen lassen
