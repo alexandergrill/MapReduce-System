@@ -13,9 +13,9 @@
 #include "spdlog/sinks/stdout_color_sinks.h"
 #include "spdlog/sinks/basic_file_sink.h"
 
-#include <json/json.hpp>
+#include <json.hpp>
 #include <rang.hpp>
-#include <tabulate/table.hpp>
+#include <tabulate.hpp>
 
 #include <map>
 #include <iostream>
