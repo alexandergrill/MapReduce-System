@@ -13,9 +13,15 @@
 #include "spdlog/sinks/stdout_color_sinks.h"
 #include "spdlog/sinks/basic_file_sink.h"
 
+//ignore warning "-Wnon-virtual-dtor" from extern library "tabulate"
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wnon-virtual-dtor"
+#include "tabulate.hpp"
+#pragma GCC diagnostic pop
+
 #include <json.hpp>
 #include <rang.hpp>
-#include <tabulate.hpp>
+
 
 #include <map>
 #include <iostream>
